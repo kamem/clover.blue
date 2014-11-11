@@ -1,0 +1,71 @@
+@charset "utf-8";
+
+// ----------------------------------------------------------------------
+// sprite
+// ----------------------------------------------------------------------
+
+@mixin position($map, $sprite-names,$doubleClass : true,$retina : $isRetina) {
+	$retinaSuport: if($retina, 2, 1);
+	$map : nth($map,1);
+	$spriteName: sprite-map-name($map);
+	
+	@each $name in $sprite-names {
+		$class:  if($doubleClass, '.' + $spriteName, '') + '.' + $name;
+		#{$class} {
+			$posY: nth(sprite-position($map, $name), 2);
+			$imgWidth: round(image-width(sprite-file($map, $name)) / $retinaSuport);
+			$imgHeight: round(image-height(sprite-file($map, $name)) / $retinaSuport);
+			$xpos: round(nth(sprite-position($map, $name), 1) / $retinaSuport);
+			$ypos: round(nth(sprite-position($map, $name), 2) / $retinaSuport);
+			background-position: $xpos $ypos;
+			width: $imgWidth;
+			height: $imgHeight;
+		}
+	}
+}
+
+@mixin image($map, $sprite-names,$doubleClass : true,$retina : $isRetina) {
+	$names: ();
+	$retinaSuport: if($retina, 2, 1);
+	
+	@if length($map) > 1 {
+		@if nth($map,2) == true {
+			$sprite-img: sprite-url(nth($map,1));
+		}
+	}
+	@else {
+		$sprite-img: sprite-url(nth($map,1));
+	}
+	
+	$map : nth($map,1);
+	
+	$spriteWidth: round(image-width(sprite-path($map)) / $retinaSuport);
+	$spriteHeight: round(image-height(sprite-path($map)) / $retinaSuport);
+	$spriteName: sprite-map-name($map);
+	
+	
+	@each $name in $sprite-names {
+		$class:  if($doubleClass, '.' + $spriteName, '') + '.' + $name + ',';
+		$names: append($names, #{$class});
+	}
+	#{$names} {
+		display: block;
+		background-image: image-url(sprite-path($map), false, false);
+		background-repeat: no-repeat;
+		@include background-size($spriteWidth $spriteHeight);
+	}
+}
+
+@mixin images($n, $space : 5px,$doubleClass: true ,$retina : $isRetina) {
+	$map: sprite-map($n, $spacing: $space);
+	$list: sprite-names($map);
+
+	@include image($map, $list, $doubleClass, $retina);
+	@include position($map, $list, $doubleClass, $retina);
+}
+
+@mixin sprite-make($dirList, $space : 5px, $doubleClass: true ,$retina: $isRetina) {
+	@each $dir in $dirList {
+		@include images($dir, $space, $doubleClass, $retina);
+	}
+}
