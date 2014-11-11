@@ -5,10 +5,9 @@ var api = 'https://qiita.com/api/v1/';
 var userName = 'kamem';
 
 var entries = mongo.Schema({
-    "title": String,
     "created_at": String,
     "updated_at": String,
-    'entry_id': Number
+    'uuid': String
 });
 
 var Entries = mongo.model('qiita_entries',entries);
@@ -27,13 +26,12 @@ request.post(api + '/auth/', options, function(error, response, body){
         var items = JSON.parse(body);
         items.forEach(function(i) {
 
-            Entries.where({ entry_id: i.id }).count();
-            if(Entries.count({entry_id: i.id})) {
-                Entries.findOne({entry_id: i.id},function(err,post) {
-                    post.title = i.title;
+          Entries.where({ uuid: i.uuid }).count(function (err, count) {
+            if(count) {
+                Entries.findOne({uuid: i.uuid},function(err,post) {
                     post.created_at = i.created_at;
                     post.updated_at = i.updated_at;
-                    post.entry_id = i.id;
+                    post.uuid = i.uuid;
 
                     post.save(function(err) {
                       if (err) { console.log(err); }
@@ -41,15 +39,15 @@ request.post(api + '/auth/', options, function(error, response, body){
                 });
             } else {
                 var entry = new Entries({
-                    title: i.title,
                     created_at: i.created_at,
                     updated_at: i.updated_at,
-                    entry_id: i.id
+                    uuid: i.uuid
                 });
                 entry.save(function(err) {
                   if (err) { console.log(err); }
                 });
             }
+          })
         });
         console.log('complate!');
       } else {
