@@ -1,68 +1,58 @@
 @charset "utf-8";
 body {
   -webkit-text-size-adjust: none;
+  background: #fffcf8;
 }
 
 #header,
 main,
 #footer {
-  text-align: left;
   margin: 0 auto;
-  max-width: 102.4rem;
+  position: relative;
 }
 
 /*----------------------------------------
 	header
 ----------------------------------------*/
+#header {
+  margin-top: 1rem;
+  height: 7rem;
+  background: #94dcef;
+  -webkit-box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.08);
+}
 #header h1 {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-box;
-  display: box;
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  -ms-box-align: center;
-  box-align: center;
-  -webkit-box-pack: center;
-  -moz-box-pack: center;
-  -ms-box-pack: center;
-  box-pack: center;
-  padding: 3em;
-  background: #333;
-  color: white;
+  margin: auto;
+  background: url('../img/common/cloverblue.png?1415727666') 0 0 no-repeat;
+  text-indent: -9999px;
+  overflow: hidden;
+  width: 148px;
+  height: 24px;
+  -webkit-background-size: 148px 24px;
+  -moz-background-size: 148px 24px;
+  -o-background-size: 148px 24px;
+  background-size: 148px 24px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 /*----------------------------------------
 	content
 ----------------------------------------*/
-main h2 {
-  padding: 0.5em 1em;
-  border-bottom: 3px solid #333;
-}
-main h3 {
-  padding: 0.5em 1em;
-  margin: 0.3em 0;
-  background-color: #000;
-  color: #fff;
-}
-main section {
-  margin-bottom: 2em;
-}
-
 /*----------------------------------------
 	footer
 ----------------------------------------*/
-/*----------------------------------------
-	Class
-----------------------------------------*/
-.clearfix, .test {
-  min-height: 1px;
-  _height: 1%;
+#footer {
+  height: 7rem;
+  background: #d4eff4;
+  text-align: center;
 }
-.clearfix:after, .test:after {
-  content: ".";
-  display: block;
-  clear: both;
-  height: 0;
-  visibility: hidden;
+#footer .copyright {
+  color: #fff;
+  line-height: 7rem;
+  font-size: 1.2rem;
 }

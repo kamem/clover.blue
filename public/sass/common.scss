@@ -4,25 +4,36 @@
 
 body {
 	-webkit-text-size-adjust: none;
+	background: $bgColor;
 }
 
 #header,
 main,
 #footer {
-	text-align: left;
 	margin: 0 auto;
-	max-width: es($base-width);
+	position: relative;
 }
 
 /*----------------------------------------
 	header
 ----------------------------------------*/
+$header-height: 70;
+$header-margin-top: 10;
 #header {
+	margin-top: es($header-margin-top);
+	height: es($header-height);
+	background: $baseColor;
+
+	@include box-shadow(8px 8px 0 rgba(0,0,0,.08));
+
 	h1 {
-		@include display-box-center();
-		padding: 3em;
-		background: #333;
-		color: #fff
+		margin: auto;
+		@include background-fit('common/cloverblue.png');
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
 	}
 }
 
@@ -30,35 +41,19 @@ main,
 	content
 ----------------------------------------*/
 main {
-	h2 {
-		padding: 0.5em 1em;
-		border-bottom: 3px solid #333;
-	}
-	
-	h3 {
-		padding: 0.5em 1em;
-		margin: 0.3em 0;
-		background-color: #000;
-		color: #fff;
-	}
-
-	section {
-		margin-bottom: 2em;
-	}
 }
 
 /*----------------------------------------
 	footer
 ----------------------------------------*/
 #footer {
-}
+	height: es($header-height);
+	background: #d4eff4;
+	text-align: center;
 
-
-/*----------------------------------------
-	Class
-----------------------------------------*/
-@include clearfix();
-
-.test {
-	@extend %clearfix;
+	.copyright {
+		color: #fff;
+		line-height: es($header-height);
+		font-size: es(12);
+	}
 }
