@@ -1,0 +1,65 @@
+@charset "utf-8";
+
+/*----------------------------------------
+	pagetop
+----------------------------------------*/
+p.pagetop {
+	$font-size: 13;
+	$line-height: silver-ratio($font-size) + $font-size;
+	$triangle-size: 10;
+
+	line-height: es($line-height);
+	padding: 0 1.5em;
+	@include fz($font-size);
+	text-align: right;
+	letter-spacing: 0;
+
+	margin: 0 auto;
+	height: 0;
+	line-height: es($line-height);
+	max-width: es($base-width);
+	position: relative;
+	
+	a {
+		&[href^="#"] {
+			position: relative;
+			padding-right: es($triangle-size + 5);
+
+			&:after {
+				@include triangle(es($triangle-size) es(8),$linkColor,top);
+				position: absolute !important;
+				top: $size / -2 !important;
+				right: 0 !important;
+			}
+			&:hover {
+				&:after {
+					border-bottom-color: $linkColor_hover;
+				}
+			}
+		}
+	}
+	
+	.content & {
+		top: es(-$line-height);
+	}
+	
+	&:last-child {
+		$line-height: silver-ratio($font-size);
+		$padding: (silver-ratio($font-size) - $font-size);
+		
+		height: auto;
+		max-width: es($base-width-big);
+		
+		a {
+			/*
+			color: #fff;
+			line-height: ($line-height + $padding * 2) / 10;
+			&:after {
+				border-bottom-color: #fff !important;
+			}
+			&:hover {
+				@include opacity(0.7);
+			}*/
+		}
+	}
+}

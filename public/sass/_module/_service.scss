@@ -1,0 +1,86 @@
+@charset "utf-8";
+
+/*----------------------------------------
+	service
+----------------------------------------*/
+.service {
+	$font-size: 13;
+	$border: 4;
+	$size: 160;
+	$position: 136 20;
+	
+	$padding: 5;
+	$fix-height: $font-size + $padding * 2;
+
+	border: $border + px solid #fff;
+	width: $size + px;
+	height: $size + px;
+	position: absolute;
+	top: es(nth($position,1));
+	right: es(nth($position,2));
+	background: rgba(255,255,255,0.4);
+	clear: both;
+	
+	@include border-radius($size + px);
+	@include box-shadow(1px 1px 3px rgba(0,0,0,0.2));
+
+	li {
+		margin-bottom: es(3);
+		position: relative;
+		top: 50px;
+		left: 30px;
+		font-size: 0;
+		width: 120px;
+		overflow: hidden;
+		
+		&.twitter {
+			width: 100px;
+		}
+	}
+
+	&:after {
+		$border: 3;
+		$size: 25;
+		content: '';
+		border: $border + px solid #fff;
+		display: block;
+		width: $size + px;
+		height: $size+ px;
+		background: rgba(255,255,255,0.3);
+		position: absolute;
+		top: es(nth($position,1) + 10);
+		right: $size -10px;
+		@include border-radius($size + px);
+		@include box-shadow(1px 1px 3px rgba(0,0,0,0.2));
+	}
+
+	@media screen and (max-width: es($mediaQuery-middle,rem,$mediaQuery-baseSize)) {
+		margin-left: es(10) !important;
+		margin-right: es(10) !important;
+	}
+
+	@media screen and (max-width: 77.187em) {
+		border: none;
+		margin: 0 auto;
+		margin-bottom: es(-(silver-ratio($fix-height)));
+		max-width: es($base-width);
+		position: static;
+		width: inherit;
+		height: es(silver-ratio($fix-height));
+		background: transparent;
+		@include box-shadow(none);
+		//overflow: hidden;
+		@include border-radius(0);
+
+		li {
+			margin: es(5) es(10) 0 0;
+			width: auto;
+			position: static;
+			float: left;
+		}
+		
+		&:after {
+			display: none;
+		}
+	}
+}

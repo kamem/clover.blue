@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+/*----------------------------------------
+	detailsSelect
+----------------------------------------*/
+p.detailsSelect {
+	clear: both;
+	$font-size: 13;
+	max-width: es($base-width-big);
+	padding-top: es(silver-ratio($font-size));
+	margin: 0 auto;
+	text-align: right;
+	color: #744 !important;
+	@include fz($font-size);
+
+	a:before {
+		padding-right: 0.5em;
+		content: "×";
+		tex-decoration: none;
+	}
+
+	@media screen and (max-width: es($mediaQuery-middle,rem,$mediaQuery-baseSize)) {
+			margin-left: es(10);
+			margin-right: es(10);
+	}
+
+	@media screen and (max-width: es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
+			display: none;
+	}
+	
+	&.off {
+		a:before {
+			content: "▼" !important;
+		}
+	}
+}

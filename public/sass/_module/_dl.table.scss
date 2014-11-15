@@ -1,0 +1,101 @@
+@charset "utf-8";
+
+
+/*----------------------------------------
+	dl.table
+----------------------------------------*/
+dl.table {
+	$font-size: 16;
+	$border: 3;
+	$line-height: silver-ratio($font-size);
+	$padding: silver-ratio($font-size) - $font-size;
+	$width:  $base-width - silver-ratio($base-width,true);
+
+	margin: es(silver-ratio($font-size) + $font-size) auto !important;
+
+	@include background(linear-gradient(left, #fff 0%, #fff 29.3478%, rgba(#fff,0.3) 29.3478%,  rgba(#fff ,0) 100%));
+	@include background-origin(padding-box);
+	max-width: es($base-width);
+
+	#{"/"}background: #fff;
+	background/*\**/: #fff \9;
+
+	border: $border + px solid #dcc;
+	@include border-radius(4px);
+	@include box-shadow(0 0 10px rgba(0,0,0,0.1));
+	@include box-sizing(border-box);
+	@include fz($font-size);
+	color: #500;
+
+	img {
+		width: auto !important;
+		height: auto !important;
+		display: inline;
+		margin: 0;
+	}
+
+	dt,
+	dd {
+		line-height: es($line-height);
+
+		img {
+			vertical-align: middle;
+		}
+
+		&:nth-of-type(1)  {
+			margin-top: 0 !important;
+			border-top: none;
+		}
+	}
+
+	dt {
+		border-top: 2px solid #dcc;
+		margin: 0 !important;
+		margin-right: es(-$width,'%',$base-width) !important;
+		padding: es($padding) 0;
+		padding-left: es($font-size);
+		width: es($width,'%',$base-width);
+		float: left;
+		display: inline;
+		position: relative;
+		font-weight: normal;
+		@include box-sizing(border-box);
+
+	}
+
+	dd {
+		margin: 0 !important;
+		margin-left: es($width,'%',$base-width) !important;
+		padding: es($padding) es($font-size);
+		border-left: 1px solid #edd;
+		border-top: 2px solid #dcc;
+
+		&:nth-of-type(even) {
+			@include background(rgba(#fff,0.2));
+		}
+		&:nth-of-type(odd) {
+			@include background(rgba(#fff,0.7));
+		}
+	}
+
+	@media screen and (max-width:  es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
+		background: transparent;
+
+		dt {
+			margin: 0 !important;
+			padding-bottom: 0;
+			width: auto;
+			font-weight: bold;
+
+			&:after {
+				padding: 0 es($padding) 0 0;
+				content: ' : ';
+			}
+		}
+
+		dd {
+			margin: 0 !important;
+			width: auto;
+		}
+	}
+}

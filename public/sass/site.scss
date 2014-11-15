@@ -1,3 +1,212 @@
 @charset "utf-8";
 
 @import "_extension_import";
+
+/*----------------------------------------
+	pre
+----------------------------------------*/
+pre {
+	$font-size: 14;
+	$margin: 40;
+
+	margin: 0 auto es($margin);
+	padding: es(16);
+	border: 1px solid #f2efeb;
+
+	max-width: es($base-width);
+	letter-spacing: 0;
+
+	position: relative;
+	overflow: auto;
+	clear: both;
+
+	background: #fff;
+
+	@include fz($font-size);
+	@include box-shadow(1px 1px 1px rgba(0,0,0,0.04));
+	@include box-sizing(border-box);
+
+	p + & {
+		margin-top: es(-$margin);
+	}
+
+	&[class*="lang"]:after {
+		padding: 0.5em;
+		display: block;
+		background: #fff;
+		@include fz(12);
+		position: absolute;
+		right: 0;
+		top: 0;
+		line-height: 1;
+		@include border-radius(2px 2px 0 0);
+		@include opacity(0.7);
+	}
+}
+/*----------------------------------------
+	code
+----------------------------------------*/
+*:not(pre) > code {
+	$font-size: 14;
+	$boder: 2;
+
+	margin: 0 es(8);
+	padding: es(8);
+	border: 1px solid #f2efeb;
+
+	max-width: es($base-width);
+	letter-spacing: 0;
+
+	position: relative;
+	overflow: auto;
+	clear: both;
+
+	background: #fff;
+
+	@include fz($font-size);
+	@include box-shadow(1px 1px 1px rgba(0,0,0,0.04));
+	@include box-sizing(border-box);
+}
+
+/*----------------------------------------
+	em
+----------------------------------------*/
+em {
+	font-style: normal;
+	font-weight: bold;
+	color: #500;
+}
+
+/*----------------------------------------
+	form
+----------------------------------------*/
+form {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+fieldset,
+legend {
+	border: none;
+}
+
+legend {
+	display: none;
+}
+
+input,
+textarea {
+	$font-size: 16;
+	padding: es(8) es(10);
+	font-family: Arial, Helvetica, sans-serif;
+	outline: none;
+	-webkit-appearance: none;
+
+	border: 1px solid #f2efeb;
+	background: #fff;
+	max-width: es($base-width);
+	@include box-sizing(border-box);
+	@include box-shadow(1px 1px 1px rgba(0,0,0,0.04));
+
+	@include fz($font-size);
+	@include box-sizing(border-box);
+}
+
+input {
+	&.button {
+		color: #fff;
+		background: $linkColor !important;
+		cursor: pointer;
+		border: none !important;
+		@include border-radius(4px !important);
+
+
+		&:hover {
+			position: relative;
+			@include opacity(0.6);
+			@include transition(0.13s ease-in-out);
+		}
+
+		&:active {
+			top: 1px;
+			left: 1px;
+			@include box-shadow(none);
+			@include transition(none !important);
+		}
+	}
+
+	&[type="checkbox"] {
+		padding: 0;
+		border: none;
+		background: transparent;
+		outline: none;
+		-webkit-appearance: checkbox;
+	}
+}
+
+input:hover,
+textarea:hover {
+}
+
+input:focus,
+textarea:focus {
+	border: es(2) solid $linkColor;
+	background-color: #fff;
+}
+
+/*----------------------------------------
+	ins
+----------------------------------------*/
+ins {
+	$font-size: 16;
+	margin: es(silver-ratio($font-size + $font-size)) auto;
+	max-width: es($base-width-big);
+	border: 7px solid $linkColor;
+	display: block;
+	text-decoration: none;
+	@include box-sizing(border-box);
+}
+
+hr {
+	display: block;
+	border: none;
+	height: 22px;
+	@include fz($font-size);
+	margin-bottom: es(silver-ratio($font-size) + $font-size);
+}
+
+/*----------------------------------------
+	blockquote
+----------------------------------------*/
+blockquote {
+	$font-size: 16;
+	margin: es(silver-ratio($font-size) + $font-size) auto;
+	color: $text-color;
+	background: rgba(#fff,0.5);
+	max-width: es($base-width-big);
+	position: relative;
+}
+
+blockquote[title]::before {
+	$font-size: 16;
+	$line-height: silver-ratio($font-size);
+	$padding: (silver-ratio($font-size) - $font-size) / 2;
+	padding: es($padding) es(($base-width-big - $base-width) / 2);
+	content: attr(title);
+	display: block;
+	@include fz($font-size);
+	line-height: es($line-height);
+	background: #fff;
+
+	@media screen and (max-width: es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
+		padding-right: es(10);
+		padding-left: es(10);
+	}
+}
+
+blockquote[cite]::after {
+	$font-size: 13;
+	content: attr(cite);
+	display: block;
+	text-align: right;
+	@include fz($font-size);
+}

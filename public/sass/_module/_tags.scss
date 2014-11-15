@@ -1,0 +1,70 @@
+@charset "utf-8";
+
+
+/*----------------------------------------
+	tag
+----------------------------------------*/
+.tags {
+	$font-size: 16;
+	padding-top: es(silver-ratio($font-size));
+	margin: 0 auto;
+	max-width: es($base-width-big);
+	@include fz($font-size);
+	clear: both;
+	
+	h1 {
+		display: none;
+	}
+	
+	dt {
+		$font-size: 20;
+		$line-height: silver-ratio($font-size);
+		$padding: (silver-ratio($font-size) - $font-size) / 2;
+		margin: 0 auto;
+		padding: es($padding) 0;
+		line-height: es($line-height);
+		@include fz($font-size);
+		font-weight: bold;
+		color: #500;
+		display: none;
+		 
+		@include text-shadow-repeat(1px 1px 2px #fff,5);
+	}
+	
+	li {
+		$font-size: 13;
+		$line-height: $font-size;
+		$padding: 2;
+		$border: 1;
+		$fix-height: $line-height + $padding * 2 + $border * 2;
+		$triangle-size: 6;
+
+		margin-left: es($triangle-size);
+		margin-bottom: es(3);
+		@include inline-block;
+		@include fz($font-size);
+		line-height: es($font-size);
+			
+		&:hover {
+			@include rotate(3deg);
+		}
+		
+		a {
+			padding: es($padding) es(5);
+			border: $border + px #fff,0.7;
+			
+			background: #fff;
+			position: relative;
+			text-decoration: none;
+
+			@include border-radius(0 2px 2px 0);
+			@include triangle-set(es($fix-height) es($triangle-size),#fff,left);
+		
+			@include box-shadow(1px1px 1px rgba(0,0,0,0.2));
+		}
+	}
+@media screen and (max-width: es($mediaQuery-large,rem,$mediaQuery-baseSize)) {
+	margin-left: es(10);
+	margin-right: es(10);
+}
+}

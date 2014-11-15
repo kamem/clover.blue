@@ -1,0 +1,48 @@
+@charset "utf-8";
+
+/*----------------------------------------
+	commentList
+----------------------------------------*/
+dl.commentList {
+	$font-size: 16;
+	$line-height: silver-ratio($font-size);
+	margin: es(silver-ratio($font-size) + $font-size) 0 0 0;
+	padding-bottom: es($line-height);
+
+	dt {
+		margin: 0 auto;
+		padding-top: es($line-height);
+		margin-top: es($line-height);
+		border-top: 1px solid #dcc;
+		max-width: es($base-width);
+		color: #500;
+		line-height: es($line-height);
+		list-style-type: none;
+
+		#{"/"}width: 36.5em;
+	}
+
+	dd {
+		margin: 0 auto;
+		display: list-item;
+		max-width: es($base-width);
+		color: #500;
+		line-height:  es($line-height);
+		list-style-type: disc;
+
+		#{"/"}width: 36.5em;
+
+		&:last-child {
+			padding-bottom: es($line-height);
+			border-bottom: 1px solid #dcc;
+		}
+	}
+
+@media screen and (max-width: es($mediaQuery-middle,rem,$mediaQuery-baseSize)) {
+	dt,
+	dd {
+		margin-right: es(10);
+		margin-left: es(10);
+	}
+}
+}

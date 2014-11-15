@@ -6,13 +6,14 @@ $font-size: 16;
 $font-unit: rem;
 $font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
 
+//ページの横幅
+$base-width: 736;
+$base-width-big: 798;
+
 //サイトのカラー
 $baseColor: #94dcef;
+$baseColor2: #d4eff4;
 $bgColor: #fffcf8;
-
-
-//ページの横幅
-$base-width: 1024;
 
 // 標準テキストカラー
 $text-color: #500;
@@ -29,3 +30,8 @@ $mediaQuery-middle: 756;
 $mediaQuery-small: 650;
 
 $mediaQuery-baseSize: $font-size;
+
+// preのボーダーカラー
+$cssColor : #f0f;
+$jsColor :#900;
+$htmlColor : #00f;

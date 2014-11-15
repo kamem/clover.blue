@@ -8,17 +8,559 @@
 </head>
 <body class="entry">
 
-<header id="header">
+<header id="header" class="off">
 	<h1><a href="/">clover.blue</a></h1>
 
 	<nav>
 		<ul>
-			<li>サイトについて</li>
+			<li class="about"><a href="">サイトについて</a></li>
 		</ul>
 	</nav>
 </header>
 
-<main role="main">
+<main role="main" class="">
+	<article>
+		<header>
+			<h1>楽しくコーディング！Sass,Compassのデフォルトmixinとカスタム関数</h1>
+			<ul class="data">
+				<li class="date"><time pubdate="2014-05-19T09:35:00">2014-05-19</time></li>
+				<li class="category"><a href="http://develo.org/htmlcss/" title="29" class="htmlcss">HTML,CSS</a></li>
+				<li class="tag"><a href="http://develo.org/mt/mt-search.cgi?IncludeBlogs=1&amp;tag=Sass%20Compass&amp;limit=20&amp;blog_id=1" title="4">Sass Compass</a></li>
+			</ul>
+		</header>
+
+		<div class="content">
+<p>前回SassとCompassの記事（<a href="http://develo.org/2012/02/26/2335.html">SassとCompassを使って楽しくCSSコーディング！</a>）をかいてから、だいぶ時間もたっていろいろ使いやすいようにmixinを作ったりしたので新しくまとめたいと思います！</p>
+			<hr class="more">
+			<div id="more">
+<nav class="pageNav" id="pageNav"> 
+	<h2><a href="#pageNav">目次</a></h2>
+	<ul>
+		<li><a href="#file">Sass,Compass関連のフォルダ構成</a></li>
+		<li><a href="#rb">カスタム関数（rb）</a>
+			<ul>
+				<li><a href="#rb_develo">develo.rb</a></li>
+				<li><a href="#rb_skyward_design">skyward_design.rb</a></li>
+			</ul>
+		</li>
+		<li><a href="#extension_import">全てのscssに共通で読み込む必要なmixinなどのimport（_extension_import.scss）</a></li>
+		<li><a href="#setting_site">設定用scss（_setting.scss,_setting_site.scss）</a></li>
+		<li><a href="#animation">animation関係を使えるように（_animation.scss）</a></li>
+		<li><a href="#keyframes">keyframesを使えるように（_keyframes.scss）</a></li>
+		<li><a href="#extension_decimal">小数の桁数と丸め方を制御する（_extension_decimal.scss）</a></li>
+		<li><a href="#extension_sprite">sprite画像を生成する（_extension_sprite.scss）</a></li>
+		<li><a href="#mixin">便利なmixin（_extension.scss）</a>
+			<ul>
+				<li><a href="#background-fit">background-fit</a></li>
+				<li><a href="#half-image-width">half-image-width</a></li>
+				<li><a href="#half-image-height">half-image-height</a></li>
+				<li><a href="#sprite-info">sprite-info</a></li>
+				<li><a href="#text-shadow-repeat">text-shadow-repeat</a></li>
+				<li><a href="#box-shadow-repeat">box-shadow-repeat</a></li>
+				<li><a href="#display-box-center">display-box-center</a></li>
+				<li><a href="#background-4corners">background-4corners</a></li>
+				<li><a href="#background-stripe">background-stripe</a></li>
+			</ul>
+		</li>
+		<li><a href="#output_scss">実際にcssに出力されるscssの管理</a>
+			<ul>
+				<li><a href="#class">class.scss</a></li>
+				<li><a href="#common">common.scss</a></li>
+				<li><a href="#default">default.scss</a></li>
+				<li><a href="#import">import.scss</a></li>
+				<li><a href="#sprite">sprite.scss</a></li>
+				<li><a href="#templates">templates.scss</a></li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+
+<ul class="download" id="download">
+	<li class="download"><a href="https://github.com/kamem/compass.default/archive/master.zip">compass.defaultダウンロード</a></li>
+	<li class="github"><a href="https://github.com/kamem/compass.default">GitHub</a></li>
+</ul>
+
+<ul>
+<li>参考に : 自分のサイトの構成（<a href="https://github.com/kamem/develo.org">GitHub</a>）</li>
+</ul>
+
+<h2 id="file">Sass,Compass関連のフォルダ構成</h2>
+<pre><code>├config.rb
+├	<a href="#rb">rb</a>
+|	├ <a href="#rb_develo">develo.rb</a>
+|	├ <a href="#rb_skyward_design">skyward_design.rb</a>
+|	└
+└	sass
+	├ <a href="#animation">_animation.scss</a>
+	├ <a href="#keyframes">_keyframes.sass</a>
+	├ <a href="#extension_decimal">_extension_decimal.scss</a>
+	├ <a href="#extension_import">_extension_import.scss</a>
+	├ <a href="#extension_sprite">_extension_sprite.scss</a>
+	├ <a href="#extension">_extension.scss</a>
+	├ <a href="#setting_site">_setting_site.scss</a>
+	├ <a href="#setting">_setting.scss</a>
+	├ <a href="#class">class.scss</a>
+	├ <a href="#common">common.scss</a>
+	├ <a href="#default">default.scss</a>
+	├ <a href="#import">import.scss</a>
+	├ <a href="#sprite">sprite.scss</a>
+	└ <a href="#templates">templates.scss</a>
+</code></pre>
+
+
+
+<h2 id="rb">カスタム関数（rb）</h2>
+<h3 id="rb_develo">develo.rb （<a href="https://github.com/kamem/compass.develo">GitHub</a>）</h3>
+<ul>
+<li><a href="http://develo.org/2014/05/08/1000.html">Sass,Compassでファイルの有無を返してくれるカスタム関数</a></li>
+<li><a href="http://develo.org/2014/05/08/0900.html">Sass,Compassでフォルダ内のファイルリストを取得するカスタム関数</a></li>
+</ul>
+<h3 id="rb_skyward_design">skyward_design.rb（<a href="https://github.com/hideki-a/SassFunctions">GitHub</a>）</h3>
+<ul>
+<li><a href="http://www.anothersky.pw/skyward/archives/000127.html">Ruby初心者だけどゼロパディングするカスタムSassファンクションを作ってみた</a></li>
+<li><a href="http://www.anothersky.pw/skyward/archives/000128.html">文字列を置換するカスタムSass関数を作ってみた</a></li>
+</ul>
+<h2 id="extension_import">全てのscssに共通で読み込む必要なmixinなどのimport<br>（_extension_import.scss）</h2>
+<pre class="prettyprint lang-scss"><code><span class="lit">@import</span><span class="pln"> </span><span class="str">"compass/css3/"</span><span class="pun">,</span><span class="pln">
+</span><span class="str">"setting"</span><span class="pun">,</span><span class="pln">
+</span><span class="str">"setting_site"</span><span class="pun">,</span><span class="pln">
+</span><span class="str">"compass/support"</span><span class="pun">,</span><span class="pln">
+</span><span class="str">"animation"</span><span class="pun">,</span><span class="pln">
+</span><span class="str">"_keyframes"</span><span class="pun">,</span><span class="pln">
+</span><span class="str">"extension_decimal"</span><span class="pun">,</span><span class="pln">
+</span><span class="str">"extension"</span><span class="pun">;</span></code></pre>
+
+
+
+<h2 id="setting_site">設定用scss（_setting.scss,_setting_site.scss）</h2>
+<h3 id="setting">_setting.scss</h3>
+<p>compassで使用する変数の設定。ここで対応ブラウザを設定することにより、ベンダープレフィックスの有無をきめることができます。</p>
+<pre class="prettyprint lang-scss"><code><span class="com">//config.rb指定したimages_dirの値</span><span class="pln">
+$images_dir</span><span class="pun">:</span><span class="pln"> </span><span class="str">"img/"</span><span class="pun">;</span><span class="pln">
+
+</span><span class="com">//HTML5の場合は「true」</span><span class="pln">
+$html5</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span><span class="pln">
+</span><span class="com">//Retina対応</span><span class="pln">
+$isRetina</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">;</span><span class="pln">
+</span><span class="com">//base64対応</span><span class="pln">
+$isBase64</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">;</span><span class="pln">
+
+</span><span class="com">//compass ブラウザサポート</span><span class="pln">
+$legacy</span><span class="pun">-</span><span class="pln">support</span><span class="pun">-</span><span class="kwd">for</span><span class="pun">-</span><span class="pln">ie6</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span><span class="pln">
+$legacy</span><span class="pun">-</span><span class="pln">support</span><span class="pun">-</span><span class="kwd">for</span><span class="pun">-</span><span class="pln">ie7</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span><span class="pln">
+
+$experimental</span><span class="pun">-</span><span class="pln">support</span><span class="pun">-</span><span class="kwd">for</span><span class="pun">-</span><span class="pln">webkit</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span><span class="pln">
+$experimental</span><span class="pun">-</span><span class="pln">support</span><span class="pun">-</span><span class="kwd">for</span><span class="pun">-</span><span class="pln">mozilla</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span><span class="pln">
+$experimental</span><span class="pun">-</span><span class="pln">support</span><span class="pun">-</span><span class="kwd">for</span><span class="pun">-</span><span class="pln">opera</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span><span class="pln">
+$experimental</span><span class="pun">-</span><span class="pln">support</span><span class="pun">-</span><span class="kwd">for</span><span class="pun">-</span><span class="pln">microsoft</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span><span class="pln">
+$experimental</span><span class="pun">-</span><span class="pln">support</span><span class="pun">-</span><span class="kwd">for</span><span class="pun">-</span><span class="pln">khtml</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">;</span><span class="pln">
+
+</span><span class="com">//ie9用 svg</span><span class="pln">
+$experimental</span><span class="pun">-</span><span class="pln">support</span><span class="pun">-</span><span class="kwd">for</span><span class="pun">-</span><span class="pln">svg</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span></code></pre>
+<h3 id="setting_site">_setting_site.scss</h3>
+<p>サイトを作る際に全体で使う変数の設定。</p>
+<p>例</p>
+<pre class="prettyprint lang-scss"><code><span class="com">//font</span><span class="pln">
+$font</span><span class="pun">-</span><span class="pln">sizeDefault</span><span class="pun">:</span><span class="pln"> </span><span class="lit">10</span><span class="pun">;</span><span class="pln"> </span><span class="com">// 基準となるフォントサイズ（htmlに指定する値）</span><span class="pln">
+$font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">16</span><span class="pun">;</span><span class="pln"> </span><span class="com">// よく使うfont-size</span><span class="pln">
+$font</span><span class="pun">-</span><span class="pln">unit</span><span class="pun">:</span><span class="pln"> rem</span><span class="pun">;</span><span class="pln"> </span><span class="com">// 使う単位</span><span class="pln">
+$font</span><span class="pun">-</span><span class="pln">family</span><span class="pun">:</span><span class="pln"> </span><span class="str">"ヒラギノ角ゴ Pro W3"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"Hiragino Kaku Gothic Pro"</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Osaka</span><span class="pun">,</span><span class="pln"> </span><span class="str">"ＭＳ Ｐゴシック"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"MS PGothic"</span><span class="pun">,</span><span class="pln"> </span><span class="typ">Sans</span><span class="pun">-</span><span class="typ">Serif</span><span class="pun">;</span><span class="pln">
+
+</span><span class="com">//ページの横幅</span><span class="pln">
+$base</span><span class="pun">-</span><span class="pln">width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">736</span><span class="pun">;</span><span class="pln">
+$base</span><span class="pun">-</span><span class="pln">width</span><span class="pun">-</span><span class="pln">big</span><span class="pun">:</span><span class="pln"> </span><span class="lit">798</span><span class="pun">;</span><span class="pln">
+
+</span><span class="com">// 標準テキストカラー</span><span class="pln">
+$textColor </span><span class="pun">:</span><span class="pln"> </span><span class="com">#500;</span><span class="pln">
+
+</span><span class="com">// 標準リンクカラー</span><span class="pln">
+$linkColor </span><span class="pun">:</span><span class="pln"> </span><span class="com">#39c;</span><span class="pln">
+$linkColor_hover </span><span class="pun">:</span><span class="pln"> </span><span class="com">#f39;</span><span class="pln">
+$linkColor_visited </span><span class="pun">:</span><span class="pln"> rgba</span><span class="pun">(</span><span class="com">#39c,0.7);</span><span class="pln">
+$linkColor_active </span><span class="pun">:</span><span class="pln"> </span><span class="com">#39c;</span><span class="pln">
+
+</span><span class="com">//mediaQueryの基準となる幅</span><span class="pln">
+$mediaQuery</span><span class="pun">-</span><span class="pln">large</span><span class="pun">:</span><span class="pln"> </span><span class="lit">798</span><span class="pun">;</span><span class="pln">
+$mediaQuery</span><span class="pun">-</span><span class="pln">middle</span><span class="pun">:</span><span class="pln"> </span><span class="lit">480</span><span class="pun">;</span><span class="pln">
+$mediaQuery</span><span class="pun">-</span><span class="pln">small</span><span class="pun">:</span><span class="pln"> </span><span class="lit">320</span><span class="pun">;</span></code></pre>
+
+
+
+<h2 id="animation">animation関係を使えるように（_animation.scss）</h2>
+<p>下記のanimation関係のCSSを@includeで使えるようにしベンダープレフィックスを付けるようにしてくれる。</p>
+<ul>
+<li>animation-name</li>
+<li>animation-duration</li>
+<li>animation-timing-function</li>
+<li>animation-delay</li>
+<li>animation-iteration-count</li>
+<li>animation-direction</li>
+</ul>
+<h2 id="keyframes">keyframesを使えるように（_keyframes.scss）</h2>
+<p>keyframesを@includeで使えるようにしベンダープレフィックスを付けるようにしてくれる。</p>
+<pre class="prettyprint lang-scss"><code><span class="lit">@include</span><span class="pln"> keyframes</span><span class="pun">(</span><span class="pln">anime1</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="lit">0</span><span class="pun">%</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="lit">@include</span><span class="pln"> transform</span><span class="pun">(</span><span class="pln">rotate</span><span class="pun">(</span><span class="lit">720deg</span><span class="pun">));</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+  </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  	width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">500px</span><span class="pun">;</span><span class="pln">
+    </span><span class="lit">@include</span><span class="pln"> transform</span><span class="pun">(</span><span class="pln">rotate</span><span class="pun">(</span><span class="lit">0deg</span><span class="pun">));</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+
+
+<h2 id="extension_decimal">小数の桁数と丸め方を制御する（_extension_decimal.scss）</h2>
+<p>下記サイトのscssを使わせて頂いています。</p>
+<ul>
+<li><a href="http://terkel.jp/archives/2012/12/decimal-digits-and-rounding-sass-function/">小数の桁数と丸め方を制御する Sass 関数</a></li>
+</ul>
+
+
+
+<h2 id="extension_sprite">sprite画像を生成する（_extension_sprite.scss）</h2>
+<p>スプライト画像を生成し、その画像名のクラスを付けるだけで画像を表示できるようにしてくれる。 これを使うことによりscss編集時に毎回スプライトチェックする問題を回避することができます。 sprite.scss内でだけ使うことができます。</p>
+<p>ほかのscssでspriteの情報を使いたい場合は（_extension.scss: <a href="#sprite-info">sprite-info</a>を使う）</p>
+<h3 id="sprite-make">sprite-make</h3>
+<h4>初期設定・説明</h4>
+<pre class="prettyprint lang-scss"><code><span class="lit">@include</span><span class="pln"> sprite</span><span class="pun">-</span><span class="pln">make</span><span class="pun">(</span><span class="pln">
+	</span><span class="str">''</span><span class="pun">,</span><span class="pln"> </span><span class="com">//スプライト化したい画像: sprite-map()の第一引き数にいれるファイル名。（配列で複数指定することができます。）</span><span class="pln">
+	</span><span class="lit">5px</span><span class="pun">,</span><span class="pln"> </span><span class="com">//スプライト化した時の画像と画像の間のサイズ: sprite-map()の$spacingの値</span><span class="pln">
+	</span><span class="kwd">true</span><span class="pln"> </span><span class="pun">,</span><span class="pln"> </span><span class="com">// true or false: 吐き出すCSSにクラス名2つをつけるか。</span><span class="pln">
+		  </span><span class="com">//（false:「.画像ファイル名」、true:「.スプライト名.画像ファイル名」となります。）</span><span class="pln">
+	$isRetina </span><span class="com">// true or false: Retina対応（画像サイズを半分に）するかしないか</span><span class="pln">
+		        </span><span class="com">//（予め_setting.scssで設定されてることを考慮）</span><span class="pln">
+</span><span class="pun">);</span></code></pre>
+<h4>SCSS</h4>
+<pre class="prettyprint lang-scss"><code><span class="lit">@include</span><span class="pln"> sprite_make</span><span class="pun">((</span><span class="pln">
+	</span><span class="str">'num/*.png'</span><span class="pln">
+</span><span class="pun">));</span></code></pre>
+<h4>css</h4>
+<pre class="prettyprint lang-css"><code><span class="pun">.</span><span class="pln">num</span><span class="pun">.</span><span class="pln">img1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">.</span><span class="pln">num</span><span class="pun">.</span><span class="pln">img2</span><span class="pun">,</span><span class="pln"> </span><span class="pun">.</span><span class="pln">num</span><span class="pun">.</span><span class="pln">img3 </span><span class="pun">{</span><span class="pln">
+	display</span><span class="pun">:</span><span class="pln"> block</span><span class="pun">;</span><span class="pln">
+	background</span><span class="pun">-</span><span class="pln">image</span><span class="pun">:</span><span class="pln"> url</span><span class="pun">(</span><span class="str">'/html/img/num-sce8bc88143.png'</span><span class="pun">);</span><span class="pln">
+	background</span><span class="pun">-</span><span class="pln">repeat</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">no</span><span class="pun">-</span><span class="pln">repeat</span><span class="pun">;</span><span class="pln">
+	background</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">50px</span><span class="pln"> </span><span class="lit">270px</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="pln">num</span><span class="pun">.</span><span class="pln">img1 </span><span class="pun">{</span><span class="pln">
+	background</span><span class="pun">-</span><span class="pln">position</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="pun">-</span><span class="lit">220px</span><span class="pun">;</span><span class="pln">
+	width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">50px</span><span class="pun">;</span><span class="pln">
+	height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">50px</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="pln">num</span><span class="pun">.</span><span class="pln">img2 </span><span class="pun">{</span><span class="pln">
+	background</span><span class="pun">-</span><span class="pln">position</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="pun">-</span><span class="lit">110px</span><span class="pun">;</span><span class="pln">
+	width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">50px</span><span class="pun">;</span><span class="pln">
+	height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">50px</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">.</span><span class="pln">num</span><span class="pun">.</span><span class="pln">img3 </span><span class="pun">{</span><span class="pln">
+	background</span><span class="pun">-</span><span class="pln">position</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+	width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">50px</span><span class="pun">;</span><span class="pln">
+	height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">50px</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+
+
+<h2 id="mixin">便利なmixin（_extension.scss）</h2>
+<h3 id="background-fit">background-fit</h3>
+<p>画像のサイズを取得しbackground-size,width,heightをセットする。 CSSで背景に画像を入れる時に毎回サイズを入れる作業を省いてくれます。特にRetina対応で画像サイズを半分にしたいときには便利です。</p>
+<ol>
+<li>まず前提として、config.rbの<code>images_dir</code>を設定してください。</li>
+<li>width,heightが必要ない場合には第2引き数を<code>false</code>にする。</li>
+<li>複数画像を指定したい場合は配列で<br>（例: <code>('test.png','test2.gif',linear-gradient(#000,#fff)</code>）</li>
+<li>複数画像を指定した場合は第3引き数に複数指定する。<br>（例: <code>('0 0 no-repeat','left top repeat','0 0 no-repeat')</code>）</li>
+<li>関数実行後$imgWidth,$imgHeightの中に画像のサイズが入ります。<br>複数の場合、配列に入るのでnth($imgWidth,1),nth($imgHeight,2)のように取ってくることができます。</li>
+</ol>
+<h4>初期設定・説明</h4>
+<pre class="prettyprint lang-scss"><code><span class="lit">@include</span><span class="pln"> background</span><span class="pun">-</span><span class="pln">fit</span><span class="pun">(</span><span class="pln">
+	</span><span class="str">''</span><span class="pun">,</span><span class="pln"> </span><span class="com">// 画像のパス: images_dirで指定したパスからの画像ファイル名</span><span class="pln">
+	    </span><span class="com">//（配列で複数指定可能,グラデーション指定も可能）</span><span class="pln">
+	</span><span class="kwd">true</span><span class="pun">,</span><span class="pln"> </span><span class="com">// true or false: 画像をサイズいっぱいに表示してテキストを消す or 画像とbackgrouns-sizeのみの指定をするか）</span><span class="pln">
+	</span><span class="str">'0 0 no-repeat'</span><span class="pun">,</span><span class="pln"> </span><span class="com">// 画像に対してのrepeat position: (複数の場合の例: ('0 0 no-repeat','left top repeat'))</span><span class="pln">
+	</span><span class="str">''</span><span class="pun">,</span><span class="pln"> </span><span class="com">//'!important': !importantを指定したい場合（必要ない場合は空）</span><span class="pln">
+	$isBase64</span><span class="pun">,</span><span class="pln"> </span><span class="com">// true or false: base64にするかしないか</span><span class="pln">
+	                   </span><span class="com">// (予め_setting.scssで設定されてることを考慮）</span><span class="pln">
+	$isRetina </span><span class="com">// true or false: Retina対応（画像サイズを半分に）するかしないか</span><span class="pln">
+	                </span><span class="com">//（予め_setting.scssで設定されてることを考慮）</span><span class="pln">
+</span><span class="pun">);</span></code></pre>
+<h4>SCSS</h4>
+<pre class="prettyprint lang-scss"><code><span class="lit">@include</span><span class="pln"> background</span><span class="pun">-</span><span class="pln">fit</span><span class="pun">(</span><span class="pln">
+	</span><span class="pun">(</span><span class="str">"text.png"</span><span class="pun">,</span><span class="pln">linear</span><span class="pun">-</span><span class="pln">gradient</span><span class="pun">(</span><span class="pln">rgba</span><span class="pun">(</span><span class="pln">red</span><span class="pun">,</span><span class="lit">0.1</span><span class="pun">),</span><span class="pln">rgba</span><span class="pun">(</span><span class="pln">red</span><span class="pun">,</span><span class="lit">0.3</span><span class="pun">))),</span><span class="pln">
+	</span><span class="kwd">false</span><span class="pun">,</span><span class="pln">
+	</span><span class="pun">(</span><span class="str">'center 5px no-repeat'</span><span class="pun">,</span><span class="str">'0 0 no-repeat'</span><span class="pun">)</span><span class="pln">
+</span><span class="pun">);</span></code></pre>
+<h4>CSS</h4>
+<pre class="prettyprint lang-css"><code><span class="pln">background</span><span class="pun">:</span><span class="pln"> url</span><span class="pun">(</span><span class="str">'/html/img/text.png?1396155926'</span><span class="pun">)</span><span class="pln"> center </span><span class="lit">5px</span><span class="pln"> </span><span class="kwd">no</span><span class="pun">-</span><span class="pln">repeat</span><span class="pun">,</span><span class="pln"> linear</span><span class="pun">-</span><span class="pln">gradient</span><span class="pun">(</span><span class="pln">rgba</span><span class="pun">(</span><span class="lit">255</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.1</span><span class="pun">),</span><span class="pln"> rgba</span><span class="pun">(</span><span class="lit">255</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.3</span><span class="pun">))</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="kwd">no</span><span class="pun">-</span><span class="pln">repeat</span><span class="pun">;</span><span class="pln">
+background</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">327px</span><span class="pln"> </span><span class="lit">29px</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">auto</span><span class="pln"> </span><span class="kwd">auto</span><span class="pun">;</span></code></pre>
+<h3 id="half-image-width">half-image-width</h3>
+<p>画像の半分の横幅の値を返す（複数画像を配列で指定可能）</p>
+<ol>
+<li>関数実行後$imgWidthの中に画像のサイズが入ります。<br>複数の場合、配列に入るのでnth($imgWidth,1)のように取ってくることができます。</li>
+</ol>
+<h4>SCSS</h4>
+<pre class="prettyprint lang-scss"><code><span class="pln">width</span><span class="pun">:</span><span class="pln"> half</span><span class="pun">-</span><span class="pln">image</span><span class="pun">-</span><span class="pln">width</span><span class="pun">(</span><span class="str">'test.png'</span><span class="pun">);</span><span class="pln"> </span></code></pre>
+<h4>CSS</h4>
+<pre class="prettyprint lang-css"><code><span class="pln">width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100px</span><span class="pun">;</span><span class="pln"> </span></code></pre>
+<h3 id="half-image-height">half-image-height</h3>
+<p>画像の半分の高さの値を返す（複数画像を配列で指定可能）</p>
+<ol>
+<li>関数実行後$imgHeightの中に画像のサイズが入ります。<br>複数の場合、配列に入るのでnth($imgHeight,1)のように取ってくることができます。</li>
+</ol>
+<h4>SCSS</h4>
+<pre class="prettyprint lang-scss"><code><span class="pln">height</span><span class="pun">:</span><span class="pln"> half</span><span class="pun">-</span><span class="pln">image</span><span class="pun">-</span><span class="pln">width</span><span class="pun">(</span><span class="str">'test.png'</span><span class="pun">);</span><span class="pln"> </span></code></pre>
+<h4>CSS</h4>
+<pre class="prettyprint lang-css"><code><span class="pln">height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100px</span><span class="pun">;</span><span class="pln"> </span></code></pre>
+<h3 id="sprite-info">sprite-info</h3>
+<p>スプライト画像のサイズとポジションを設定する</p>
+<h4>初期設定・説明</h4>
+<pre class="prettyprint lang-scss"><code><span class="lit">@include</span><span class="pln"> sprite</span><span class="pun">-</span><span class="pln">info</span><span class="pun">(</span><span class="pln">
+	</span><span class="lit">10px</span><span class="pun">,</span><span class="pln"> </span><span class="com">//大きさ: 10px 20px のように2つ値を書くことで横と高さを指定することができます。</span><span class="pln">
+	black</span><span class="pun">,</span><span class="pln"> </span><span class="com">// 色</span><span class="pln">
+	top </span><span class="com">//向き: top,right,bottom,left</span><span class="pln">
+</span><span class="pun">);</span></code></pre>
+<h4>SCSS</h4>
+<pre class="prettyprint lang-scss"><code><span class="pln">$map</span><span class="pun">:</span><span class="pln"> sprite</span><span class="pun">-</span><span class="pln">map</span><span class="pun">(</span><span class="str">'num/*.png'</span><span class="pun">,</span><span class="pln"> $spacing</span><span class="pun">:</span><span class="pln"> </span><span class="lit">5px</span><span class="pun">);</span><span class="pln">
+p </span><span class="pun">{</span><span class="pln">
+	</span><span class="lit">@include</span><span class="pln"> sprite</span><span class="pun">-</span><span class="pln">info</span><span class="pun">(</span><span class="pln">$map</span><span class="pun">,</span><span class="pln">img3</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<h4>CSS</h4>
+<pre class="prettyprint lang-css"><code><span class="pln">p </span><span class="pun">{</span><span class="pln">
+	background</span><span class="pun">-</span><span class="pln">image</span><span class="pun">:</span><span class="pln"> url</span><span class="pun">(</span><span class="str">'/html/img/num-sce8bc88143.png'</span><span class="pun">);</span><span class="pln">
+	background</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">50px</span><span class="pln"> </span><span class="lit">270px</span><span class="pun">;</span><span class="pln">
+	background</span><span class="pun">-</span><span class="pln">position</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+	width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">50px</span><span class="pun">;</span><span class="pln">
+	height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">50px</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<h3 id="text-shadow-repeat">text-shadow-repeat</h3>
+<p>同じテキストシャドウを繰り返したい場合</p>
+<h4>SCSS</h4>
+<pre class="prettyprint lang-scss"><code><span class="lit">@include</span><span class="pln"> text</span><span class="pun">-</span><span class="pln">shadow</span><span class="pun">-</span><span class="pln">repeat</span><span class="pun">(</span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">3px</span><span class="pln"> </span><span class="com">#000,5); </span></code></pre>
+<h4>CSS</h4>
+<pre class="prettyprint lang-css"><code><span class="pln">text</span><span class="pun">-</span><span class="pln">shadow</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">3px</span><span class="pln"> black</span><span class="pun">,</span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">3px</span><span class="pln"> black</span><span class="pun">,</span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">3px</span><span class="pln"> black</span><span class="pun">,</span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">3px</span><span class="pln"> black</span><span class="pun">,</span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">3px</span><span class="pln"> black</span><span class="pun">;</span><span class="pln"> </span></code></pre>
+<h3 id="box-shadow-repeat">box-shadow-repeat</h3>
+<p>同じボックスシャドウを繰り返したい場合</p>
+<h4>SCSS</h4>
+<pre class="prettyprint lang-scss"><code><span class="lit">@include</span><span class="pln"> box</span><span class="pun">-</span><span class="pln">shadow</span><span class="pun">-</span><span class="pln">repeat</span><span class="pun">(</span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">10px</span><span class="pln"> </span><span class="com">#fff,10); </span></code></pre>
+<h4>CSS</h4>
+<pre class="prettyprint lang-css"><code><span class="pln">box</span><span class="pun">-</span><span class="pln">shadow</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">10px</span><span class="pln"> black</span><span class="pun">,</span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">10px</span><span class="pln"> black</span><span class="pun">,</span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">10px</span><span class="pln"> black</span><span class="pun">,</span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">10px</span><span class="pln"> black</span><span class="pun">,</span><span class="lit">0</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="lit">10px</span><span class="pln"> black</span><span class="pun">;</span><span class="pln"> </span></code></pre>
+<h3 id="display-box-center">display-box-center</h3>
+<p>display: box;にし中身を縦横のcenter寄せにする。webkitに対応したサイトを作る際に役立ちます。</p>
+<h4>SCSS</h4>
+<pre class="prettyprint lang-scss"><code><span class="lit">@include</span><span class="pln"> display</span><span class="pun">-</span><span class="pln">box</span><span class="pun">-</span><span class="pln">center</span><span class="pun">();</span><span class="pln"> </span></code></pre>
+<h4>CSS</h4>
+<pre class="prettyprint lang-css"><code><span class="pln">display</span><span class="pun">:</span><span class="pln"> box</span><span class="pun">;</span><span class="pln">
+box</span><span class="pun">-</span><span class="pln">align</span><span class="pun">:</span><span class="pln"> center</span><span class="pun">;</span><span class="pln">
+box</span><span class="pun">-</span><span class="pln">pack</span><span class="pun">:</span><span class="pln"> center</span><span class="pun">;</span></code></pre>
+<h3 id="triangle">triangle</h3>
+<p>三角形を作る</p>
+<h4>初期設定・説明</h4>
+<pre class="prettyprint lang-scss"><code><span class="lit">@include</span><span class="pln"> triangle</span><span class="pun">-</span><span class="kwd">set</span><span class="pun">(</span><span class="pln">
+	</span><span class="lit">10px</span><span class="pun">,</span><span class="pln"> </span><span class="com">//大きさ: 10px 20px のように2つ値を書くことで横と高さを指定することができます。</span><span class="pln">
+	black</span><span class="pun">,</span><span class="pln"> </span><span class="com">// 色</span><span class="pln">
+	top </span><span class="com">//向き: top,right,bottom,left</span><span class="pln">
+</span><span class="pun">);</span></code></pre>
+<h3 id="triangle-set">triangle-set</h3>
+<p>作った三角形を向きに合わせてボックスの外側にセットする（吹き出し風になるようにセットする）</p>
+<ol>
+<li>吹き出し風にしたい場合にtriangleを使わずこっちを使う。</li>
+</ol>
+<h4>初期設定・説明</h4>
+<pre class="prettyprint lang-scss"><code><span class="lit">@include</span><span class="pln"> triangle</span><span class="pun">-</span><span class="kwd">set</span><span class="pun">(</span><span class="pln">
+	</span><span class="lit">10px</span><span class="pun">,</span><span class="pln"> </span><span class="com">//大きさ: 10px 20px のように2つ値を書くことで横と高さを指定することができます。</span><span class="pln">
+	black</span><span class="pun">,</span><span class="pln"> </span><span class="com">// 色</span><span class="pln">
+	top</span><span class="pun">,</span><span class="pln"> </span><span class="com">// 向き: top,right,bottom,left</span><span class="pln">
+	</span><span class="lit">50</span><span class="pun">%,</span><span class="pln"> </span><span class="com">// 位置: 三角形をボックスのどの位置にセットするか（真ん中の場合50%）</span><span class="pln">
+	after </span><span class="com">// before or after どちらを使うか</span><span class="pln">
+</span><span class="pun">);</span></code></pre>
+<h3 id="arrow">arrow</h3>
+<p>矢印を作る</p>
+<h4>初期設定・説明</h4>
+<pre class="prettyprint lang-scss"><code><span class="lit">@include</span><span class="pln"> arrow</span><span class="pun">(</span><span class="pln">
+	</span><span class="lit">10px</span><span class="pun">,</span><span class="pln"> </span><span class="com">// 大きさ</span><span class="pln">
+	</span><span class="lit">1px</span><span class="pun">,</span><span class="pln"> </span><span class="com">// 太さ</span><span class="pln">
+	white</span><span class="pun">,</span><span class="pln"> </span><span class="com">// 色</span><span class="pln">
+	right</span><span class="pun">,</span><span class="pln"> </span><span class="com">// 向き: top,right,bottom,left</span><span class="pln">
+</span><span class="pun">);</span></code></pre>
+<h3 id="arrow-set">arrow-set</h3>
+<p>作った矢印を向きに合わせてボックスにセットする</p>
+<h4>初期設定・説明</h4>
+<pre class="prettyprint lang-scss"><code><span class="lit">@include</span><span class="pln"> arrow</span><span class="pun">-</span><span class="kwd">set</span><span class="pun">(</span><span class="pln">
+	</span><span class="lit">10px</span><span class="pun">,</span><span class="pln"> </span><span class="com">// 大きさ</span><span class="pln">
+	</span><span class="lit">1px</span><span class="pun">,</span><span class="pln"> </span><span class="com">// 太さ</span><span class="pln">
+	white</span><span class="pun">,</span><span class="pln"> </span><span class="com">// 色</span><span class="pln">
+	right</span><span class="pun">,</span><span class="pln"> </span><span class="com">// 向き: top,right,bottom,left</span><span class="pln">
+	</span><span class="lit">50</span><span class="pun">%,</span><span class="pln"> </span><span class="com">// 位置: 三角形をボックスのどの位置にセットするか（真ん中の場合50%）</span><span class="pln">
+	after </span><span class="com">// before or after どちらを使うか</span><span class="pln">
+</span><span class="pun">);</span></code></pre>
+<h3 id="background-4corners">background-4corners</h3>
+<p>4つ角に同じ画像を回転・反転させておきたい場合</p>
+<h4>初期設定・説明</h4>
+<pre class="prettyprint lang-scss"><code><span class="lit">@include</span><span class="pln"> background</span><span class="pun">-</span><span class="lit">4corners</span><span class="pun">(</span><span class="pln">
+	</span><span class="str">''</span><span class="pun">,</span><span class="pln"> </span><span class="com">//images_dirで指定したパスからの画像ファイル名</span><span class="pln">
+	$isRetina </span><span class="com">// true or false Retina対応（画像サイズを半分に）するかしないか</span><span class="pln">
+			</span><span class="com">//（初期値は予め_setting.scssで設定されてることを考慮）</span><span class="pln">
+</span><span class="pun">);</span></code></pre>
+<h3 id="background-stripe">background-stripe</h3>
+<p>ストライプ背景を生成する</p>
+<h4>初期設定・説明</h4>
+<pre class="prettyprint lang-scss"><code><span class="lit">@include</span><span class="pln"> background</span><span class="pun">-</span><span class="pln">stripe</span><span class="pun">(</span><span class="pln">
+	</span><span class="lit">10</span><span class="pun">,</span><span class="pln"> </span><span class="com">//1つ目のストライプのサイズ</span><span class="pln">
+	transparent</span><span class="pun">,</span><span class="pln">	</span><span class="com">//1つ目のストライプの色</span><span class="pln">
+	</span><span class="lit">10</span><span class="pun">,</span><span class="pln"> </span><span class="com">//2つ目のストライプのサイズ</span><span class="pln">
+	rgba</span><span class="pun">(</span><span class="lit">255</span><span class="pun">,</span><span class="lit">255</span><span class="pun">,</span><span class="lit">255</span><span class="pun">,</span><span class="lit">0.5</span><span class="pun">),</span><span class="pln"> </span><span class="com">//2つ目のストライプの色</span><span class="pln">
+	</span><span class="pun">-</span><span class="lit">45deg</span><span class="pln"> </span><span class="com">//ストライプの角度（45度単位)</span><span class="pln">
+</span><span class="pun">);</span></code></pre>
+<p>詳しい仕様の説明は下記より</p>
+<ul>
+<li><a href="http://develo.org/2014/05/11/2100.html">1つの画像で4つの角を再現するCSS</a></li>
+</ul>
+<h3 id="es">es</h3>
+<p>基準となるサイズに対する値を、さまざまな単位にエンコード（encode size）</p>
+<h4>初期設定・説明</h4>
+<pre class="prettyprint lang-scss"><code><span class="pln">margin</span><span class="pun">:</span><span class="pln"> es</span><span class="pun">(</span><span class="pln">
+	</span><span class="str">''</span><span class="pun">,</span><span class="pln"> </span><span class="com">// 変換したいサイズ</span><span class="pln">
+	$font</span><span class="pun">-</span><span class="pln">unit</span><span class="pun">,</span><span class="pln"> </span><span class="com">// 変換したい単位（%,em,rem,px）（初期値は予め_setting.scssで設定されてることを考慮）</span><span class="pln">
+	$font</span><span class="pun">-</span><span class="pln">sizeDefault </span><span class="com">// 変換の基準となる値（初期値は予め_setting.scssで設定されてることを考慮）</span><span class="pln">
+</span><span class="pun">);</span></code></pre>
+<h4>SCSS</h4>
+<p>例）16pxのサイズのspanを12pxの%に変換したい場合</p>
+<pre class="prettyprint lang-scss"><code><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="pln"> es</span><span class="pun">(</span><span class="lit">12</span><span class="pun">,</span><span class="str">'%'</span><span class="pun">,</span><span class="lit">16</span><span class="pun">);</span><span class="pln">
+</span><span class="com">//または</span><span class="pln">
+$font</span><span class="pun">-</span><span class="pln">unit</span><span class="pun">:</span><span class="pln"> </span><span class="str">'%'</span><span class="pun">;</span><span class="pln">
+$font</span><span class="pun">-</span><span class="pln">sizeDefault</span><span class="pun">:</span><span class="pln"> </span><span class="lit">16</span><span class="pun">;</span><span class="pln">
+font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="pln"> es</span><span class="pun">(</span><span class="lit">12</span><span class="pun">);</span></code></pre>
+<h4>CSS</h4>
+<pre class="prettyprint lang-css"><code><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">75</span><span class="pun">%;</span><span class="pln"> </span></code></pre>
+<h3 id="fz">fz</h3>
+<p>指定した単位にフォントサイズを変換しfont-sizeを代入する</p>
+<ul>
+<li>remの場合remが使えない場合のためにpxも出力する</li>
+</ul>
+<h4>初期設定・説明</h4>
+<pre class="prettyprint lang-css"><code><span class="pun">＠</span><span class="pln">include fz</span><span class="pun">(</span><span class="pln">
+	</span><span class="str">''</span><span class="pun">,</span><span class="pln"> </span><span class="com">// 変換したいサイズ</span><span class="pln">
+	</span><span class="str">''</span><span class="pun">,</span><span class="pln"> </span><span class="com">//!importantを指定したい場合（必要ない場合は空）</span><span class="pln">
+	$font</span><span class="pun">-</span><span class="pln">unit</span><span class="pun">,</span><span class="pln"> </span><span class="com">// 変換したい単位（%,em,rem,px）（初期値は予め_setting.scssで設定されてることを考慮）</span><span class="pln">
+	$font</span><span class="pun">-</span><span class="pln">sizeDefault </span><span class="com">// 変換の基準となる値（初期値は予め_setting.scssで設定されてることを考慮）</span><span class="pln">
+</span><span class="pun">);</span></code></pre>
+<h4>SCSS</h4>
+<p>例）16pxのサイズのspanを12pxの%に変換したい場合</p>
+<pre class="prettyprint lang-scss"><code><span class="lit">@include</span><span class="pln"> fz</span><span class="pun">(</span><span class="lit">12</span><span class="pun">,</span><span class="str">''</span><span class="pun">,</span><span class="str">'%'</span><span class="pun">,</span><span class="lit">16</span><span class="pun">);</span><span class="pln">
+</span><span class="com">//または</span><span class="pln">
+$font</span><span class="pun">-</span><span class="pln">unit</span><span class="pun">:</span><span class="pln"> </span><span class="str">'%'</span><span class="pun">;</span><span class="pln">
+$font</span><span class="pun">-</span><span class="pln">sizeDefault</span><span class="pun">:</span><span class="pln"> </span><span class="lit">16</span><span class="pun">;</span><span class="pln">
+</span><span class="lit">@include</span><span class="pln"> fz</span><span class="pun">(</span><span class="lit">12</span><span class="pun">);</span></code></pre>
+<h4>CSS</h4>
+<pre class="prettyprint lang-css"><code><span class="pln">font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">12px</span><span class="pun">;</span><span class="pln">
+font</span><span class="pun">-</span><span class="pln">size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1.2rem</span><span class="pun">;</span></code></pre>
+<h3 id="golden-ratio">golden-ratio</h3>
+<p>黄金比の計算</p>
+<h4>初期設定・説明</h4>
+<pre class="prettyprint lang-scss"><code><span class="pun">＠</span><span class="pln">include golden</span><span class="pun">-</span><span class="pln">ratio</span><span class="pun">(</span><span class="pln">
+	</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="com">// この数字に対しての黄金比（$num * 1.618）</span><span class="pln">
+	</span><span class="kwd">false</span><span class="pun">,</span><span class="pln"> </span><span class="com">// trueの場合 第1引き数の数字を元にした（$num / 1.618）</span><span class="pln">
+</span><span class="pun">);</span></code></pre>
+<h3 id="silver-ratio">silver-ratio</h3>
+<p>白銀比の計算</p>
+<h4>初期設定・説明</h4>
+<pre class="prettyprint lang-scss"><code><span class="pun">＠</span><span class="pln">include silver</span><span class="pun">-</span><span class="pln">ratio</span><span class="pun">(</span><span class="pln">
+	</span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="com">// この数字に対しての黄金比（$num * 1.414）</span><span class="pln">
+	</span><span class="kwd">false</span><span class="pun">,</span><span class="pln"> </span><span class="com">// trueの場合 第1引き数の数字を元にした（$num / 1.414）</span><span class="pln">
+</span><span class="pun">);</span></code></pre>
+<h3 id="clearfix">clearfix</h3>
+<p>引き数内のクラスにclearfixを付ける</p>
+<ol>
+<li><code>@include clearfix();</code>とかくとclearfixクラスがclearfixとなるcssが出力される。</li>
+<li><code>@extend %clearfix;</code>することによりクラスを追加していく。</li>
+</ol>
+<h4>SCSS</h4>
+<pre class="prettyprint lang-scss"><code><span class="lit">@include</span><span class="pln"> clearfix</span><span class="pun">();</span><span class="pln">
+
+</span><span class="pun">.</span><span class="pln">test </span><span class="pun">{</span><span class="pln">
+	</span><span class="lit">@extend</span><span class="pln"> </span><span class="pun">%</span><span class="pln">clearfix</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+<h4>CSS</h4>
+<pre class="prettyprint lang-css"><code><span class="pun">.</span><span class="pln">clearfix</span><span class="pun">,</span><span class="pln">
+</span><span class="pun">.</span><span class="pln">test </span><span class="pun">{</span><span class="pln">
+	min</span><span class="pun">-</span><span class="pln">height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1px</span><span class="pun">;</span><span class="pln">
+	_height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pun">%;</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="pun">.</span><span class="pln">clearfix</span><span class="pun">:</span><span class="pln">after</span><span class="pun">,</span><span class="pln">
+</span><span class="pun">.</span><span class="pln">test</span><span class="pun">:</span><span class="pln">after </span><span class="pun">{</span><span class="pln">
+	content</span><span class="pun">:</span><span class="pln"> </span><span class="str">"."</span><span class="pun">;</span><span class="pln">
+	display</span><span class="pun">:</span><span class="pln"> block</span><span class="pun">;</span><span class="pln">
+	clear</span><span class="pun">:</span><span class="pln"> both</span><span class="pun">;</span><span class="pln">
+	height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln">
+	visibility</span><span class="pun">:</span><span class="pln"> hidden</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+
+
+<h2 id="output_scss">実際にcssに出力されるscssの管理</h2>
+<p>自分がサイトを作るときにこのような構造で作っています。それぞれ作りやすいページ構成があると思いますので、一例としてさらっと説明しています。</p>
+
+<ul>
+<li>参考に : 自分のサイトの構成（<a href="https://github.com/kamem/develo.org">GitHub</a>）</li>
+</ul>
+
+<h3 id="class">class.scss</h3>
+<p>サイト全体で使われる共通クラス用</p>
+<h3 id="common">common.scss</h3>
+<p>header,footerなどの共通のレイアウト用</p>
+<h3 id="default">default.scss</h3>
+<p>リセット用</p>
+<h3>site.scss</h3>
+<p>このサイトで使うdefaultで設定したいcss</p>
+<h3 id="import">import.scss</h3>
+<p>読み込み用</p>
+<h3 id="sprite">sprite.scss</h3>
+<p>スプライト画像生成用</p>
+<h3 id="templates">templates.scss</h3>
+<p>ページに個別で設定したいcss用</p>
+
+			</div>
+		</div>
+
+		<section id="comments" class="commentTitle">
+			<h2>コメントがある方が気軽にどうぞ♪</h2>
+			<form method="post" action="http://develo.org/mt/mt-comments.cgi" id="commentsForm" class="commentsForm" onsubmit="return mtCommentOnSubmit(this)">
+				<fieldset>
+				<legend>コメントフォーム</legend>
+				<input type="hidden" name="static" value="1">
+				<input type="hidden" name="entry_id" value="110">
+				<input type="hidden" name="__lang" value="ja">
+				<dl class="form">
+					<dt class="name"><label for="comment-author">名前</label></dt>
+					<dd class="name"><input id="comment-author" name="author" size="30" value=""></dd>
+					<dt class="mail"><label for="comment-email">メールアドレス</label></dt>
+					<dd class="mail"><input id="comment-email" name="email" size="30" value=""></dd>
+					<dt class="url"><label for="comment-url"><abbr title="Uniform Resource Identifer">URI</abbr></label></dt>
+					<dd class="url"><input id="comment-url" name="url" size="30" value=""></dd>
+					<dt class="info"><label for="comment-bake-cookie">情報を保存しますか？</label></dt>
+					<dd class="info"><input type="checkbox" id="comment-bake-cookie" name="bakecookie" onclick="mtRememberMeOnClick(this)" onkeypress="mtRememberMeOnClick(this)" value="1" accesskey="r"></dd>
+					<dt class="comment"><label for="comment-text">コメント <span>(スタイル指定用の一部の <abbr title="Hyper Text Markup Language">HTML</abbr>タグが使用できます。)</span></label></dt>
+					<dd class="comment"><textarea id="comment-text" name="text" rows="10" cols="50"></textarea></dd>
+				</dl>
+				<p id="comments-open-footer"><!--<input type="submit" class="button preview" id="comment-preview" name="preview" value="確認" />--><input type="submit" class="button post" value="送信"></p>
+				</fieldset>
+				<script type="text/javascript">
+					<!--
+					//mtAttachEvent("load", mtEntryOnLoad);
+					//mtAttachEvent("unload", mtEntryOnUnload);
+					//-->
+				</script>
+			</form>
+		</section>
+
+		<section id="trackbacks" class="commentTitle trackbacks">
+			<h2>トラックバック : 0</h2>
+			<p class="url">http://develo.org/mt/mt-tb.cgi/109</p>
+		</section>
+	</article>
+
+	
 </main>
 
 <footer id="footer">

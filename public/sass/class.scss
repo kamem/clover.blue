@@ -1,3 +1,153 @@
 @charset "utf-8";
 
 @import "_extension_import";
+
+@import "_module/_commentList";
+
+.data {
+	$font-size: 12;
+	$margin: 40;
+	$color: #b8b2a6;
+
+	margin: es($margin * 1.5) 0 es($margin);
+
+	li {
+		margin: 0 es(4);
+		@include inline-block();
+		@include fz($font-size);
+		color: $color;
+	}
+
+	a {
+		padding: es(5);
+
+		color: $color;
+		text-decoration: none;
+
+		background: #fff;
+
+		@include fz($font-size);
+		@include box-shadow(1px 1px 1px rgba(0,0,0,0.04));
+		@include box-sizing(border-box);
+	}
+}
+
+.commentTitle {
+	$font-size: 16;
+	$margin: 40;
+	$letter-spacing: 2.4;
+
+	text-align: center;
+	h2 {
+		margin: es($margin) auto;
+		border: 1px solid #f2efeb;
+		display: inline-block;
+		padding: es(16);
+		min-width: 10%;
+		color: #a29c8e;
+		background: #fff;
+		position: relative;
+
+		font-weight: normal;
+		text-align: center;
+		font-size: es($font-size);
+
+		letter-spacing: es($letter-spacing);
+		@include box-shadow(1px 1px 1px rgba(0,0,0,0.04));
+
+
+		@include triangle-set(20px 10px,#fff,bottom);
+		@include triangle-set(22px 12px,#f2efeb,bottom,50%,before);
+	}
+}
+
+.trackbacks {
+	$font-size: 16;
+	$margin: 40;
+
+	p.url {
+		margin: 0 auto es($margin);
+		padding: es(16);
+		border: 1px solid #f2efeb;
+		background: #fff;
+		max-width: es($base-width);
+		color: $text-color;
+		@include box-sizing(border-box);
+		@include box-shadow(1px 1px 1px rgba(0,0,0,0.04));
+		@media screen and (max-width: es($mediaQuery-middle,rem,$mediaQuery-baseSize)) {
+		}
+	}
+}
+
+
+.commentsForm {
+	$font-size: 16;
+
+	dl.form {
+		margin: 0 auto;
+		max-width: es($base-width);
+		color: $text-color;
+
+		text-align: left;
+
+		@include box-sizing(border-box);
+
+		dt {
+			color: $linkColor;
+
+			&:nth-of-type(1)  {
+				margin-top: 0 !important;
+				border-top: none;
+			}
+
+			&.comment span {
+				display: none;
+			}
+		}
+
+		dd {
+			margin-bottom: es(10);
+			input,
+			textarea {
+				width: 100%;
+			}
+			&.info input {
+				width: inherit;
+			}
+		}
+
+		@media screen and (max-width: es($mediaQuery-middle,rem,$mediaQuery-baseSize)) {
+			margin-right: es(10);
+			margin-left: es(10);
+		}
+
+		@media screen and (max-width: es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
+		}
+	}
+
+	p#comments-open-footer {
+		$font-size: 16;
+		margin: 0 auto;
+		max-width: es($base-width);
+		text-align: center;
+
+		input {
+			@include inline-block;
+			width: 48%;
+
+			&.post:first-child {
+				margin-right: 0;
+				width: 100%;
+			}
+
+			&:first-child {
+				margin-right: 4%;
+			}
+		}
+
+		@media screen and (max-width: es($mediaQuery-middle,rem,$mediaQuery-baseSize)) {
+			margin-right: es(10);
+			margin-left: es(10);
+		}
+	}
+}

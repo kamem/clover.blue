@@ -1,0 +1,90 @@
+@charset "utf-8";
+
+/*----------------------------------------
+	category
+----------------------------------------*/
+.categories {
+	$font-size: 16;
+	$line-height: silver-ratio($font-size);
+	padding: es(5) 0;
+	margin: 0 auto;
+	max-width: es($base-width-big);
+	background: #eee;
+	overflow: hidden;
+	
+	h1 {
+		display: none;
+	}
+	
+	@include border-radius(4px);
+
+	li{
+		float: left;
+		width: 20%;
+		line-height: es($line-height);
+		
+		#{"/"}width: 19.9%;
+
+		&:first-child a {
+			@include border-radius(4px 0 0 4px);
+		}
+		
+		&:last-child a {
+			@include border-radius(0 4px 4px 0);
+		}
+		
+		a {
+			text-align: center;
+			text-decoration: none;
+			position: relative;
+			border-bottom: 5px solid #fff;
+			display: table-cell;
+			vertical-align: middle;
+			width: 20%;
+			height: es(60);
+
+			@include background(inline-image('common/white.gif') repeat-y left top,#fafafa);
+			#{"/"}background: #fff;
+			background/*\**/: #fff \9;
+			#{"/"}height: 1%;
+			
+			&:hover {
+				@include opacity(0.6);
+			}
+			&:active {
+				top: 1px;
+				left: 1px;
+				@include transition(none !important);
+			}
+		}
+		
+		$i: 0;
+		$border-color: #87d2f1,#e08181,#f6df82,#f8afda,#a7e492;
+		@each $category in $categories {
+			$i: $i + 1;
+			#{"&:nth-child(" +$i + ") a"} {
+				color: nth($category-colors,$i);
+				border-color: nth($border-color,$i);
+			}
+		}
+	}
+
+@media screen and (max-width: es($mediaQuery-middle,rem,$mediaQuery-baseSize)) {
+	$font-size: 14;
+	li {
+		@include fz($font-size);
+	}
+}
+
+@media screen and (max-width: es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
+	$font-size: 12;
+	$line-height: silver-ratio($font-size);
+	li {
+		@include fz($font-size);
+		line-height: es($line-height);
+		a {
+			height: es(60);
+		}
+	}
+}
+}
