@@ -15,15 +15,7 @@ var express = require('express'),
 	db = require('./models/db'),
 	mongo = require('mongoose');
 
-
-var entries = mongo.Schema({
-    "created_at": String,
-    "updated_at": String,
-    'uuid': String
-});
-
-var Entries = mongo.model('qiita_entries',entries);
-
+var Entries = post.Entries;
 
 //middleware
 app.set('views', __dirname + '/views');
