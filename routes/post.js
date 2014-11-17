@@ -13,7 +13,7 @@ var Entries = mongo.model('qiita_entries',entries);
 exports.Entries = Entries;
 
 exports.index = function(req,res) {
-	Entries.find({},function(err,posts) {
+	Entries.find({}).sort('-updated_at').exec(function(err,posts) {
 		res.render('posts/index',{posts: posts});
 	});
 };
