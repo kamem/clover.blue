@@ -12,12 +12,24 @@ var express = require('express'),
 
 	csrf = require('csurf'),
 
-	db = require('./models/db');
+	db = require('./models/db'),
+	mongo = require('mongoose');
+
+
+var entries = mongo.Schema({
+    "created_at": String,
+    "updated_at": String,
+    'uuid': String
+});
+
+var Entries = mongo.model('qiita_entries',entries);
 
 
 //middleware
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
+
+app.use(express.static(__dirname + '/public'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -43,13 +55,20 @@ app.use(logger('dev'));
 
 //routing
 app.get('/',post.index);
-app.get('/posts/:id([0-9]+)',post.show);
-app.get('/posts/:id([0-9]+).json',post.json);
-app.get('/posts/new',post.new);
-app.post('/posts/create',post.create);
-app.get('/posts/:id/edit',post.edit);
-app.put('/posts/:id',post.update);
-app.delete('/posts/:id',post.destroy);
+// app.get('/posts/:id([0-9]+)',post.show);
+// app.get('/posts/:id([0-9]+).json',post.json);
+// app.get('/posts/new',post.new);
+// app.post('/posts/create',post.create);
+// app.get('/posts/:id/edit',post.edit);
+// app.put('/posts/:id',post.update);
+// app.delete('/posts/:id',post.destroy);
+
+
+Entries.find({},function(err,posts) {
+	for(entry in posts) {
+		app.get('/items/' + posts[entry].uuid,post.index);
+	}
+});
 
 app.use(function(err,req,res,next) {
 	res.send(err.message);

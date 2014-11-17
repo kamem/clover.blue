@@ -523,8 +523,16 @@ font</span><span class="pun">-</span><span class="pln">size</span><span class="p
 			</div>
 		</div>
 
+<ul class="service">
+				<li class="hatena"><iframe class="hatena-bookmark-button-frame" title="このエントリーをはてなブックマークに追加" frameborder="0" scrolling="no" width="50" height="20" src="javascript:false" style="width: 50px; height: 20px;"></iframe></li>
+				<li class="twitter"><iframe id="tweet-button" scrolling="no" frameborder="0" allowtransparency="true" src="http://platform.twitter.com/widgets/tweet_button.d58098f8a7f0ff5a206e7f15442a6b30.ja.html#_=1416075210506&amp;count=horizontal&amp;id=tweet-button&amp;lang=ja&amp;original_referer=http%3A%2F%2Fdevelo.org%2F2012%2F04%2F08%2F1902.html&amp;size=m&amp;text=iPhone%E3%83%BBAndroid%E3%83%BBPC%E3%81%A7%E3%83%95%E3%83%AA%E3%83%83%E3%82%AF%E3%82%92%E5%AE%9F%E8%A3%85%E3%81%A7%E3%81%8D%E3%82%8BjQuery%E3%83%97%E3%83%A9%E3%82%B0%E3%82%A4%E3%83%B3%20-%20develo.org&amp;url=http%3A%2F%2Fdevelo.org%2F2012%2F04%2F08%2F1902.html" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 132px; height: 20px;"></iframe>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></li>
+				<li class="google"><div id="___plusone_1" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I1_1416075212746" name="I1_1416075212746" src="https://apis.google.com/u/0/se/0/_/+1/fastbutton?usegapi=1&amp;size=medium&amp;width=120&amp;origin=http%3A%2F%2Fdevelo.org&amp;url=http%3A%2F%2Fdevelo.org%2F2012%2F04%2F08%2F1902.html&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.ja.kDxultBkF5Q.O%2Fm%3D__features__%2Fam%3DAQ%2Frt%3Dj%2Fd%3D1%2Ft%3Dzcms%2Frs%3DAGLTcCMSi4fL8SIzgpc1_ZDk8MeDy8qyxQ#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh%2Conload&amp;id=I1_1416075212746&amp;parent=http%3A%2F%2Fdevelo.org&amp;pfname=&amp;rpctoken=12154070" data-gapiattached="true" title="+1"></iframe></div></li>
+			</ul>
+
 		<section id="comments" class="commentTitle">
-			<h2>コメントがある方が気軽にどうぞ♪</h2>
+			<h2>質問やコメントなんでも待ってます！<br>
+気軽にどうぞー。</h2>
 			<form method="post" action="http://develo.org/mt/mt-comments.cgi" id="commentsForm" class="commentsForm" onsubmit="return mtCommentOnSubmit(this)">
 				<fieldset>
 				<legend>コメントフォーム</legend>
@@ -552,6 +560,164 @@ font</span><span class="pun">-</span><span class="pln">size</span><span class="p
 					//-->
 				</script>
 			</form>
+			<dl class="log">
+				<dt id="comment108">you : <span class="date">2012年04月16日 (月) 01:14</span></dt>
+				<dd>
+				<p>はじめまして。<br>
+初心者です。</p>
+
+<p>とても素敵なサンプルを見つけて早速使ってみています。</p>
+
+<p>index2.html　の方です。</p>
+
+<p>画像を指定してAndroidで見てみたところ、<br>
+スマホの横幅より画像が大きい場合、<br>
+右側が画面幅に合わせてカットされます。<br>
+例えば画像を画面幅に合わせて自動で縮小するにはどこを修正すればいいでしょうか･･･。</p>
+
+<p>宜しくお願いいたします。</p>
+				</dd>
+				<dt id="comment109">kamem : <span class="date">2012年04月24日 (火) 12:59</span></dt>
+				<dd>
+				<p>&gt;youさん</p>
+
+<p>返事遅くなりまして、すみません！<br>
+windowの幅が変わったときに画像のサイズを変えたい場合には「MediaQuery」を使い<br>
+windowのサイズによって、画像のサイズを変えてみるのはどうでしょうか？</p>
+
+<p>例としては下記のような感じですかね！</p>
+
+<pre>/* スクリーンサイズが479以下の場合  */
+@media screen and (max-width: 479px) {
+	img {
+		width: 320px;
+		height: auto;
+	}
+}
+/* スクリーンサイズが480以上の場合  */
+@media screen and (min-width: 480px) {
+	img {
+		width: 480px;
+		height: auto;
+	}
+}</pre>
+
+<p>時間がある時にでも、サンプル用意してみようと思います！</p>
+				</dd>
+				<dt id="comment125">etou : <span class="date">2014年04月19日 (土) 00:22</span></dt>
+				<dd>
+				<p>はじめまして。<br>
+とてもシンプルで使いやすそうなプラグインですね！<br>
+現在制作中のサイトで使えるか試しています。<br>
+全画面背景のサイトを作っているので、<br>
+index2.html　を参考にしました。<br>
+使用するためのカスタマイズで、<br>
+　・1ページに、4つを同時に使用<br>
+　・「next」「prev」ボタンを画像背景の上に設置<br>
+を実施しました。<br>
+同時使用は<br>
+var $container = $('.container','#flick,#flick2,#flick3,#flick4');<br>
+var $item = $('.item','#flick,#flick2,#flick3,#flick4');<br>
+とする事で動作しました。<br>
+ボタンを画像の上に持ってくるため、<br>
+ボタン表示のCSSに "z-index: 100;" を追加して、<br>
+テキストボタンを画像に変更したところ、<br>
+1つ目の「next」「prev」クリックで、4つ目のコンテンツが動いてしまいました。<br>
+コンテンツの上に「next」「prev」ボタンを持ってくる方法がありましたら、<br>
+教えていただけますでしょうか。<br>
+不躾なお願いで大変恐縮ですが、<br>
+何を試したらよいかも分からなくなってしまった為、<br>
+助けていただけると大変ありがたいです。<br>
+よろしくお願いいたします。</p>
+				</dd>
+				<dt id="comment126">etou : <span class="date">2014年04月19日 (土) 00:24</span></dt>
+				<dd>
+				<p>画像ボタンの件、自己解決しました。<br>
+「next」「prev」のCSSを、デフォルトのまま変更していました（＞＜）<br>
+お騒がせして申し訳ありませんでした。<br>
+このプラグインを使わせていただきます。<br>
+ありがとうございます。</p>
+				</dd>
+				<dt id="comment127">kei : <span class="date">2014年04月19日 (土) 00:25</span></dt>
+				<dd>
+				<p>はじめまして。<br>
+余分な機能が省かれた軽そうなスクリプトなので、使ってみたいと思っています。<br>
+動作確認の為、複数設置のサンプル画面を iPad で見たところ、<br>
+フリック動作で画面がふわふわと動いてしまい、とても見辛い感じになっていました。<br>
+一つだけ設置してある、index2の方は、フリックで画面が動いたりしませんでした。<br>
+題名には iPad とは書かれていませんでしたが、<br>
+スクリプトに iPad を認識するようなコメントが書かれていたので、使えると思ったのですが、<br>
+iPad は対象外なのでしょうか？<br>
+複数設置を予定しているので、<br>
+この画面がふわふわ動いてしまうことがなくなれば、使ってみたいと思います。<br>
+直す箇所が分かるようでしたら、教えていただけますでしょうか？<br>
+お手数をおかけしますが、ご確認をよろしくお願いいたします。</p>
+				</dd>
+				<dt id="comment128">kamem : <span class="date">2014年04月19日 (土) 00:26</span></dt>
+				<dd>
+				<p>&gt;keiさん<br>
+画面がふわふわ動くというのはどういうことでしょうか・・？<br>
+フリックをするとフリックのコンテンツ位置に自動的にスクロールするような仕様になっているのですが、その機能ののことでしょうか？<br>
+それでしたらオプションの「centerPosition」をfalseにすればその機能をきることができますので<br>
+試してみてください。</p>
+				</dd>
+				<dt id="comment129">kei : <span class="date">2014年04月19日 (土) 00:32</span></dt>
+				<dd>
+				<p>御礼が遅くなってしまい、すみませんでした。<br>
+ふわふわ、しなくなりました！<br>
+教えていただき、ありがとうございます。<br>
+もうひとつ、これは出来るかどうかわからないのですが、<br>
+スマートホン、タブレット端末は縦持ちのときだけ、<br>
+フリックエリアの「高さ」を画面に合わせることは可能でしょうか？<br>
+現在は「幅」を合わせるようになっているので、中に置いているテキストが、隠れて見えなくなってしまいました。<br>
+PCや横持ちの場合は今の状態で良いのですが、<br>
+縦持ちのときだけ制御を変える、なんてことは可能でしょうか？<br>
+他のscriptを試してみたり、色々試行錯誤してみたのですが、<br>
+IEにも対応できて複数設置もできるのは、こちらのサイトだけでしたので、<br>
+できればこちらのscriptを使わせていただきたいと思っています。<br>
+お手数をおかけしますが、ご確認をよろしくお願いいたします。</p>
+				</dd>
+				<dt id="comment130">kamem : <span class="date">2014年04月19日 (土) 00:33</span></dt>
+				<dd>
+				<p>&gt;keiさん<br>
+縦と横で制御を変えるというよりは、<br>
+「MediaQuery」を使ってCSSを切り替えるというのはどうでしょうか。<br>
+縦、縦の場合それぞれ、見た目が損なわれないように<br>
+横幅に応じてCSSを調節すれば行けるような気がします！<br>
+この記事のコメントの2番目のような感じです。</p>
+				</dd>
+				<dt id="comment131">ken : <span class="date">2014年04月19日 (土) 00:36</span></dt>
+				<dd>
+				<p>はじめまして。<br>
+素敵なJSありがとうございます。<br>
+フリックさせるブロックをjQueryでフェードインさせたり、<br>
+animateで画面外からスライドインさせたときですが<br>
+マウスでフリックエリアをクリックするとフリックできなくなります。<br>
+またその時フリックコンテンツの中にaタグでリンクを貼っている場合でも同様で<br>
+リンク先に飛ばなくなります。<br>
+何か対処法はありませんでしょうか？？<br>
+よろしくお願いいたします。</p>
+				</dd>
+				<dt id="comment132">匿名 : <span class="date">2014年04月19日 (土) 00:36</span></dt>
+				<dd>
+				<p>フリック用のjsを利用させていただいているんですが、いいねボタンやツイートボタンが中に入ると正常に動かないのですが、回避策はありますか？ちなみに挙動が不安定なのは、iPhoneとiPadです。</p>
+				</dd>
+				<dt id="comment133">marumen : <span class="date">2014年04月19日 (土) 00:38</span></dt>
+				<dd>
+				<p>はじめまして。<br>
+とても素晴らしいサンプルを拝見し早速使用させていただいております。<br>
+一点お聞きしたいのですが、画像を読み込んでいる際に一瞬ですが、元の画像が大きく表示されてしまいます。<br>
+こちらはloading画像を表示させるなど、一瞬の表示崩れを回避する方法はございますでしょうか？<br>
+以上、何卒宜しくお願い致します。</p>
+				</dd>
+				<dt id="comment134">nao : <span class="date">2014年04月19日 (土) 00:38</span></dt>
+				<dd>
+				<p>初心者の私でもとても解りやすいので、ありがたいです。<br>
+質問ですが、IMGにリンクを設定したのですが、反応がありません。<br>
+どうしたらリンク設定出来るようになりますか？<br>
+ご回答お待ちしています。</p>
+				</dd>
+			</dl>
 		</section>
 
 		<section id="trackbacks" class="commentTitle trackbacks">

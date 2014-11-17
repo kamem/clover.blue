@@ -4,6 +4,122 @@
 
 @import "_module/_commentList";
 
+
+.service {
+	margin: es(60) es(10) es(20);
+	text-align: center;
+	li {
+		position: relative;
+		width: 120px;
+		overflow: hidden;
+		@include inline-block();
+
+		&.twitter {
+			width: 100px;
+		}
+	}
+}
+
+dl.log {
+	$font-size: 14;
+	$padding: 20;
+
+	max-width: es($base-width);
+	border-top: 1px solid #dcc;
+	border-bottom: 1px solid #fff;
+	margin: es($padding) auto;
+	color: $text-color;
+	text-align: left;
+	letter-spacing: es(1.3);
+	line-height: 1.6;
+
+	dt {
+		padding: es($padding) 0 es($padding / 2) 0;
+		border-top: 1px solid #fff;
+		@include fz($font-size);
+
+		span {
+			color: #dcc !important;
+		}
+
+		&:target {
+			color: $linkColor !important;
+			@include animation-name(blink);
+			@include animation-duration(5s);
+			@include animation-timing-function(ease);
+			@include animation-iteration-count(infinite);
+			& + dd {
+				@extend dt:target;
+
+				p {
+					color: $linkColor !important;
+				}
+			}
+
+			&:nth-of-type(even) {
+				@include animation-name(blink2);
+			}
+		}
+
+		&:nth-of-type(even) {
+				background: rgba(#fff,0.5);
+		}
+	}
+	dd {
+		padding-bottom: es($padding);
+		border-bottom: 1px solid #dcc;
+		@include fz($font-size);
+
+		p {
+			margin-bottom: es(16);
+			color: #744 !important;
+		}
+		&:nth-of-type(even) {
+			background: rgba(#fff,0.5);
+		}
+	}
+
+
+	@media screen and (max-width: es($mediaQuery-middle,rem,$mediaQuery-baseSize)) {
+		dt,
+		dd {
+			padding: es(10) es(10);
+		}
+	}
+}
+
+li.download {
+	margin-bottom: es(10) !important;
+	list-style-type: none !important;
+	a {
+		display: block;
+		background: $baseColor;
+
+		text-decoration: none;
+		color: #fff;
+		text-align: center;
+		@include box-shadow(7px 7px 0 rgba(0,0,0,.05));
+
+		&:hover {
+			position: relative;
+			@include opacity(0.6);
+			@include transition(0.13s ease-in-out);
+		}
+	}
+
+}
+
+.pageNav {
+	h2 {
+		margin-top: 0;
+	}
+
+	li {
+		@include fz(14,!important);
+		line-height: 2 !important;
+	}
+}
+
 .data {
 	$font-size: 12;
 	$margin: 40;
@@ -35,7 +151,6 @@
 .commentTitle {
 	$font-size: 16;
 	$margin: 40;
-	$letter-spacing: 2.4;
 
 	text-align: center;
 	h2 {
@@ -72,6 +187,7 @@
 		background: #fff;
 		max-width: es($base-width);
 		color: $text-color;
+		text-align: left;
 		@include box-sizing(border-box);
 		@include box-shadow(1px 1px 1px rgba(0,0,0,0.04));
 		@media screen and (max-width: es($mediaQuery-middle,rem,$mediaQuery-baseSize)) {

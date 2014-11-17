@@ -58,11 +58,17 @@ $header-top: 10;
 	h1 {
 		margin: auto;
 		@include background-fit('common/cloverblue.png');
+		a {
+			display: block;
+			width: $imgWidth;
+			height: $imgHeight;
+		}
 		position: absolute;
 		top: 0;
 		left: 0;
 		right: 0;
 		bottom: 0;
+		z-index: 1;
 	}
 
 	nav {
@@ -110,6 +116,8 @@ $header-top: 10;
 ----------------------------------------*/
 main {
 	text-align: left;
+	margin-top: es($header-height + $header-top + 20);
+
 	@media screen and (max-width: es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
 		position: static;
 	}
@@ -119,93 +127,116 @@ main {
 	}
 
 	header {
-		$font-size: 28;
-		margin: es($header-height + $header-top + 20) auto 0;
+		$font-size: 26;
+		margin: 0 auto;
 		max-width: es($base-width);
 
 		text-align: center;
-	}
 
-	h1 {
-		color: $text-color;
-		padding-bottom: es(8);
-		word-wrap: break-word;
+		h1 {
+			color: $text-color;
+			padding-bottom: es(8);
+			word-wrap: break-word;
+			letter-spacing: es($letter-spacing);
 
-		position: relative;
-		display: inline;
+			position: relative;
+			display: inline;
 
-		@include fz($font-size);
-		@include background-stripe($font-size / 1.1,transparent,5,$baseColor2,180deg);
-	}
-
-	h2 {
-		$font-size: 26;
-		$margin: 25;
-
-		margin: es($margin * 4) auto es($margin);
-		color: $text-color;
-		max-width: es($base-width);
-
-		@include fz($font-size);
-
-		@media screen and (max-width: es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
-		}
-	}
-
-	h3 {
-		$font-size: 22;
-
-		margin: 0 auto es(5);
-		color: $text-color;
-		max-width: es($base-width);
-		@include fz($font-size);
-
-		@media screen and (max-width: es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
-		}
-	}
-
-	h4 {
-		$font-size: 18;
-
-		margin: 0 auto es(5);
-		@include fz($font-size);
-
-		color: $text-color;
-		max-width: es($base-width);
-
-		@media screen and (max-width: es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
-		}
-	}
-
-	h5 {
-		$font-size: 16;
-
-		margin: 0 auto;
-		color: $text-color;
-		max-width: es($base-width);
-		@include fz($font-size);
-
-		@media screen and (max-width: es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
-		}
-	}
-
-	h6 {
-		$font-size: 16;
-
-		margin: 0 auto;
-		@include fz($font-size);
-
-		color: $text-color;
-		max-width: es($base-width);
-
-		@media screen and (max-width: es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
+			@include fz($font-size);
+			@include background-stripe($font-size / 1.1,transparent,5,$baseColor2,180deg);
 		}
 	}
 
 	.content {
 		$font-size: 16;
-		$letter-spacing: 2.4;
 		$margin: 40;
+		$letter-spacing: 2.4;
+
+		h2 {
+			$font-size: 26;
+			$margin: 25;
+
+			margin: es($margin * 4) auto es($margin);
+			color: $text-color;
+			max-width: es($base-width);
+			letter-spacing: es($letter-spacing);
+
+			@include fz($font-size);
+
+			position: relative;
+
+			&:before {
+				content: '';
+				display: block;
+				@include background-fit('common/clover.png');
+				position: absolute;
+				left: -$imgWidth - 8;
+			}
+
+			@media screen and (max-width: es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
+			}
+		}
+
+		h3 {
+			$font-size: 22;
+
+			border-top: 1px solid #f2efeb;
+			margin: es(20) auto es(5);
+			padding-top: es(20);
+			color: $text-color;
+			max-width: es($base-width);
+			letter-spacing: es($letter-spacing);
+			@include fz($font-size);
+			@media screen and (max-width: es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
+			}
+		}
+
+		h2 + h3 {
+			margin: 0 auto es(5);
+			padding-top: 0;
+			border-top: none;
+		}
+
+		h4 {
+			$font-size: 18;
+
+			margin: 0 auto es(5);
+			@include fz($font-size);
+
+			color: $text-color;
+			max-width: es($base-width);
+			letter-spacing: es($letter-spacing);
+
+			@media screen and (max-width: es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
+			}
+		}
+
+		h5 {
+			$font-size: 16;
+
+			margin: 0 auto;
+			color: $text-color;
+			max-width: es($base-width);
+			letter-spacing: es($letter-spacing);
+			@include fz($font-size);
+
+			@media screen and (max-width: es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
+			}
+		}
+
+		h6 {
+			$font-size: 16;
+
+			margin: 0 auto;
+			@include fz($font-size);
+
+			color: $text-color;
+			max-width: es($base-width);
+			letter-spacing: es($letter-spacing);
+
+			@media screen and (max-width: es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
+			}
+		}
 
 		img {
 			margin: 0 auto;
@@ -260,6 +291,10 @@ main {
 		figure,
 		p {
 			margin: 0 auto es($margin);
+		}
+
+		p + pre {
+			margin-top: es(-$margin);
 		}
 
 		figure {

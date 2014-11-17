@@ -26,10 +26,6 @@ pre {
 	@include box-shadow(1px 1px 1px rgba(0,0,0,0.04));
 	@include box-sizing(border-box);
 
-	p + & {
-		margin-top: es(-$margin);
-	}
-
 	&[class*="lang"]:after {
 		padding: 0.5em;
 		display: block;
@@ -114,23 +110,15 @@ textarea {
 input {
 	&.button {
 		color: #fff;
-		background: $linkColor !important;
+		background: $baseColor !important;
 		cursor: pointer;
 		border: none !important;
-		@include border-radius(4px !important);
-
+		@include box-shadow(7px 7px 0 rgba(0,0,0,.05));
 
 		&:hover {
 			position: relative;
 			@include opacity(0.6);
 			@include transition(0.13s ease-in-out);
-		}
-
-		&:active {
-			top: 1px;
-			left: 1px;
-			@include box-shadow(none);
-			@include transition(none !important);
 		}
 	}
 
@@ -149,7 +137,7 @@ textarea:hover {
 
 input:focus,
 textarea:focus {
-	border: es(2) solid $linkColor;
+	border: es(1) solid $linkColor;
 	background-color: #fff;
 }
 
@@ -169,9 +157,6 @@ ins {
 hr {
 	display: block;
 	border: none;
-	height: 22px;
-	@include fz($font-size);
-	margin-bottom: es(silver-ratio($font-size) + $font-size);
 }
 
 /*----------------------------------------

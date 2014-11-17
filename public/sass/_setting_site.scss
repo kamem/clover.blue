@@ -6,6 +6,8 @@ $font-size: 16;
 $font-unit: rem;
 $font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
 
+$letter-spacing: 2.4;
+
 //ページの横幅
 $base-width: 736;
 $base-width-big: 798;
@@ -30,6 +32,8 @@ $mediaQuery-middle: 756;
 $mediaQuery-small: 650;
 
 $mediaQuery-baseSize: $font-size;
+
+
 
 // preのボーダーカラー
 $cssColor : #f0f;
