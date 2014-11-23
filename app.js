@@ -46,7 +46,7 @@ app.use(function(req,res,next) {
 app.use(logger('dev'));
 
 //routing
-app.get('/',post.index);
+app.get('/', post.index);
 // app.get('/posts/:id([0-9]+)',post.show);
 // app.get('/posts/:id([0-9]+).json',post.json);
 // app.get('/posts/new',post.new);
@@ -55,10 +55,9 @@ app.get('/',post.index);
 // app.put('/posts/:id',post.update);
 // app.delete('/posts/:id',post.destroy);
 
-
 Entries.find({},function(err,posts) {
 	for(entry in posts) {
-		app.get('/items/' + posts[entry].uuid,post.index);
+		app.get('/items/' + posts[entry].uuid, post.entry);
 	}
 });
 

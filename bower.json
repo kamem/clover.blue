@@ -1,0 +1,19 @@
+{
+  "name": "clover.blue",
+  "version": "0.0.0",
+  "homepage": "https://github.com/kamem/develo",
+  "authors": [
+    "kamem <develo0@gmail.com>"
+  ],
+  "description": "clover.blue",
+  "main": "test",
+  "keywords": [
+    "clover.blue"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "2.1.1",
+    "angular": "1.2.27",
+    "require": ""
+  }
+}

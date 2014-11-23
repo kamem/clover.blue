@@ -1,13 +1,14 @@
-var request = require("request");
+var request = require('request');
 var mongo = require('mongoose');
 var db = require('./models/db');
 var api = 'https://qiita.com/api/v1/';
 var userName = 'kamem';
 
 var entries = mongo.Schema({
-    "created_at": String,
-    "updated_at": String,
-    'uuid': String
+    'created_at': String,
+    'updated_at': String,
+    'uuid': String,
+    'title': String
 });
 
 var Entries = mongo.model('qiita_entries',entries);
@@ -32,6 +33,7 @@ request.post(api + '/auth/', options, function(error, response, body){
                     post.created_at = i.created_at;
                     post.updated_at = i.updated_at;
                     post.uuid = i.uuid;
+                    post.title = i.title;
 
                     post.save(function(err) {
                       if (err) { console.log(err); }
@@ -41,7 +43,8 @@ request.post(api + '/auth/', options, function(error, response, body){
                 var entry = new Entries({
                     created_at: i.created_at,
                     updated_at: i.updated_at,
-                    uuid: i.uuid
+                    uuid: i.uuid,
+                    title: i.title
                 });
                 entry.save(function(err) {
                   if (err) { console.log(err); }

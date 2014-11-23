@@ -5,14 +5,10 @@
 
 
 <script>
-var qiita = [
-<% for(var i = 0;i < posts.length;i++) { %>
-	{
-		created_at: '<%= posts[i].created_at %>', 
-		updated_at: '<%= posts[i].updated_at %>'
-	},
+var qiita = [];
+<% for(var i = 0;i < qiita.length;i++) { %>
+qiita[<%= i %>] = {created_at: '<%= qiita[i].created_at %>', updated_at: '<%= qiita[i].updated_at %>'};
 <% } %>
-]
 </script>
 
 </body>
