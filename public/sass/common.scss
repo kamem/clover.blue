@@ -152,10 +152,13 @@ main {
 		$margin: 40;
 		$letter-spacing: 2.4;
 
+		$padding: 16;
+
 		h2 {
 			$font-size: 26;
 			$margin: 25;
 
+			padding: 0 es($padding);
 			margin: es($margin * 4) auto es($margin);
 			color: $text-color;
 			max-width: es($base-width);
@@ -170,7 +173,7 @@ main {
 				display: block;
 				@include background-fit('common/clover.png');
 				position: absolute;
-				left: -$imgWidth - 8;
+				left: -$imgWidth;
 			}
 
 			@media screen and (max-width: es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
@@ -182,7 +185,7 @@ main {
 
 			border-top: 1px solid #f2efeb;
 			margin: es(20) auto es(5);
-			padding-top: es(20);
+			padding: es(20) es($padding) 0;
 			color: $text-color;
 			max-width: es($base-width);
 			letter-spacing: es($letter-spacing);
@@ -201,6 +204,7 @@ main {
 			$font-size: 18;
 
 			margin: 0 auto es(5);
+			padding: 0 es($padding);
 			@include fz($font-size);
 
 			color: $text-color;
@@ -215,38 +219,30 @@ main {
 			$font-size: 16;
 
 			margin: 0 auto;
+			padding: 0 es($padding);
 			color: $text-color;
 			max-width: es($base-width);
 			letter-spacing: es($letter-spacing);
 			@include fz($font-size);
-
-			@media screen and (max-width: es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
-			}
 		}
 
 		h6 {
 			$font-size: 16;
 
 			margin: 0 auto;
+			padding: 0 es($padding);
 			@include fz($font-size);
 
 			color: $text-color;
 			max-width: es($base-width);
 			letter-spacing: es($letter-spacing);
-
-			@media screen and (max-width: es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
-			}
 		}
 
 		img {
 			margin: 0 auto;
-			width: es($base-width);
+			width: 100%;
 			height: auto;
 			display: block;
-
-			@media screen and (max-width: 49.875em) {
-				width: 100% !important;
-			}
 		}
 
 		figure,
@@ -271,6 +267,7 @@ main {
 			dt,
 			dd {
 				margin: 0;
+				padding: 0;
 				list-style-position: inside;
 			}
 		}
@@ -279,6 +276,7 @@ main {
 		ul,
 		ol {
 			margin: 0 auto es($margin);
+			padding: 0 es($padding);
 		}
 
 		li {
@@ -291,6 +289,7 @@ main {
 		figure,
 		p {
 			margin: 0 auto es($margin);
+			padding: 0 es($padding);
 		}
 
 		p + pre {

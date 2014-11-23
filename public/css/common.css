@@ -159,6 +159,7 @@ main header h1 {
   background-size: 57.27273px 57.27273px ;
 }
 main .content h2 {
+  padding: 0 1.6rem;
   margin: 10rem auto 2.5rem;
   color: #550000;
   max-width: 73.6rem;
@@ -180,12 +181,12 @@ main .content h2:before {
   -o-background-size: 51px 44px;
   background-size: 51px 44px;
   position: absolute;
-  left: -59px;
+  left: -51px;
 }
 main .content h3 {
   border-top: 1px solid #f2efeb;
   margin: 2rem auto 0.5rem;
-  padding-top: 2rem;
+  padding: 2rem 1.6rem 0;
   color: #550000;
   max-width: 73.6rem;
   letter-spacing: 0.24rem;
@@ -199,6 +200,7 @@ main .content h2 + h3 {
 }
 main .content h4 {
   margin: 0 auto 0.5rem;
+  padding: 0 1.6rem;
   font-size: 18px;
   font-size: 1.8rem;
   color: #550000;
@@ -207,6 +209,7 @@ main .content h4 {
 }
 main .content h5 {
   margin: 0 auto;
+  padding: 0 1.6rem;
   color: #550000;
   max-width: 73.6rem;
   letter-spacing: 0.24rem;
@@ -215,6 +218,7 @@ main .content h5 {
 }
 main .content h6 {
   margin: 0 auto;
+  padding: 0 1.6rem;
   font-size: 16px;
   font-size: 1.6rem;
   color: #550000;
@@ -223,14 +227,9 @@ main .content h6 {
 }
 main .content img {
   margin: 0 auto;
-  width: 73.6rem;
+  width: 100%;
   height: auto;
   display: block;
-}
-@media screen and (max-width: 49.875em) {
-  main .content img {
-    width: 100% !important;
-  }
 }
 main .content figure,
 main .content p,
@@ -286,12 +285,14 @@ main .content dd li,
 main .content dd dt,
 main .content dd dd {
   margin: 0;
+  padding: 0;
   list-style-position: inside;
 }
 main .content dl,
 main .content ul,
 main .content ol {
   margin: 0 auto 2.5rem;
+  padding: 0 1.6rem;
 }
 main .content ul li {
   list-style-type: disc;
@@ -299,6 +300,7 @@ main .content ul li {
 main .content figure,
 main .content p {
   margin: 0 auto 2.5rem;
+  padding: 0 1.6rem;
 }
 main .content p + pre {
   margin-top: -2.5rem;
