@@ -1,6 +1,6 @@
 <% include ../header %>
 
-<main role="main">
+<main role="main" ng-controller="cloverController">
 	<article>
 		<header>
 			<h1><%= title %></h1>
@@ -8,9 +8,10 @@
 
 		<div class="content">
 		<ul>
+		  <li ng-repeat="item in items">
+		    {{item.id}} - {{item.title}}
+		  </li>
 		</ul>
-
-		<p><a href="/posts/new">Add new</a></p>
 		</div>
 	</article>
 </main>

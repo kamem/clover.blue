@@ -275,7 +275,7 @@ main {
 		dl,
 		ul,
 		ol {
-			margin: 0 auto es($margin);
+			margin: es($margin) auto;
 			padding: 0 es($padding);
 		}
 

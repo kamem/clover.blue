@@ -291,7 +291,7 @@ main .content dd dd {
 main .content dl,
 main .content ul,
 main .content ol {
-  margin: 0 auto 2.5rem;
+  margin: 2.5rem auto;
   padding: 0 1.6rem;
 }
 main .content ul li {
