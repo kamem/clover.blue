@@ -24,7 +24,7 @@ exports.entry = function(req,res) {
 
 	Entries.find({}).sort('-updated_at').exec(function(err,posts) {
 		Entries.findOne({uuid: uuid}).exec(function(err,post) {
-			res.render('posts/index', {title: post.title + ' - ' + settings.title, qiita: posts});
+			res.render('posts/entry', {title: post.title + ' - ' + settings.title, qiita: posts});
 		});
 	});
 };

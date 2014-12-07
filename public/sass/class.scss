@@ -4,6 +4,17 @@
 
 @import "_module/_commentList";
 
+[ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+.loading {
+	$isBase64: true;
+	@include background-fit('common/loading.gif',false,'no-repeat center center');
+	text-indent: -9999px;
+	overflow: hidden;
+}
+
 
 .service {
 	margin: es(60) es(10) es(20);

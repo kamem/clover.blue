@@ -2,22 +2,36 @@
 require.config({
     paths: {
         jquery: 'components/jquery/dist/jquery.min',
-        angular: 'components/angular/angular.min'
+        angular: 'components/angular/angular.min',
+        ngStorage: 'components/ngstorage/ngStorage',
+        ngRoute: 'components/angular-route/angular-route',
+        ngSanitize: 'components/angular-sanitize/angular-sanitize'
     },
     shim: {
+        jquery: {
+            exports: '$'
+        },
         angular: {
             exports: 'angular'
         },
-        jquery: {
-            exports: '$'
+        ngStorage: {
+            exports: 'ngStorage'
+        },
+        ngRoute: {
+            exports: 'ngRoute'
+        },
+        ngSanitize: {
+            exports: 'ngSanitize'
         }
     }
 });
 
 require([
     'angular',
+    'ngStorage',
+    'ngRoute',
+    'ngSanitize',
     'factory/qiitaFactory',
-    'directives/mainDirective',
     'controllers/mainController'], function (angular) {
     angular.bootstrap(document, ['cloverblue']);
 });
