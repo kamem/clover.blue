@@ -61,6 +61,9 @@ Entries.find({},function(err,posts) {
 	}
 });
 
+//template
+app.get('/template/*', post.template);
+
 app.use(function(err,req,res,next) {
 	res.send(err.message);
 });

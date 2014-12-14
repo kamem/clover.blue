@@ -25,13 +25,13 @@ require.config({
         }
     }
 });
-
 require([
     'angular',
     'ngStorage',
     'ngRoute',
     'ngSanitize',
     'factory/qiitaFactory',
-    'controllers/mainController'], function (angular) {
+    'controllers/mainController'
+], function (angular) {
     angular.bootstrap(document, ['cloverblue']);
 });

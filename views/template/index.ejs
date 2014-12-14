@@ -1,0 +1,14 @@
+<article>
+	<header>
+		<h1>clover.blue</h1>
+	</header>
+
+	<div class="content">
+		<ul>
+			<li ng-repeat="item in items" ng-cloak>
+				<a ng-href="/items/{{item.uuid}}">{{item.title}}</a>
+			</li>
+			<li class="loading" ng-show="showLoading"></li>
+		</ul>
+	</div>
+</article>

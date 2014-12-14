@@ -1,0 +1,22 @@
+<article>
+	<header>
+		<h1>{{item.title}}</h1>
+		<ul class="data">
+			<li class="date"><time pubdate="">{{item.created_at}}</time></li>
+			<li class="tag" ng-repeat="tag in item.tags">
+				<a href="">{{tag.name}}</a>
+			</li>
+		</ul>
+	</header>
+
+	<div class="content">
+		<!-- <nav class="pageNav" id="pageNav">
+			<h2><a href="#pageNav">目次</a></h2>
+			<ul ng-bind-html="item.body | tree">
+			</ul>
+		</nav> -->
+
+		<div ng-bind-html="item.body">
+		</div>
+	</div>
+</article>

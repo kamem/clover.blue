@@ -4,11 +4,21 @@ import angular = require('angular');
 
 var module: ng.IModule = angular.module('cloverblue', ['ngStorage', 'ngRoute', 'ngSanitize']);
 module.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
-	$locationProvider.html5Mode(true);
+	$locationProvider.html5Mode({
+		enabled: true,
+		requireBase: false
+	});
 
 	$routeProvider.when('/', {
-		templateUrl: '/',
-		controller: 'cloverController'
+		templateUrl: '/template/index',
+		controller: 'index'
+	});
+
+	$routeProvider.when('/items/:uuid', {
+		templateUrl: function(params) {
+			return '/template/items/entry';
+		},
+		controller: 'entry'
 	});
 }]);
 
