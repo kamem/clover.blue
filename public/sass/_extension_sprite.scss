@@ -8,7 +8,7 @@
 	$retinaSuport: if($retina, 2, 1);
 	$map : nth($map,1);
 	$spriteName: sprite-map-name($map);
-	
+
 	@each $name in $sprite-names {
 		$class:  if($doubleClass, '.' + $spriteName, '') + '.' + $name;
 		#{$class} {
@@ -27,7 +27,7 @@
 @mixin image($map, $sprite-names,$doubleClass : true,$retina : $isRetina) {
 	$names: ();
 	$retinaSuport: if($retina, 2, 1);
-	
+
 	@if length($map) > 1 {
 		@if nth($map,2) == true {
 			$sprite-img: sprite-url(nth($map,1));
@@ -36,21 +36,21 @@
 	@else {
 		$sprite-img: sprite-url(nth($map,1));
 	}
-	
+
 	$map : nth($map,1);
-	
+
 	$spriteWidth: round(image-width(sprite-path($map)) / $retinaSuport);
 	$spriteHeight: round(image-height(sprite-path($map)) / $retinaSuport);
 	$spriteName: sprite-map-name($map);
-	
-	
+
+
 	@each $name in $sprite-names {
 		$class:  if($doubleClass, '.' + $spriteName, '') + '.' + $name + ',';
 		$names: append($names, #{$class});
 	}
 	#{$names} {
 		display: block;
-		background-image: image-url(sprite-path($map), false, false);
+		background-image: sprite-url($map);
 		background-repeat: no-repeat;
 		@include background-size($spriteWidth $spriteHeight);
 	}

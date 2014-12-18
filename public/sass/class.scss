@@ -10,9 +10,11 @@
 
 .loading {
 	$isBase64: true;
+	margin: es(30) 0;
 	@include background-fit('common/loading.gif',false,'no-repeat center center');
 	text-indent: -9999px;
 	overflow: hidden;
+	height: $imgHeight;
 }
 
 

@@ -56,6 +56,9 @@ $imgHeight: ();
 
 		$imgWidth: if(length($img) == 1,$width,append($imgWidth, $width));
 		$imgHeight:  if(length($img) == 1,$height,append($imgHeight, $height));
+
+		$imgWidth: $imgWidth !global;
+		$imgHeight:  $imgHeight !global;
 	}
 
 	@include background($imgList);
@@ -84,8 +87,8 @@ $imgHeight: ();
 		$width: image-width($i) / $retinaSuport;
 		$height: image-height($i) / $retinaSuport;
 
-		$imgWidth: append($imgWidth, $width);
-		$imgHeight:  append($imgHeight, $height);
+		$imgWidth: append($imgWidth, $width) !global;
+		$imgHeight:  append($imgHeight, $height) !global;
 	}
 
 	@return if($name == 'width',$imgWidth,$imgHeight)
@@ -101,7 +104,7 @@ $imgHeight: ();
 	@each $i in $img {
 		$width: round(image-width($i) / 2);
 
-		$imgWidth: if(length($img) == 1,$width,append($imgWidth, $width));
+		$imgWidth: if(length($img) == 1,$width,append($imgWidth, $width)) !global;
 	}
 
 	@return $imgWidth
@@ -133,7 +136,7 @@ $imgHeight: ();
 //	$size: サイズを出力するか
 //	$retina: true or false
 @mixin sprite-info($map, $name, $size: true, $retina: $isRetina) {
-	background-image: image-url(sprite-path($map), false, false);
+	background-image: sprite-url($map);
 	@include background-size(nth(spriteSize($map,$name,$retina),1) nth(spriteSize($map,$name,$retina),2));
 	background-position: spritePosition($map,$name,$retina);
 
@@ -158,8 +161,8 @@ $imgHeight: ();
 
 	$xpos: round(nth(sprite-position($map, $name), 1) / $retinaSuport);
 	$ypos: round(nth(sprite-position($map, $name), 2) / $retinaSuport);
-	$imgWidth: round(image-width(sprite-file($map, $name)) / $retinaSuport);
-	$imgHeight: round(image-height(sprite-file($map, $name)) / $retinaSuport);
+	$imgWidth: round(image-width(sprite-file($map, $name)) / $retinaSuport) !global;
+	$imgHeight: round(image-height(sprite-file($map, $name)) / $retinaSuport) !global;
 
 	@return ($spriteWidth,$spriteHeight,$imgWidth,$imgHeight);
 }
@@ -188,7 +191,7 @@ $imgHeight: ();
 //	最大の高さ IE6にも対応させたい場合
 @mixin min-height($value: 1%) {
 	min-height: $value;
-	@if $legacy-support-for-ie6 {
+	@if support-legacy-browser("ie", "6") {
 	_height: $value;
 	}
 }
@@ -197,7 +200,7 @@ $imgHeight: ();
 //	IE6,IE7用 にinline-blockを実装する場合
 @mixin inline-block {
 	display: inline-block;
-	@if $legacy-support-for-ie6 or $legacy-support-for-ie7 {
+	@if support-legacy-browser("ie", "6") {
 		*display: inline;
 		*zoom: 1;
 	}
@@ -229,14 +232,6 @@ $imgHeight: ();
 	box-shadow: $box-shadowList;
 }
 
-//	display-box-center
-//	display: box;にし縦横をcenter寄せに
-@mixin display-box-center() {
-	@include display-box;
-	@include box-align(center);
-	@include box-pack(center);
-}
-
 //	triangle-set
 //	作った三角形を$dirに合わせてボックスの外側にセットする
 //
@@ -247,7 +242,7 @@ $imgHeight: ();
 // $selecter: after or before どちらを使うか
 $size: '';
 @mixin triangle-set($num: 10px,$color: black,$dir: top,$position: 50%,$selecter: after) {
-	$size: (nth($num,1) / 2);
+	$size: (nth($num,1) / 2) !global;
 	$h: '';
 	@if length($num) == 1 {
 		$h: $num;
@@ -275,7 +270,7 @@ $size: '';
 // $color: 色
 // $dir: 向き（top,right,bottom,left）
 @mixin triangle($num: 10px,$color: black,$dir: top) {
-	$size: (nth($num,1) / 2);
+	$size: (nth($num,1) / 2) !global;
 	$h: '';
 	@if length($num) == 1 {
 		$h: $num;
@@ -427,7 +422,7 @@ $size: '';
 // $$size: font-sizeの値
 @mixin em-width($em,$letter-spacing: 0,$size: 16) {
 	max-width: fs($em * ($size + $letter-spacing));
-	@if $legacy-support-for-ie7 {
+	@if support-legacy-browser("ie", "7") {
 		#{"/"}width: $em#{'em'};
 	}
 };
@@ -467,10 +462,10 @@ $size: '';
 // $selecters: 配列でクリアーフォックスさせたいセレクターを渡すとクリアーフィックにしてくれる。
 @mixin clearfix($selecters: '.clearfix') {
 	%clearfix {
-		@if $legacy-support-for-ie7 {
+		@if support-legacy-browser("ie", "7") {
 		min-height: 1px;
 		}
-		@if $legacy-support-for-ie6 {
+		@if support-legacy-browser("ie", "6") {
 		_height: 1%;
 		}
 		&:after {

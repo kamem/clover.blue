@@ -5,8 +5,8 @@ var api = 'https://qiita.com/api/v1/';
 var userName = 'kamem';
 
 var entries = mongo.Schema({
-    'created_at': String,
-    'updated_at': String,
+    'created': String,
+    'updated': String,
     'uuid': String,
     'title': String
 });
@@ -30,8 +30,8 @@ request.post(api + '/auth/', options, function(error, response, body){
           Entries.where({ uuid: i.uuid }).count(function (err, count) {
             if(count) {
                 Entries.findOne({uuid: i.uuid},function(err,post) {
-                    post.created_at = i.created_at;
-                    post.updated_at = i.updated_at;
+                    post.created = Date.parse(i.created_at);
+                    post.updated = Date.parse(i.updated_at);
                     post.uuid = i.uuid;
                     post.title = i.title;
 
@@ -41,8 +41,8 @@ request.post(api + '/auth/', options, function(error, response, body){
                 });
             } else {
                 var entry = new Entries({
-                    created_at: i.created_at,
-                    updated_at: i.updated_at,
+                    created: Date.parse(i.created_at),
+                    updated: Date.parse(i.updated_at),
                     uuid: i.uuid,
                     title: i.title
                 });

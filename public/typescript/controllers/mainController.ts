@@ -10,8 +10,7 @@ function($scope, qiitaFactory, $localStorage) {
 		});
 
 		$scope.showLoading = true;
-
-		if($scope.$storage.qiita !== '' ? (qiita[0].updated_at === $scope.$storage.qiita[0].updated_at) : false) {
+		if($scope.$storage.qiita !== '' ? (qiita[0].updated <= Date.parse($scope.$storage.qiita[0].updated_at)) : false) {
 			$scope.items = $scope.$storage.qiita;
 			$scope.showLoading = false;
 		} else {
@@ -34,12 +33,13 @@ function($scope, qiitaFactory, $localStorage, filterFilter) {
 		var localStorageItem = filterFilter($scope.$storage.qiita, {uuid: uuid})[0];
 		var qiitaItem = filterFilter(qiita, {uuid: uuid})[0];
 
-		if($scope.$storage.qiita !== '' ? (qiitaItem.updated_at === localStorageItem.updated_at) : false) {
+		$scope.showLoading = true;
+		if($scope.$storage.qiita !== '' ? (qiitaItem.updated <= Date.parse(localStorageItem.updated_at)) : false) {
 			$scope.item = localStorageItem;
 			$scope.showLoading = false;
 		} else {
 			qiitaFactory.getQiitaData().then(function(res){
-				var resItem = filterFilter(res, {uuid: uuid})[0];
+				var resItem = filterFilter(res.data, {uuid: uuid})[0];
 				$scope.$storage.qiita = res.data;
 				$scope.item = resItem;
 				$scope.showLoading = false;
@@ -47,6 +47,12 @@ function($scope, qiitaFactory, $localStorage, filterFilter) {
 		}
 	}
 ]);
+
+app.filter('dateParse', function() {
+  return function(str) {
+    return Date.parse(str);
+  };
+});
 
 app.filter('tree', function() {
   return function(str) {
