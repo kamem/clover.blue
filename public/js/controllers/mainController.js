@@ -4,6 +4,8 @@ define(["require", "exports", 'app'], function (require, exports, app) {
         $scope.$storage = $localStorage.$default({
             qiita: ''
         });
+        angular.element(document.querySelectorAll("#header")).removeClass("off");
+        angular.element(document.querySelectorAll("article h1")).addClass("off");
         $scope.showLoading = true;
         if ($scope.$storage.qiita !== '' ? (qiita[0].updated <= Date.parse($scope.$storage.qiita[0].updated_at)) : false) {
             $scope.items = $scope.$storage.qiita;
@@ -24,6 +26,7 @@ define(["require", "exports", 'app'], function (require, exports, app) {
         var uuid = location.pathname.split('/').pop();
         var localStorageItem = filterFilter($scope.$storage.qiita, { uuid: uuid })[0];
         var qiitaItem = filterFilter(qiita, { uuid: uuid })[0];
+        angular.element(document.querySelectorAll("#header")).addClass("off");
         $scope.showLoading = true;
         if ($scope.$storage.qiita !== '' ? (qiitaItem.updated <= Date.parse(localStorageItem.updated_at)) : false) {
             $scope.item = localStorageItem;

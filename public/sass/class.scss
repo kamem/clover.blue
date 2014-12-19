@@ -8,6 +8,10 @@
   display: none !important;
 }
 
+.off:not(#header) {
+	display: none;
+}
+
 .loading {
 	$isBase64: true;
 	margin: es(30) 0;
