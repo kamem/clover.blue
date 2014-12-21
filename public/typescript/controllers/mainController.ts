@@ -12,7 +12,7 @@ function($scope, qiitaFactory, $localStorage) {
 		angular.element(document.querySelectorAll("#header")).removeClass("off");
 		angular.element(document.querySelectorAll("article h1")).addClass("off");
 		$scope.showLoading = true;
-		if($scope.$storage.qiita !== '' ? (qiita[0].updated <= Date.parse($scope.$storage.qiita[0].updated_at)) : false) {
+		if($scope.$storage.qiita !== '' ? (qiita[0].updated <= Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'))) : false) {
 			$scope.items = $scope.$storage.qiita;
 			$scope.tags = qiitaFactory.getQiitaTags($scope.items);
 			$scope.showLoading = false;
@@ -39,7 +39,7 @@ function($scope, qiitaFactory, $localStorage, filterFilter) {
 
 		angular.element(document.querySelectorAll("#header")).addClass("off");
 		$scope.showLoading = true;
-		if($scope.$storage.qiita !== '' ? (qiitaItem.updated <= Date.parse(localStorageItem.updated_at)) : false) {
+		if($scope.$storage.qiita !== '' ? (qiitaItem.updated <= Date.parse(localStorageItem.updated_at.replace(/-/g, '/'))) : false) {
 			$scope.item = localStorageItem;
 			$scope.showLoading = false;
 		} else {
@@ -66,7 +66,7 @@ function($scope, qiitaFactory, $localStorage, filterFilter) {
 		angular.element(document.querySelectorAll("article h1")).addClass("off");
 		$scope.currentPage = currentPage;
 		$scope.showLoading = true;
-		if($scope.$storage.qiita !== '' ? (qiita[0].updated <= Date.parse($scope.$storage.qiita[0].updated_at)) : false) {
+		if($scope.$storage.qiita !== '' ? (qiita[0].updated <= Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'))) : false) {
 			$scope.items = localStorageItem;
 			$scope.tags = qiitaFactory.getQiitaTags($scope.$storage.qiita);
 			$scope.showLoading = false;
