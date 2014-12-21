@@ -70,7 +70,7 @@ define(["require", "exports", 'app'], function (require, exports, app) {
     }]);
     app.filter('dateParse', function () {
         return function (str) {
-            return Date.parse(str);
+            return Date.parse(str.replace(/-/g, '/'));
         };
     });
     app.filter('tree', function () {
