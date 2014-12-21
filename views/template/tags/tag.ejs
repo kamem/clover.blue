@@ -1,11 +1,11 @@
 <article>
 	<header>
-		<h1>clover.blue</h1>
+		<h1>{{tag}}</h1>
 	</header>
 
 	<div class="content" ng-class="{loading: showLoading}">
 		<ul class="tags">
-			<li ng-repeat="tag in tags" ng-cloak>
+			<li ng-repeat="tag in tags" ng-class="{active:currentPage==tag}" ng-cloak>
 				<a ng-href="/tags/{{tag}}">{{tag}}</a>
 			</li>
 		</ul>

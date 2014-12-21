@@ -20,12 +20,6 @@ main,
   height: 7rem;
   background: #94dcef;
   z-index: 10;
-  -moz-box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.05);
-  -webkit-box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.05);
-  box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.05);
-}
-#header.off {
-  top: -6rem;
   -moz-transition-property: top;
   -o-transition-property: top;
   -webkit-transition-property: top;
@@ -38,6 +32,12 @@ main,
   -o-transition-timing-function: ease-in-out;
   -webkit-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
+  -moz-box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.05);
+}
+#header.off {
+  top: -6rem;
 }
 #header.off:after {
   margin: 0 auto;

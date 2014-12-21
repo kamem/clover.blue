@@ -16,6 +16,7 @@ var express = require('express'),
 	mongo = require('mongoose');
 
 var Entries = post.Entries;
+var Tags = post.Tags;
 
 //middleware
 app.set('views', __dirname + '/views');
@@ -58,6 +59,11 @@ app.get('/', post.index);
 Entries.find({},function(err,posts) {
 	for(entry in posts) {
 		app.get('/items/' + posts[entry].uuid, post.entry);
+	}
+});
+Tags.find({},function(err,posts) {
+	for(tag in posts) {
+		app.get('/tags/' + encodeURI(posts[tag].name), post.tag);
 	}
 });
 

@@ -9,9 +9,15 @@ var entries = mongo.Schema({
     'title': String
 });
 
+var tags = mongo.Schema({
+	'name': String
+});
+
 var Entries = mongo.model('qiita_entries',entries);
+var Tags = mongo.model('qiita_tags',tags);
 
 exports.Entries = Entries;
+exports.Tags = Tags;
 
 exports.index = function(req,res) {
 	Entries.find({}).sort('-updated').exec(function(err,posts) {
@@ -24,8 +30,14 @@ exports.entry = function(req,res) {
 
 	Entries.find({}).sort('-updated').exec(function(err,posts) {
 		Entries.findOne({uuid: uuid}).exec(function(err,post) {
-			res.render('posts/entry', {title: post.title, qiita: posts});
+			res.render('posts/items/entry', {title: post.title, qiita: posts});
 		});
+	});
+};
+
+exports.tag = function(req,res) {
+	Entries.find({}).sort('-updated').exec(function(err,posts) {
+		res.render('posts/tags/tag',{title: settings.title, qiita: posts});
 	});
 };
 

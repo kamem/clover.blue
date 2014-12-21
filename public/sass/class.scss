@@ -37,6 +37,39 @@
 	}
 }
 
+.tags {
+	$font-size: 12;
+	$margin: 40;
+	$color: #b8b2a6;
+
+	max-width: es($base-width);
+
+	li {
+		margin: 0 es(4) !important;
+		@include inline-block();
+		@include fz($font-size);
+		color: $color;
+
+		&.active a {
+			background: $baseColor;
+			color: #fff;
+		}
+	}
+
+	a {
+		padding: es(5);
+
+		color: $color;
+		text-decoration: none;
+
+		background: #fff;
+
+		@include fz($font-size);
+		@include box-shadow(1px 1px 1px rgba(0,0,0,0.04));
+		@include box-sizing(border-box);
+	}
+}
+
 dl.log {
 	$font-size: 14;
 	$padding: 20;

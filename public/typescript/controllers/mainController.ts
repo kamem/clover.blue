@@ -9,18 +9,18 @@ function($scope, qiitaFactory, $localStorage) {
 			qiita: ''
 		});
 
-
 		angular.element(document.querySelectorAll("#header")).removeClass("off");
 		angular.element(document.querySelectorAll("article h1")).addClass("off");
 		$scope.showLoading = true;
 		if($scope.$storage.qiita !== '' ? (qiita[0].updated <= Date.parse($scope.$storage.qiita[0].updated_at)) : false) {
 			$scope.items = $scope.$storage.qiita;
+			$scope.tags = qiitaFactory.getQiitaTags($scope.items);
 			$scope.showLoading = false;
-
 		} else {
-			qiitaFactory.getQiitaData().then(function(res){
+			qiitaFactory.getQiitaItems().then(function(res){
 				$scope.$storage.qiita = res.data;
 				$scope.items = res.data;
+				$scope.tags = qiitaFactory.getQiitaTags($scope.items);
 				$scope.showLoading = false;
 			});
 		}
@@ -33,9 +33,9 @@ function($scope, qiitaFactory, $localStorage, filterFilter) {
 			qiita: ''
 		});
 
-		var uuid: string = location.pathname.split('/').pop();
-		var localStorageItem = filterFilter($scope.$storage.qiita, {uuid: uuid})[0];
-		var qiitaItem = filterFilter(qiita, {uuid: uuid})[0];
+		var currentPage: string = location.pathname.split('/').pop();
+		var localStorageItem = filterFilter($scope.$storage.qiita, {uuid: currentPage})[0];
+		var qiitaItem = filterFilter(qiita, {uuid: currentPage})[0];
 
 		angular.element(document.querySelectorAll("#header")).addClass("off");
 		$scope.showLoading = true;
@@ -43,10 +43,39 @@ function($scope, qiitaFactory, $localStorage, filterFilter) {
 			$scope.item = localStorageItem;
 			$scope.showLoading = false;
 		} else {
-			qiitaFactory.getQiitaData().then(function(res){
-				var resItem = filterFilter(res.data, {uuid: uuid})[0];
+			qiitaFactory.getQiitaItems().then(function(res){
+				var resItem = filterFilter(res.data, {uuid: currentPage})[0];
 				$scope.$storage.qiita = res.data;
 				$scope.item = resItem;
+				$scope.showLoading = false;
+			});
+		}
+	}
+]);
+
+app.controller('tag', ['$scope', 'qiitaFactory', '$localStorage', 'filterFilter',
+function($scope, qiitaFactory, $localStorage, filterFilter) {
+		$scope.$storage = $localStorage.$default({
+			qiita: ''
+		});
+
+		var currentPage: string = decodeURIComponent(location.pathname.split('/').pop());
+		var localStorageItem = filterFilter($scope.$storage.qiita, {tags: currentPage});
+
+		angular.element(document.querySelectorAll("#header")).removeClass("off");
+		angular.element(document.querySelectorAll("article h1")).addClass("off");
+		$scope.currentPage = currentPage;
+		$scope.showLoading = true;
+		if($scope.$storage.qiita !== '' ? (qiita[0].updated <= Date.parse($scope.$storage.qiita[0].updated_at)) : false) {
+			$scope.items = localStorageItem;
+			$scope.tags = qiitaFactory.getQiitaTags($scope.$storage.qiita);
+			$scope.showLoading = false;
+		} else {
+			qiitaFactory.getQiitaItems().then(function(res){
+				var resItem = filterFilter(res.data, {tags: currentPage});
+				$scope.$storage.qiita = res.data;
+				$scope.items = resItem;
+				$scope.tags = qiitaFactory.getQiitaTags($scope.$storage.qiita);
 				$scope.showLoading = false;
 			});
 		}

@@ -71,6 +71,35 @@ dl.commentList dd:last-child {
   width: 100px;
 }
 
+.tags {
+  max-width: 73.6rem;
+}
+.tags li {
+  margin: 0 0.4rem !important;
+  display: inline-block;
+  font-size: 12px;
+  font-size: 1.2rem;
+  color: #b8b2a6;
+}
+.tags li.active a {
+  background: #94dcef;
+  color: #fff;
+}
+.tags a {
+  padding: 0.5rem;
+  color: #b8b2a6;
+  text-decoration: none;
+  background: #fff;
+  font-size: 12px;
+  font-size: 1.2rem;
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 dl.log {
   max-width: 73.6rem;
   border-top: 1px solid #dcc;
