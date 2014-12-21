@@ -1,6 +1,6 @@
 module.exports = {
 	title: 'clover.blue',
-	port: 3000,
+	port: 3141,
 	dbName: 'cloverblue',
 	dbCollectionName: 'entries'
 };
