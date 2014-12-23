@@ -119,19 +119,6 @@ dt {
   font-weight: bold;
 }
 
-li li,
-li p,
-li pre,
-li dt,
-li dd,
-dd li,
-dd p,
-dd pre,
-dd dt,
-dd dd {
-  font-size: 100% !important;
-}
-
 /*----------------------------------------
 	Anchor
 ----------------------------------------*/

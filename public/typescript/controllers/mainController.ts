@@ -2,6 +2,7 @@
 declare var qiita;
 
 import app = require('app');
+import prettify = require('prettify');
 
 app.controller('index', ['$scope', 'qiitaFactory', '$localStorage',
 function($scope, qiitaFactory, $localStorage) {
@@ -50,6 +51,10 @@ function($scope, qiitaFactory, $localStorage, filterFilter) {
 				$scope.showLoading = false;
 			});
 		}
+    angular.element(document).ready(function () {
+			angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
+			prettify.prettyPrint();
+    });
 	}
 ]);
 

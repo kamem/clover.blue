@@ -49,6 +49,7 @@
 		@include inline-block();
 		@include fz($font-size);
 		color: $color;
+		letter-spacing: 0 !important;
 
 		&.active a {
 			background: $baseColor;

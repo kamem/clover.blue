@@ -2,7 +2,8 @@
 
 require.config({
 	paths: {
-		jquery: 'components/jquery/dist/jquery.min',
+		jquery: 'components/jquery/dist/jquery',
+		prettify: 'components/google-code-prettify/src/prettify',
 
 		angular: 'components/angular/angular.min',
     ngStorage: 'components/ngstorage/ngStorage',
@@ -12,6 +13,9 @@ require.config({
 	shim: {
 		jquery: {
 			exports: '$'
+		},
+		prettify: {
+			exports: 'prettify'
 		},
 
 		angular: {
@@ -34,6 +38,7 @@ require([
 	'ngStorage',
 	'ngRoute',
 	'ngSanitize',
+	'prettify',
 	'factory/qiitaFactory',
 	'controllers/mainController'],
 	function (angular) {

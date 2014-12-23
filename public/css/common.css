@@ -306,6 +306,9 @@ main .content p + pre {
 main .content figure img {
   margin-bottom: 1rem;
 }
+main .content pre {
+  line-height: 1.4;
+}
 main .content figcaption {
   margin-top: 1rem;
 }

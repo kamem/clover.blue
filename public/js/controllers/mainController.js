@@ -1,4 +1,4 @@
-define(["require", "exports", 'app'], function (require, exports, app) {
+define(["require", "exports", 'app', 'prettify'], function (require, exports, app, prettify) {
     /// <reference path="../typings/tsd.d.ts" />
     app.controller('index', ['$scope', 'qiitaFactory', '$localStorage', function ($scope, qiitaFactory, $localStorage) {
         $scope.$storage = $localStorage.$default({
@@ -42,6 +42,10 @@ define(["require", "exports", 'app'], function (require, exports, app) {
                 $scope.showLoading = false;
             });
         }
+        angular.element(document).ready(function () {
+            angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
+            prettify.prettyPrint();
+        });
     }]);
     app.controller('tag', ['$scope', 'qiitaFactory', '$localStorage', 'filterFilter', function ($scope, qiitaFactory, $localStorage, filterFilter) {
         $scope.$storage = $localStorage.$default({
