@@ -74,7 +74,7 @@ define(["require", "exports", 'app', 'prettify'], function (require, exports, ap
     }]);
     app.filter('dateParse', function () {
         return function (str) {
-            return Date.parse(str.replace(/-/g, '/'));
+            return !!str ? Date.parse(str.replace(/-/g, '/')) : str;
         };
     });
     app.filter('tree', function () {

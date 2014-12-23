@@ -89,7 +89,7 @@ function($scope, qiitaFactory, $localStorage, filterFilter) {
 
 app.filter('dateParse', function() {
   return function(str) {
-    return Date.parse(str.replace(/-/g, '/'));
+    return !!str ? Date.parse(str.replace(/-/g, '/')) : str;
   };
 });
 
