@@ -4,6 +4,10 @@ declare var qiita;
 import app = require('app');
 import prettify = require('prettify');
 
+app.controller('normal', function() {
+	angular.element(document.querySelectorAll("#header")).addClass("off");
+});
+
 app.controller('index', ['$scope', 'qiitaFactory', '$localStorage',
 function($scope, qiitaFactory, $localStorage) {
 		$scope.$storage = $localStorage.$default({

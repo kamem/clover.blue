@@ -128,12 +128,6 @@ a {
 a:hover {
   color: #f39;
 }
-a:visited {
-  color: rgba(51, 153, 204, 0.7);
-}
-a:active {
-  color: #39c;
-}
 
 /*----------------------------------------
 	Table

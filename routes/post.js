@@ -24,6 +24,11 @@ exports.index = function(req,res) {
 		res.render('posts/index',{title: settings.title, qiita: posts});
 	});
 };
+exports.about = function(req,res) {
+	Entries.find({}).sort('-updated').exec(function(err,posts) {
+		res.render('posts/about',{title: 'サイトについて', qiita: posts});
+	});
+};
 
 exports.entry = function(req,res) {
 	var uuid = req.route.path.replace('/items/','');

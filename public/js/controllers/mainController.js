@@ -1,5 +1,8 @@
 define(["require", "exports", 'app', 'prettify'], function (require, exports, app, prettify) {
     /// <reference path="../typings/tsd.d.ts" />
+    app.controller('normal', function () {
+        angular.element(document.querySelectorAll("#header")).addClass("off");
+    });
     app.controller('index', ['$scope', 'qiitaFactory', '$localStorage', function ($scope, qiitaFactory, $localStorage) {
         $scope.$storage = $localStorage.$default({
             qiita: ''

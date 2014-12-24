@@ -10,6 +10,10 @@ define(["require", "exports", 'angular'], function (require, exports, angular) {
             templateUrl: '/template/index',
             controller: 'index'
         });
+        $routeProvider.when('/about', {
+            templateUrl: '/template/about',
+            controller: 'normal'
+        });
         $routeProvider.when('/tags/:tag', {
             templateUrl: '/template/tags/tag',
             controller: 'tag'
