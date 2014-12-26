@@ -21,19 +21,31 @@
 	height: $imgHeight;
 }
 
-.snsLink {
+.inlineList {
 	max-width: es($base-width);
 	letter-spacing: -0.4em;
-	$sns: twitter,facebook,mixi,flickr,github,delicious,booklog;
 	li {
 		width:25%;
 		@include inline-block();
+		letter-spacing: normal;
+	}
+}
+
+.serviceLink {
+	max-width: es($base-width);
+	letter-spacing: -0.4em;
+	li {
+		width:25%;
+		margin-bottom: es(16) !important;
+		@include inline-block();
+		letter-spacing: normal;
 
 		a {
 			display: block;
 			padding-left: es(35);
 		}
 
+		$sns: twitter,facebook,mixi,flickr,github,delicious,booklog;
 		@for $i from 1 through length($sns) {
 			&.#{nth($sns,$i)} a {
 				@include background-fit('sns/' + nth($sns,$i) + '.png', false, 'no-repeat left center');
@@ -42,20 +54,6 @@
 	}
 }
 
-.service {
-	margin: es(60) es(10) es(20);
-	text-align: center;
-	li {
-		position: relative;
-		width: 120px;
-		overflow: hidden;
-		@include inline-block();
-
-		&.twitter {
-			width: 100px;
-		}
-	}
-}
 
 .tags {
 	$font-size: 12;

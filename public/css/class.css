@@ -57,80 +57,78 @@ dl.commentList dd:last-child {
   height: 32px;
 }
 
-.snsLink {
+.inlineList {
   max-width: 73.6rem;
   letter-spacing: -0.4em;
 }
-.snsLink li {
+.inlineList li {
   width: 25%;
   display: inline-block;
+  letter-spacing: normal;
 }
-.snsLink li a {
+
+.serviceLink {
+  max-width: 73.6rem;
+  letter-spacing: -0.4em;
+}
+.serviceLink li {
+  width: 25%;
+  margin-bottom: 1.6rem !important;
+  display: inline-block;
+  letter-spacing: normal;
+}
+.serviceLink li a {
   display: block;
   padding-left: 3.5rem;
 }
-.snsLink li.twitter a {
-  background: url('../img/sns/twitter.png?1419437866') no-repeat left center;
+.serviceLink li.twitter a {
+  background: url('../img/sns/twitter.png?1419464532') no-repeat left center;
   -moz-background-size: 27px 22px;
   -o-background-size: 27px 22px;
   -webkit-background-size: 27px 22px;
   background-size: 27px 22px;
 }
-.snsLink li.facebook a {
-  background: url('../img/sns/facebook.png?1419437866') no-repeat left center;
+.serviceLink li.facebook a {
+  background: url('../img/sns/facebook.png?1419464537') no-repeat left center;
   -moz-background-size: 23px 23px;
   -o-background-size: 23px 23px;
   -webkit-background-size: 23px 23px;
   background-size: 23px 23px;
 }
-.snsLink li.mixi a {
-  background: url('../img/sns/mixi.png?1419437866') no-repeat left center;
+.serviceLink li.mixi a {
+  background: url('../img/sns/mixi.png?1419464532') no-repeat left center;
   -moz-background-size: 26px 24px;
   -o-background-size: 26px 24px;
   -webkit-background-size: 26px 24px;
   background-size: 26px 24px;
 }
-.snsLink li.flickr a {
-  background: url('../img/sns/flickr.png?1419437866') no-repeat left center;
+.serviceLink li.flickr a {
+  background: url('../img/sns/flickr.png?1419464532') no-repeat left center;
   -moz-background-size: 21px 9px;
   -o-background-size: 21px 9px;
   -webkit-background-size: 21px 9px;
   background-size: 21px 9px;
 }
-.snsLink li.github a {
-  background: url('../img/sns/github.png?1419437866') no-repeat left center;
+.serviceLink li.github a {
+  background: url('../img/sns/github.png?1419464532') no-repeat left center;
   -moz-background-size: 24px 23px;
   -o-background-size: 24px 23px;
   -webkit-background-size: 24px 23px;
   background-size: 24px 23px;
 }
-.snsLink li.delicious a {
-  background: url('../img/sns/delicious.png?1419437866') no-repeat left center;
+.serviceLink li.delicious a {
+  background: url('../img/sns/delicious.png?1419464537') no-repeat left center;
   -moz-background-size: 24px 24px;
   -o-background-size: 24px 24px;
   -webkit-background-size: 24px 24px;
   background-size: 24px 24px;
 }
-.snsLink li.booklog a {
-  background: url('../img/sns/booklog.png?1419437866') no-repeat left center;
+.serviceLink li.booklog a {
+  background: url('../img/sns/booklog.png?1419464532') no-repeat left center;
   -moz-background-size: 24px 18px;
   -o-background-size: 24px 18px;
   -webkit-background-size: 24px 18px;
   background-size: 24px 18px;
-}
-
-.service {
-  margin: 6rem 1rem 2rem;
-  text-align: center;
-}
-.service li {
-  position: relative;
-  width: 120px;
-  overflow: hidden;
-  display: inline-block;
-}
-.service li.twitter {
-  width: 100px;
 }
 
 .tags {
