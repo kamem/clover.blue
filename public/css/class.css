@@ -130,6 +130,13 @@ dl.commentList dd:last-child {
   -webkit-background-size: 24px 18px;
   background-size: 24px 18px;
 }
+.serviceLink li.qiita a {
+  background: url('../img/sns/qiita.png?1419647516') no-repeat left center;
+  -moz-background-size: 23px 23px;
+  -o-background-size: 23px 23px;
+  -webkit-background-size: 23px 23px;
+  background-size: 23px 23px;
+}
 
 .tags {
   max-width: 73.6rem;

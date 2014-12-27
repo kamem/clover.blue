@@ -80,7 +80,6 @@ $header-top: 10;
 
 		ul {
 			margin: auto 0;
-
 			height: 25px;
 			position: absolute;
 			top: 0;
@@ -151,8 +150,13 @@ main {
 		$font-size: 16;
 		$margin: 40;
 		$letter-spacing: 2.4;
-
 		$padding: 16;
+
+		margin-top: es($margin);
+
+		> *:first-child {
+			margin-top: 0;
+		}
 
 		h2 {
 			$font-size: 26;

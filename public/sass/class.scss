@@ -45,7 +45,7 @@
 			padding-left: es(35);
 		}
 
-		$sns: twitter,facebook,mixi,flickr,github,delicious,booklog;
+		$sns: twitter,facebook,mixi,flickr,github,delicious,booklog,qiita;
 		@for $i from 1 through length($sns) {
 			&.#{nth($sns,$i)} a {
 				@include background-fit('sns/' + nth($sns,$i) + '.png', false, 'no-repeat left center');

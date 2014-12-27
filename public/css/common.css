@@ -156,6 +156,12 @@ main header h1 {
   background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 41.26984%, #d4eff4 41.26984%, #d4eff4 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0) 91.26984%, #d4eff4 91.26984%, #d4eff4) ;
   background-size: 57.27273px 57.27273px ;
 }
+main .content {
+  margin-top: 4rem;
+}
+main .content > *:first-child {
+  margin-top: 0;
+}
 main .content h2 {
   padding: 0 1.6rem;
   margin: 10rem auto 2.5rem;
