@@ -1,15 +1,17 @@
 /// <reference path="../typings/tsd.d.ts" />
 declare var qiita;
 
-import app = require('app');
 import prettify = require('prettify');
 
-app.controller('normal', function() {
-	angular.element(document.querySelectorAll("#header")).addClass("off");
-});
+export class Normal {
+  constructor() {
+    angular.element(document.querySelectorAll("#header")).addClass("off");
+  }
+}
 
-app.controller('index', ['$scope', 'qiitaFactory', '$localStorage',
-function($scope, qiitaFactory, $localStorage) {
+
+export class Index {
+  constructor($scope, qiitaFactory, $localStorage) {
 		$scope.$storage = $localStorage.$default({
 			qiita: ''
 		});
@@ -29,11 +31,12 @@ function($scope, qiitaFactory, $localStorage) {
 				$scope.showLoading = false;
 			});
 		}
-	}
-]);
+  }
+}
 
-app.controller('entry', ['$scope', 'qiitaFactory', '$localStorage', 'filterFilter',
-function($scope, qiitaFactory, $localStorage, filterFilter) {
+
+export class Entry {
+  constructor($scope, qiitaFactory, $localStorage, filterFilter) {
 		$scope.$storage = $localStorage.$default({
 			qiita: ''
 		});
@@ -59,11 +62,12 @@ function($scope, qiitaFactory, $localStorage, filterFilter) {
 			angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
 			prettify.prettyPrint();
     });
-	}
-]);
+  }
+}
 
-app.controller('tag', ['$scope', 'qiitaFactory', '$localStorage', 'filterFilter',
-function($scope, qiitaFactory, $localStorage, filterFilter) {
+
+export class Tag {
+  constructor($scope, qiitaFactory, $localStorage, filterFilter) {
 		$scope.$storage = $localStorage.$default({
 			qiita: ''
 		});
@@ -88,17 +92,5 @@ function($scope, qiitaFactory, $localStorage, filterFilter) {
 				$scope.showLoading = false;
 			});
 		}
-	}
-]);
-
-app.filter('dateParse', function() {
-  return function(str) {
-    return !!str ? Date.parse(str.replace(/-/g, '/')) : str;
-  };
-});
-
-app.filter('tree', function() {
-  return function(str) {
-    return str.match(/<[hH][1-3].*?>/g);
-  };
-});
+  }
+}

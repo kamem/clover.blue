@@ -1,4 +1,5 @@
 /// <reference path="typings/tsd.d.ts" />
+'use strict';
 
 require.config({
 	paths: {
@@ -39,8 +40,7 @@ require([
 	'ngRoute',
 	'ngSanitize',
 	'prettify',
-	'factory/qiitaFactory',
-	'controllers/mainController'],
+	'filter/mainFilter'],
 	function (angular) {
 		angular.bootstrap(document, ['cloverblue']);
 	}

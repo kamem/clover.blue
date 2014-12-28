@@ -1,88 +1,94 @@
-define(["require", "exports", 'app', 'prettify'], function (require, exports, app, prettify) {
+define(["require", "exports", 'prettify'], function (require, exports, prettify) {
     /// <reference path="../typings/tsd.d.ts" />
-    app.controller('normal', function () {
-        angular.element(document.querySelectorAll("#header")).addClass("off");
-    });
-    app.controller('index', ['$scope', 'qiitaFactory', '$localStorage', function ($scope, qiitaFactory, $localStorage) {
-        $scope.$storage = $localStorage.$default({
-            qiita: ''
-        });
-        angular.element(document.querySelectorAll("#header")).removeClass("off");
-        angular.element(document.querySelectorAll("article h1")).addClass("off");
-        $scope.showLoading = true;
-        if ($scope.$storage.qiita !== '' ? (qiita[0].updated <= Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'))) : false) {
-            $scope.items = $scope.$storage.qiita;
-            $scope.tags = qiitaFactory.getQiitaTags($scope.items);
-            $scope.showLoading = false;
+    var Normal = (function () {
+        function Normal() {
+            angular.element(document.querySelectorAll("#header")).addClass("off");
         }
-        else {
-            qiitaFactory.getQiitaItems().then(function (res) {
-                $scope.$storage.qiita = res.data;
-                $scope.items = res.data;
+        return Normal;
+    })();
+    exports.Normal = Normal;
+    var Index = (function () {
+        function Index($scope, qiitaFactory, $localStorage) {
+            $scope.$storage = $localStorage.$default({
+                qiita: ''
+            });
+            angular.element(document.querySelectorAll("#header")).removeClass("off");
+            angular.element(document.querySelectorAll("article h1")).addClass("off");
+            $scope.showLoading = true;
+            if ($scope.$storage.qiita !== '' ? (qiita[0].updated <= Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'))) : false) {
+                $scope.items = $scope.$storage.qiita;
                 $scope.tags = qiitaFactory.getQiitaTags($scope.items);
                 $scope.showLoading = false;
+            }
+            else {
+                qiitaFactory.getQiitaItems().then(function (res) {
+                    $scope.$storage.qiita = res.data;
+                    $scope.items = res.data;
+                    $scope.tags = qiitaFactory.getQiitaTags($scope.items);
+                    $scope.showLoading = false;
+                });
+            }
+        }
+        return Index;
+    })();
+    exports.Index = Index;
+    var Entry = (function () {
+        function Entry($scope, qiitaFactory, $localStorage, filterFilter) {
+            $scope.$storage = $localStorage.$default({
+                qiita: ''
             });
-        }
-    }]);
-    app.controller('entry', ['$scope', 'qiitaFactory', '$localStorage', 'filterFilter', function ($scope, qiitaFactory, $localStorage, filterFilter) {
-        $scope.$storage = $localStorage.$default({
-            qiita: ''
-        });
-        var currentPage = location.pathname.split('/').pop();
-        var localStorageItem = filterFilter($scope.$storage.qiita, { uuid: currentPage })[0];
-        var qiitaItem = filterFilter(qiita, { uuid: currentPage })[0];
-        angular.element(document.querySelectorAll("#header")).addClass("off");
-        $scope.showLoading = true;
-        if ($scope.$storage.qiita !== '' ? (qiitaItem.updated <= Date.parse(localStorageItem.updated_at.replace(/-/g, '/'))) : false) {
-            $scope.item = localStorageItem;
-            $scope.showLoading = false;
-        }
-        else {
-            qiitaFactory.getQiitaItems().then(function (res) {
-                var resItem = filterFilter(res.data, { uuid: currentPage })[0];
-                $scope.$storage.qiita = res.data;
-                $scope.item = resItem;
+            var currentPage = location.pathname.split('/').pop();
+            var localStorageItem = filterFilter($scope.$storage.qiita, { uuid: currentPage })[0];
+            var qiitaItem = filterFilter(qiita, { uuid: currentPage })[0];
+            angular.element(document.querySelectorAll("#header")).addClass("off");
+            $scope.showLoading = true;
+            if ($scope.$storage.qiita !== '' ? (qiitaItem.updated <= Date.parse(localStorageItem.updated_at.replace(/-/g, '/'))) : false) {
+                $scope.item = localStorageItem;
                 $scope.showLoading = false;
+            }
+            else {
+                qiitaFactory.getQiitaItems().then(function (res) {
+                    var resItem = filterFilter(res.data, { uuid: currentPage })[0];
+                    $scope.$storage.qiita = res.data;
+                    $scope.item = resItem;
+                    $scope.showLoading = false;
+                });
+            }
+            angular.element(document).ready(function () {
+                angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
+                prettify.prettyPrint();
             });
         }
-        angular.element(document).ready(function () {
-            angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
-            prettify.prettyPrint();
-        });
-    }]);
-    app.controller('tag', ['$scope', 'qiitaFactory', '$localStorage', 'filterFilter', function ($scope, qiitaFactory, $localStorage, filterFilter) {
-        $scope.$storage = $localStorage.$default({
-            qiita: ''
-        });
-        var currentPage = decodeURIComponent(location.pathname.split('/').pop());
-        var localStorageItem = filterFilter($scope.$storage.qiita, { tags: currentPage });
-        angular.element(document.querySelectorAll("#header")).removeClass("off");
-        angular.element(document.querySelectorAll("article h1")).addClass("off");
-        $scope.currentPage = currentPage;
-        $scope.showLoading = true;
-        if ($scope.$storage.qiita !== '' ? (qiita[0].updated <= Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'))) : false) {
-            $scope.items = localStorageItem;
-            $scope.tags = qiitaFactory.getQiitaTags($scope.$storage.qiita);
-            $scope.showLoading = false;
-        }
-        else {
-            qiitaFactory.getQiitaItems().then(function (res) {
-                var resItem = filterFilter(res.data, { tags: currentPage });
-                $scope.$storage.qiita = res.data;
-                $scope.items = resItem;
+        return Entry;
+    })();
+    exports.Entry = Entry;
+    var Tag = (function () {
+        function Tag($scope, qiitaFactory, $localStorage, filterFilter) {
+            $scope.$storage = $localStorage.$default({
+                qiita: ''
+            });
+            var currentPage = decodeURIComponent(location.pathname.split('/').pop());
+            var localStorageItem = filterFilter($scope.$storage.qiita, { tags: currentPage });
+            angular.element(document.querySelectorAll("#header")).removeClass("off");
+            angular.element(document.querySelectorAll("article h1")).addClass("off");
+            $scope.currentPage = currentPage;
+            $scope.showLoading = true;
+            if ($scope.$storage.qiita !== '' ? (qiita[0].updated <= Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'))) : false) {
+                $scope.items = localStorageItem;
                 $scope.tags = qiitaFactory.getQiitaTags($scope.$storage.qiita);
                 $scope.showLoading = false;
-            });
+            }
+            else {
+                qiitaFactory.getQiitaItems().then(function (res) {
+                    var resItem = filterFilter(res.data, { tags: currentPage });
+                    $scope.$storage.qiita = res.data;
+                    $scope.items = resItem;
+                    $scope.tags = qiitaFactory.getQiitaTags($scope.$storage.qiita);
+                    $scope.showLoading = false;
+                });
+            }
         }
-    }]);
-    app.filter('dateParse', function () {
-        return function (str) {
-            return !!str ? Date.parse(str.replace(/-/g, '/')) : str;
-        };
-    });
-    app.filter('tree', function () {
-        return function (str) {
-            return str.match(/<[hH][1-3].*?>/g);
-        };
-    });
+        return Tag;
+    })();
+    exports.Tag = Tag;
 });

@@ -5,9 +5,7 @@ define(["require", "exports", 'app'], function (require, exports, app) {
         var USER_NAME = 'kamem';
         return {
             getQiitaItems: function () {
-                return $http.get(API_URI + '/users/' + USER_NAME + '/items').success(function (data, status, headers, config) {
-                    return data;
-                });
+                $http.get(API_URI + '/users/' + USER_NAME + '/items').success(function (data, status, headers, config) { return data; });
             },
             getQiitaTags: function (items) {
                 var t = {};
