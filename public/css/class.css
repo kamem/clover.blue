@@ -45,6 +45,10 @@ dl.commentList dd:last-child {
   display: none;
 }
 
+.center {
+  text-align: center;
+}
+
 .loading {
   margin: 3rem 0;
   background: url('../img/common/loading.gif?1417940831') no-repeat center center;

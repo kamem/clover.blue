@@ -55,47 +55,43 @@ module entry {
 	export class Qiita {
 		public removeClassElement: string;
 		public addClassElement: string;
-		public currentPage: string;
 		public qiitaItem;
 		public storageItem;
-
-		private $scope;
-		private qiitaFactory;
-		private $localStorage;
-		private filterFilter;
-		constructor($scope, qiitaFactory, $localStorage, filterFilter) {
+		constructor(private $scope, private qiitaFactory, private $localStorage, private filterFilter) {
 			$scope.$storage = $localStorage.$default({
 				qiita: ''
 			});
-			this.$scope = $scope;
-			this.qiitaFactory = qiitaFactory;
-			this.$localStorage = $localStorage;
-			this.filterFilter = filterFilter;
 		}
 		public load() {
-
 			if(this.removeClassElement) angular.element(document.querySelectorAll(this.removeClassElement)).removeClass("off");
 			if(this.addClassElement) angular.element(document.querySelectorAll(this.addClassElement)).addClass("off");
 
-			this.currentPage = location.pathname.split('/').pop();
+			var $scope = this.$scope;
+			var filterFilter = this.filterFilter;
+			var qiitaFactory = this.qiitaFactory;
 
-			this.$scope.showLoading = true;
-			if(this.$scope.$storage.qiita !== '' ? (this.qiitaItem.updated <= Date.parse(this.storageItem.updated_at.replace(/-/g, '/'))) : false) {
-				this.$scope.items = this.filterFilter ?
-					this.filterFilter(this.$scope.$storage.qiita, {tags: this.currentPage}) : this.$scope.$storage.qiita;
-				if(this.filterFilter) this.$scope.item = this.storageItem;
-				this.$scope.tags = this.qiitaFactory.getQiitaTags(this.$scope.$storage.qiita);
-				this.$scope.showLoading = false;
+			$scope.showLoading = true;
+			$scope.showErrorMessage = false;
+			if($scope.$storage.qiita !== '' ? (this.qiitaItem.updated <= Date.parse(this.storageItem.updated_at.replace(/-/g, '/'))) : false) {
+				Qiita.scopeSetting($scope, qiitaFactory, filterFilter, $scope.$storage.qiita);
 			} else {
-				var _this = this;
-				this.qiitaFactory.getQiitaItems().then(function(res){
-					_this.$scope.$storage.qiita = res.data;
-					_this.$scope.items = _this.filterFilter ? _this.filterFilter(res.data, {tags: _this.currentPage}) : res.data;
-					if(_this.filterFilter) _this.$scope.item = _this.filterFilter(res.data, {uuid: _this.currentPage})[0];
-					_this.$scope.tags = _this.qiitaFactory.getQiitaTags(_this.$scope.$storage.qiita);
-					_this.$scope.showLoading = false;
+				qiitaFactory.getQiitaItems().then((res) => {
+					$scope.$storage.qiita = res.data;
+
+					Qiita.scopeSetting($scope, qiitaFactory, filterFilter, res.data);
+				},(status) => {
+					$scope.showLoading = false;
+					$scope.showErrorMessage = true;
 				});
 			}
+		}
+
+		static scopeSetting($scope, qiitaFactory, filterFilter, items) {
+			var currentPage = location.pathname.split('/').pop();
+			$scope.items = filterFilter ? filterFilter(items, {tags: currentPage}) : items;
+			if(filterFilter) $scope.item = filterFilter(items, {uuid: currentPage})[0];
+			$scope.tags = qiitaFactory.getQiitaTags($scope.$storage.qiita);
+			$scope.showLoading = false;
 		}
 	};
 }
