@@ -89,6 +89,11 @@ $header-top: 10;
 		li {
 			overflow: hidden;
 		}
+		a {
+			&:hover {
+				@include opacity(0.8);
+			}
+		}
 		.about {
 			a {
 				display: block;

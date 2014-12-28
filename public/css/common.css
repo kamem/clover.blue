@@ -100,6 +100,10 @@ main,
 #header nav li {
   overflow: hidden;
 }
+#header nav a:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+}
 #header nav .about a {
   display: block;
   width: 25px;

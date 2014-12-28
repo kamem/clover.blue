@@ -6,7 +6,7 @@
 	pre
 ----------------------------------------*/
 pre {
-	$font-size: 14;
+	$font-size: 16;
 	$margin: 40;
 
 	margin: 0 auto es($margin);
@@ -30,7 +30,7 @@ pre {
 		padding: 0.5em;
 		display: block;
 		background: #fff;
-		@include fz(12);
+		@include fz(14);
 		position: absolute;
 		right: 0;
 		top: 0;

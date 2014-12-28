@@ -11,8 +11,8 @@ pre {
   overflow: auto;
   clear: both;
   background: #fff;
-  font-size: 14px;
-  font-size: 1.4rem;
+  font-size: 16px;
+  font-size: 1.6rem;
   -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
   -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
@@ -24,8 +24,8 @@ pre[class*="lang"]:after {
   padding: 0.5em;
   display: block;
   background: #fff;
-  font-size: 12px;
-  font-size: 1.2rem;
+  font-size: 14px;
+  font-size: 1.4rem;
   position: absolute;
   right: 0;
   top: 0;

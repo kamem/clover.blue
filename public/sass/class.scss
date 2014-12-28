@@ -45,7 +45,7 @@
 			padding-left: es(35);
 		}
 
-		$sns: twitter,facebook,mixi,flickr,github,delicious,booklog,qiita;
+		$sns: twitter,facebook,mixi,flickr,github,delicious,booklog,qiita,pixiv,tumblr;
 		@for $i from 1 through length($sns) {
 			&.#{nth($sns,$i)} a {
 				@include background-fit('sns/' + nth($sns,$i) + '.png', false, 'no-repeat left center');
@@ -86,6 +86,10 @@
 		@include fz($font-size);
 		@include box-shadow(1px 1px 1px rgba(0,0,0,0.04));
 		@include box-sizing(border-box);
+
+		&:hover {
+			@include opacity(0.6);
+		}
 	}
 }
 
@@ -214,6 +218,10 @@ li.download {
 		@include fz($font-size);
 		@include box-shadow(1px 1px 1px rgba(0,0,0,0.04));
 		@include box-sizing(border-box);
+
+		&:hover {
+			@include opacity(0.6);
+		}
 	}
 }
 

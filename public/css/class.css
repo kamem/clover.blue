@@ -137,6 +137,20 @@ dl.commentList dd:last-child {
   -webkit-background-size: 23px 23px;
   background-size: 23px 23px;
 }
+.serviceLink li.pixiv a {
+  background: url('../img/sns/pixiv.png?1419736558') no-repeat left center;
+  -moz-background-size: 23px 23px;
+  -o-background-size: 23px 23px;
+  -webkit-background-size: 23px 23px;
+  background-size: 23px 23px;
+}
+.serviceLink li.tumblr a {
+  background: url('../img/sns/tumblr.png?1419736558') no-repeat left center;
+  -moz-background-size: 23px 23px;
+  -o-background-size: 23px 23px;
+  -webkit-background-size: 23px 23px;
+  background-size: 23px 23px;
+}
 
 .tags {
   max-width: 73.6rem;
@@ -166,6 +180,10 @@ dl.commentList dd:last-child {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+.tags a:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+  opacity: 0.6;
 }
 
 dl.log {
@@ -289,6 +307,10 @@ li.download a:hover {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+.data a:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+  opacity: 0.6;
 }
 
 .commentTitle {

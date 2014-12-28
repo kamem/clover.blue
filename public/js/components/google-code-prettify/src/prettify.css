@@ -1,6 +1,7 @@
 /* GitHub Theme */
-.prettyprint {
-  font-family: Menlo, 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Consolas, monospace;
+.prettyprint,
+.prettyprint * {
+  font-family: Ricty, Menlo, 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Consolas, monospace !important;
 }
 
 .pln {
