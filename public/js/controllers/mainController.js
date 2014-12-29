@@ -2,8 +2,12 @@
 'use strict';
 define(["require", "exports", 'prettify'], function (require, exports, prettify) {
     var Normal = (function () {
-        function Normal() {
+        function Normal($scope, mainService) {
             angular.element(document.querySelectorAll("#header")).addClass("off");
+            angular.element(document).ready(function () {
+                mainService.CreatePageNav($scope);
+                $scope.$apply();
+            });
         }
         return Normal;
     })();
@@ -21,7 +25,7 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     })();
     exports.Index = Index;
     var Entry = (function () {
-        function Entry($scope, qiitaFactory, $localStorage, filterFilter) {
+        function Entry($scope, qiitaFactory, $localStorage, filterFilter, mainService) {
             var currentPage = location.pathname.split('/').pop();
             var qiitaEntry = new entry.Qiita($scope, qiitaFactory, $localStorage, filterFilter);
             qiitaEntry.addClassElement = "#header";
@@ -29,6 +33,8 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
             qiitaEntry.storageItem = filterFilter($scope.$storage.qiita, { uuid: currentPage })[0];
             qiitaEntry.load();
             angular.element(document).ready(function () {
+                mainService.CreatePageNav($scope);
+                $scope.$apply();
                 angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
                 prettify.prettyPrint();
             });

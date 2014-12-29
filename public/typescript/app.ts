@@ -4,6 +4,7 @@
 import angular = require('angular');
 import mainController = require('controllers/mainController');
 import mainFactory = require('factory/mainFactory');
+import mainService = require('service/mainService');
 
 var module: ng.IModule = angular.module('cloverblue', [
 	'ngStorage',
@@ -12,12 +13,15 @@ var module: ng.IModule = angular.module('cloverblue', [
 ]);
 
 
+//service
+module.service('mainService', () => new mainService.mainService());
+
 //factory
 module.factory('qiitaFactory', ['$http', ($http) => new mainFactory.qiitaFactory($http)]);
 
 
 //controller
-module.controller("Normal", () => new mainController.Normal());
+module.controller("Normal", ['$scope', 'mainService', ($scope, mainService) => new mainController.Normal($scope, mainService)]);
 
 module.controller('Index',[
 	'$scope', 'qiitaFactory', '$localStorage',
@@ -26,9 +30,9 @@ module.controller('Index',[
 ]);
 
 module.controller('Entry',[
-	'$scope', 'qiitaFactory', '$localStorage', 'filterFilter',
-	($scope, qiitaFactory, $localStorage, filterFilter) =>
-	new mainController.Entry($scope, qiitaFactory, $localStorage, filterFilter)
+	'$scope', 'qiitaFactory', '$localStorage', 'filterFilter', 'mainService',
+	($scope, qiitaFactory, $localStorage, filterFilter, mainService) =>
+	new mainController.Entry($scope, qiitaFactory, $localStorage, filterFilter, mainService)
 ]);
 
 module.controller('Tag',[
@@ -64,7 +68,8 @@ module.config(['$routeProvider', '$locationProvider', ($routeProvider, $location
 		templateUrl: function(params) {
 			return '/template/items/entry';
 		},
-		controller: 'Entry'
+		controller: 'Entry',
+  	reloadOnSearch: false
 	});
 }]);
 

@@ -1,15 +1,17 @@
 /// <reference path="typings/tsd.d.ts" />
 'use strict';
-define(["require", "exports", 'angular', 'controllers/mainController', 'factory/mainFactory'], function (require, exports, angular, mainController, mainFactory) {
+define(["require", "exports", 'angular', 'controllers/mainController', 'factory/mainFactory', 'service/mainService'], function (require, exports, angular, mainController, mainFactory, mainService) {
     var module = angular.module('cloverblue', [
         'ngStorage',
         'ngRoute',
         'ngSanitize'
     ]);
+    //service
+    module.service('mainService', function () { return new mainService.mainService(); });
     //factory
     module.factory('qiitaFactory', ['$http', function ($http) { return new mainFactory.qiitaFactory($http); }]);
     //controller
-    module.controller("Normal", function () { return new mainController.Normal(); });
+    module.controller("Normal", ['$scope', 'mainService', function ($scope, mainService) { return new mainController.Normal($scope, mainService); }]);
     module.controller('Index', [
         '$scope',
         'qiitaFactory',
@@ -21,7 +23,8 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
         'qiitaFactory',
         '$localStorage',
         'filterFilter',
-        function ($scope, qiitaFactory, $localStorage, filterFilter) { return new mainController.Entry($scope, qiitaFactory, $localStorage, filterFilter); }
+        'mainService',
+        function ($scope, qiitaFactory, $localStorage, filterFilter, mainService) { return new mainController.Entry($scope, qiitaFactory, $localStorage, filterFilter, mainService); }
     ]);
     module.controller('Tag', [
         '$scope',
@@ -52,7 +55,8 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
             templateUrl: function (params) {
                 return '/template/items/entry';
             },
-            controller: 'Entry'
+            controller: 'Entry',
+            reloadOnSearch: false
         });
     }]);
     return module;

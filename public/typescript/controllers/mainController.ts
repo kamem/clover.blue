@@ -6,8 +6,13 @@ declare var qiita;
 import prettify = require('prettify');
 
 export class Normal {
-  constructor() {
+  constructor($scope, mainService) {
     angular.element(document.querySelectorAll("#header")).addClass("off");
+
+    angular.element(document).ready(() => {
+    	mainService.CreatePageNav($scope);
+			$scope.$apply();
+    });
   }
 }
 
@@ -23,7 +28,7 @@ export class Index {
 }
 
 export class Entry {
-  constructor($scope, qiitaFactory, $localStorage, filterFilter) {
+  constructor($scope, qiitaFactory, $localStorage, filterFilter, mainService) {
 		var currentPage: string = location.pathname.split('/').pop();
 		var qiitaEntry = new entry.Qiita($scope, qiitaFactory, $localStorage, filterFilter);
 		qiitaEntry.addClassElement = "#header";
@@ -31,7 +36,10 @@ export class Entry {
 		qiitaEntry.storageItem = filterFilter($scope.$storage.qiita, {uuid: currentPage})[0];
 		qiitaEntry.load();
 
-    angular.element(document).ready(function () {
+    angular.element(document).ready(() => {
+    	mainService.CreatePageNav($scope);
+			$scope.$apply();
+
 			angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
 			prettify.prettyPrint();
     });

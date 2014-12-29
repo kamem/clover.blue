@@ -7,6 +7,15 @@
 	<div class="content">
 		<p>HTML, CSS, Javascriptの記事や日記を書いたり。写真やイラストを載せています。主に<a href="http://qiita.com/">Qiita</a>, <a href="https://www.tumblr.com">Tumblr</a>, <a href="https://www.flickr.com/">Flickr</a>, <a href="http://www.pixiv.net/">pixiv</a>のapiを使って構成されています。（予定 ※未実装部分はおいおい実装；）</p>
 
+		<nav class="pageNav" id="pageNav">
+			<h2 class="pageNav">目次</h2>
+			<ul>
+				<li ng-repeat="headding in pageHeadingElement" ng-cloak ng-if="headding.tagName === 'H2'">
+					<a ng-href="#2-{{$index + 1}}">{{headding.innerText}}</a>
+				</li>
+			</ul>
+		</nav>
+
 		<h2>使用しているツール</h2>
 		<ul class="inlineList">
 			<li><a href="http://www.adobe.com/jp/products/photoshop.html">Photoshop</a></li>

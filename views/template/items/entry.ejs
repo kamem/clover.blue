@@ -10,11 +10,14 @@
 	</header>
 
 	<div class="content">
-		<!-- <nav class="pageNav" id="pageNav">
-			<h2><a href="#pageNav">目次</a></h2>
-			<ul ng-bind-html="item.body | tree">
+		<nav class="pageNav" id="pageNav">
+			<h2 class="pageNav">目次</h2>
+			<ul>
+				<li ng-repeat="headding in pageHeadingElement" ng-cloak ng-if="headding.tagName === 'H2'">
+					<a ng-href="{{headding.lastElementChild.hash}}">{{headding.innerText}}</a>
+				</li>
 			</ul>
-		</nav> -->
+		</nav>
 
 		<div ng-bind-html="item.body">
 		</div>
