@@ -14,7 +14,7 @@ export class qiitaFactory {
 			    status
 			  );
 			},
-			getQiitaTags: (items) => {
+			getQiitaTags: (items): string[] => {
 				var t = {};
 				angular.forEach(items, function(item) {
 					angular.forEach(item.tags, function(tag){

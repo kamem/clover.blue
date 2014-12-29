@@ -279,10 +279,22 @@ li.download a:hover {
   transition: ease-in-out 0.13s;
 }
 
-.pageNav h2 {
+nav.pageNav {
+  border-bottom: 1px solid #f2efeb;
+  margin: 0 auto 4rem;
+  max-width: 73.6rem;
+  padding: 0 1.6rem;
+}
+nav.pageNav > * {
+  padding: 0 !important;
+}
+nav.pageNav h2 {
   margin-top: 0;
 }
-.pageNav li {
+nav.pageNav h2:before {
+  display: none !important;
+}
+nav.pageNav li {
   font-size: 14px !important;
   font-size: 1.4rem !important;
   line-height: 2 !important;

@@ -186,9 +186,21 @@ li.download {
 
 }
 
-.pageNav {
+nav.pageNav {
+	$margin: 40;
+	border-bottom: 1px solid #f2efeb;
+	margin: 0 auto es($margin);
+	max-width: es($base-width);
+	padding: 0 es(16);
+	> * {
+		padding: 0 !important;
+	}
 	h2 {
 		margin-top: 0;
+
+		&:before {
+			display: none !important;
+		}
 	}
 
 	li {
