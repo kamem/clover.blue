@@ -78,37 +78,57 @@ $header-top: 10;
 
 		position: relative;
 
+		$size: 30;
 		ul {
 			margin: auto 0;
-			height: 25px;
+			height: es($size);
 			position: absolute;
 			top: 0;
 			right: 0;
 			bottom: 0;
+			letter-spacing: -0.4em;
 		}
 		li {
 			overflow: hidden;
+			display: inline-block;
+			letter-spacing: normal;
+			margin-right: es($size - 10);
+			&:last-child {
+				margin-right: 10px;
+			}
 		}
 		a {
+			display: block;
+			width: es($size);
+			height: es($size);
+			color: $baseColor;
+			text-decoration: none;
+			background: #fff;
+			@include fz($size - 11);
+			@include box-shadow(1px 1px 1px rgba(0,0,0,0.04));
+			@include border-radius(es($size));
+			&:before {
+				display: block;
+				line-height: es($size);
+				text-indent: 0;
+			}
 			&:hover {
 				@include opacity(0.8);
 			}
 		}
+
+		.photo {
+			a {
+				font-family: 'icomoon';
+				&:before {
+					content: "\e90f";
+				}
+			}
+		}
 		.about {
 			a {
-				display: block;
-				width: 25px;
-				height: 25px;
-
-				color: $baseColor;
-				text-decoration: none;
-				background: #fff;
-				@include box-shadow(1px 1px 1px rgba(0,0,0,0.04));
-				@include border-radius(25px);
 				&:before {
 					content: '?';
-					display: block;
-					text-indent: 0;
 				}
 			}
 		}
@@ -121,6 +141,14 @@ $header-top: 10;
 main {
 	text-align: left;
 	margin-top: es($header-height + $header-top + 20);
+
+	&.off {
+		margin-top: 0;
+
+		.content {
+			margin-top: 0;
+		}
+	}
 
 	@media screen and (max-width: es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
 		position: static;

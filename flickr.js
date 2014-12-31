@@ -35,7 +35,7 @@ getApi(API_URI, {
 	var item = JSON.parse(res.body).photo;
 	Entries.where({ uuid: item.id }).count(function (err, count) {
 		if(count) {
-			Entries.findOne({id: item.id},function(err,post) {
+			Entries.findOne({uuid: item.id},function(err,post) {
 				post.updated = item.dateuploaded;
 				post.uuid = item.id;
 				post.title = item.title._content;

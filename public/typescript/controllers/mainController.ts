@@ -2,6 +2,7 @@
 'use strict';
 
 declare var qiita;
+declare var flickr;
 
 import prettify = require('prettify');
 
@@ -16,25 +17,39 @@ export class Normal {
   }
 }
 
+export class Photo {
+  constructor($scope, flickrFactory, $localStorage, filterFilter) {
+		var page = new entry.CreatePage($scope, flickrFactory, $localStorage, 'flickr', '');
+		page.removeClassElement = "#header";
+		page.addClassElement = "article h1";
+
+		page.latestUpdated = flickr[0].updated;
+		if($scope.$storage.flickr) page.storageUpdated = $scope.$storage.flickr[0].dateuploaded;
+		page.load();
+  }
+}
+
 export class Index {
   constructor($scope, qiitaFactory, $localStorage) {
-		var qiitaEntry = new entry.Qiita($scope, qiitaFactory, $localStorage, '');
-		qiitaEntry.removeClassElement = "#header";
-		qiitaEntry.addClassElement = "article h1";
-		qiitaEntry.qiitaItem = qiita[0];
-		qiitaEntry.storageItem = $scope.$storage.qiita[0];
-		qiitaEntry.load();
+		var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', '');
+		page.removeClassElement = "#header";
+		page.addClassElement = "article h1";
+
+		page.latestUpdated = qiita[0].updated;
+		if($scope.$storage.qiita) page.storageUpdated = Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'));
+		page.load();
   }
 }
 
 export class Entry {
   constructor($scope, qiitaFactory, $localStorage, filterFilter, mainService) {
 		var currentPage: string = location.pathname.split('/').pop();
-		var qiitaEntry = new entry.Qiita($scope, qiitaFactory, $localStorage, filterFilter);
-		qiitaEntry.addClassElement = "#header";
-		qiitaEntry.qiitaItem = filterFilter(qiita, {uuid: currentPage})[0];
-		qiitaEntry.storageItem = filterFilter($scope.$storage.qiita, {uuid: currentPage})[0];
-		qiitaEntry.load();
+		var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', filterFilter);
+		page.addClassElement = "#header";
+
+		page.latestUpdated = filterFilter(qiita, {uuid: currentPage})[0].updated;
+		if($scope.$storage.qiita) page.storageUpdated = Date.parse(filterFilter($scope.$storage.qiita, {uuid: currentPage})[0].updated_at.replace(/-/g, '/'));
+		page.load();
 
     angular.element(document).ready(() => {
     	mainService.CreatePageNav($scope);
@@ -49,56 +64,79 @@ export class Entry {
 export class Tag {
   constructor($scope, qiitaFactory, $localStorage, filterFilter) {
 		var currentPage: string = location.pathname.split('/').pop();
-		var qiitaEntry = new entry.Qiita($scope, qiitaFactory, $localStorage, filterFilter);
-		qiitaEntry.removeClassElement = "#header";
-		qiitaEntry.addClassElement = "article h1";
-		qiitaEntry.qiitaItem = qiita[0];
-		qiitaEntry.storageItem = $scope.$storage.qiita[0];
-		qiitaEntry.load();
+		var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', filterFilter);
+		page.removeClassElement = "#header";
+		page.addClassElement = "article h1";
+		page.latestUpdated = qiita[0].updated;
+		if($scope.$storage.qiita) page.storageUpdated = Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'));
+		page.load();
   }
 }
 
 
 module entry {
-	export class Qiita {
+	export class CreatePage {
 		public removeClassElement: string;
 		public addClassElement: string;
-		public qiitaItem;
-		public storageItem;
-		constructor(private $scope, private qiitaFactory, private $localStorage, private filterFilter) {
+		public item;
+		public latestUpdated;
+		public storageUpdated;
+		constructor(private $scope, private factory, private $localStorage, private name, private filterFilter) {
 			$scope.$storage = $localStorage.$default({
-				qiita: ''
+				qiita: '',
+				flickr: ''
 			});
 		}
-		public load() {
+		public load(): void {
 			if(this.removeClassElement) angular.element(document.querySelectorAll(this.removeClassElement)).removeClass("off");
 			if(this.addClassElement) angular.element(document.querySelectorAll(this.addClassElement)).addClass("off");
 
 			var $scope = this.$scope;
 			var filterFilter = this.filterFilter;
-			var qiitaFactory = this.qiitaFactory;
+			var factory = this.factory;
 
 			$scope.showLoading = true;
 			$scope.showErrorMessage = false;
-			if($scope.$storage.qiita !== '' ? (this.qiitaItem.updated <= Date.parse(this.storageItem.updated_at.replace(/-/g, '/'))) : false) {
-				Qiita.scopeSetting($scope, qiitaFactory, filterFilter, $scope.$storage.qiita);
-			} else {
-				qiitaFactory.getQiitaItems().then((res) => {
-					$scope.$storage.qiita = res.data;
 
-					Qiita.scopeSetting($scope, qiitaFactory, filterFilter, res.data);
-				},(status) => {
-					$scope.showLoading = false;
-					$scope.showErrorMessage = true;
-				});
+			if($scope.$storage[this.name] !== '' ? this.latestUpdated <= this.storageUpdated : false) {
+				CreatePage.scopeSetting($scope, factory, filterFilter, this.name, $scope.$storage[this.name]);
+			} else {
+				CreatePage[this.name]($scope, factory, filterFilter, this.name);
 			}
 		}
 
-		static scopeSetting($scope, qiitaFactory, filterFilter, items) {
+		static qiita($scope, factory, filterFilter, name, items) {
+			factory.getItems().then((res) => {
+				$scope.$storage[name] = res.data;
+
+				CreatePage.scopeSetting($scope, factory, filterFilter, name, res.data);
+			},(status) => {
+				$scope.showLoading = false;
+				$scope.showErrorMessage = true;
+			});
+		}
+		static flickr($scope, factory, filterFilter, name) {
+  		var items = [];
+			factory.getItems().then((res) => {
+				res.data.photos.photo.forEach(function(photo) {
+					factory.getItemsInfo(photo.id).then((res) => {
+						items.push(res.data.photo);
+						$scope.$storage.flickr = items;
+						CreatePage.scopeSetting($scope, factory, filterFilter, name, items);
+					});
+					$scope.showLoading = false;
+				});
+			},(status) => {
+				$scope.showLoading = false;
+				$scope.showErrorMessage = true;
+			});
+		}
+
+		static scopeSetting($scope, factory, filterFilter, name, items): void {
 			var currentPage = location.pathname.split('/').pop();
 			$scope.items = filterFilter ? filterFilter(items, {tags: currentPage}) : items;
 			if(filterFilter) $scope.item = filterFilter(items, {uuid: currentPage})[0];
-			$scope.tags = qiitaFactory.getQiitaTags($scope.$storage.qiita);
+			$scope.tags = factory.getTags($scope.$storage[name]);
 			$scope.showLoading = false;
 		}
 	};

@@ -7,14 +7,14 @@ export class qiitaFactory {
 		var USER_NAME: string = 'kamem';
 
 		return {
-			getQiitaItems: () => {
+			getItems: () => {
 				return $http.get(API_URI + '/users/' + USER_NAME+ '/items').success((data, status, headers, config) =>
 					data
 				).error((data, status, headers, config) =>
 			    status
 			  );
 			},
-			getQiitaTags: (items): string[] => {
+			getTags: (items): string[] => {
 				var t = {};
 				angular.forEach(items, function(item) {
 					angular.forEach(item.tags, function(tag){
@@ -31,4 +31,57 @@ export class qiitaFactory {
 			}
 		};
   }
+}
+
+export class flickrFactory {
+  constructor($http) {
+		var API_URI: string = 'https://api.flickr.com/services/rest/';
+		var API_KEY: string = '982ed6872b004b1e646a71f4f5a9970f';
+		var USER_ID: string = '37978321@N03';
+
+		return {
+			getItems: () => {
+				return $http.get(
+					flickrFactory.getApiURL(API_URI, {
+						method: ['photos','search'],
+						api_key: API_KEY,
+						user_id: USER_ID
+					}
+				)).success((data, status, headers, config) =>
+					data
+				).error((data, status, headers, config) =>
+					status
+				);
+			},
+			getItemsInfo: (id) => {
+				return $http.get(
+					flickrFactory.getApiURL(API_URI, {
+						method: ['photos','getInfo'],
+						api_key: API_KEY,
+						photo_id: id
+					}
+				)).success((data, status, headers, config) => 
+					data
+				).error((data, status, headers, config) =>
+					status
+				);
+			},
+			getTags: (items): string[] => {
+				return [];
+			}
+		};
+	}
+
+	static getApiURL(url, search): string {
+		var urlAry = [];
+		for(var apiName in search) {
+			if(apiName === 'method') {
+				if(search[apiName]) urlAry.push(apiName + '=flickr.' + search[apiName][0] + '.' + search[apiName][1]);
+			} else {
+				if(search[apiName]) urlAry.push(apiName + '=' + search[apiName]);
+			}
+		}
+
+		return url + '?' + urlAry.join('&') + '&format=json&nojsoncallback=1';
+	}
 }

@@ -10,6 +10,7 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
     module.service('mainService', function () { return new mainService.mainService(); });
     //factory
     module.factory('qiitaFactory', ['$http', function ($http) { return new mainFactory.qiitaFactory($http); }]);
+    module.factory('flickrFactory', ['$http', function ($http) { return new mainFactory.flickrFactory($http); }]);
     //controller
     module.controller("Normal", ['$scope', 'mainService', function ($scope, mainService) { return new mainController.Normal($scope, mainService); }]);
     module.controller('Index', [
@@ -17,6 +18,13 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
         'qiitaFactory',
         '$localStorage',
         function ($scope, qiitaFactory, $localStorage) { return new mainController.Index($scope, qiitaFactory, $localStorage); }
+    ]);
+    module.controller('Photo', [
+        '$scope',
+        'flickrFactory',
+        '$localStorage',
+        'filterFilter',
+        function ($scope, flickrFactory, $localStorage, filterFilter) { return new mainController.Photo($scope, flickrFactory, $localStorage, filterFilter); }
     ]);
     module.controller('Entry', [
         '$scope',
@@ -42,6 +50,10 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
         $routeProvider.when('/', {
             templateUrl: '/template/index',
             controller: 'Index'
+        });
+        $routeProvider.when('/photo', {
+            templateUrl: '/template/photo',
+            controller: 'Photo'
         });
         $routeProvider.when('/about', {
             templateUrl: '/template/about',

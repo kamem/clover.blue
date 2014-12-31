@@ -15,8 +15,8 @@ var express = require('express'),
 	db = require('./models/db'),
 	mongo = require('mongoose');
 
-var Entries = post.Entries;
-var Tags = post.Tags;
+var Entries = post.QiitaEntries;
+var Tags = post.QiitaTags;
 
 //middleware
 app.set('views', __dirname + '/views');
@@ -49,6 +49,7 @@ app.use(logger('dev'));
 //routing
 app.get('/', post.index);
 app.get('/about', post.about);
+app.get('/photo', post.photo);
 
 Entries.find({},function(err,posts) {
 	for(entry in posts) {

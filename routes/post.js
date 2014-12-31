@@ -8,41 +8,62 @@ var entries = mongo.Schema({
     'uuid': String,
     'title': String
 });
+var flickr = mongo.Schema({
+    'updated': String,
+    'uuid': String,
+    'title': String
+});
 
 var tags = mongo.Schema({
 	'name': String
 });
 
-var Entries = mongo.model('qiita_entries',entries);
-var Tags = mongo.model('qiita_tags',tags);
+var QiitaEntries = mongo.model('qiita_entries',entries);
+var QiitaTags = mongo.model('qiita_tags',tags);
+var Flickr = mongo.model('flickr_entries',flickr);
 
-exports.Entries = Entries;
-exports.Tags = Tags;
+exports.QiitaEntries = QiitaEntries;
+exports.QiitaTags = QiitaTags;
 
 exports.index = function(req,res) {
-	Entries.find({}).sort('-updated').exec(function(err,posts) {
-		res.render('posts/index',{title: settings.title, qiita: posts});
+	QiitaEntries.find({}).sort('-updated').exec(function(err,posts) {
+		Flickr.find({}).sort('-updated').exec(function(err,flickPosts) {
+			res.render('posts/index',{title: settings.title, qiita: posts, flickr: flickPosts});
+		});
 	});
 };
 exports.about = function(req,res) {
-	Entries.find({}).sort('-updated').exec(function(err,posts) {
-		res.render('posts/about',{title: 'サイトについて', qiita: posts});
+	QiitaEntries.find({}).sort('-updated').exec(function(err,posts) {
+		Flickr.find({}).sort('-updated').exec(function(err,flickPosts) {
+			res.render('posts/about',{title: 'サイトについて' + ' - ' + settings.title, qiita: posts, flickr: flickPosts});
+		});
+	});
+};
+exports.photo = function(req,res) {
+	QiitaEntries.find({}).sort('-updated').exec(function(err,posts) {
+		Flickr.find({}).sort('-updated').exec(function(err,flickPosts) {
+			res.render('posts/about',{title: '写真' + ' - ' + settings.title, qiita: posts, flickr: flickPosts});
+		});
 	});
 };
 
 exports.entry = function(req,res) {
 	var uuid = req.route.path.replace('/items/','');
 
-	Entries.find({}).sort('-updated').exec(function(err,posts) {
-		Entries.findOne({uuid: uuid}).exec(function(err,post) {
-			res.render('posts/items/entry', {title: post.title, qiita: posts});
+	QiitaEntries.find({}).sort('-updated').exec(function(err,posts) {
+		QiitaEntries.findOne({uuid: uuid}).exec(function(err,post) {
+			Flickr.find({}).sort('-updated').exec(function(err,flickPosts) {
+				res.render('posts/items/entry', {title: post.title + ' - ' + settings.title, qiita: posts, flickr: flickPosts});
+			});
 		});
 	});
 };
 
 exports.tag = function(req,res) {
-	Entries.find({}).sort('-updated').exec(function(err,posts) {
-		res.render('posts/tags/tag',{title: settings.title, qiita: posts});
+	QiitaEntries.find({}).sort('-updated').exec(function(err,posts) {
+		Flickr.find({}).sort('-updated').exec(function(err,flickPosts) {
+			res.render('posts/tags/tag',{title: settings.title, qiita: posts, flickr: flickPosts});
+		});
 	});
 };
 
