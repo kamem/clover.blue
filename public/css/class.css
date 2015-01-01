@@ -49,18 +49,21 @@ dl.commentList dd:last-child {
   text-align: center;
 }
 
-.photos {
+.thumbnails {
   padding: 0 !important;
   margin: 0 !important;
   overflow: hidden;
+  letter-spacing: -0.4em;
 }
-.photos li {
-  display: inline;
-}
-.photos li a {
-  display: block;
+.thumbnails li {
   width: 10%;
-  float: left;
+  display: inline-block;
+  list-style-type: none;
+  vertical-align: top;
+  text-align: center;
+}
+.thumbnails li a {
+  display: block;
   -moz-transition-property: opacity;
   -o-transition-property: opacity;
   -webkit-transition-property: opacity;
@@ -70,17 +73,16 @@ dl.commentList dd:last-child {
   -webkit-transition-duration: 0.2s;
   transition-duration: 0.2s;
 }
-.photos li a:hover {
+.thumbnails li a img {
+  width: 100%;
+}
+.thumbnails li a:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
   opacity: 0.7;
 }
 @media screen and (max-width: 40.625rem) {
-  .photos li {
-    display: inline;
-  }
-  .photos li img {
+  .thumbnails li {
     width: 25%;
-    float: left;
   }
 }
 

@@ -12,19 +12,6 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
         return Normal;
     })();
     exports.Normal = Normal;
-    var Photo = (function () {
-        function Photo($scope, flickrFactory, $localStorage, filterFilter) {
-            var page = new entry.CreatePage($scope, flickrFactory, $localStorage, 'flickr', '');
-            page.removeClassElement = "#header";
-            page.addClassElement = "article h1";
-            page.latestUpdated = flickr[0].updated;
-            if ($scope.$storage.flickr)
-                page.storageUpdated = $scope.$storage.flickr[0].dateuploaded;
-            page.load();
-        }
-        return Photo;
-    })();
-    exports.Photo = Photo;
     var Index = (function () {
         function Index($scope, qiitaFactory, $localStorage) {
             var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', '');
@@ -38,6 +25,45 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
         return Index;
     })();
     exports.Index = Index;
+    var Photo = (function () {
+        function Photo($scope, flickrFactory, $localStorage, filterFilter) {
+            var page = new entry.CreatePage($scope, flickrFactory, $localStorage, 'flickr', '');
+            page.removeClassElement = "#header";
+            page.addClassElement = "article h1";
+            page.latestUpdated = flickr[0].updated;
+            if ($scope.$storage.flickr)
+                page.storageUpdated = $scope.$storage.flickr[0].dateuploaded;
+            page.load();
+        }
+        return Photo;
+    })();
+    exports.Photo = Photo;
+    var Illust = (function () {
+        function Illust($scope, pixivFactory, $localStorage, filterFilter) {
+            var page = new entry.CreatePage($scope, pixivFactory, $localStorage, 'pixiv', '');
+            page.removeClassElement = "#header";
+            page.addClassElement = "article h1";
+            page.latestUpdated = pixiv[0].updated;
+            if ($scope.$storage.pixiv)
+                page.storageUpdated = $scope.$storage.pixiv[0].updated;
+            page.load();
+        }
+        return Illust;
+    })();
+    exports.Illust = Illust;
+    var Weblog = (function () {
+        function Weblog($scope, qiitaFactory, $localStorage) {
+            var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', '');
+            page.removeClassElement = "#header";
+            page.addClassElement = "article h1";
+            page.latestUpdated = qiita[0].updated;
+            if ($scope.$storage.qiita)
+                page.storageUpdated = Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'));
+            page.load();
+        }
+        return Weblog;
+    })();
+    exports.Weblog = Weblog;
     var Entry = (function () {
         function Entry($scope, qiitaFactory, $localStorage, filterFilter, mainService) {
             var currentPage = location.pathname.split('/').pop();
@@ -82,7 +108,8 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                 this.filterFilter = filterFilter;
                 $scope.$storage = $localStorage.$default({
                     qiita: '',
-                    flickr: ''
+                    flickr: '',
+                    pixiv: pixiv
                 });
             }
             CreatePage.prototype.load = function () {

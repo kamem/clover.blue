@@ -50,6 +50,8 @@ app.use(logger('dev'));
 app.get('/', post.index);
 app.get('/about', post.about);
 app.get('/photo', post.photo);
+app.get('/weblog', post.weblog);
+app.get('/illust', post.illust);
 
 Entries.find({},function(err,posts) {
 	for(entry in posts) {

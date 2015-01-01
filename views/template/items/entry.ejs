@@ -12,11 +12,11 @@
 	<div class="content">
 		<nav class="pageNav" id="pageNav">
 			<h2 class="pageNav">目次</h2>
-			<ul>
+			<ol>
 				<li ng-repeat="headding in pageHeadingElement" ng-cloak ng-if="headding.tagName === 'H2'">
 					<a ng-href="{{headding.lastElementChild.hash}}">{{headding.innerText}}</a>
 				</li>
-			</ul>
+			</ol>
 		</nav>
 
 		<div ng-bind-html="item.body">

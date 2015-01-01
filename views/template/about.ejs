@@ -9,11 +9,11 @@
 
 		<nav class="pageNav" id="pageNav">
 			<h2 class="pageNav">目次</h2>
-			<ul>
+			<ol>
 				<li ng-repeat="headding in pageHeadingElement" ng-cloak ng-if="headding.tagName === 'H2'">
 					<a ng-href="#2-{{$index + 1}}">{{headding.innerText}}</a>
 				</li>
-			</ul>
+			</ol>
 		</nav>
 
 		<h2>使用しているツール</h2>

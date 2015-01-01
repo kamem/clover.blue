@@ -116,21 +116,31 @@ $header-top: 10;
 				@include opacity(0.8);
 			}
 		}
-
-		.photo {
-			a {
+		.illust a,
+		.weblog a,
+		.photo a {
 				font-family: 'icomoon';
-				&:before {
-					content: "\e90f";
-				}
-			}
 		}
-		.about {
-			a {
-				&:before {
-					content: '?';
-				}
-			}
+
+		.illust a:before {
+			content: "\e906";
+		}
+		.diary a:before {
+			content: "\e907";
+		}
+		.weblog a:before {
+			content: "\e922";
+		}
+
+		.photo a:before {
+			content: "\e90f";
+		}
+		.about a:before {
+			content: '?';
+		}
+
+		.on a {
+			color: #f99 !important;
 		}
 	}
 }

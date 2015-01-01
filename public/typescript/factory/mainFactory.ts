@@ -60,14 +60,28 @@ export class flickrFactory {
 						api_key: API_KEY,
 						photo_id: id
 					}
-				)).success((data, status, headers, config) => 
+				)).success((data, status, headers, config) =>
 					data
 				).error((data, status, headers, config) =>
 					status
 				);
 			},
 			getTags: (items): string[] => {
-				return [];
+				var t = {};
+				angular.forEach(items, function(item) {
+					angular.forEach(item.tags, function(tag){
+						angular.forEach(tag, function(i){
+						t[i._content] = i._content;
+						});
+					})
+				});
+
+				var tags = [];
+				angular.forEach(t, function(tag) {
+					this.push(tag);
+				},tags);
+
+				return tags;
 			}
 		};
 	}
@@ -84,4 +98,38 @@ export class flickrFactory {
 
 		return url + '?' + urlAry.join('&') + '&format=json&nojsoncallback=1';
 	}
+}
+
+
+
+export class pixivFactory {
+  constructor($http) {
+		var API_URI: string = 'http://spapi.pixiv.net/iphone/member_illust.php';
+		var USER_ID: number = 112090;
+
+		return {
+			getItems: () => {
+				return $http.get(API_URI + '?id=' + USER_ID).success((data, status, headers, config) =>
+					data
+				).error((data, status, headers, config) =>
+			    status
+			  );
+			},
+			getTags: (items): string[] => {
+				var t = {};
+				angular.forEach(items, function(item) {
+					angular.forEach(item.tags, function(tag){
+						t[tag.name] = tag.name;
+					})
+				});
+
+				var tags = [];
+				angular.forEach(t, function(tag) {
+					this.push(tag);
+				},tags);
+
+				return tags;
+			}
+		};
+  }
 }

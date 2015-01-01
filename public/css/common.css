@@ -132,14 +132,28 @@ main,
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   opacity: 0.8;
 }
+#header nav .illust a,
+#header nav .weblog a,
 #header nav .photo a {
   font-family: 'icomoon';
+}
+#header nav .illust a:before {
+  content: "\e906";
+}
+#header nav .diary a:before {
+  content: "\e907";
+}
+#header nav .weblog a:before {
+  content: "\e922";
 }
 #header nav .photo a:before {
   content: "\e90f";
 }
 #header nav .about a:before {
   content: '?';
+}
+#header nav .on a {
+  color: #f99 !important;
 }
 
 /*----------------------------------------

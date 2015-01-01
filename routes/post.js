@@ -3,15 +3,22 @@ var settings = require('../settings'),
 	db = require('../models/db');
 
 var entries = mongo.Schema({
-    'created': String,
-    'updated': String,
-    'uuid': String,
-    'title': String
+	'created': String,
+	'updated': String,
+	'uuid': String,
+	'title': String
 });
 var flickr = mongo.Schema({
-    'updated': String,
-    'uuid': String,
-    'title': String
+	'updated': String,
+	'uuid': String,
+	'title': String
+});
+var pixiv = mongo.Schema({
+	'updated': String,
+	'uuid': String,
+	'title': String,
+	'img': String,
+	'thumbnail': String
 });
 
 var tags = mongo.Schema({
@@ -21,6 +28,7 @@ var tags = mongo.Schema({
 var QiitaEntries = mongo.model('qiita_entries',entries);
 var QiitaTags = mongo.model('qiita_tags',tags);
 var Flickr = mongo.model('flickr_entries',flickr);
+var Pixiv = mongo.model('pixiv_items',pixiv);
 
 exports.QiitaEntries = QiitaEntries;
 exports.QiitaTags = QiitaTags;
@@ -28,21 +36,45 @@ exports.QiitaTags = QiitaTags;
 exports.index = function(req,res) {
 	QiitaEntries.find({}).sort('-updated').exec(function(err,posts) {
 		Flickr.find({}).sort('-updated').exec(function(err,flickPosts) {
-			res.render('posts/index',{title: settings.title, qiita: posts, flickr: flickPosts});
+			Pixiv.find({}).sort('-updated').exec(function(err,pixivItems) {
+				res.render('posts/index',{title: settings.title, qiita: posts, flickr: flickPosts, pixiv: pixivItems});
+			});
 		});
 	});
 };
 exports.about = function(req,res) {
 	QiitaEntries.find({}).sort('-updated').exec(function(err,posts) {
 		Flickr.find({}).sort('-updated').exec(function(err,flickPosts) {
-			res.render('posts/about',{title: 'サイトについて' + ' - ' + settings.title, qiita: posts, flickr: flickPosts});
+			Pixiv.find({}).sort('-updated').exec(function(err,pixivItems) {
+				res.render('posts/about',{title: 'サイトについて' + ' - ' + settings.title, qiita: posts, flickr: flickPosts, pixiv: pixivItems});
+			});
 		});
 	});
 };
 exports.photo = function(req,res) {
 	QiitaEntries.find({}).sort('-updated').exec(function(err,posts) {
 		Flickr.find({}).sort('-updated').exec(function(err,flickPosts) {
-			res.render('posts/about',{title: '写真' + ' - ' + settings.title, qiita: posts, flickr: flickPosts});
+			Pixiv.find({}).sort('-updated').exec(function(err,pixivItems) {
+				res.render('posts/about',{title: '写真' + ' - ' + settings.title, qiita: posts, flickr: flickPosts, pixiv: pixivItems});
+			});
+		});
+	});
+};
+exports.weblog = function(req,res) {
+	QiitaEntries.find({}).sort('-updated').exec(function(err,posts) {
+		Flickr.find({}).sort('-updated').exec(function(err,flickPosts) {
+			Pixiv.find({}).sort('-updated').exec(function(err,pixivItems) {
+				res.render('posts/index',{title: '記事' + ' - ' + settings.title, qiita: posts, flickr: flickPosts, pixiv: pixivItems});
+			});
+		});
+	});
+};
+exports.illust = function(req,res) {
+	QiitaEntries.find({}).sort('-updated').exec(function(err,posts) {
+		Flickr.find({}).sort('-updated').exec(function(err,flickPosts) {
+			Pixiv.find({}).sort('-updated').exec(function(err,pixivItems) {
+				res.render('posts/index',{title: 'イラスト' + ' - ' + settings.title, qiita: posts, flickr: flickPosts, pixiv: pixivItems});
+			});
 		});
 	});
 };
@@ -53,7 +85,9 @@ exports.entry = function(req,res) {
 	QiitaEntries.find({}).sort('-updated').exec(function(err,posts) {
 		QiitaEntries.findOne({uuid: uuid}).exec(function(err,post) {
 			Flickr.find({}).sort('-updated').exec(function(err,flickPosts) {
-				res.render('posts/items/entry', {title: post.title + ' - ' + settings.title, qiita: posts, flickr: flickPosts});
+				Pixiv.find({}).sort('-updated').exec(function(err,pixivItems) {
+					res.render('posts/items/entry', {title: post.title + ' - ' + settings.title, qiita: posts, flickr: flickPosts, pixiv: pixivItems});
+				});
 			});
 		});
 	});
@@ -62,7 +96,9 @@ exports.entry = function(req,res) {
 exports.tag = function(req,res) {
 	QiitaEntries.find({}).sort('-updated').exec(function(err,posts) {
 		Flickr.find({}).sort('-updated').exec(function(err,flickPosts) {
-			res.render('posts/tags/tag',{title: settings.title, qiita: posts, flickr: flickPosts});
+			Pixiv.find({}).sort('-updated').exec(function(err,pixivItems) {
+				res.render('posts/tags/tag',{title: settings.title, qiita: posts, flickr: flickPosts, pixiv: pixivItems});
+			});
 		});
 	});
 };

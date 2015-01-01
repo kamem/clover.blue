@@ -48,7 +48,19 @@ define(["require", "exports"], function (require, exports) {
                     })).success(function (data, status, headers, config) { return data; }).error(function (data, status, headers, config) { return status; });
                 },
                 getTags: function (items) {
-                    return [];
+                    var t = {};
+                    angular.forEach(items, function (item) {
+                        angular.forEach(item.tags, function (tag) {
+                            angular.forEach(tag, function (i) {
+                                t[i._content] = i._content;
+                            });
+                        });
+                    });
+                    var tags = [];
+                    angular.forEach(t, function (tag) {
+                        this.push(tag);
+                    }, tags);
+                    return tags;
                 }
             };
         }
@@ -69,4 +81,30 @@ define(["require", "exports"], function (require, exports) {
         return flickrFactory;
     })();
     exports.flickrFactory = flickrFactory;
+    var pixivFactory = (function () {
+        function pixivFactory($http) {
+            var API_URI = 'http://spapi.pixiv.net/iphone/member_illust.php';
+            var USER_ID = 112090;
+            return {
+                getItems: function () {
+                    return $http.get(API_URI + '?id=' + USER_ID).success(function (data, status, headers, config) { return data; }).error(function (data, status, headers, config) { return status; });
+                },
+                getTags: function (items) {
+                    var t = {};
+                    angular.forEach(items, function (item) {
+                        angular.forEach(item.tags, function (tag) {
+                            t[tag.name] = tag.name;
+                        });
+                    });
+                    var tags = [];
+                    angular.forEach(t, function (tag) {
+                        this.push(tag);
+                    }, tags);
+                    return tags;
+                }
+            };
+        }
+        return pixivFactory;
+    })();
+    exports.pixivFactory = pixivFactory;
 });

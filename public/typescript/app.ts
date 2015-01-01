@@ -19,6 +19,7 @@ module.service('mainService', () => new mainService.mainService());
 //factory
 module.factory('qiitaFactory', ['$http', ($http) => new mainFactory.qiitaFactory($http)]);
 module.factory('flickrFactory', ['$http', ($http) => new mainFactory.flickrFactory($http)]);
+module.factory('pixivFactory', ['$http', ($http) => new mainFactory.pixivFactory($http)]);
 
 
 //controller
@@ -34,6 +35,18 @@ module.controller('Photo',[
 	'$scope', 'flickrFactory', '$localStorage', 'filterFilter',
 	($scope, flickrFactory, $localStorage, filterFilter) =>
 	new mainController.Photo($scope, flickrFactory, $localStorage, filterFilter)
+]);
+
+module.controller('Weblog',[
+	'$scope', 'qiitaFactory', '$localStorage',
+	($scope, qiitaFactory, $localStorage) =>
+	new mainController.Index($scope, qiitaFactory, $localStorage)
+]);
+
+module.controller('Illust',[
+	'$scope', 'pixivFactory', '$localStorage', 'filterFilter',
+	($scope, pixivFactory, $localStorage, filterFilter) =>
+	new mainController.Illust($scope, pixivFactory, $localStorage, filterFilter)
 ]);
 
 module.controller('Entry',[
@@ -64,6 +77,16 @@ module.config(['$routeProvider', '$locationProvider', ($routeProvider, $location
 	$routeProvider.when('/photo', {
 		templateUrl: '/template/photo',
 		controller: 'Photo'
+	});
+
+	$routeProvider.when('/weblog', {
+		templateUrl: '/template/weblog',
+		controller: 'Weblog'
+	});
+
+	$routeProvider.when('/illust', {
+		templateUrl: '/template/illust',
+		controller: 'Illust'
 	});
 
 	$routeProvider.when('/about', {

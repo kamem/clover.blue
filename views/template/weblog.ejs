@@ -1,18 +1,18 @@
 <article>
 	<header>
-		<h1>写真</h1>
+		<h1>clover.blue</h1>
 	</header>
 
 	<div class="content" ng-class="{loading: showLoading}">
-		<!-- <ul class="tags">
+		<ul class="tags">
 			<li ng-repeat="tag in tags" ng-cloak>
 				<a ng-href="/tags/{{tag}}">{{tag}}</a>
 			</li>
-		</ul> -->
+		</ul>
 
-		<ul class="thumbnails">
+		<ul>
 			<li ng-repeat="item in items" ng-cloak>
-				<a href="http://farm{{item.farm}}.staticflickr.com/{{item.server}}/{{item.id}}_{{item.secret}}_b.jpg"><img ng-src="http://farm{{item.farm}}.staticflickr.com/{{item.server}}/{{item.id}}_{{item.secret}}_q.jpg"></a>
+				<a ng-href="/items/{{item.uuid}}">{{item.title}}</a>
 			</li>
 		</ul>
 		<p ng-cloak ng-show="showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>

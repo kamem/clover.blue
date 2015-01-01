@@ -3,6 +3,7 @@
 
 declare var qiita;
 declare var flickr;
+declare var pixiv;
 
 import prettify = require('prettify');
 
@@ -14,6 +15,18 @@ export class Normal {
     	mainService.CreatePageNav($scope);
 			$scope.$apply();
     });
+  }
+}
+
+export class Index {
+  constructor($scope, qiitaFactory, $localStorage) {
+		var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', '');
+		page.removeClassElement = "#header";
+		page.addClassElement = "article h1";
+
+		page.latestUpdated = qiita[0].updated;
+		if($scope.$storage.qiita) page.storageUpdated = Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'));
+		page.load();
   }
 }
 
@@ -29,7 +42,19 @@ export class Photo {
   }
 }
 
-export class Index {
+export class Illust {
+  constructor($scope, pixivFactory, $localStorage, filterFilter) {
+		var page = new entry.CreatePage($scope, pixivFactory, $localStorage, 'pixiv', '');
+		page.removeClassElement = "#header";
+		page.addClassElement = "article h1";
+
+		page.latestUpdated = pixiv[0].updated;
+		if($scope.$storage.pixiv) page.storageUpdated = $scope.$storage.pixiv[0].updated;
+		page.load();
+  }
+}
+
+export class Weblog {
   constructor($scope, qiitaFactory, $localStorage) {
 		var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', '');
 		page.removeClassElement = "#header";
@@ -84,7 +109,8 @@ module entry {
 		constructor(private $scope, private factory, private $localStorage, private name, private filterFilter) {
 			$scope.$storage = $localStorage.$default({
 				qiita: '',
-				flickr: ''
+				flickr: '',
+				pixiv: pixiv
 			});
 		}
 		public load(): void {
@@ -105,7 +131,7 @@ module entry {
 			}
 		}
 
-		static qiita($scope, factory, filterFilter, name, items) {
+		static qiita($scope, factory, filterFilter, name, items): void {
 			factory.getItems().then((res) => {
 				$scope.$storage[name] = res.data;
 
@@ -115,7 +141,7 @@ module entry {
 				$scope.showErrorMessage = true;
 			});
 		}
-		static flickr($scope, factory, filterFilter, name) {
+		static flickr($scope, factory, filterFilter, name): void {
   		var items = [];
 			factory.getItems().then((res) => {
 				res.data.photos.photo.forEach(function(photo) {

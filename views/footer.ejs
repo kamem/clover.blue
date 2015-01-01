@@ -10,11 +10,16 @@ var qiita = [];
 qiita[<%= i %>] = {uuid: '<%= qiita[i].uuid %>', title: '<%= qiita[i].title %>', created: '<%= qiita[i].created %>', updated: <%= qiita[i].updated %>};
 <% } %>
 var flickr = [];
-<% for(var i = 0;i < qiita.length;i++) { %>
+<% for(var i = 0;i < flickr.length;i++) { %>
 flickr[<%= i %>] = {uuid: '<%= flickr[i].uuid %>', title: '<%= flickr[i].title %>', updated: <%= flickr[i].updated %>};
+<% } %>
+var pixiv = [];
+<% for(var i = 0;i < pixiv.length;i++) { %>
+pixiv[<%= i %>] = {uuid: '<%= pixiv[i].uuid %>', title: '<%= pixiv[i].title %>', updated: <%= pixiv[i].updated %>, img: '<%= pixiv[i].img %>', thumbnail: '<%= pixiv[i].thumbnail %>'};
 <% } %>
 </script>
 
+<script src="/js/ga.js"></script>
 <script data-main="/js/main" src="/js/components/requirejs/require.js"></script>
 
 </body>
