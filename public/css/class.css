@@ -51,7 +51,7 @@ dl.commentList dd:last-child {
 
 .thumbnails {
   padding: 0 !important;
-  margin: 0 !important;
+  margin: 0 0 1rem !important;
   overflow: hidden;
   letter-spacing: -0.4em;
 }
@@ -346,6 +346,10 @@ nav.pageNav li {
   font-size: 12px;
   font-size: 1.2rem;
   color: #b8b2a6;
+}
+.data .revisions:before {
+  content: '|';
+  padding-right: 0.5rem;
 }
 .data a {
   padding: 0.5rem;

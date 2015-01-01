@@ -18,7 +18,7 @@
 
 .thumbnails {
 	padding: 0 !important;
-	margin: 0 !important;
+	margin: 0 0 es(10) !important;
 	overflow: hidden;
 	letter-spacing: -0.4em;
 
@@ -254,6 +254,13 @@ nav.pageNav {
 		@include inline-block();
 		@include fz($font-size);
 		color: $color;
+	}
+
+	.revisions {
+		&:before {
+			content: '|';
+			padding-right: es(5);
+		}
 	}
 
 	a {
