@@ -48,6 +48,7 @@ export class Illust {
 		page.removeClassElement = "#header";
 		page.addClassElement = "article h1";
 
+		$scope.$storage.pixiv = pixiv;
 		page.latestUpdated = pixiv[0].updated;
 		if($scope.$storage.pixiv) page.storageUpdated = $scope.$storage.pixiv[0].updated;
 		page.load();

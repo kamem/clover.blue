@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
   -webkit-text-size-adjust: none;
   background: #fffcf8;
@@ -99,10 +100,11 @@ main,
   letter-spacing: -0.4em;
 }
 #header nav li {
-  overflow: hidden;
   display: inline-block;
   letter-spacing: normal;
   margin-right: 2rem;
+  text-indent: -9999px;
+  position: relative;
 }
 #header nav li:last-child {
   margin-right: 10px;
@@ -114,8 +116,7 @@ main,
   color: #94dcef;
   text-decoration: none;
   background: #fff;
-  font-size: 19px;
-  font-size: 1.9rem;
+  font-size: 1px;
   -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
   -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
@@ -127,10 +128,39 @@ main,
   display: block;
   line-height: 3rem;
   text-indent: 0;
+  font-size: 19px;
+  font-size: 1.9rem;
+}
+#header nav a:after {
+  content: 'test';
+  display: block;
+  width: 7rem !important;
+  margin-left: -3.5rem;
+  text-align: center;
+  background: #fff;
+  position: absolute;
+  top: -2.3rem;
+  left: 50%;
+  text-indent: 0;
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
+  font-size: 12px;
+  font-size: 1.2rem;
+  -moz-border-radius: 0.3rem;
+  -webkit-border-radius: 0.3rem;
+  border-radius: 0.3rem;
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
+  display: none;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  opacity: 0.9;
 }
 #header nav a:hover {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
-  opacity: 0.8;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  opacity: 0.9;
+}
+#header nav a:hover:after {
+  display: block;
 }
 #header nav .illust a,
 #header nav .weblog a,
@@ -151,6 +181,21 @@ main,
 }
 #header nav .about a:before {
   content: '?';
+}
+#header nav .illust a:after {
+  content: "Illust";
+}
+#header nav .diary a:after {
+  content: "Diary";
+}
+#header nav .weblog a:after {
+  content: "Weblog";
+}
+#header nav .photo a:after {
+  content: "Photo";
+}
+#header nav .about a:after {
+  content: 'About';
 }
 #header nav .on a {
   color: #f99 !important;
