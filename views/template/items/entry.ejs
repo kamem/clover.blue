@@ -16,7 +16,7 @@
 			<h2 class="pageNav">目次</h2>
 			<ol>
 				<li ng-repeat="headding in pageHeadingElement" ng-cloak ng-if="headding.tagName === 'H2'">
-					<a ng-href="{{headding.lastElementChild.hash}}">{{headding.innerText}}</a>
+					<a ng-href="#{{headding.id}}">{{headding.innerText}}</a>
 				</li>
 			</ol>
 		</nav>

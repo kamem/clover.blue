@@ -93,6 +93,7 @@ main,
 #header nav ul {
   margin: auto 0;
   height: 3rem;
+  width: 19rem;
   position: absolute;
   top: 0;
   right: 0;

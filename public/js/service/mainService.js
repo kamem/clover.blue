@@ -6,10 +6,10 @@ define(["require", "exports"], function (require, exports) {
         }
         mainService.prototype.CreatePageNav = function ($scope) {
             var $h = angular.element(document.querySelectorAll("h2:not(.pageNav)"));
-            $scope.pageHeadingElement = $h;
             angular.forEach($h, function (ele, i) {
                 ele.id = "2-" + (i + 1);
             });
+            $scope.pageHeadingElement = $h;
         };
         return mainService;
     })();
