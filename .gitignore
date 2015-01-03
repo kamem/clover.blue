@@ -4,4 +4,5 @@ Thumbs.db
 
 #directory ignore
 .sass-cache/
+.idea/
 node_modules/
