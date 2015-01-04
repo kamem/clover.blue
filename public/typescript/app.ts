@@ -9,7 +9,8 @@ import mainService = require('service/mainService');
 var module: ng.IModule = angular.module('cloverblue', [
 	'ngStorage',
 	'ngRoute',
-	'ngSanitize'
+	'ngSanitize',
+	'ga'
 ]);
 
 
@@ -26,39 +27,39 @@ module.factory('pixivFactory', ['$http', ($http) => new mainFactory.pixivFactory
 module.controller("Normal", ['$scope', 'mainService', ($scope, mainService) => new mainController.Normal($scope, mainService)]);
 
 module.controller('Index',[
-	'$scope', 'qiitaFactory', '$localStorage',
-	($scope, qiitaFactory, $localStorage) =>
-	new mainController.Index($scope, qiitaFactory, $localStorage)
+	'$scope', 'qiitaFactory', '$localStorage', 'ga',
+	($scope, qiitaFactory, $localStorage, ga) =>
+	new mainController.Index($scope, qiitaFactory, $localStorage, ga)
 ]);
 
 module.controller('Photo',[
-	'$scope', 'flickrFactory', '$localStorage', 'filterFilter',
-	($scope, flickrFactory, $localStorage, filterFilter) =>
-	new mainController.Photo($scope, flickrFactory, $localStorage, filterFilter)
+	'$scope', 'flickrFactory', '$localStorage', 'filterFilter', 'ga',
+	($scope, flickrFactory, $localStorage, filterFilter, ga) =>
+	new mainController.Photo($scope, flickrFactory, $localStorage, filterFilter, ga)
 ]);
 
 module.controller('Weblog',[
-	'$scope', 'qiitaFactory', '$localStorage',
-	($scope, qiitaFactory, $localStorage) =>
-	new mainController.Index($scope, qiitaFactory, $localStorage)
+	'$scope', 'qiitaFactory', '$localStorage', 'ga',
+	($scope, qiitaFactory, $localStorage, ga) =>
+	new mainController.Weblog($scope, qiitaFactory, $localStorage, ga)
 ]);
 
 module.controller('Illust',[
-	'$scope', 'pixivFactory', '$localStorage', 'filterFilter',
-	($scope, pixivFactory, $localStorage, filterFilter) =>
-	new mainController.Illust($scope, pixivFactory, $localStorage, filterFilter)
+	'$scope', 'pixivFactory', '$localStorage', 'filterFilter', 'ga',
+	($scope, pixivFactory, $localStorage, filterFilter, ga) =>
+	new mainController.Illust($scope, pixivFactory, $localStorage, filterFilter, ga)
 ]);
 
 module.controller('Entry',[
-	'$scope', 'qiitaFactory', '$localStorage', 'filterFilter', 'mainService',
-	($scope, qiitaFactory, $localStorage, filterFilter, mainService) =>
-	new mainController.Entry($scope, qiitaFactory, $localStorage, filterFilter, mainService)
+	'$scope', 'qiitaFactory', '$localStorage', 'filterFilter', 'mainService', 'ga',
+	($scope, qiitaFactory, $localStorage, filterFilter, mainService, ga) =>
+	new mainController.Entry($scope, qiitaFactory, $localStorage, filterFilter, mainService, ga)
 ]);
 
 module.controller('Tag',[
-	'$scope', 'qiitaFactory', '$localStorage', 'filterFilter',
-	($scope, qiitaFactory, $localStorage, filterFilter) =>
-	new mainController.Tag($scope, qiitaFactory, $localStorage, filterFilter)
+	'$scope', 'qiitaFactory', '$localStorage', 'filterFilter', 'ga',
+	($scope, qiitaFactory, $localStorage, filterFilter, ga) =>
+	new mainController.Tag($scope, qiitaFactory, $localStorage, filterFilter, ga)
 ]);
 
 

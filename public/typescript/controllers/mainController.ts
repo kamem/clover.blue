@@ -8,7 +8,7 @@ declare var pixiv;
 import prettify = require('prettify');
 
 export class Normal {
-  constructor($scope, mainService) {
+  constructor($scope, mainService, ga) {
     angular.element(document.querySelectorAll("#header")).addClass("off");
 
     angular.element(document).ready(() => {
@@ -19,7 +19,7 @@ export class Normal {
 }
 
 export class Index {
-  constructor($scope, qiitaFactory, $localStorage) {
+  constructor($scope, qiitaFactory, $localStorage, ga) {
 		var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', '');
 		page.removeClassElement = "#header";
 		page.addClassElement = "article h1";
@@ -27,11 +27,13 @@ export class Index {
 		page.latestUpdated = qiita[0].updated;
 		if($scope.$storage.qiita) page.storageUpdated = Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'));
 		page.load();
+
+		ga('send', 'pageview');
   }
 }
 
 export class Photo {
-  constructor($scope, flickrFactory, $localStorage, filterFilter) {
+  constructor($scope, flickrFactory, $localStorage, filterFilter, ga) {
 		var page = new entry.CreatePage($scope, flickrFactory, $localStorage, 'flickr', '');
 		page.removeClassElement = "#header";
 		page.addClassElement = "article h1";
@@ -39,11 +41,13 @@ export class Photo {
 		page.latestUpdated = flickr[0].updated;
 		if($scope.$storage.flickr) page.storageUpdated = $scope.$storage.flickr[0].dateuploaded;
 		page.load();
-  }
+
+		ga('send', 'pageview');
+	}
 }
 
 export class Illust {
-  constructor($scope, pixivFactory, $localStorage, filterFilter) {
+  constructor($scope, pixivFactory, $localStorage, filterFilter, ga) {
 		var page = new entry.CreatePage($scope, pixivFactory, $localStorage, 'pixiv', '');
 		page.removeClassElement = "#header";
 		page.addClassElement = "article h1";
@@ -52,11 +56,13 @@ export class Illust {
 		page.latestUpdated = pixiv[0].updated;
 		if($scope.$storage.pixiv) page.storageUpdated = $scope.$storage.pixiv[0].updated;
 		page.load();
-  }
+
+		ga('send', 'pageview');
+	}
 }
 
 export class Weblog {
-  constructor($scope, qiitaFactory, $localStorage) {
+  constructor($scope, qiitaFactory, $localStorage, ga) {
 		var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', '');
 		page.removeClassElement = "#header";
 		page.addClassElement = "article h1";
@@ -64,11 +70,13 @@ export class Weblog {
 		page.latestUpdated = qiita[0].updated;
 		if($scope.$storage.qiita) page.storageUpdated = Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'));
 		page.load();
+
+		ga('send', 'pageview');
   }
 }
 
 export class Entry {
-  constructor($scope, qiitaFactory, $localStorage, filterFilter, mainService) {
+  constructor($scope, qiitaFactory, $localStorage, filterFilter, mainService, ga) {
 		var currentPage: string = location.pathname.split('/').pop();
 		var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', filterFilter);
 		page.addClassElement = "#header";
@@ -76,6 +84,8 @@ export class Entry {
 		page.latestUpdated = filterFilter(qiita, {uuid: currentPage})[0].updated;
 		if($scope.$storage.qiita) page.storageUpdated = Date.parse(filterFilter($scope.$storage.qiita, {uuid: currentPage})[0].updated_at.replace(/-/g, '/'));
 		page.load();
+
+		ga('send', 'pageview');
 
     angular.element(document).ready(() => {
     	mainService.CreatePageNav($scope);
@@ -96,6 +106,8 @@ export class Tag {
 		page.latestUpdated = qiita[0].updated;
 		if($scope.$storage.qiita) page.storageUpdated = Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'));
 		page.load();
+
+		ga('send', 'pageview');
   }
 }
 

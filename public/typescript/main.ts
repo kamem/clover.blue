@@ -5,12 +5,13 @@ require.config({
 	paths: {
 		jquery: 'components/jquery/dist/jquery',
 		prettify: 'components/google-code-prettify/src/prettify',
+		ga: 'components/angular-ga/ga',
 
 		colorbox: 'components/colorbox.min',
 		angular: 'components/angular/angular.min',
     ngStorage: 'components/ngstorage/ngStorage',
     ngRoute: 'components/angular-route/angular-route',
-    ngSanitize: 'components/angular-sanitize/angular-sanitize',
+    ngSanitize: 'components/angular-sanitize/angular-sanitize'
 	},
 	shim: {
 		jquery: {
@@ -18,6 +19,9 @@ require.config({
 		},
 		prettify: {
 			exports: 'prettify'
+		},
+		ga: {
+			exports: 'ga'
 		},
 
 		angular: {
@@ -41,6 +45,7 @@ require([
 	'ngRoute',
 	'ngSanitize',
 	'prettify',
+	'ga',
 	'filter/mainFilter'],
 	function (angular) {
 		angular.bootstrap(document, ['cloverblue']);
