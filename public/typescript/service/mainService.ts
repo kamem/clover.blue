@@ -16,7 +16,7 @@ export class mainService {
   }
 
 	public ChangeTitle() {
-		var title = angular.element(document.querySelectorAll("main h1")).text() + ' - clover.blue';
+		var title = decodeURI(angular.element(document.querySelectorAll("main h1")).text()) + ' - clover.blue';
 		angular.element(document.querySelectorAll("title")).text(title);
 	}
 

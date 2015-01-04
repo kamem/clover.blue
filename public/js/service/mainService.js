@@ -12,7 +12,7 @@ define(["require", "exports"], function (require, exports) {
             $scope.pageHeadingElement = $h;
         };
         mainService.prototype.ChangeTitle = function () {
-            var title = angular.element(document.querySelectorAll("main h1")).text() + ' - clover.blue';
+            var title = decodeURI(angular.element(document.querySelectorAll("main h1")).text()) + ' - clover.blue';
             angular.element(document.querySelectorAll("title")).text(title);
         };
         mainService.prototype.LoadSns = function () {
