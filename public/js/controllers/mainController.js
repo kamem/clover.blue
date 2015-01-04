@@ -140,15 +140,27 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                 });
             };
             CreatePage.flickr = function ($scope, factory, filterFilter, name) {
+                var MAX = 100;
                 var items = [];
                 factory.getItems().then(function (res) {
                     res.data.photos.photo.forEach(function (photo) {
                         factory.getItemsInfo(photo.id).then(function (res) {
                             items.push(res.data.photo);
-                            $scope.$storage.flickr = items;
-                            CreatePage.scopeSetting($scope, factory, filterFilter, name, items);
+                            if (items.length === MAX) {
+                                items.sort(function (a, b) {
+                                    var x = a.dateuploaded;
+                                    var y = b.dateuploaded;
+                                    if (x < y)
+                                        return 1;
+                                    if (x > y)
+                                        return -1;
+                                    return 0;
+                                });
+                                $scope.$storage.flickr = items;
+                                CreatePage.scopeSetting($scope, factory, filterFilter, name, items);
+                                $scope.showLoading = false;
+                            }
                         });
-                        $scope.showLoading = false;
                     });
                 }, function (status) {
                     $scope.showLoading = false;

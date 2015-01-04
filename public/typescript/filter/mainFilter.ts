@@ -10,9 +10,3 @@ app.filter('dateParse', () => {
     return !!str ? Date.parse(str.replace(/-/g, '/')) : str;
   };
 });
-
-app.filter('tree', () => {
-  return function(str) {
-    return str.match(/<[hH][1-3].*?>/g);
-  };
-});

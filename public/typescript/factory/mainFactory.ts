@@ -33,6 +33,8 @@ export class qiitaFactory {
   }
 }
 
+
+
 export class flickrFactory {
   constructor($http) {
 		var API_URI: string = 'https://api.flickr.com/services/rest/';

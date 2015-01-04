@@ -6,9 +6,4 @@ define(["require", "exports", 'app'], function (require, exports, app) {
             return !!str ? Date.parse(str.replace(/-/g, '/')) : str;
         };
     });
-    app.filter('tree', function () {
-        return function (str) {
-            return str.match(/<[hH][1-3].*?>/g);
-        };
-    });
 });
