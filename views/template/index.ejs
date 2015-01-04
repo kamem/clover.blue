@@ -6,13 +6,13 @@
 	<div class="content" ng-class="{loading: showLoading}">
 		<ul class="tags">
 			<li ng-repeat="tag in tags" ng-cloak>
-				<a ng-href="/tags/{{tag}}">{{tag}}</a>
+				<a ng-href="/tags/{{tag}}" ga="'send', 'event', '/', 'click', '{{tag}}'">{{tag}}</a>
 			</li>
 		</ul>
 
 		<ul>
 			<li ng-repeat="item in items" ng-cloak>
-				<a ng-href="/items/{{item.uuid}}">{{item.title}}</a>
+				<a ng-href="/items/{{item.uuid}}" ga="'send', 'event', '/', 'click', '{{item.title}}'">{{item.title}}</a>
 			</li>
 		</ul>
 		<p ng-cloak ng-show="showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>

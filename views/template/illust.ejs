@@ -12,7 +12,7 @@
 
 		<ul class="thumbnails center">
 			<li ng-repeat="item in items" ng-cloak>
-				<a href="{{item.img}}"><img ng-src="{{item.thumbnail}}"></a>
+				<a href="{{item.img}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{item.title}}'"><img ng-src="{{item.thumbnail}}"></a>
 			</li>
 		</ul>
 		<p ng-cloak ng-show="showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>

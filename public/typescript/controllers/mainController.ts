@@ -98,7 +98,7 @@ export class Entry {
 }
 
 export class Tag {
-  constructor($scope, qiitaFactory, $localStorage, filterFilter) {
+  constructor($scope, qiitaFactory, $localStorage, filterFilter, ga) {
 		var currentPage: string = location.pathname.split('/').pop();
 		var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', filterFilter);
 		page.removeClassElement = "#header";
@@ -184,6 +184,7 @@ module entry {
 
 		static scopeSetting($scope, factory, filterFilter, name, items): void {
 			var currentPage = location.pathname.split('/').pop();
+			$scope.currentPage = currentPage;
 			$scope.items = filterFilter ? filterFilter(items, {tags: currentPage}) : items;
 			if(filterFilter) $scope.item = filterFilter(items, {uuid: currentPage})[0];
 			$scope.tags = factory.getTags($scope.$storage[name]);

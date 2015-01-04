@@ -90,7 +90,7 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     })();
     exports.Entry = Entry;
     var Tag = (function () {
-        function Tag($scope, qiitaFactory, $localStorage, filterFilter) {
+        function Tag($scope, qiitaFactory, $localStorage, filterFilter, ga) {
             var currentPage = location.pathname.split('/').pop();
             var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', filterFilter);
             page.removeClassElement = "#header";
@@ -175,6 +175,7 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
             };
             CreatePage.scopeSetting = function ($scope, factory, filterFilter, name, items) {
                 var currentPage = location.pathname.split('/').pop();
+                $scope.currentPage = currentPage;
                 $scope.items = filterFilter ? filterFilter(items, { tags: currentPage }) : items;
                 if (filterFilter)
                     $scope.item = filterFilter(items, { uuid: currentPage })[0];
