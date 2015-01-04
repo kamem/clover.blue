@@ -95,6 +95,9 @@ $header-top: 10;
 			margin-right: es($size - 10);
 			text-indent: -9999px;
 			position: relative;
+			&.home {
+				display: none;
+			}
 			&:last-child {
 				margin-right: 10px;
 			}
@@ -141,12 +144,16 @@ $header-top: 10;
 				}
 			}
 		}
+		.home a,
 		.illust a,
 		.weblog a,
 		.photo a {
 				font-family: 'icomoon';
 		}
 
+		.home a:before {
+			content: "\e901";
+		}
 		.illust a:before {
 			content: "\e906";
 		}
@@ -163,6 +170,9 @@ $header-top: 10;
 			content: '?';
 		}
 
+		.home a:after {
+			content: 'Home';
+		}
 		.illust a:after {
 			content: "Illust";
 		}
@@ -183,6 +193,31 @@ $header-top: 10;
 			color: #f99 !important;
 		}
 	}
+
+ 	@media screen and (max-width:  es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
+		&.off {
+			top: es($header-top);
+
+			&:after {
+				display: none;
+			}
+		}
+
+		h1 {
+			display: none;
+		}
+		nav {
+			ul {
+				width: 100%;
+				text-align: center;
+				li {
+					&.home {
+						display: inline-block;
+					}
+				}
+			}
+		}
+ 	}
 }
 
 /*----------------------------------------

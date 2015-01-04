@@ -107,6 +107,9 @@ main,
   text-indent: -9999px;
   position: relative;
 }
+#header nav li.home {
+  display: none;
+}
 #header nav li:last-child {
   margin-right: 10px;
 }
@@ -163,10 +166,14 @@ main,
 #header nav a:hover:after {
   display: block;
 }
+#header nav .home a,
 #header nav .illust a,
 #header nav .weblog a,
 #header nav .photo a {
   font-family: 'icomoon';
+}
+#header nav .home a:before {
+  content: "\e901";
 }
 #header nav .illust a:before {
   content: "\e906";
@@ -182,6 +189,9 @@ main,
 }
 #header nav .about a:before {
   content: '?';
+}
+#header nav .home a:after {
+  content: 'Home';
 }
 #header nav .illust a:after {
   content: "Illust";
@@ -200,6 +210,24 @@ main,
 }
 #header nav .on a {
   color: #f99 !important;
+}
+@media screen and (max-width: 40.625rem) {
+  #header.off {
+    top: 1rem;
+  }
+  #header.off:after {
+    display: none;
+  }
+  #header h1 {
+    display: none;
+  }
+  #header nav ul {
+    width: 100%;
+    text-align: center;
+  }
+  #header nav ul li.home {
+    display: inline-block;
+  }
 }
 
 /*----------------------------------------
