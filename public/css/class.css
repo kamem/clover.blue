@@ -486,3 +486,29 @@ nav.pageNav li {
     margin-left: 1rem;
   }
 }
+
+.sns {
+  background: #fffcf8;
+  padding: 3rem 0;
+  text-align: center;
+  line-height: 1;
+}
+.sns img {
+  width: auto;
+  height: auto;
+}
+.sns li {
+  margin-right: 0.5em !important;
+  display: inline-block;
+  line-height: 1 !important;
+  vertical-align: top;
+}
+.sns li.twitter {
+  width: 90px;
+}
+.sns li.google {
+  width: 70px;
+}
+.sns li:last-child {
+  margin-right: 0;
+}

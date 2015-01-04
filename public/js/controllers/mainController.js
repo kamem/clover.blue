@@ -7,13 +7,15 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
             angular.element(document).ready(function () {
                 mainService.CreatePageNav($scope);
                 $scope.$apply();
+                mainService.ChangeTitle();
+                mainService.LoadSns();
             });
         }
         return Normal;
     })();
     exports.Normal = Normal;
     var Index = (function () {
-        function Index($scope, qiitaFactory, $localStorage, ga) {
+        function Index($scope, mainService, qiitaFactory, $localStorage, ga) {
             var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', '');
             page.removeClassElement = "#header";
             page.addClassElement = "article h1";
@@ -22,12 +24,16 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                 page.storageUpdated = Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'));
             page.load();
             ga('send', 'pageview');
+            angular.element(document).ready(function () {
+                mainService.ChangeTitle();
+                mainService.LoadSns();
+            });
         }
         return Index;
     })();
     exports.Index = Index;
     var Photo = (function () {
-        function Photo($scope, flickrFactory, $localStorage, filterFilter, ga) {
+        function Photo($scope, mainService, flickrFactory, $localStorage, filterFilter, ga) {
             var page = new entry.CreatePage($scope, flickrFactory, $localStorage, 'flickr', '');
             page.removeClassElement = "#header";
             page.addClassElement = "article h1";
@@ -36,12 +42,16 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                 page.storageUpdated = $scope.$storage.flickr[0].dateuploaded;
             page.load();
             ga('send', 'pageview');
+            angular.element(document).ready(function () {
+                mainService.ChangeTitle();
+                mainService.LoadSns();
+            });
         }
         return Photo;
     })();
     exports.Photo = Photo;
     var Illust = (function () {
-        function Illust($scope, pixivFactory, $localStorage, filterFilter, ga) {
+        function Illust($scope, mainService, pixivFactory, $localStorage, filterFilter, ga) {
             var page = new entry.CreatePage($scope, pixivFactory, $localStorage, 'pixiv', '');
             page.removeClassElement = "#header";
             page.addClassElement = "article h1";
@@ -51,12 +61,16 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                 page.storageUpdated = $scope.$storage.pixiv[0].updated;
             page.load();
             ga('send', 'pageview');
+            angular.element(document).ready(function () {
+                mainService.ChangeTitle();
+                mainService.LoadSns();
+            });
         }
         return Illust;
     })();
     exports.Illust = Illust;
     var Weblog = (function () {
-        function Weblog($scope, qiitaFactory, $localStorage, ga) {
+        function Weblog($scope, mainService, qiitaFactory, $localStorage, ga) {
             var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', '');
             page.removeClassElement = "#header";
             page.addClassElement = "article h1";
@@ -65,12 +79,16 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                 page.storageUpdated = Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'));
             page.load();
             ga('send', 'pageview');
+            angular.element(document).ready(function () {
+                mainService.ChangeTitle();
+                mainService.LoadSns();
+            });
         }
         return Weblog;
     })();
     exports.Weblog = Weblog;
     var Entry = (function () {
-        function Entry($scope, qiitaFactory, $localStorage, filterFilter, mainService, ga) {
+        function Entry($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) {
             var currentPage = location.pathname.split('/').pop();
             var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', filterFilter);
             page.addClassElement = "#header";
@@ -82,6 +100,8 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
             angular.element(document).ready(function () {
                 mainService.CreatePageNav($scope);
                 $scope.$apply();
+                mainService.ChangeTitle();
+                mainService.LoadSns();
                 angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
                 prettify.prettyPrint();
             });
@@ -90,7 +110,7 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     })();
     exports.Entry = Entry;
     var Tag = (function () {
-        function Tag($scope, qiitaFactory, $localStorage, filterFilter, ga) {
+        function Tag($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) {
             var currentPage = location.pathname.split('/').pop();
             var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', filterFilter);
             page.removeClassElement = "#header";
@@ -100,6 +120,10 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                 page.storageUpdated = Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'));
             page.load();
             ga('send', 'pageview');
+            angular.element(document).ready(function () {
+                mainService.ChangeTitle();
+                mainService.LoadSns();
+            });
         }
         return Tag;
     })();

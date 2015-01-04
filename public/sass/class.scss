@@ -400,3 +400,31 @@ nav.pageNav {
 		}
 	}
 }
+
+.sns {
+	background: $bgColor;
+	padding: es(30) 0;
+	text-align: center;
+	line-height: 1;
+	img {
+		width: auto;
+		height: auto;
+	}
+	li {
+		margin-right: 0.5em !important;
+		display: inline-block;
+		line-height: 1 !important;
+		vertical-align: top;
+
+		&.twitter {
+			width: 90px;
+		}
+		&.google {
+			width: 70px;
+		}
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}

@@ -24,42 +24,42 @@ module.factory('pixivFactory', ['$http', ($http) => new mainFactory.pixivFactory
 
 
 //controller
-module.controller("Normal", ['$scope', 'mainService', ($scope, mainService) => new mainController.Normal($scope, mainService)]);
+module.controller("Normal", ['$scope', 'mainService', 'ga', ($scope, mainService, ga) => new mainController.Normal($scope, mainService, ga)]);
 
 module.controller('Index',[
-	'$scope', 'qiitaFactory', '$localStorage', 'ga',
-	($scope, qiitaFactory, $localStorage, ga) =>
-	new mainController.Index($scope, qiitaFactory, $localStorage, ga)
+	'$scope', 'mainService', 'qiitaFactory', '$localStorage', 'ga',
+	($scope, mainService, qiitaFactory, $localStorage, ga) =>
+	new mainController.Index($scope, mainService, qiitaFactory, $localStorage, ga)
 ]);
 
 module.controller('Photo',[
-	'$scope', 'flickrFactory', '$localStorage', 'filterFilter', 'ga',
-	($scope, flickrFactory, $localStorage, filterFilter, ga) =>
-	new mainController.Photo($scope, flickrFactory, $localStorage, filterFilter, ga)
+	'$scope', 'mainService', 'flickrFactory', '$localStorage', 'filterFilter', 'ga',
+	($scope, mainService, flickrFactory, $localStorage, filterFilter, ga) =>
+	new mainController.Photo($scope, mainService, flickrFactory, $localStorage, filterFilter, ga)
 ]);
 
 module.controller('Weblog',[
-	'$scope', 'qiitaFactory', '$localStorage', 'ga',
-	($scope, qiitaFactory, $localStorage, ga) =>
-	new mainController.Weblog($scope, qiitaFactory, $localStorage, ga)
+	'$scope', 'mainService', 'qiitaFactory', '$localStorage', 'ga',
+	($scope, mainService, qiitaFactory, $localStorage, ga) =>
+	new mainController.Weblog($scope, mainService, qiitaFactory, $localStorage, ga)
 ]);
 
 module.controller('Illust',[
-	'$scope', 'pixivFactory', '$localStorage', 'filterFilter', 'ga',
-	($scope, pixivFactory, $localStorage, filterFilter, ga) =>
-	new mainController.Illust($scope, pixivFactory, $localStorage, filterFilter, ga)
+	'$scope', 'mainService', 'pixivFactory', '$localStorage', 'filterFilter', 'ga',
+	($scope, mainService, pixivFactory, $localStorage, filterFilter, ga) =>
+	new mainController.Illust($scope, mainService, pixivFactory, $localStorage, filterFilter, ga)
 ]);
 
 module.controller('Entry',[
-	'$scope', 'qiitaFactory', '$localStorage', 'filterFilter', 'mainService', 'ga',
-	($scope, qiitaFactory, $localStorage, filterFilter, mainService, ga) =>
-	new mainController.Entry($scope, qiitaFactory, $localStorage, filterFilter, mainService, ga)
+	'$scope', 'mainService', 'qiitaFactory', '$localStorage', 'filterFilter', 'ga',
+	($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) =>
+	new mainController.Entry($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga)
 ]);
 
 module.controller('Tag',[
-	'$scope', 'qiitaFactory', '$localStorage', 'filterFilter', 'ga',
-	($scope, qiitaFactory, $localStorage, filterFilter, ga) =>
-	new mainController.Tag($scope, qiitaFactory, $localStorage, filterFilter, ga)
+	'$scope', 'mainService', 'qiitaFactory', '$localStorage', 'filterFilter', 'ga',
+	($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) =>
+	new mainController.Tag($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga)
 ]);
 
 

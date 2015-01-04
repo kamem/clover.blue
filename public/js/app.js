@@ -14,53 +14,58 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
     module.factory('flickrFactory', ['$http', function ($http) { return new mainFactory.flickrFactory($http); }]);
     module.factory('pixivFactory', ['$http', function ($http) { return new mainFactory.pixivFactory($http); }]);
     //controller
-    module.controller("Normal", ['$scope', 'mainService', function ($scope, mainService) { return new mainController.Normal($scope, mainService); }]);
+    module.controller("Normal", ['$scope', 'mainService', 'ga', function ($scope, mainService, ga) { return new mainController.Normal($scope, mainService, ga); }]);
     module.controller('Index', [
         '$scope',
+        'mainService',
         'qiitaFactory',
         '$localStorage',
         'ga',
-        function ($scope, qiitaFactory, $localStorage, ga) { return new mainController.Index($scope, qiitaFactory, $localStorage, ga); }
+        function ($scope, mainService, qiitaFactory, $localStorage, ga) { return new mainController.Index($scope, mainService, qiitaFactory, $localStorage, ga); }
     ]);
     module.controller('Photo', [
         '$scope',
+        'mainService',
         'flickrFactory',
         '$localStorage',
         'filterFilter',
         'ga',
-        function ($scope, flickrFactory, $localStorage, filterFilter, ga) { return new mainController.Photo($scope, flickrFactory, $localStorage, filterFilter, ga); }
+        function ($scope, mainService, flickrFactory, $localStorage, filterFilter, ga) { return new mainController.Photo($scope, mainService, flickrFactory, $localStorage, filterFilter, ga); }
     ]);
     module.controller('Weblog', [
         '$scope',
+        'mainService',
         'qiitaFactory',
         '$localStorage',
         'ga',
-        function ($scope, qiitaFactory, $localStorage, ga) { return new mainController.Weblog($scope, qiitaFactory, $localStorage, ga); }
+        function ($scope, mainService, qiitaFactory, $localStorage, ga) { return new mainController.Weblog($scope, mainService, qiitaFactory, $localStorage, ga); }
     ]);
     module.controller('Illust', [
         '$scope',
+        'mainService',
         'pixivFactory',
         '$localStorage',
         'filterFilter',
         'ga',
-        function ($scope, pixivFactory, $localStorage, filterFilter, ga) { return new mainController.Illust($scope, pixivFactory, $localStorage, filterFilter, ga); }
+        function ($scope, mainService, pixivFactory, $localStorage, filterFilter, ga) { return new mainController.Illust($scope, mainService, pixivFactory, $localStorage, filterFilter, ga); }
     ]);
     module.controller('Entry', [
         '$scope',
+        'mainService',
         'qiitaFactory',
         '$localStorage',
         'filterFilter',
-        'mainService',
         'ga',
-        function ($scope, qiitaFactory, $localStorage, filterFilter, mainService, ga) { return new mainController.Entry($scope, qiitaFactory, $localStorage, filterFilter, mainService, ga); }
+        function ($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) { return new mainController.Entry($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga); }
     ]);
     module.controller('Tag', [
         '$scope',
+        'mainService',
         'qiitaFactory',
         '$localStorage',
         'filterFilter',
         'ga',
-        function ($scope, qiitaFactory, $localStorage, filterFilter, ga) { return new mainController.Tag($scope, qiitaFactory, $localStorage, filterFilter, ga); }
+        function ($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) { return new mainController.Tag($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga); }
     ]);
     //route
     module.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {

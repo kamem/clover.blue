@@ -46,6 +46,7 @@ require([
 	'ngSanitize',
 	'prettify',
 	'ga',
+	'directives/mainDirective',
 	'filter/mainFilter'],
 	function (angular) {
 		angular.bootstrap(document, ['cloverblue']);

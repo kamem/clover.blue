@@ -14,12 +14,14 @@ export class Normal {
     angular.element(document).ready(() => {
     	mainService.CreatePageNav($scope);
 			$scope.$apply();
+			mainService.ChangeTitle();
+			mainService.LoadSns();
     });
   }
 }
 
 export class Index {
-  constructor($scope, qiitaFactory, $localStorage, ga) {
+  constructor($scope, mainService, qiitaFactory, $localStorage, ga) {
 		var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', '');
 		page.removeClassElement = "#header";
 		page.addClassElement = "article h1";
@@ -29,11 +31,16 @@ export class Index {
 		page.load();
 
 		ga('send', 'pageview');
+
+		angular.element(document).ready(() => {
+			mainService.ChangeTitle();
+			mainService.LoadSns();
+		});
   }
 }
 
 export class Photo {
-  constructor($scope, flickrFactory, $localStorage, filterFilter, ga) {
+  constructor($scope, mainService, flickrFactory, $localStorage, filterFilter, ga) {
 		var page = new entry.CreatePage($scope, flickrFactory, $localStorage, 'flickr', '');
 		page.removeClassElement = "#header";
 		page.addClassElement = "article h1";
@@ -43,11 +50,16 @@ export class Photo {
 		page.load();
 
 		ga('send', 'pageview');
+
+		angular.element(document).ready(() => {
+			mainService.ChangeTitle();
+			mainService.LoadSns();
+		});
 	}
 }
 
 export class Illust {
-  constructor($scope, pixivFactory, $localStorage, filterFilter, ga) {
+  constructor($scope, mainService, pixivFactory, $localStorage, filterFilter, ga) {
 		var page = new entry.CreatePage($scope, pixivFactory, $localStorage, 'pixiv', '');
 		page.removeClassElement = "#header";
 		page.addClassElement = "article h1";
@@ -58,11 +70,16 @@ export class Illust {
 		page.load();
 
 		ga('send', 'pageview');
+
+		angular.element(document).ready(() => {
+			mainService.ChangeTitle();
+			mainService.LoadSns();
+		});
 	}
 }
 
 export class Weblog {
-  constructor($scope, qiitaFactory, $localStorage, ga) {
+  constructor($scope, mainService, qiitaFactory, $localStorage, ga) {
 		var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', '');
 		page.removeClassElement = "#header";
 		page.addClassElement = "article h1";
@@ -72,11 +89,16 @@ export class Weblog {
 		page.load();
 
 		ga('send', 'pageview');
+
+		angular.element(document).ready(() => {
+			mainService.ChangeTitle();
+			mainService.LoadSns();
+		});
   }
 }
 
 export class Entry {
-  constructor($scope, qiitaFactory, $localStorage, filterFilter, mainService, ga) {
+  constructor($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) {
 		var currentPage: string = location.pathname.split('/').pop();
 		var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', filterFilter);
 		page.addClassElement = "#header";
@@ -91,6 +113,9 @@ export class Entry {
     	mainService.CreatePageNav($scope);
 			$scope.$apply();
 
+			mainService.ChangeTitle();
+			mainService.LoadSns();
+
 			angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
 			prettify.prettyPrint();
     });
@@ -98,7 +123,7 @@ export class Entry {
 }
 
 export class Tag {
-  constructor($scope, qiitaFactory, $localStorage, filterFilter, ga) {
+  constructor($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) {
 		var currentPage: string = location.pathname.split('/').pop();
 		var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', filterFilter);
 		page.removeClassElement = "#header";
@@ -108,6 +133,11 @@ export class Tag {
 		page.load();
 
 		ga('send', 'pageview');
+
+		angular.element(document).ready(() => {
+			mainService.ChangeTitle();
+			mainService.LoadSns();
+		});
   }
 }
 
