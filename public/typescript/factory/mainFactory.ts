@@ -9,7 +9,7 @@ export class tumblrFactory {
 
 		return {
 			getItems: () => {
-				return $http.get(API_URI + 'blog/' + BLOG_HOST + '/posts?api_key=' + API_KEY).success((data, status, headers, config) =>
+				return $http.jsonp(API_URI + 'blog/' + BLOG_HOST + '/posts?api_key=' + API_KEY + '&callback=JSON_CALLBACK').success((data, status, headers, config) =>
 						data
 				).error((data, status, headers, config) =>
 						status
@@ -19,7 +19,7 @@ export class tumblrFactory {
 				var t = {};
 				angular.forEach(items, function(item) {
 					angular.forEach(item.tags, function(tag){
-						t[tag.name] = tag.name;
+						t[tag] = tag;
 					})
 				});
 
@@ -27,7 +27,6 @@ export class tumblrFactory {
 				angular.forEach(t, function(tag) {
 					this.push(tag);
 				},tags);
-
 				return tags;
 			}
 		};

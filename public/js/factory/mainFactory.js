@@ -8,13 +8,13 @@ define(["require", "exports"], function (require, exports) {
             var BLOG_HOST = 'clover-blue.tumblr.com';
             return {
                 getItems: function () {
-                    return $http.get(API_URI + 'blog/' + BLOG_HOST + '/posts?api_key=' + API_KEY).success(function (data, status, headers, config) { return data; }).error(function (data, status, headers, config) { return status; });
+                    return $http.jsonp(API_URI + 'blog/' + BLOG_HOST + '/posts?api_key=' + API_KEY + '&callback=JSON_CALLBACK').success(function (data, status, headers, config) { return data; }).error(function (data, status, headers, config) { return status; });
                 },
                 getTags: function (items) {
                     var t = {};
                     angular.forEach(items, function (item) {
                         angular.forEach(item.tags, function (tag) {
-                            t[tag.name] = tag.name;
+                            t[tag] = tag;
                         });
                     });
                     var tags = [];

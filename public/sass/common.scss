@@ -82,7 +82,7 @@ $header-top: 10;
 		ul {
 			margin: auto 0;
 			height: es($size);
-			width: es(190);
+			width: es(238);
 			position: absolute;
 			top: 0;
 			right: 0;
@@ -145,6 +145,7 @@ $header-top: 10;
 			}
 		}
 		.home a,
+		.diary a,
 		.illust a,
 		.weblog a,
 		.photo a {
@@ -213,6 +214,9 @@ $header-top: 10;
 				li {
 					&.home {
 						display: inline-block;
+					}
+					&:last-child {
+						margin-right: 0;
 					}
 				}
 			}

@@ -57,7 +57,7 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
         '$localStorage',
         'filterFilter',
         'ga',
-        function ($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) { return new mainController.Diary($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga); }
+        function ($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) { return new mainController.Diary($scope, mainService, tumblrFactory, $localStorage, ga); }
     ]);
     module.controller('Entry', [
         '$scope',
@@ -67,6 +67,15 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
         'filterFilter',
         'ga',
         function ($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) { return new mainController.Entry($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga); }
+    ]);
+    module.controller('TumblrEntry', [
+        '$scope',
+        'mainService',
+        'tumblrFactory',
+        '$localStorage',
+        'filterFilter',
+        'ga',
+        function ($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) { return new mainController.TumblrEntry($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga); }
     ]);
     module.controller('Tag', [
         '$scope',
@@ -116,6 +125,13 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
                 return '/template/items/entry';
             },
             controller: 'Entry',
+            reloadOnSearch: false
+        });
+        $routeProvider.when('/post/:uuid', {
+            templateUrl: function (params) {
+                return '/template/post/entry';
+            },
+            controller: 'TumblrEntry',
             reloadOnSearch: false
         });
     }]);

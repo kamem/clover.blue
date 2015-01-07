@@ -93,7 +93,7 @@ main,
 #header nav ul {
   margin: auto 0;
   height: 3rem;
-  width: 19rem;
+  width: 23.8rem;
   position: absolute;
   top: 0;
   right: 0;
@@ -167,6 +167,7 @@ main,
   display: block;
 }
 #header nav .home a,
+#header nav .diary a,
 #header nav .illust a,
 #header nav .weblog a,
 #header nav .photo a {
@@ -227,6 +228,9 @@ main,
   }
   #header nav ul li.home {
     display: inline-block;
+  }
+  #header nav ul li:last-child {
+    margin-right: 0;
   }
 }
 

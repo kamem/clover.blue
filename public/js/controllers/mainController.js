@@ -76,7 +76,7 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
             page.addClassElement = "article h1";
             page.latestUpdated = tumblr[0].updated;
             if ($scope.$storage.tumblr)
-                page.storageUpdated = $scope.$storage.tumblr[0].timestamp;
+                page.storageUpdated = parseInt($scope.$storage.tumblr[0].timestamp);
             page.load();
             ga('send', 'pageview');
             angular.element(document).ready(function () {
@@ -127,6 +127,28 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
         return Entry;
     })();
     exports.Entry = Entry;
+    var TumblrEntry = (function () {
+        function TumblrEntry($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) {
+            var currentPage = location.pathname.split('/').pop();
+            var page = new entry.CreatePage($scope, tumblrFactory, $localStorage, 'tumblr', filterFilter);
+            page.addClassElement = "#header";
+            page.latestUpdated = filterFilter(tumblr, { uuid: currentPage })[0].updated;
+            if ($scope.$storage.tumblr)
+                page.storageUpdated = parseInt(filterFilter($scope.$storage.tumblr, { id: currentPage })[0].timestamp);
+            page.load();
+            ga('send', 'pageview');
+            angular.element(document).ready(function () {
+                mainService.CreatePageNav($scope);
+                $scope.$apply();
+                mainService.ChangeTitle();
+                mainService.LoadSns();
+                angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
+                prettify.prettyPrint();
+            });
+        }
+        return TumblrEntry;
+    })();
+    exports.TumblrEntry = TumblrEntry;
     var Tag = (function () {
         function Tag($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) {
             var currentPage = location.pathname.split('/').pop();
@@ -181,8 +203,8 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
             CreatePage.tumblr = function ($scope, factory, filterFilter, name, items) {
                 factory.getItems().then(function (res) {
                     console.log(res.data);
-                    $scope.$storage[name] = res.data;
-                    CreatePage.scopeSetting($scope, factory, filterFilter, name, res.data);
+                    $scope.$storage[name] = res.data.response.posts;
+                    CreatePage.scopeSetting($scope, factory, filterFilter, name, res.data.response.posts);
                 }, function (status) {
                     $scope.showLoading = false;
                     $scope.showErrorMessage = true;
@@ -230,7 +252,7 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                 $scope.currentPage = currentPage;
                 $scope.items = filterFilter ? filterFilter(items, { tags: currentPage }) : items;
                 if (filterFilter)
-                    $scope.item = filterFilter(items, { uuid: currentPage })[0];
+                    $scope.item = name === 'qiita' ? filterFilter(items, { uuid: currentPage })[0] : filterFilter(items, { id: currentPage })[0];
                 $scope.tags = factory.getTags($scope.$storage[name]);
                 $scope.showLoading = false;
             };

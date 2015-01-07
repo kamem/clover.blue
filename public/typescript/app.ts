@@ -54,13 +54,18 @@ module.controller('Illust',[
 module.controller('Diary',[
 	'$scope', 'mainService', 'tumblrFactory', '$localStorage', 'filterFilter', 'ga',
 	($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) =>
-		new mainController.Diary($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga)
+		new mainController.Diary($scope, mainService, tumblrFactory, $localStorage, ga)
 ]);
 
 module.controller('Entry',[
 	'$scope', 'mainService', 'qiitaFactory', '$localStorage', 'filterFilter', 'ga',
 	($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) =>
 	new mainController.Entry($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga)
+]);
+module.controller('TumblrEntry',[
+	'$scope', 'mainService', 'tumblrFactory', '$localStorage', 'filterFilter', 'ga',
+	($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) =>
+		new mainController.TumblrEntry($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga)
 ]);
 
 module.controller('Tag',[
@@ -118,6 +123,14 @@ module.config(['$routeProvider', '$locationProvider', ($routeProvider, $location
 		},
 		controller: 'Entry',
   	reloadOnSearch: false
+	});
+
+	$routeProvider.when('/post/:uuid', {
+		templateUrl: function(params) {
+			return '/template/post/entry';
+		},
+		controller: 'TumblrEntry',
+		reloadOnSearch: false
 	});
 }]);
 

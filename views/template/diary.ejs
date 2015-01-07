@@ -4,14 +4,14 @@
 	</header>
 
 	<div class="content">
-		<ul class="tags">
-			<li ng-repeat="tag in tags" ng-cloak>
-				<a ng-href="/tags/{{tag}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{tag}}'">{{tag}}</a>
-			</li>
-		</ul>
+		<!--<ul class="tags">-->
+			<!--<li ng-repeat="tag in tags" ng-cloak>-->
+				<!--<a ng-href="/tags/{{tag}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{tag}}'">{{tag}}</a>-->
+			<!--</li>-->
+		<!--</ul>-->
 
 		<ul>
-			<li ng-repeat="item in items" ng-cloak>
+			<li ng-repeat="item in items" ng-cloak ng-if="item.type !== 'photo'">
 				<a ng-href="/post/{{item.id}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{item.title}}'">{{item.title}}</a>
 			</li>
 		</ul>

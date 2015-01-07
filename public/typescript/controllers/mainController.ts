@@ -86,7 +86,7 @@ export class Diary {
 		page.addClassElement = "article h1";
 
 		page.latestUpdated = tumblr[0].updated;
-		if($scope.$storage.tumblr) page.storageUpdated = $scope.$storage.tumblr[0].timestamp;
+		if($scope.$storage.tumblr) page.storageUpdated = parseInt($scope.$storage.tumblr[0].timestamp);
 		page.load();
 
 		ga('send', 'pageview');
@@ -140,6 +140,30 @@ export class Entry {
 			prettify.prettyPrint();
     });
   }
+}
+export class TumblrEntry {
+	constructor($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) {
+		var currentPage: string = location.pathname.split('/').pop();
+		var page = new entry.CreatePage($scope, tumblrFactory, $localStorage, 'tumblr', filterFilter);
+		page.addClassElement = "#header";
+
+		page.latestUpdated = filterFilter(tumblr, {uuid: currentPage})[0].updated;
+		if($scope.$storage.tumblr) page.storageUpdated = parseInt(filterFilter($scope.$storage.tumblr, {id: currentPage})[0].timestamp);
+		page.load();
+
+		ga('send', 'pageview');
+
+		angular.element(document).ready(() => {
+			mainService.CreatePageNav($scope);
+			$scope.$apply();
+
+			mainService.ChangeTitle();
+			mainService.LoadSns();
+
+			angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
+			prettify.prettyPrint();
+		});
+	}
 }
 
 export class Tag {
@@ -196,9 +220,9 @@ module entry {
 		static tumblr($scope, factory, filterFilter, name, items): void {
 			factory.getItems().then((res) => {
 				console.log(res.data);
-				$scope.$storage[name] = res.data;
+				$scope.$storage[name] = res.data.response.posts;
 
-				CreatePage.scopeSetting($scope, factory, filterFilter, name, res.data);
+				CreatePage.scopeSetting($scope, factory, filterFilter, name, res.data.response.posts);
 			},(status) => {
 				$scope.showLoading = false;
 				$scope.showErrorMessage = true;
@@ -246,7 +270,7 @@ module entry {
 			var currentPage = location.pathname.split('/').pop();
 			$scope.currentPage = currentPage;
 			$scope.items = filterFilter ? filterFilter(items, {tags: currentPage}) : items;
-			if(filterFilter) $scope.item = filterFilter(items, {uuid: currentPage})[0];
+			if(filterFilter) $scope.item = name === 'qiita' ? filterFilter(items, {uuid: currentPage})[0] : filterFilter(items, {id: currentPage})[0];
 			$scope.tags = factory.getTags($scope.$storage[name]);
 			$scope.showLoading = false;
 		}
