@@ -1,6 +1,33 @@
 /// <reference path="../typings/tsd.d.ts" />
 'use strict';
 define(["require", "exports"], function (require, exports) {
+    var tumblrFactory = (function () {
+        function tumblrFactory($http) {
+            var API_URI = 'https://api.tumblr.com/v2/';
+            var API_KEY = 'hOCZhmORpcUgzzDFAJJ2Zq1aTckafCrYw9FoWp2up0EcdvuOYU';
+            var BLOG_HOST = 'clover-blue.tumblr.com';
+            return {
+                getItems: function () {
+                    return $http.get(API_URI + 'blog/' + BLOG_HOST + '/posts?api_key=' + API_KEY).success(function (data, status, headers, config) { return data; }).error(function (data, status, headers, config) { return status; });
+                },
+                getTags: function (items) {
+                    var t = {};
+                    angular.forEach(items, function (item) {
+                        angular.forEach(item.tags, function (tag) {
+                            t[tag.name] = tag.name;
+                        });
+                    });
+                    var tags = [];
+                    angular.forEach(t, function (tag) {
+                        this.push(tag);
+                    }, tags);
+                    return tags;
+                }
+            };
+        }
+        return tumblrFactory;
+    })();
+    exports.tumblrFactory = tumblrFactory;
     var qiitaFactory = (function () {
         function qiitaFactory($http) {
             var API_URI = 'https://qiita.com/api/v1/';

@@ -13,6 +13,7 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
     module.factory('qiitaFactory', ['$http', function ($http) { return new mainFactory.qiitaFactory($http); }]);
     module.factory('flickrFactory', ['$http', function ($http) { return new mainFactory.flickrFactory($http); }]);
     module.factory('pixivFactory', ['$http', function ($http) { return new mainFactory.pixivFactory($http); }]);
+    module.factory('tumblrFactory', ['$http', function ($http) { return new mainFactory.tumblrFactory($http); }]);
     //controller
     module.controller("Normal", ['$scope', 'mainService', 'ga', function ($scope, mainService, ga) { return new mainController.Normal($scope, mainService, ga); }]);
     module.controller('Index', [
@@ -48,6 +49,15 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
         'filterFilter',
         'ga',
         function ($scope, mainService, pixivFactory, $localStorage, filterFilter, ga) { return new mainController.Illust($scope, mainService, pixivFactory, $localStorage, filterFilter, ga); }
+    ]);
+    module.controller('Diary', [
+        '$scope',
+        'mainService',
+        'tumblrFactory',
+        '$localStorage',
+        'filterFilter',
+        'ga',
+        function ($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) { return new mainController.Diary($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga); }
     ]);
     module.controller('Entry', [
         '$scope',
@@ -92,6 +102,10 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
         $routeProvider.when('/about', {
             templateUrl: '/template/about',
             controller: 'Normal'
+        });
+        $routeProvider.when('/diary', {
+            templateUrl: '/template/diary',
+            controller: 'Diary'
         });
         $routeProvider.when('/tags/:tag', {
             templateUrl: '/template/tags/tag',

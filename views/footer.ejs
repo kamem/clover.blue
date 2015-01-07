@@ -15,6 +15,10 @@ var pixiv = [];
 <% for(var i = 0;i < pixiv.length;i++) { %>
 pixiv[<%= i %>] = {uuid: '<%= pixiv[i].uuid %>', title: '<%= pixiv[i].title %>', updated: <%= pixiv[i].updated %>, img: '<%= pixiv[i].img %>', thumbnail: '<%= pixiv[i].thumbnail %>'};
 <% } %>
+var tumblr = [];
+<% for(var i = 0;i < tumblr.length;i++) { %>
+tumblr[<%= i %>] = {uuid: '<%= tumblr[i].uuid %>', title: '<%= tumblr[i].title %>', updated: <%= tumblr[i].updated %>};
+<% } %>
 </script>
 
 <script src="/js/ga.js"></script>

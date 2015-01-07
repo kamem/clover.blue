@@ -21,6 +21,7 @@ module.service('mainService', () => new mainService.mainService());
 module.factory('qiitaFactory', ['$http', ($http) => new mainFactory.qiitaFactory($http)]);
 module.factory('flickrFactory', ['$http', ($http) => new mainFactory.flickrFactory($http)]);
 module.factory('pixivFactory', ['$http', ($http) => new mainFactory.pixivFactory($http)]);
+module.factory('tumblrFactory', ['$http', ($http) => new mainFactory.tumblrFactory($http)]);
 
 
 //controller
@@ -48,6 +49,12 @@ module.controller('Illust',[
 	'$scope', 'mainService', 'pixivFactory', '$localStorage', 'filterFilter', 'ga',
 	($scope, mainService, pixivFactory, $localStorage, filterFilter, ga) =>
 	new mainController.Illust($scope, mainService, pixivFactory, $localStorage, filterFilter, ga)
+]);
+
+module.controller('Diary',[
+	'$scope', 'mainService', 'tumblrFactory', '$localStorage', 'filterFilter', 'ga',
+	($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) =>
+		new mainController.Diary($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga)
 ]);
 
 module.controller('Entry',[
@@ -93,6 +100,11 @@ module.config(['$routeProvider', '$locationProvider', ($routeProvider, $location
 	$routeProvider.when('/about', {
 		templateUrl: '/template/about',
 		controller: 'Normal'
+	});
+
+	$routeProvider.when('/diary', {
+		templateUrl: '/template/diary',
+		controller: 'Diary'
 	});
 
 	$routeProvider.when('/tags/:tag', {

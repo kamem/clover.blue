@@ -1,6 +1,41 @@
 /// <reference path="../typings/tsd.d.ts" />
 'use strict';
 
+export class tumblrFactory {
+	constructor($http) {
+		var API_URI = 'https://api.tumblr.com/v2/';
+		var API_KEY = 'hOCZhmORpcUgzzDFAJJ2Zq1aTckafCrYw9FoWp2up0EcdvuOYU';
+		var BLOG_HOST = 'clover-blue.tumblr.com';
+
+		return {
+			getItems: () => {
+				return $http.get(API_URI + 'blog/' + BLOG_HOST + '/posts?api_key=' + API_KEY).success((data, status, headers, config) =>
+						data
+				).error((data, status, headers, config) =>
+						status
+				);
+			},
+			getTags: (items): string[] => {
+				var t = {};
+				angular.forEach(items, function(item) {
+					angular.forEach(item.tags, function(tag){
+						t[tag.name] = tag.name;
+					})
+				});
+
+				var tags = [];
+				angular.forEach(t, function(tag) {
+					this.push(tag);
+				},tags);
+
+				return tags;
+			}
+		};
+	}
+}
+
+
+
 export class qiitaFactory {
   constructor($http) {
 		var API_URI: string = 'https://qiita.com/api/v1/';

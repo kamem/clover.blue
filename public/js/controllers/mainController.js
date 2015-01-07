@@ -69,6 +69,24 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
         return Illust;
     })();
     exports.Illust = Illust;
+    var Diary = (function () {
+        function Diary($scope, mainService, tumblrFactory, $localStorage, ga) {
+            var page = new entry.CreatePage($scope, tumblrFactory, $localStorage, 'tumblr', '');
+            page.removeClassElement = "#header";
+            page.addClassElement = "article h1";
+            page.latestUpdated = tumblr[0].updated;
+            if ($scope.$storage.tumblr)
+                page.storageUpdated = $scope.$storage.tumblr[0].timestamp;
+            page.load();
+            ga('send', 'pageview');
+            angular.element(document).ready(function () {
+                mainService.ChangeTitle();
+                mainService.LoadSns();
+            });
+        }
+        return Diary;
+    })();
+    exports.Diary = Diary;
     var Weblog = (function () {
         function Weblog($scope, mainService, qiitaFactory, $localStorage, ga) {
             var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', '');
@@ -119,7 +137,6 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
             if ($scope.$storage.qiita)
                 page.storageUpdated = Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'));
             page.load();
-            ga('send', 'pageview');
             angular.element(document).ready(function () {
                 mainService.ChangeTitle();
                 mainService.LoadSns();
@@ -140,7 +157,8 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                 $scope.$storage = $localStorage.$default({
                     qiita: '',
                     flickr: '',
-                    pixiv: pixiv
+                    pixiv: pixiv,
+                    tumblr: ''
                 });
             }
             CreatePage.prototype.load = function () {
@@ -159,6 +177,16 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                 else {
                     CreatePage[this.name]($scope, factory, filterFilter, this.name);
                 }
+            };
+            CreatePage.tumblr = function ($scope, factory, filterFilter, name, items) {
+                factory.getItems().then(function (res) {
+                    console.log(res.data);
+                    $scope.$storage[name] = res.data;
+                    CreatePage.scopeSetting($scope, factory, filterFilter, name, res.data);
+                }, function (status) {
+                    $scope.showLoading = false;
+                    $scope.showErrorMessage = true;
+                });
             };
             CreatePage.qiita = function ($scope, factory, filterFilter, name, items) {
                 factory.getItems().then(function (res) {

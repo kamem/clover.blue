@@ -4,6 +4,7 @@
 declare var qiita;
 declare var flickr;
 declare var pixiv;
+declare var tumblr;
 
 import prettify = require('prettify');
 
@@ -78,6 +79,25 @@ export class Illust {
 	}
 }
 
+export class Diary {
+	constructor($scope, mainService, tumblrFactory, $localStorage, ga) {
+		var page = new entry.CreatePage($scope, tumblrFactory, $localStorage, 'tumblr', '');
+		page.removeClassElement = "#header";
+		page.addClassElement = "article h1";
+
+		page.latestUpdated = tumblr[0].updated;
+		if($scope.$storage.tumblr) page.storageUpdated = $scope.$storage.tumblr[0].timestamp;
+		page.load();
+
+		ga('send', 'pageview');
+
+		angular.element(document).ready(() => {
+			mainService.ChangeTitle();
+			mainService.LoadSns();
+		});
+	}
+}
+
 export class Weblog {
   constructor($scope, mainService, qiitaFactory, $localStorage, ga) {
 		var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', '');
@@ -132,8 +152,6 @@ export class Tag {
 		if($scope.$storage.qiita) page.storageUpdated = Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'));
 		page.load();
 
-		ga('send', 'pageview');
-
 		angular.element(document).ready(() => {
 			mainService.ChangeTitle();
 			mainService.LoadSns();
@@ -153,7 +171,8 @@ module entry {
 			$scope.$storage = $localStorage.$default({
 				qiita: '',
 				flickr: '',
-				pixiv: pixiv
+				pixiv: pixiv,
+				tumblr: ''
 			});
 		}
 		public load(): void {
@@ -174,6 +193,17 @@ module entry {
 			}
 		}
 
+		static tumblr($scope, factory, filterFilter, name, items): void {
+			factory.getItems().then((res) => {
+				console.log(res.data);
+				$scope.$storage[name] = res.data;
+
+				CreatePage.scopeSetting($scope, factory, filterFilter, name, res.data);
+			},(status) => {
+				$scope.showLoading = false;
+				$scope.showErrorMessage = true;
+			});
+		}
 		static qiita($scope, factory, filterFilter, name, items): void {
 			factory.getItems().then((res) => {
 				$scope.$storage[name] = res.data;

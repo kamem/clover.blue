@@ -15,8 +15,10 @@ var express = require('express'),
 	db = require('./models/db'),
 	mongo = require('mongoose');
 
-var Entries = post.QiitaEntries;
-var Tags = post.QiitaTags;
+var QiitaEntries = post.QiitaEntries;
+var QiitaTags = post.QiitaTags;
+var Tumblr = post.Tumblr;
+var TumblrTags = post.TumblrTags;
 
 //middleware
 app.set('views', __dirname + '/views');
@@ -52,13 +54,24 @@ app.get('/about', post.about);
 app.get('/photo', post.photo);
 app.get('/weblog', post.weblog);
 app.get('/illust', post.illust);
+app.get('/diary', post.diary);
 
-Entries.find({},function(err,posts) {
+QiitaEntries.find({},function(err,posts) {
 	for(entry in posts) {
 		app.get('/items/' + posts[entry].uuid, post.entry);
 	}
 });
-Tags.find({},function(err,posts) {
+QiitaTags.find({},function(err,posts) {
+	for(tag in posts) {
+		app.get('/tags/' + encodeURI(posts[tag].name), post.tag);
+	}
+});
+Tumblr.find({},function(err,posts) {
+	for(entry in posts) {
+		app.get('/post/' + posts[entry].uuid, post.diaryEntry);
+	}
+});
+TumblrTags.find({},function(err,posts) {
 	for(tag in posts) {
 		app.get('/tags/' + encodeURI(posts[tag].name), post.tag);
 	}
