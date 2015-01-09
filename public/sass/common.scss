@@ -78,11 +78,11 @@ $header-top: 10;
 
 		position: relative;
 
-		$size: 30;
+		$size: 29;
 		ul {
 			margin: auto 0;
 			height: es($size);
-			width: es(238);
+			width: es($size * 6 + (($size / 2) * 6));
 			position: absolute;
 			top: 0;
 			right: 0;
@@ -92,14 +92,14 @@ $header-top: 10;
 		li {
 			display: inline-block;
 			letter-spacing: normal;
-			margin-right: es($size - 10);
+			margin-right: es($size / 2);
 			text-indent: -9999px;
 			position: relative;
 			&.home {
 				display: none;
 			}
 			&:last-child {
-				margin-right: 10px;
+				margin-right: 0;
 			}
 		}
 		a {
@@ -148,24 +148,9 @@ $header-top: 10;
 		.diary a,
 		.illust a,
 		.weblog a,
+		.design a,
 		.photo a {
 				font-family: 'icomoon';
-		}
-
-		.home a:before {
-			content: "\e901";
-		}
-		.illust a:before {
-			content: "\e906";
-		}
-		.diary a:before {
-			content: "\e907";
-		}
-		.weblog a:before {
-			content: "\e922";
-		}
-		.photo a:before {
-			content: "\e90f";
 		}
 		.about a:before {
 			content: '?';
@@ -182,6 +167,9 @@ $header-top: 10;
 		}
 		.weblog a:after {
 			content: "Weblog";
+		}
+		.design a:after {
+			content: "Design";
 		}
 		.photo a:after {
 			content: "Photo";

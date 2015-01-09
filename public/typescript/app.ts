@@ -33,17 +33,31 @@ module.controller('Index',[
 	new mainController.Index($scope, mainService, qiitaFactory, $localStorage, ga)
 ]);
 
-module.controller('Photo',[
-	'$scope', 'mainService', 'flickrFactory', '$localStorage', 'filterFilter', 'ga',
-	($scope, mainService, flickrFactory, $localStorage, filterFilter, ga) =>
-	new mainController.Photo($scope, mainService, flickrFactory, $localStorage, filterFilter, ga)
-]);
-
 module.controller('Weblog',[
 	'$scope', 'mainService', 'qiitaFactory', '$localStorage', 'ga',
 	($scope, mainService, qiitaFactory, $localStorage, ga) =>
 	new mainController.Weblog($scope, mainService, qiitaFactory, $localStorage, ga)
 ]);
+
+module.controller('Tag',[
+	'$scope', 'mainService', 'qiitaFactory', '$localStorage', 'filterFilter', 'ga',
+	($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) =>
+		new mainController.Tag($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga)
+]);
+
+module.controller('Entry',[
+	'$scope', 'mainService', 'qiitaFactory', '$localStorage', 'filterFilter', 'ga',
+	($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) =>
+		new mainController.Entry($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga)
+]);
+
+
+module.controller('Photo',[
+	'$scope', 'mainService', 'flickrFactory', '$localStorage', 'filterFilter', 'ga',
+	($scope, mainService, flickrFactory, $localStorage, filterFilter, ga) =>
+		new mainController.Photo($scope, mainService, flickrFactory, $localStorage, filterFilter, ga)
+]);
+
 
 module.controller('Illust',[
 	'$scope', 'mainService', 'pixivFactory', '$localStorage', 'filterFilter', 'ga',
@@ -57,21 +71,22 @@ module.controller('Diary',[
 		new mainController.Diary($scope, mainService, tumblrFactory, $localStorage, ga)
 ]);
 
-module.controller('Entry',[
-	'$scope', 'mainService', 'qiitaFactory', '$localStorage', 'filterFilter', 'ga',
-	($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) =>
-	new mainController.Entry($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga)
-]);
 module.controller('TumblrEntry',[
 	'$scope', 'mainService', 'tumblrFactory', '$localStorage', 'filterFilter', 'ga',
 	($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) =>
 		new mainController.TumblrEntry($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga)
 ]);
 
-module.controller('Tag',[
-	'$scope', 'mainService', 'qiitaFactory', '$localStorage', 'filterFilter', 'ga',
-	($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) =>
-	new mainController.Tag($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga)
+module.controller('TumblrTag',[
+	'$scope', 'mainService', 'tumblrFactory', '$localStorage', 'filterFilter', 'ga',
+	($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) =>
+		new mainController.TumblrTag($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga)
+]);
+
+module.controller('Design',[
+	'$scope', 'mainService', 'tumblrFactory', '$localStorage', 'filterFilter', 'ga',
+	($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) =>
+		new mainController.Design($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga)
 ]);
 
 
@@ -82,55 +97,26 @@ module.config(['$routeProvider', '$locationProvider', ($routeProvider, $location
 		requireBase: false
 	});
 
-	$routeProvider.when('/', {
-		templateUrl: '/template/index',
-		controller: 'Index'
-	});
-
-	$routeProvider.when('/photo', {
-		templateUrl: '/template/photo',
-		controller: 'Photo'
-	});
-
-	$routeProvider.when('/weblog', {
-		templateUrl: '/template/weblog',
-		controller: 'Weblog'
-	});
-
-	$routeProvider.when('/illust', {
-		templateUrl: '/template/illust',
-		controller: 'Illust'
-	});
-
-	$routeProvider.when('/about', {
-		templateUrl: '/template/about',
-		controller: 'Normal'
-	});
-
-	$routeProvider.when('/diary', {
-		templateUrl: '/template/diary',
-		controller: 'Diary'
-	});
-
-	$routeProvider.when('/tags/:tag', {
-		templateUrl: '/template/tags/tag',
-		controller: 'Tag'
-	});
-
-	$routeProvider.when('/items/:uuid', {
-		templateUrl: function(params) {
-			return '/template/items/entry';
-		},
-		controller: 'Entry',
-  	reloadOnSearch: false
-	});
-
-	$routeProvider.when('/post/:uuid', {
-		templateUrl: function(params) {
-			return '/template/post/entry';
-		},
-		controller: 'TumblrEntry',
-		reloadOnSearch: false
+	var TEMPLATE_DIRECTORY = '/template/';
+	var ROUTEMAP = [
+		['/', 'index', 'Index'],
+		['/photo', 'photo', 'Photo'],
+		['/design', 'design', 'Design'],
+		['/weblog', 'weblog/weblog', 'Weblog'],
+		['/illust', 'illust', 'Illust'],
+		['/about', 'about', 'Normal'],
+		['/diary', 'diary/diary', 'Diary'],
+		['/diary/tags/:tag', 'diary/tags/tag', 'TumblrTag'],
+		['/post/:uuid', '/diary/post/entry', 'TumblrEntry'],
+		['/weblog/tags/:tag', 'weblog/tags/tag', 'Tag'],
+		['/items/:uuid', 'weblog/items/entry', 'Entry']
+	]
+	ROUTEMAP.forEach(function(route) {
+		$routeProvider.when(route[0], {
+			templateUrl: TEMPLATE_DIRECTORY + route[1],
+			controller: route[2],
+			reloadOnSearch: false
+		});
 	});
 }]);
 

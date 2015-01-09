@@ -92,8 +92,8 @@ main,
 }
 #header nav ul {
   margin: auto 0;
-  height: 3rem;
-  width: 23.8rem;
+  height: 2.9rem;
+  width: 26.1rem;
   position: absolute;
   top: 0;
   right: 0;
@@ -103,7 +103,7 @@ main,
 #header nav li {
   display: inline-block;
   letter-spacing: normal;
-  margin-right: 2rem;
+  margin-right: 1.45rem;
   text-indent: -9999px;
   position: relative;
 }
@@ -111,12 +111,12 @@ main,
   display: none;
 }
 #header nav li:last-child {
-  margin-right: 10px;
+  margin-right: 0;
 }
 #header nav a {
   display: block;
-  width: 3rem;
-  height: 3rem;
+  width: 2.9rem;
+  height: 2.9rem;
   color: #94dcef;
   text-decoration: none;
   background: #fff;
@@ -124,16 +124,16 @@ main,
   -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
   -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
-  -moz-border-radius: 3rem;
-  -webkit-border-radius: 3rem;
-  border-radius: 3rem;
+  -moz-border-radius: 2.9rem;
+  -webkit-border-radius: 2.9rem;
+  border-radius: 2.9rem;
 }
 #header nav a:before {
   display: block;
-  line-height: 3rem;
+  line-height: 2.9rem;
   text-indent: 0;
-  font-size: 19px;
-  font-size: 1.9rem;
+  font-size: 18px;
+  font-size: 1.8rem;
 }
 #header nav a:after {
   content: 'test';
@@ -170,23 +170,9 @@ main,
 #header nav .diary a,
 #header nav .illust a,
 #header nav .weblog a,
+#header nav .design a,
 #header nav .photo a {
   font-family: 'icomoon';
-}
-#header nav .home a:before {
-  content: "\e901";
-}
-#header nav .illust a:before {
-  content: "\e906";
-}
-#header nav .diary a:before {
-  content: "\e907";
-}
-#header nav .weblog a:before {
-  content: "\e922";
-}
-#header nav .photo a:before {
-  content: "\e90f";
 }
 #header nav .about a:before {
   content: '?';
@@ -202,6 +188,9 @@ main,
 }
 #header nav .weblog a:after {
   content: "Weblog";
+}
+#header nav .design a:after {
+  content: "Design";
 }
 #header nav .photo a:after {
   content: "Photo";

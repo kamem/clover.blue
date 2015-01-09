@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*----------------------------------------
 	commentList
 ----------------------------------------*/
@@ -41,6 +42,30 @@ dl.commentList dd:last-child {
   display: none !important;
 }
 
+.home a:before {
+  content: "";
+}
+
+.illust a:before {
+  content: "";
+}
+
+.diary a:before {
+  content: "";
+}
+
+.weblog a:before {
+  content: "";
+}
+
+.design a:before {
+  content: "";
+}
+
+.photo a:before {
+  content: "";
+}
+
 .off:not(#header):not(main) {
   display: none;
 }
@@ -56,11 +81,15 @@ dl.commentList dd:last-child {
   letter-spacing: -0.4em;
 }
 .thumbnails li {
-  width: 10%;
+  width: 9.7%;
+  margin: 0 0.3% 0.3% 0 !important;
   display: inline-block;
   list-style-type: none;
   vertical-align: top;
   text-align: center;
+}
+.thumbnails li:last-child {
+  margin-right: 0;
 }
 .thumbnails li a {
   display: block;
@@ -82,7 +111,8 @@ dl.commentList dd:last-child {
 }
 @media screen and (max-width: 40.625rem) {
   .thumbnails li {
-    width: 25%;
+    width: 24.5%;
+    margin: 0 0.5% 0.5% 0 !important;
   }
 }
 

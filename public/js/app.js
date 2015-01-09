@@ -24,6 +24,32 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
         'ga',
         function ($scope, mainService, qiitaFactory, $localStorage, ga) { return new mainController.Index($scope, mainService, qiitaFactory, $localStorage, ga); }
     ]);
+    module.controller('Weblog', [
+        '$scope',
+        'mainService',
+        'qiitaFactory',
+        '$localStorage',
+        'ga',
+        function ($scope, mainService, qiitaFactory, $localStorage, ga) { return new mainController.Weblog($scope, mainService, qiitaFactory, $localStorage, ga); }
+    ]);
+    module.controller('Tag', [
+        '$scope',
+        'mainService',
+        'qiitaFactory',
+        '$localStorage',
+        'filterFilter',
+        'ga',
+        function ($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) { return new mainController.Tag($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga); }
+    ]);
+    module.controller('Entry', [
+        '$scope',
+        'mainService',
+        'qiitaFactory',
+        '$localStorage',
+        'filterFilter',
+        'ga',
+        function ($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) { return new mainController.Entry($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga); }
+    ]);
     module.controller('Photo', [
         '$scope',
         'mainService',
@@ -32,14 +58,6 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
         'filterFilter',
         'ga',
         function ($scope, mainService, flickrFactory, $localStorage, filterFilter, ga) { return new mainController.Photo($scope, mainService, flickrFactory, $localStorage, filterFilter, ga); }
-    ]);
-    module.controller('Weblog', [
-        '$scope',
-        'mainService',
-        'qiitaFactory',
-        '$localStorage',
-        'ga',
-        function ($scope, mainService, qiitaFactory, $localStorage, ga) { return new mainController.Weblog($scope, mainService, qiitaFactory, $localStorage, ga); }
     ]);
     module.controller('Illust', [
         '$scope',
@@ -59,15 +77,6 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
         'ga',
         function ($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) { return new mainController.Diary($scope, mainService, tumblrFactory, $localStorage, ga); }
     ]);
-    module.controller('Entry', [
-        '$scope',
-        'mainService',
-        'qiitaFactory',
-        '$localStorage',
-        'filterFilter',
-        'ga',
-        function ($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) { return new mainController.Entry($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga); }
-    ]);
     module.controller('TumblrEntry', [
         '$scope',
         'mainService',
@@ -77,14 +86,23 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
         'ga',
         function ($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) { return new mainController.TumblrEntry($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga); }
     ]);
-    module.controller('Tag', [
+    module.controller('TumblrTag', [
         '$scope',
         'mainService',
-        'qiitaFactory',
+        'tumblrFactory',
         '$localStorage',
         'filterFilter',
         'ga',
-        function ($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) { return new mainController.Tag($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga); }
+        function ($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) { return new mainController.TumblrTag($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga); }
+    ]);
+    module.controller('Design', [
+        '$scope',
+        'mainService',
+        'tumblrFactory',
+        '$localStorage',
+        'filterFilter',
+        'ga',
+        function ($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) { return new mainController.Design($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga); }
     ]);
     //route
     module.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
@@ -92,47 +110,26 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
             enabled: true,
             requireBase: false
         });
-        $routeProvider.when('/', {
-            templateUrl: '/template/index',
-            controller: 'Index'
-        });
-        $routeProvider.when('/photo', {
-            templateUrl: '/template/photo',
-            controller: 'Photo'
-        });
-        $routeProvider.when('/weblog', {
-            templateUrl: '/template/weblog',
-            controller: 'Weblog'
-        });
-        $routeProvider.when('/illust', {
-            templateUrl: '/template/illust',
-            controller: 'Illust'
-        });
-        $routeProvider.when('/about', {
-            templateUrl: '/template/about',
-            controller: 'Normal'
-        });
-        $routeProvider.when('/diary', {
-            templateUrl: '/template/diary',
-            controller: 'Diary'
-        });
-        $routeProvider.when('/tags/:tag', {
-            templateUrl: '/template/tags/tag',
-            controller: 'Tag'
-        });
-        $routeProvider.when('/items/:uuid', {
-            templateUrl: function (params) {
-                return '/template/items/entry';
-            },
-            controller: 'Entry',
-            reloadOnSearch: false
-        });
-        $routeProvider.when('/post/:uuid', {
-            templateUrl: function (params) {
-                return '/template/post/entry';
-            },
-            controller: 'TumblrEntry',
-            reloadOnSearch: false
+        var TEMPLATE_DIRECTORY = '/template/';
+        var ROUTEMAP = [
+            ['/', 'index', 'Index'],
+            ['/photo', 'photo', 'Photo'],
+            ['/design', 'design', 'Design'],
+            ['/weblog', 'weblog/weblog', 'Weblog'],
+            ['/illust', 'illust', 'Illust'],
+            ['/about', 'about', 'Normal'],
+            ['/diary', 'diary/diary', 'Diary'],
+            ['/diary/tags/:tag', 'diary/tags/tag', 'TumblrTag'],
+            ['/post/:uuid', '/diary/post/entry', 'TumblrEntry'],
+            ['/weblog/tags/:tag', 'weblog/tags/tag', 'Tag'],
+            ['/items/:uuid', 'weblog/items/entry', 'Entry']
+        ];
+        ROUTEMAP.forEach(function (route) {
+            $routeProvider.when(route[0], {
+                templateUrl: TEMPLATE_DIRECTORY + route[1],
+                controller: route[2],
+                reloadOnSearch: false
+            });
         });
     }]);
     return module;

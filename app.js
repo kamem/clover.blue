@@ -55,15 +55,17 @@ app.get('/photo', post.photo);
 app.get('/weblog', post.weblog);
 app.get('/illust', post.illust);
 app.get('/diary', post.diary);
+app.get('/design', post.design);
+
 
 QiitaEntries.find({},function(err,posts) {
 	for(entry in posts) {
 		app.get('/items/' + posts[entry].uuid, post.entry);
 	}
 });
-QiitaTags.find({},function(err,posts) {
+QiitaTags.find({},function(err,posts, i) {
 	for(tag in posts) {
-		app.get('/tags/' + encodeURI(posts[tag].name), post.tag);
+		app.get('/weblog/tags/' + encodeURI(posts[tag].name), post.tag);
 	}
 });
 Tumblr.find({},function(err,posts) {
@@ -73,7 +75,7 @@ Tumblr.find({},function(err,posts) {
 });
 TumblrTags.find({},function(err,posts) {
 	for(tag in posts) {
-		app.get('/tags/' + encodeURI(posts[tag].name), post.tag);
+		app.get('/diary/tags/' + encodeURI(posts[tag].name), post.tag);
 	}
 });
 

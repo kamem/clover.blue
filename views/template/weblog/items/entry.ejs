@@ -2,10 +2,12 @@
 	<header>
 		<h1>{{item.title}}</h1>
 		<ul class="data">
-			<li class="date"><time datetime="{{item.timestamp | dateParse | date:'yyyy-MM-ddThh:mm:ssZ'}}" pubdate>{{item.timestamp | dateParse | date:'yyyy-MM-dd HH:mm:ss'}}</time></li>
+			<li class="date"><time datetime="{{item.created_at | dateParse | date:'yyyy-MM-ddThh:mm:ssZ'}}" pubdate>{{item.created_at | dateParse | date:'yyyy-MM-dd HH:mm:ss'}}</time></li>
 			<li class="tag" ng-repeat="tag in item.tags">
-				<a href="/tags/{{tag}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{tag}}'">{{tag}}</a>
+				<a href="/weblog/tags/{{tag.name}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{tag.name}}'">{{tag.name}}</a>
 			</li>
+
+			<li class="revisions"><a href="{{item.url}}/revisions">編集履歴</a></li>
 		</ul>
 	</header>
 

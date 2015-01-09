@@ -1,0 +1,16 @@
+<article ng-class="{loading: showLoading}">
+	<header>
+		<h1>日記</h1>
+	</header>
+
+	<div class="content">
+		<ul class="thumbnails center">
+			<li ng-repeat="item in items">
+				<a ng-href="{{item.original_size.url}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{item.id}}_{{$index}}'" data-caption="{{item.caption}}"><img ng-src="{{item.alt_sizes[item.alt_sizes.length - 1].url}}"></a>
+			</li>
+		</ul>
+		<p ng-cloak ng-show="showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
+
+		<sns></sns>
+	</div>
+</article>

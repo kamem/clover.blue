@@ -8,6 +8,20 @@
   display: none !important;
 }
 
+$ico:(
+	home:"\e901",
+	illust: "\e906",
+	diary: "\e907",
+	weblog: "\e922",
+	design:	"\e90d",
+	photo: "\e90f");
+
+@each $team, $font in $ico {
+	.#{$team} a:before {
+		content: $font;
+	}
+}
+
 .off:not(#header):not(main) {
 	display: none;
 }
@@ -22,12 +36,19 @@
 	overflow: hidden;
 	letter-spacing: -0.4em;
 
+	$num: 10;
+	$margin: 0.3;
 	li {
-		width: 10%;
+		width: 100% / $num - ($num - 1) * $margin / ($num - 1);
+		margin: 0 $margin * 1% $margin * 1% 0 !important;
 		display: inline-block;
 		list-style-type: none;
 		vertical-align: top;
 		text-align: center;
+
+		&:last-child {
+			margin-right: 0;
+		}
 
 		a {
 			display: block;
@@ -43,8 +64,11 @@
 		}
 	}
 	@media screen and (max-width: es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
+	$num: 4;
+	$margin: 0.5;
 	li {
-		width: 25%;
+		width: 100% / $num - ($num - 1) * $margin / ($num - 1);
+		margin: 0 $margin * 1% $margin * 1% 0 !important;
 	}
 	}
 }

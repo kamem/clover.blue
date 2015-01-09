@@ -4,6 +4,7 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     var Normal = (function () {
         function Normal($scope, mainService, ga) {
             angular.element(document.querySelectorAll("#header")).addClass("off");
+            ga('send', 'pageview');
             angular.element(document).ready(function () {
                 mainService.CreatePageNav($scope);
                 $scope.$apply();
@@ -16,91 +17,71 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     exports.Normal = Normal;
     var Index = (function () {
         function Index($scope, mainService, qiitaFactory, $localStorage, ga) {
-            var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', '');
+            var page = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', '', ga);
             page.removeClassElement = "#header";
             page.addClassElement = "article h1";
             page.latestUpdated = qiita[0].updated;
             if ($scope.$storage.qiita)
                 page.storageUpdated = Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'));
+            page.setClass();
             page.load();
-            ga('send', 'pageview');
-            angular.element(document).ready(function () {
-                mainService.ChangeTitle();
-                mainService.LoadSns();
-            });
         }
         return Index;
     })();
     exports.Index = Index;
     var Photo = (function () {
         function Photo($scope, mainService, flickrFactory, $localStorage, filterFilter, ga) {
-            var page = new entry.CreatePage($scope, flickrFactory, $localStorage, 'flickr', '');
+            var page = new entry.CreatePage($scope, mainService, flickrFactory, $localStorage, 'flickr', '', ga);
             page.removeClassElement = "#header";
             page.addClassElement = "article h1";
             page.latestUpdated = flickr[0].updated;
             if ($scope.$storage.flickr)
                 page.storageUpdated = $scope.$storage.flickr[0].dateuploaded;
+            page.setClass();
             page.load();
-            ga('send', 'pageview');
-            angular.element(document).ready(function () {
-                mainService.ChangeTitle();
-                mainService.LoadSns();
-            });
         }
         return Photo;
     })();
     exports.Photo = Photo;
     var Illust = (function () {
         function Illust($scope, mainService, pixivFactory, $localStorage, filterFilter, ga) {
-            var page = new entry.CreatePage($scope, pixivFactory, $localStorage, 'pixiv', '');
+            var page = new entry.CreatePage($scope, mainService, pixivFactory, $localStorage, 'pixiv', '', ga);
             page.removeClassElement = "#header";
             page.addClassElement = "article h1";
             $scope.$storage.pixiv = pixiv;
             page.latestUpdated = pixiv[0].updated;
             if ($scope.$storage.pixiv)
                 page.storageUpdated = $scope.$storage.pixiv[0].updated;
+            page.setClass();
             page.load();
-            ga('send', 'pageview');
-            angular.element(document).ready(function () {
-                mainService.ChangeTitle();
-                mainService.LoadSns();
-            });
         }
         return Illust;
     })();
     exports.Illust = Illust;
     var Diary = (function () {
         function Diary($scope, mainService, tumblrFactory, $localStorage, ga) {
-            var page = new entry.CreatePage($scope, tumblrFactory, $localStorage, 'tumblr', '');
+            var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', '', ga);
             page.removeClassElement = "#header";
             page.addClassElement = "article h1";
             page.latestUpdated = tumblr[0].updated;
             if ($scope.$storage.tumblr)
                 page.storageUpdated = parseInt($scope.$storage.tumblr[0].timestamp);
+            page.setClass();
             page.load();
-            ga('send', 'pageview');
-            angular.element(document).ready(function () {
-                mainService.ChangeTitle();
-                mainService.LoadSns();
-            });
         }
         return Diary;
     })();
     exports.Diary = Diary;
     var Weblog = (function () {
         function Weblog($scope, mainService, qiitaFactory, $localStorage, ga) {
-            var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', '');
+            var page = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', '', ga);
             page.removeClassElement = "#header";
             page.addClassElement = "article h1";
             page.latestUpdated = qiita[0].updated;
             if ($scope.$storage.qiita)
                 page.storageUpdated = Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'));
+            page.setClass();
             page.load();
-            ga('send', 'pageview');
-            angular.element(document).ready(function () {
-                mainService.ChangeTitle();
-                mainService.LoadSns();
-            });
         }
         return Weblog;
     })();
@@ -108,18 +89,16 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     var Entry = (function () {
         function Entry($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) {
             var currentPage = location.pathname.split('/').pop();
-            var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', filterFilter);
+            var page = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', filterFilter, ga);
             page.addClassElement = "#header";
             page.latestUpdated = filterFilter(qiita, { uuid: currentPage })[0].updated;
             if ($scope.$storage.qiita)
                 page.storageUpdated = Date.parse(filterFilter($scope.$storage.qiita, { uuid: currentPage })[0].updated_at.replace(/-/g, '/'));
+            page.setClass();
             page.load();
-            ga('send', 'pageview');
             angular.element(document).ready(function () {
                 mainService.CreatePageNav($scope);
                 $scope.$apply();
-                mainService.ChangeTitle();
-                mainService.LoadSns();
                 angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
                 prettify.prettyPrint();
             });
@@ -130,18 +109,16 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     var TumblrEntry = (function () {
         function TumblrEntry($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) {
             var currentPage = location.pathname.split('/').pop();
-            var page = new entry.CreatePage($scope, tumblrFactory, $localStorage, 'tumblr', filterFilter);
+            var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', filterFilter, ga);
             page.addClassElement = "#header";
             page.latestUpdated = filterFilter(tumblr, { uuid: currentPage })[0].updated;
             if ($scope.$storage.tumblr)
                 page.storageUpdated = parseInt(filterFilter($scope.$storage.tumblr, { id: currentPage })[0].timestamp);
+            page.setClass();
             page.load();
-            ga('send', 'pageview');
             angular.element(document).ready(function () {
                 mainService.CreatePageNav($scope);
                 $scope.$apply();
-                mainService.ChangeTitle();
-                mainService.LoadSns();
                 angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
                 prettify.prettyPrint();
             });
@@ -152,25 +129,65 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     var Tag = (function () {
         function Tag($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) {
             var currentPage = location.pathname.split('/').pop();
-            var page = new entry.CreatePage($scope, qiitaFactory, $localStorage, 'qiita', filterFilter);
+            var page = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', filterFilter, ga);
             page.removeClassElement = "#header";
             page.addClassElement = "article h1";
             page.latestUpdated = qiita[0].updated;
             if ($scope.$storage.qiita)
                 page.storageUpdated = Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'));
+            page.setClass();
             page.load();
-            angular.element(document).ready(function () {
-                mainService.ChangeTitle();
-                mainService.LoadSns();
-            });
         }
         return Tag;
     })();
     exports.Tag = Tag;
+    var TumblrTag = (function () {
+        function TumblrTag($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) {
+            var currentPage = location.pathname.split('/').pop();
+            var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', filterFilter, ga);
+            page.removeClassElement = "#header";
+            page.addClassElement = "article h1";
+            page.latestUpdated = tumblr[0].updated;
+            if ($scope.$storage.tumblr)
+                page.storageUpdated = $scope.$storage.tumblr[0].timestamp;
+            page.setClass();
+            page.load();
+        }
+        return TumblrTag;
+    })();
+    exports.TumblrTag = TumblrTag;
+    var Design = (function () {
+        function Design($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) {
+            var currentPage = location.pathname.split('/').pop();
+            var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', '', ga);
+            page.removeClassElement = "#header";
+            page.addClassElement = "article h1";
+            page.latestUpdated = tumblr[0].updated;
+            if ($scope.$storage.tumblr)
+                page.storageUpdated = $scope.$storage.tumblr[0].timestamp;
+            page.setClass();
+            if ($scope.$storage.tumblr !== '' ? page.latestUpdated <= page.storageUpdated : false) {
+                $scope.showLoading = false;
+                $scope.items = tumblrFactory.getPhotos($scope.$storage.tumblr);
+            }
+            else {
+                tumblrFactory.getItems().then(function (res) {
+                    $scope.showLoading = false;
+                    $scope.$storage.tumblr = res.data.response.posts;
+                    $scope.items = tumblrFactory.getPhotos($scope.$storage.tumblr);
+                }, function (status) {
+                    $scope.showLoading = false;
+                    $scope.showErrorMessage = true;
+                });
+            }
+        }
+        return Design;
+    })();
+    exports.Design = Design;
     var entry;
     (function (entry) {
         var CreatePage = (function () {
-            function CreatePage($scope, factory, $localStorage, name, filterFilter) {
+            function CreatePage($scope, mainService, factory, $localStorage, name, filterFilter, ga) {
                 this.$scope = $scope;
                 this.factory = factory;
                 this.$localStorage = $localStorage;
@@ -182,22 +199,26 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                     pixiv: pixiv,
                     tumblr: ''
                 });
+                ga('send', 'pageview');
+                angular.element(document).ready(function () {
+                    mainService.ChangeTitle();
+                    mainService.LoadSns();
+                });
+                $scope.showLoading = true;
+                $scope.showErrorMessage = false;
             }
-            CreatePage.prototype.load = function () {
+            CreatePage.prototype.setClass = function () {
                 if (this.removeClassElement)
                     angular.element(document.querySelectorAll(this.removeClassElement)).removeClass("off");
                 if (this.addClassElement)
                     angular.element(document.querySelectorAll(this.addClassElement)).addClass("off");
-                var $scope = this.$scope;
-                var filterFilter = this.filterFilter;
-                var factory = this.factory;
-                $scope.showLoading = true;
-                $scope.showErrorMessage = false;
-                if ($scope.$storage[this.name] !== '' ? this.latestUpdated <= this.storageUpdated : false) {
-                    CreatePage.scopeSetting($scope, factory, filterFilter, this.name, $scope.$storage[this.name]);
+            };
+            CreatePage.prototype.load = function () {
+                if (this.$scope.$storage[this.name] !== '' ? this.latestUpdated <= this.storageUpdated : false) {
+                    CreatePage.scopeSetting(this.$scope, this.factory, this.filterFilter, this.name, this.$scope.$storage[this.name]);
                 }
                 else {
-                    CreatePage[this.name]($scope, factory, filterFilter, this.name);
+                    CreatePage[this.name](this.$scope, this.factory, this.filterFilter, this.name);
                 }
             };
             CreatePage.tumblr = function ($scope, factory, filterFilter, name, items) {
@@ -252,7 +273,7 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                 $scope.currentPage = currentPage;
                 $scope.items = filterFilter ? filterFilter(items, { tags: currentPage }) : items;
                 if (filterFilter)
-                    $scope.item = name === 'qiita' ? filterFilter(items, { uuid: currentPage })[0] : filterFilter(items, { id: currentPage })[0];
+                    $scope.item = !!items[0].uuid ? filterFilter(items, { uuid: currentPage })[0] : filterFilter(items, { id: currentPage })[0];
                 $scope.tags = factory.getTags($scope.$storage[name]);
                 $scope.showLoading = false;
             };

@@ -28,6 +28,17 @@ export class tumblrFactory {
 					this.push(tag);
 				},tags);
 				return tags;
+			},
+			getPhotos: (items): string[] => {
+				var photos = [];
+				angular.forEach(items, function(item) {
+					angular.forEach(item.photos, function(photo){
+						photo.id = item.id;
+						photo.caption = item.caption;
+						photos.push(photo);
+					})
+				});
+				return photos;
 			}
 		};
 	}

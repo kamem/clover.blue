@@ -35,7 +35,7 @@ var QiitaTags = mongo.model('qiita_tags',tags);
 var Flickr = mongo.model('flickr_entries',flickr);
 var Pixiv = mongo.model('pixiv_items',pixiv);
 var Tumblr = mongo.model('tumblr_entries',tumbr);
-var TumblrTags = mongo.model('tumblr_tags',tumbr);
+var TumblrTags = mongo.model('tumblr_tags',tags);
 
 exports.QiitaEntries = QiitaEntries;
 exports.QiitaTags = QiitaTags;
@@ -59,6 +59,17 @@ exports.about = function(req,res) {
 			Pixiv.find({}).sort('-updated').exec(function(err, pixivItems) {
 				Tumblr.find({}).sort('-updated').exec(function(err, tumblrItems) {
 					res.render('posts/about',{title: 'サイトについて' + ' - ' + settings.title, qiita: posts, flickr: flickPosts, pixiv: pixivItems, tumblr: tumblrItems});
+				});
+			});
+		});
+	});
+};
+exports.design = function(req,res) {
+	QiitaEntries.find({}).sort('-updated').exec(function(err,posts) {
+		Flickr.find({}).sort('-updated').exec(function(err, flickPosts) {
+			Pixiv.find({}).sort('-updated').exec(function(err, pixivItems) {
+				Tumblr.find({}).sort('-updated').exec(function(err, tumblrItems) {
+					res.render('posts/index',{title: 'デザイン' + ' - ' + settings.title, qiita: posts, flickr: flickPosts, pixiv: pixivItems, tumblr: tumblrItems});
 				});
 			});
 		});
