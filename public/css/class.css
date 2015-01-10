@@ -80,6 +80,18 @@ dl.commentList dd:last-child {
   overflow: hidden;
   letter-spacing: -0.4em;
 }
+.thumbnails.big li a {
+  height: 80px;
+}
+.thumbnails.big img {
+  width: 170%;
+  margin: auto;
+  position: absolute;
+  top: -30%;
+  right: -30%;
+  bottom: -30%;
+  left: -30%;
+}
 .thumbnails li {
   width: 9.7%;
   margin: 0 0.3% 0.3% 0 !important;
@@ -87,6 +99,8 @@ dl.commentList dd:last-child {
   list-style-type: none;
   vertical-align: top;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 .thumbnails li:last-child {
   margin-right: 0;

@@ -118,6 +118,7 @@ export class TumblrEntry {
 		if($scope.$storage.tumblr) page.storageUpdated = parseInt(filterFilter($scope.$storage.tumblr, {id: currentPage})[0].timestamp);
 		page.setClass();
 		page.load();
+		$.colorbox.close();
 
 		angular.element(document).ready(() => {
 			mainService.CreatePageNav($scope);

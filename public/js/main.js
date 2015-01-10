@@ -5,7 +5,7 @@ require.config({
         jquery: 'components/jquery/dist/jquery',
         prettify: 'components/google-code-prettify/src/prettify',
         ga: 'components/angular-ga/ga',
-        colorbox: 'components/colorbox.min',
+        colorbox: 'components/colorbox/jquery.colorbox-min',
         angular: 'components/angular/angular.min',
         ngStorage: 'components/ngstorage/ngStorage',
         ngRoute: 'components/angular-route/angular-route',
@@ -14,6 +14,9 @@ require.config({
     shim: {
         jquery: {
             exports: '$'
+        },
+        colorbox: {
+            exports: 'colorbox'
         },
         prettify: {
             exports: 'prettify'
@@ -37,6 +40,8 @@ require.config({
 });
 require([
     'angular',
+    'jquery',
+    'colorbox',
     'ngStorage',
     'ngRoute',
     'ngSanitize',

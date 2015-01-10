@@ -36,6 +36,21 @@ $ico:(
 	overflow: hidden;
 	letter-spacing: -0.4em;
 
+	&.big {
+		li a {
+			height: 80px;
+		}
+		img {
+			width: 170%;
+			margin: auto;
+			position: absolute;
+			top: -30%;
+			right: -30%;
+			bottom: -30%;
+			left: -30%;
+		}
+	}
+
 	$num: 10;
 	$margin: 0.3;
 	li {
@@ -45,6 +60,8 @@ $ico:(
 		list-style-type: none;
 		vertical-align: top;
 		text-align: center;
+		position: relative;
+		overflow: hidden;
 
 		&:last-child {
 			margin-right: 0;

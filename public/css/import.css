@@ -5,5 +5,6 @@
 @import url(site.css);
 @import url(keyframes.css);
 @import url(sprite.css);
-@import url(../js/components/google-code-prettify/src/prettify.css);
 @import url(font.css);
+@import url(../js/components/colorbox/colorbox.css);
+@import url(../js/components/google-code-prettify/src/prettify.css);

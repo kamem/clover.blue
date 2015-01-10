@@ -7,4 +7,12 @@ define(["require", "exports", 'app'], function (require, exports, app) {
             templateUrl: '/template/sns'
         };
     });
+    app.directive('colorbox', function () {
+        return {
+            restrict: 'AC',
+            link: function (scope, element, attrs) {
+                $(element).colorbox(attrs.colorbox);
+            }
+        };
+    });
 });

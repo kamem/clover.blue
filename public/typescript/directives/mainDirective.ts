@@ -13,3 +13,13 @@ app.directive('sns', () => {
 		templateUrl: '/template/sns'
 	};
 });
+
+
+app.directive('colorbox', function() {
+	return {
+		restrict: 'AC',
+		link: function (scope, element, attrs) {
+			$(element).colorbox(attrs.colorbox);
+		}
+	};
+});

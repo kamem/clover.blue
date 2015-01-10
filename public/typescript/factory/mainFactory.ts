@@ -3,9 +3,9 @@
 
 export class tumblrFactory {
 	constructor($http) {
-		var API_URI = 'https://api.tumblr.com/v2/';
-		var API_KEY = 'hOCZhmORpcUgzzDFAJJ2Zq1aTckafCrYw9FoWp2up0EcdvuOYU';
-		var BLOG_HOST = 'clover-blue.tumblr.com';
+		var API_URI: string = 'https://api.tumblr.com/v2/';
+		var API_KEY: string = 'hOCZhmORpcUgzzDFAJJ2Zq1aTckafCrYw9FoWp2up0EcdvuOYU';
+		var BLOG_HOST: string = 'clover-blue.tumblr.com';
 
 		return {
 			getItems: () => {
@@ -29,7 +29,7 @@ export class tumblrFactory {
 				},tags);
 				return tags;
 			},
-			getPhotos: (items): string[] => {
+			getPhotos: (items) => {
 				var photos = [];
 				angular.forEach(items, function(item) {
 					angular.forEach(item.photos, function(photo){

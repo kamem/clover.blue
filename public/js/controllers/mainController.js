@@ -116,6 +116,7 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                 page.storageUpdated = parseInt(filterFilter($scope.$storage.tumblr, { id: currentPage })[0].timestamp);
             page.setClass();
             page.load();
+            $.colorbox.close();
             angular.element(document).ready(function () {
                 mainService.CreatePageNav($scope);
                 $scope.$apply();
