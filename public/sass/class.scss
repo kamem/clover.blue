@@ -8,13 +8,37 @@
   display: none !important;
 }
 
+.off:not(#header):not(main) {
+	display: none;
+}
+
+
+$size: 29;
+.icos {
+	& > *:not(.about) {
+		font-family: 'icomoon';
+	}
+	a {
+		width: es($size);
+		height: es($size);
+		@include border-radius(es($size));
+		&:before {
+			display: block;
+			line-height: es($size);
+			text-indent: 0;
+			@include fz($size - 11);
+		}
+	}
+}
+
 $ico:(
 	home:"\e901",
 	illust: "\e906",
 	diary: "\e907",
 	weblog: "\e922",
 	design:	"\e90d",
-	photo: "\e90f");
+	photo: "\e90f",
+	about: "?");
 
 @each $team, $font in $ico {
 	.#{$team} a:before {
@@ -22,8 +46,13 @@ $ico:(
 	}
 }
 
-.off:not(#header):not(main) {
-	display: none;
+.loading {
+	$isBase64: true;
+	margin: es(30) 0;
+	@include background-fit('common/loading.gif',false,'no-repeat center center');
+	text-indent: -9999px;
+	overflow: hidden;
+	height: $imgHeight;
 }
 
 .center {
@@ -88,15 +117,6 @@ $ico:(
 		margin: 0 $margin * 1% $margin * 1% 0 !important;
 	}
 	}
-}
-
-.loading {
-	$isBase64: true;
-	margin: es(30) 0;
-	@include background-fit('common/loading.gif',false,'no-repeat center center');
-	text-indent: -9999px;
-	overflow: hidden;
-	height: $imgHeight;
 }
 
 .inlineList {

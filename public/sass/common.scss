@@ -92,7 +92,7 @@ $header-top: 10;
 		li {
 			display: inline-block;
 			letter-spacing: normal;
-			margin-right: es($size / 2);
+			margin-right: es($size / 2.1);
 			text-indent: -9999px;
 			position: relative;
 			&.home {
@@ -104,22 +104,12 @@ $header-top: 10;
 		}
 		a {
 			display: block;
-			width: es($size);
-			height: es($size);
 			color: $baseColor;
 			text-decoration: none;
 			background: #fff;
 			font-size: 1px;
 			@include box-shadow(1px 1px 1px rgba(0,0,0,0.04));
-			@include border-radius(es($size));
-			&:before {
-				display: block;
-				line-height: es($size);
-				text-indent: 0;
-				@include fz($size - 11);
-			}
 			&:after {
-				content: 'test';
 				display: block;
 				width: es(14 * 5) !important;
 				margin-left: es(-14 * 2.5);

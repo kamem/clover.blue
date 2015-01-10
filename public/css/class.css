@@ -42,6 +42,28 @@ dl.commentList dd:last-child {
   display: none !important;
 }
 
+.off:not(#header):not(main) {
+  display: none;
+}
+
+.icos > *:not(.about) {
+  font-family: 'icomoon';
+}
+.icos a {
+  width: 2.9rem;
+  height: 2.9rem;
+  -moz-border-radius: 2.9rem;
+  -webkit-border-radius: 2.9rem;
+  border-radius: 2.9rem;
+}
+.icos a:before {
+  display: block;
+  line-height: 2.9rem;
+  text-indent: 0;
+  font-size: 18px;
+  font-size: 1.8rem;
+}
+
 .home a:before {
   content: "";
 }
@@ -66,8 +88,20 @@ dl.commentList dd:last-child {
   content: "";
 }
 
-.off:not(#header):not(main) {
-  display: none;
+.about a:before {
+  content: "?";
+}
+
+.loading {
+  margin: 3rem 0;
+  background: url('../img/common/loading.gif?1417940831') no-repeat center center;
+  -moz-background-size: 32px 32px;
+  -o-background-size: 32px 32px;
+  -webkit-background-size: 32px 32px;
+  background-size: 32px 32px;
+  text-indent: -9999px;
+  overflow: hidden;
+  height: 32px;
 }
 
 .center {
@@ -128,18 +162,6 @@ dl.commentList dd:last-child {
     width: 24.5%;
     margin: 0 0.5% 0.5% 0 !important;
   }
-}
-
-.loading {
-  margin: 3rem 0;
-  background: url('../img/common/loading.gif?1417940831') no-repeat center center;
-  -moz-background-size: 32px 32px;
-  -o-background-size: 32px 32px;
-  -webkit-background-size: 32px 32px;
-  background-size: 32px 32px;
-  text-indent: -9999px;
-  overflow: hidden;
-  height: 32px;
 }
 
 .inlineList {

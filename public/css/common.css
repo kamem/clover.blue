@@ -103,7 +103,7 @@ main,
 #header nav li {
   display: inline-block;
   letter-spacing: normal;
-  margin-right: 1.45rem;
+  margin-right: 1.38095rem;
   text-indent: -9999px;
   position: relative;
 }
@@ -115,8 +115,6 @@ main,
 }
 #header nav a {
   display: block;
-  width: 2.9rem;
-  height: 2.9rem;
   color: #94dcef;
   text-decoration: none;
   background: #fff;
@@ -124,19 +122,8 @@ main,
   -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
   -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
-  -moz-border-radius: 2.9rem;
-  -webkit-border-radius: 2.9rem;
-  border-radius: 2.9rem;
-}
-#header nav a:before {
-  display: block;
-  line-height: 2.9rem;
-  text-indent: 0;
-  font-size: 18px;
-  font-size: 1.8rem;
 }
 #header nav a:after {
-  content: 'test';
   display: block;
   width: 7rem !important;
   margin-left: -3.5rem;
