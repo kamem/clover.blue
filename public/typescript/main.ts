@@ -7,7 +7,7 @@ require.config({
 		prettify: 'components/google-code-prettify/src/prettify',
 		ga: 'components/angular-ga/ga',
 
-		colorbox: 'components/colorbox/jquery.colorbox-min',
+		colorbox: 'components/colorbox/jquery.colorbox',
 		angular: 'components/angular/angular.min',
     ngStorage: 'components/ngstorage/ngStorage',
     ngRoute: 'components/angular-route/angular-route',

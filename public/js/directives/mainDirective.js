@@ -11,7 +11,7 @@ define(["require", "exports", 'app'], function (require, exports, app) {
         return {
             restrict: 'AC',
             link: function (scope, element, attrs) {
-                $(element).colorbox(attrs.colorbox);
+                $(element).colorbox((new Function("return " + attrs.colorbox))());
             }
         };
     });
