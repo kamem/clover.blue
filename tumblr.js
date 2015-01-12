@@ -15,7 +15,7 @@ var tags = mongo.Schema({
 	'name': String
 });
 
-var Entries = mongo.model('tumblr_entries',entries);
+var Entries = mongo.model('tumblr_items',entries);
 var Tags = mongo.model('tumblr_tags',tags);
 
 request.get(API_URI + 'blog/' + BLOG_HOST + '/posts?api_key=' + API_KEY, function(error, response, body){

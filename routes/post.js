@@ -55,7 +55,7 @@ var Post = (function () {
                         res.render(template, {
                             title: title,
                             qiita: qiitaPosts,
-                            flickr: flickPosts,
+                            flickr: [flickPosts[0]],
                             pixiv: pixivPosts,
                             tumblr: tumblrPosts
                         });

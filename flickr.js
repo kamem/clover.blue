@@ -18,7 +18,7 @@ var tags = mongo.Schema({
 	'name': String
 });
 
-var Entries = mongo.model('flickr_entries',entries);
+var Entries = mongo.model('flickr_items',entries);
 var Tags = mongo.model('flickr_tags',tags);
 
 getApi(API_URI, {

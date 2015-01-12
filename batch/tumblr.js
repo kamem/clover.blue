@@ -1,16 +1,17 @@
 /// <reference path="../typings/tsd.d.ts" />
 var request = require('request');
 var apiToDatabase = require('./apiToDatabase');
-var API_URI = 'https://qiita.com/api/v1/';
-var USER_NAME = 'kamem';
-var dbItems = new apiToDatabase.Items('qiita');
+var API_URI = 'https://api.tumblr.com/v2/';
+var API_KEY = 'hOCZhmORpcUgzzDFAJJ2Zq1aTckafCrYw9FoWp2up0EcdvuOYU';
+var BLOG_HOST = 'clover-blue.tumblr.com';
+var dbItems = new apiToDatabase.Items('tumblr');
 var SaveApi = (function () {
     function SaveApi() {
-        request.get(API_URI + '/users/' + USER_NAME + '/items', function (error, response, body) {
+        request.get(API_URI + 'blog/' + BLOG_HOST + '/posts?api_key=' + API_KEY, function (error, response, body) {
             if (!error && response.statusCode == 200) {
-                dbItems.saveDatabase(JSON.parse(body), {
-                    uuid: 'uuid',
-                    updated: 'updated_at',
+                dbItems.saveDatabase(JSON.parse(body).response.posts, {
+                    uuid: 'id',
+                    updated: 'timestamp',
                     title: 'title'
                 });
                 console.log('complate!');

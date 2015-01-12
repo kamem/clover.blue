@@ -21,9 +21,9 @@ var pixiv = mongo.Schema({
 
 var qiitaItems = mongo.model('qiita_items',items);
 var qiitaTags = mongo.model('qiita_tags',tags);
-var flickrItems = mongo.model('flickr_entries',items);
+var flickrItems = mongo.model('flickr_items',items);
 var pixivItems = mongo.model('pixiv_items',pixiv);
-var tumblrItems = mongo.model('tumblr_entries',items);
+var tumblrItems = mongo.model('tumblr_items',items);
 var tumblrTags = mongo.model('tumblr_tags',tags);
 
 exports.qiitaItems = qiitaItems;
