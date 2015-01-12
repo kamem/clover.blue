@@ -23,15 +23,18 @@ var Items = (function () {
             }
             this.saveItem(this.name + 'Items', itemInfo);
             for (var i = item.tags.length - 1; i >= 0; i--) {
-                tags[item.tags[i].name] = item.tags[i].name;
+                var tagName = item.tags[i].name ? item.tags[i].name : item.tags[i];
+                tags[tagName] = tagName;
             }
             ;
         }.bind(this));
         this.saveTags(this.name + 'Tags', tags);
     };
     Items.prototype.removeItems = function (name) {
-        cloverBlueDb[name].remove({}, function (err) {
-        });
+        if (cloverBlueDb[name]) {
+            cloverBlueDb[name].remove({}, function (err) {
+            });
+        }
     };
     Items.prototype.saveItem = function (name, itemInfo) {
         cloverBlueDb[name].where({ uuid: itemInfo.uuid }).count(function (err, count) {

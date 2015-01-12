@@ -8,7 +8,6 @@ var USER_NAME = 'kamem';
 
 var dbItems = new apiToDatabase.Items('qiita');
 
-
 export class SaveApi {
 	constructor(){
 		request.get(API_URI + '/users/' + USER_NAME + '/items', function(error, response, body){

@@ -29,14 +29,18 @@ export class Items {
 			);
 
 			for (var i = item.tags.length - 1; i >= 0; i--) {
-				tags[item.tags[i].name] = item.tags[i].name;
+				var tagName = item.tags[i].name ? item.tags[i].name : item.tags[i];
+				tags[tagName] = tagName;
 			};
+
 		}.bind(this));
 		this.saveTags(this.name + 'Tags', tags);
 	}
 
 	public removeItems(name) {
-		cloverBlueDb[name].remove({}, function(err) {});
+		if(cloverBlueDb[name]) {
+			cloverBlueDb[name].remove({}, function(err) {});
+		}
 	}
 
 	public saveItem(name: string , itemInfo) {

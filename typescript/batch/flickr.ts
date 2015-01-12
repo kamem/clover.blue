@@ -33,6 +33,7 @@ export class SaveApi {
 			user_id: USER_ID
 		});
 		request.get(serchApi.getUri(), function (error, res, body) {
+			dbItems.removeItems('flickrItems');
 			JSON.parse(res.body).photos.photo.forEach(function (photo) {
 				var getInfoApi = new Api(API_URI, {
 					method: ['photos', 'getInfo'],
