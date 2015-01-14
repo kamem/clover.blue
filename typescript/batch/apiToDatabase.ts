@@ -9,9 +9,6 @@ export class Items {
 	}
 
 	public saveDatabase(items, itemInfoName) {
-		this.removeItems(this.name + 'Items');
-		this.removeItems(this.name + 'Tags');
-
 		var tags = {};
 		items.forEach(function(item) {
 			var itemInfo = {};
@@ -34,7 +31,17 @@ export class Items {
 			};
 
 		}.bind(this));
-		this.saveTags(this.name + 'Tags', tags);
+		this.removeUnnecessaryDbItem(this.name + 'Items', items, itemInfoName.uuid);
+
+
+		var tagNames = [];
+		for(var tag in tags) {
+			tagNames.push(tag);
+		}
+
+		tagNames.forEach(function(tagName) {
+			this.saveTag(this.name + 'Tags', tagName);
+		}.bind(this));
 	}
 
 	public removeItems(name) {
@@ -43,10 +50,39 @@ export class Items {
 		}
 	}
 
+	public removeUnnecessaryDbItem(name: string , items, subscript) {
+		cloverBlueDb[name].find({},function(err, posts) {
+			posts.forEach(function(post) {
+				if(!this.isIdExists(post.uuid, items, subscript)) {
+					cloverBlueDb[name].remove({uuid: post.uuid}, function(err) {});
+				}
+			}.bind(this));
+		}.bind(this));
+	}
+	public removeUnnecessaryDbTag(name: string , tags, subscript) {
+		cloverBlueDb[name].find({},function(err, posts) {
+			posts.forEach(function(post) {
+				if(!this.isIdExists(post.name, tags, subscript)) {
+					cloverBlueDb[name].remove({name: post.name}, function(err) {});
+				}
+			}.bind(this));
+		}.bind(this));
+	}
+	private isIdExists(value: string , items, subscript): boolean {
+		var isValue = false;
+		items.forEach(function(item) {
+			if(item[subscript] === value) {
+				isValue = true;
+			}
+		}.bind(this));
+		return isValue;
+	}
+
+
 	public saveItem(name: string , itemInfo) {
 		cloverBlueDb[name].where({ uuid: itemInfo.uuid }).count(function (err, count) {
 			if(count) {
-				cloverBlueDb[name].findOne({uuid: itemInfo.uuid},function(err,post) {
+				cloverBlueDb[name].findOne({uuid: itemInfo.uuid},function(err, post) {
 					for(var info in itemInfo) {
 						post[info] = itemInfo[info];
 					}
@@ -64,30 +100,23 @@ export class Items {
 		});
 	}
 
-	public saveTags(name, tags) {
-		var tagNames = [];
-		for(var tag in tags) {
-			tagNames.push(tag);
-		}
-
-		tagNames.forEach(function(tag) {
-			cloverBlueDb[name].where().count(function (err, count) {
-				if(count) {
-					cloverBlueDb[name].findOne({name: tag}, function(err, tag) {
-						tag.name = tag;
-						tag.save(function(err) {
-							if (err) { console.log(err); }
-						});
-					});
-				} else {
-					var Tag = new cloverBlueDb[name]({
-						name: tag
-					});
-					Tag.save(function(err) {
+	public saveTag(name, tagName) {
+		cloverBlueDb[name].where({ name: tagName }).count(function (err, count) {
+			if(count) {
+				cloverBlueDb[name].findOne({name: tagName}, function(err, tag) {
+					tag.name = tagName;
+					tag.save(function(err) {
 						if (err) { console.log(err); }
 					});
-				}
-			})
-		});
+				});
+			} else {
+				var Tag = new cloverBlueDb[name]({
+					name: tagName
+				});
+				Tag.save(function(err) {
+					if (err) { console.log(err); }
+				});
+			}
+		})
 	}
 }

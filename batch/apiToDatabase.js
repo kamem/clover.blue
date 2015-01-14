@@ -7,8 +7,6 @@ var Items = (function () {
         this.name = name;
     }
     Items.prototype.saveDatabase = function (items, itemInfoName) {
-        this.removeItems(this.name + 'Items');
-        this.removeItems(this.name + 'Tags');
         var tags = {};
         items.forEach(function (item) {
             var itemInfo = {};
@@ -28,13 +26,49 @@ var Items = (function () {
             }
             ;
         }.bind(this));
-        this.saveTags(this.name + 'Tags', tags);
+        this.removeUnnecessaryDbItem(this.name + 'Items', items, itemInfoName.uuid);
+        var tagNames = [];
+        for (var tag in tags) {
+            tagNames.push(tag);
+        }
+        tagNames.forEach(function (tagName) {
+            this.saveTag(this.name + 'Tags', tagName);
+        }.bind(this));
     };
     Items.prototype.removeItems = function (name) {
         if (cloverBlueDb[name]) {
             cloverBlueDb[name].remove({}, function (err) {
             });
         }
+    };
+    Items.prototype.removeUnnecessaryDbItem = function (name, items, subscript) {
+        cloverBlueDb[name].find({}, function (err, posts) {
+            posts.forEach(function (post) {
+                if (!this.isIdExists(post.uuid, items, subscript)) {
+                    cloverBlueDb[name].remove({ uuid: post.uuid }, function (err) {
+                    });
+                }
+            }.bind(this));
+        }.bind(this));
+    };
+    Items.prototype.removeUnnecessaryDbTag = function (name, tags, subscript) {
+        cloverBlueDb[name].find({}, function (err, posts) {
+            posts.forEach(function (post) {
+                if (!this.isIdExists(post.name, tags, subscript)) {
+                    cloverBlueDb[name].remove({ name: post.name }, function (err) {
+                    });
+                }
+            }.bind(this));
+        }.bind(this));
+    };
+    Items.prototype.isIdExists = function (value, items, subscript) {
+        var isValue = false;
+        items.forEach(function (item) {
+            if (item[subscript] === value) {
+                isValue = true;
+            }
+        }.bind(this));
+        return isValue;
     };
     Items.prototype.saveItem = function (name, itemInfo) {
         cloverBlueDb[name].where({ uuid: itemInfo.uuid }).count(function (err, count) {
@@ -60,34 +94,28 @@ var Items = (function () {
             }
         });
     };
-    Items.prototype.saveTags = function (name, tags) {
-        var tagNames = [];
-        for (var tag in tags) {
-            tagNames.push(tag);
-        }
-        tagNames.forEach(function (tag) {
-            cloverBlueDb[name].where().count(function (err, count) {
-                if (count) {
-                    cloverBlueDb[name].findOne({ name: tag }, function (err, tag) {
-                        tag.name = tag;
-                        tag.save(function (err) {
-                            if (err) {
-                                console.log(err);
-                            }
-                        });
-                    });
-                }
-                else {
-                    var Tag = new cloverBlueDb[name]({
-                        name: tag
-                    });
-                    Tag.save(function (err) {
+    Items.prototype.saveTag = function (name, tagName) {
+        cloverBlueDb[name].where({ name: tagName }).count(function (err, count) {
+            if (count) {
+                cloverBlueDb[name].findOne({ name: tagName }, function (err, tag) {
+                    tag.name = tagName;
+                    tag.save(function (err) {
                         if (err) {
                             console.log(err);
                         }
                     });
-                }
-            });
+                });
+            }
+            else {
+                var Tag = new cloverBlueDb[name]({
+                    name: tagName
+                });
+                Tag.save(function (err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+            }
         });
     };
     return Items;

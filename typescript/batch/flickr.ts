@@ -5,6 +5,7 @@ import apiToDatabase = require('./apiToDatabase');
 var API_URI = 'https://api.flickr.com/services/rest/';
 var API_KEY = '982ed6872b004b1e646a71f4f5a9970f';
 var USER_ID = '37978321@N03';
+var MAX = 100;
 
 var dbItems = new apiToDatabase.Items('flickr');
 
@@ -32,8 +33,9 @@ export class SaveApi {
 			api_key: API_KEY,
 			user_id: USER_ID
 		});
+		var photosCount = 0;
+		var items = [];
 		request.get(serchApi.getUri(), function (error, res, body) {
-			dbItems.removeItems('flickrItems');
 			JSON.parse(res.body).photos.photo.forEach(function (photo) {
 				var getInfoApi = new Api(API_URI, {
 					method: ['photos', 'getInfo'],
@@ -42,7 +44,8 @@ export class SaveApi {
 				});
 				request.get(getInfoApi.getUri(), function (error, res, body) {
 					var item = JSON.parse(res.body).photo;
-
+					photosCount++;
+					items.push(item);
 					dbItems.saveItem(
 						'flickrItems',
 						{
@@ -51,9 +54,13 @@ export class SaveApi {
 							title: item.title._content
 						}
 					);
+
+					if(photosCount === MAX) {
+						dbItems.removeUnnecessaryDbItem('flickrItems', items, 'id');
+						console.log('complate!');
+					}
 				});
 			});
-			console.log('complate!');
 		});
 	}
 }
