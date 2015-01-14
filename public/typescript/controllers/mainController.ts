@@ -132,7 +132,6 @@ export class TumblrEntry {
 
 export class Tag {
   constructor($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) {
-		var currentPage: string = location.pathname.split('/').pop();
 		var page = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', filterFilter, ga);
 		page.removeClassElement = "#header";
 		page.addClassElement = "article h1";
@@ -144,7 +143,6 @@ export class Tag {
 }
 export class TumblrTag {
 	constructor($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) {
-		var currentPage: string = location.pathname.split('/').pop();
 		var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', filterFilter, ga);
 		page.removeClassElement = "#header";
 		page.addClassElement = "article h1";
@@ -156,7 +154,6 @@ export class TumblrTag {
 }
 export class Design {
 	constructor($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) {
-		var currentPage: string = location.pathname.split('/').pop();
 		var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', '', ga);
 		page.removeClassElement = "#header";
 		page.addClassElement = "article h1";
@@ -269,7 +266,7 @@ module entry {
 		}
 
 		static scopeSetting($scope, factory, filterFilter, name, items): void {
-			var currentPage = location.pathname.split('/').pop();
+			var currentPage = decodeURIComponent(location.pathname.split('/').pop());
 			$scope.currentPage = currentPage;
 			$scope.items = filterFilter ? filterFilter(items, {tags: currentPage}) : items;
 			if(filterFilter) $scope.item = !!items[0].uuid ? filterFilter(items, {uuid: currentPage})[0] : filterFilter(items, {id: currentPage})[0];

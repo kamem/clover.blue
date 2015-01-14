@@ -129,7 +129,6 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     exports.TumblrEntry = TumblrEntry;
     var Tag = (function () {
         function Tag($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) {
-            var currentPage = location.pathname.split('/').pop();
             var page = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', filterFilter, ga);
             page.removeClassElement = "#header";
             page.addClassElement = "article h1";
@@ -144,7 +143,6 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     exports.Tag = Tag;
     var TumblrTag = (function () {
         function TumblrTag($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) {
-            var currentPage = location.pathname.split('/').pop();
             var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', filterFilter, ga);
             page.removeClassElement = "#header";
             page.addClassElement = "article h1";
@@ -159,7 +157,6 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     exports.TumblrTag = TumblrTag;
     var Design = (function () {
         function Design($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) {
-            var currentPage = location.pathname.split('/').pop();
             var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', '', ga);
             page.removeClassElement = "#header";
             page.addClassElement = "article h1";
@@ -270,7 +267,7 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                 });
             };
             CreatePage.scopeSetting = function ($scope, factory, filterFilter, name, items) {
-                var currentPage = location.pathname.split('/').pop();
+                var currentPage = decodeURIComponent(location.pathname.split('/').pop());
                 $scope.currentPage = currentPage;
                 $scope.items = filterFilter ? filterFilter(items, { tags: currentPage }) : items;
                 if (filterFilter)
