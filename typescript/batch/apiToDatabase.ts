@@ -10,6 +10,8 @@ export class Items {
 
 	public saveDatabase(items, itemInfoName) {
 		var tags = {};
+
+		this.removeUnnecessaryDbItem(this.name + 'Items', items, itemInfoName.uuid);
 		items.forEach(function(item) {
 			var itemInfo = {};
 			for(var info in itemInfoName) {
@@ -31,7 +33,6 @@ export class Items {
 			};
 
 		}.bind(this));
-		this.removeUnnecessaryDbItem(this.name + 'Items', items, itemInfoName.uuid);
 
 
 		var tagNames = [];
@@ -39,6 +40,7 @@ export class Items {
 			tagNames.push(tag);
 		}
 
+		this.removeUnnecessaryDbTag(this.name + 'Tags', tagNames, '');
 		tagNames.forEach(function(tagName) {
 			this.saveTag(this.name + 'Tags', tagName);
 		}.bind(this));
@@ -71,7 +73,9 @@ export class Items {
 	private isIdExists(value: string , items, subscript): boolean {
 		var isValue = false;
 		items.forEach(function(item) {
-			if(item[subscript] === value) {
+			var target = (subscript ? item[subscript] : item);
+			var val = typeof target === typeof value ? value : parseInt(value);
+			if(target === val) {
 				isValue = true;
 			}
 		}.bind(this));

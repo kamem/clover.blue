@@ -8,6 +8,7 @@ var Items = (function () {
     }
     Items.prototype.saveDatabase = function (items, itemInfoName) {
         var tags = {};
+        this.removeUnnecessaryDbItem(this.name + 'Items', items, itemInfoName.uuid);
         items.forEach(function (item) {
             var itemInfo = {};
             for (var info in itemInfoName) {
@@ -26,11 +27,11 @@ var Items = (function () {
             }
             ;
         }.bind(this));
-        this.removeUnnecessaryDbItem(this.name + 'Items', items, itemInfoName.uuid);
         var tagNames = [];
         for (var tag in tags) {
             tagNames.push(tag);
         }
+        this.removeUnnecessaryDbTag(this.name + 'Tags', tagNames, '');
         tagNames.forEach(function (tagName) {
             this.saveTag(this.name + 'Tags', tagName);
         }.bind(this));
@@ -64,7 +65,9 @@ var Items = (function () {
     Items.prototype.isIdExists = function (value, items, subscript) {
         var isValue = false;
         items.forEach(function (item) {
-            if (item[subscript] === value) {
+            var target = (subscript ? item[subscript] : item);
+            var val = typeof target === typeof value ? value : parseInt(value);
+            if (target === val) {
                 isValue = true;
             }
         }.bind(this));
