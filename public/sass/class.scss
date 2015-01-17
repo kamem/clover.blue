@@ -138,15 +138,19 @@ $ico:(
 		@include inline-block();
 		letter-spacing: normal;
 
+		&.big {
+			width: 50%;
+		}
+
 		a {
 			display: block;
-			padding-left: es(35);
 		}
 
 		$sns: twitter,facebook,mixi,flickr,github,delicious,booklog,qiita,pixiv,tumblr;
 		@for $i from 1 through length($sns) {
 			&.#{nth($sns,$i)} a {
 				@include background-fit('sns/' + nth($sns,$i) + '.png', false, 'no-repeat left center');
+				padding-left: $imgWidth + 10;
 			}
 		}
 	}

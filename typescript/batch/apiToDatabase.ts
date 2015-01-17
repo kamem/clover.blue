@@ -70,7 +70,7 @@ export class Items {
 			}.bind(this));
 		}.bind(this));
 	}
-	private isIdExists(value: string , items, subscript): boolean {
+	private isIdExists(value , items, subscript): boolean {
 		var isValue = false;
 		items.forEach(function(item) {
 			var target = (subscript ? item[subscript] : item);

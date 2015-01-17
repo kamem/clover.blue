@@ -184,9 +184,11 @@ dl.commentList dd:last-child {
   display: inline-block;
   letter-spacing: normal;
 }
+.serviceLink li.big {
+  width: 50%;
+}
 .serviceLink li a {
   display: block;
-  padding-left: 3.5rem;
 }
 .serviceLink li.twitter a {
   background: url('../img/sns/twitter.png?1419464532') no-repeat left center;
@@ -194,6 +196,7 @@ dl.commentList dd:last-child {
   -o-background-size: 27px 22px;
   -webkit-background-size: 27px 22px;
   background-size: 27px 22px;
+  padding-left: 37px;
 }
 .serviceLink li.facebook a {
   background: url('../img/sns/facebook.png?1419464537') no-repeat left center;
@@ -201,6 +204,7 @@ dl.commentList dd:last-child {
   -o-background-size: 23px 23px;
   -webkit-background-size: 23px 23px;
   background-size: 23px 23px;
+  padding-left: 33px;
 }
 .serviceLink li.mixi a {
   background: url('../img/sns/mixi.png?1419464532') no-repeat left center;
@@ -208,6 +212,7 @@ dl.commentList dd:last-child {
   -o-background-size: 26px 24px;
   -webkit-background-size: 26px 24px;
   background-size: 26px 24px;
+  padding-left: 36px;
 }
 .serviceLink li.flickr a {
   background: url('../img/sns/flickr.png?1419464532') no-repeat left center;
@@ -215,6 +220,7 @@ dl.commentList dd:last-child {
   -o-background-size: 21px 9px;
   -webkit-background-size: 21px 9px;
   background-size: 21px 9px;
+  padding-left: 31px;
 }
 .serviceLink li.github a {
   background: url('../img/sns/github.png?1419464532') no-repeat left center;
@@ -222,6 +228,7 @@ dl.commentList dd:last-child {
   -o-background-size: 24px 23px;
   -webkit-background-size: 24px 23px;
   background-size: 24px 23px;
+  padding-left: 34px;
 }
 .serviceLink li.delicious a {
   background: url('../img/sns/delicious.png?1419464537') no-repeat left center;
@@ -229,6 +236,7 @@ dl.commentList dd:last-child {
   -o-background-size: 24px 24px;
   -webkit-background-size: 24px 24px;
   background-size: 24px 24px;
+  padding-left: 34px;
 }
 .serviceLink li.booklog a {
   background: url('../img/sns/booklog.png?1419464532') no-repeat left center;
@@ -236,6 +244,7 @@ dl.commentList dd:last-child {
   -o-background-size: 24px 18px;
   -webkit-background-size: 24px 18px;
   background-size: 24px 18px;
+  padding-left: 34px;
 }
 .serviceLink li.qiita a {
   background: url('../img/sns/qiita.png?1419647516') no-repeat left center;
@@ -243,6 +252,7 @@ dl.commentList dd:last-child {
   -o-background-size: 23px 23px;
   -webkit-background-size: 23px 23px;
   background-size: 23px 23px;
+  padding-left: 33px;
 }
 .serviceLink li.pixiv a {
   background: url('../img/sns/pixiv.png?1419736558') no-repeat left center;
@@ -250,6 +260,7 @@ dl.commentList dd:last-child {
   -o-background-size: 23px 23px;
   -webkit-background-size: 23px 23px;
   background-size: 23px 23px;
+  padding-left: 33px;
 }
 .serviceLink li.tumblr a {
   background: url('../img/sns/tumblr.png?1419736558') no-repeat left center;
@@ -257,6 +268,7 @@ dl.commentList dd:last-child {
   -o-background-size: 23px 23px;
   -webkit-background-size: 23px 23px;
   background-size: 23px 23px;
+  padding-left: 33px;
 }
 
 .tags {
