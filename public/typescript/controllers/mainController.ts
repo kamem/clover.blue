@@ -23,16 +23,55 @@ export class Normal {
 }
 
 export class Index {
-  constructor($scope, mainService, qiitaFactory, $localStorage, ga) {
-		var page = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', '', ga);
-		page.removeClassElement = "#header";
-		page.addClassElement = "article h1";
+  constructor($scope, mainService, qiitaFactory, tumblrFactory, pixivFactory, flickrFactory, $localStorage, ga) {
+		//weblog
+		var qiitaCategory = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', '', ga);
+		qiitaCategory.removeClassElement = "#header";
+		qiitaCategory.addClassElement = "article h1";
 
-		page.latestUpdated = qiita[0].updated;
-		if($scope.$storage.qiita) page.storageUpdated = Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'));
-		page.setClass();
-		page.load();
-  }
+		qiitaCategory.latestUpdated = qiita[0].updated;
+		if($scope.$storage.qiita) qiitaCategory.storageUpdated = Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'));
+		qiitaCategory.setClass();
+		qiitaCategory.load();
+
+		//diary
+		var tumblrCategory = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', '', ga);
+		tumblrCategory.latestUpdated = tumblr[0].updated;
+		if($scope.$storage.tumblr) tumblrCategory.storageUpdated = parseInt($scope.$storage.tumblr[0].timestamp);
+		tumblrCategory.load();
+
+		//illust
+		var pixivCategory = new entry.CreatePage($scope, mainService, pixivFactory, $localStorage, 'pixiv', '', ga);
+		$scope.$storage.pixiv = pixiv;
+		pixivCategory.latestUpdated = pixiv[0].updated;
+		if($scope.$storage.pixiv) pixivCategory.storageUpdated = $scope.$storage.pixiv[0].updated;
+		pixivCategory.load();
+
+		//photos
+		var flickrCategory = new entry.CreatePage($scope, mainService, flickrFactory, $localStorage, 'flickr', '', ga);
+		flickrCategory.latestUpdated = flickr[0].updated;
+		if($scope.$storage.flickr) flickrCategory.storageUpdated = $scope.$storage.flickr[0].dateuploaded;
+		flickrCategory.load();
+
+
+		//Design
+		var name = 'tumblrDesign';
+		if($scope.$storage.tumblr) tumblrCategory.storageUpdated = $scope.$storage.tumblr[0].timestamp;
+		$scope[name] = {};
+		if($scope.$storage.tumblr !== '' ? tumblrCategory.latestUpdated <= tumblrCategory.storageUpdated : false) {
+			$scope[name].showLoading = false;
+			$scope[name].items = tumblrFactory.getPhotos($scope.$storage.tumblr);
+		} else {
+			tumblrFactory.getItems().then((res) => {
+				$scope[name].showLoading = false;
+				$scope.$storage.tumblr = res.data.response.posts;
+				$scope[name].items = tumblrFactory.getPhotos($scope.$storage.tumblr);
+			},(status) => {
+				$scope[name].showLoading = false;
+				$scope[name].showErrorMessage = true;
+			});
+		}
+	}
 }
 
 export class Photo {
@@ -154,7 +193,8 @@ export class TumblrTag {
 }
 export class Design {
 	constructor($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) {
-		var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', '', ga);
+		var name = 'tumblr';
+		var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, name, '', ga);
 		page.removeClassElement = "#header";
 		page.addClassElement = "article h1";
 		page.latestUpdated = tumblr[0].updated;
@@ -162,16 +202,16 @@ export class Design {
 		page.setClass();
 
 		if($scope.$storage.tumblr !== '' ? page.latestUpdated <= page.storageUpdated : false) {
-			$scope.showLoading = false;
-			$scope.items = tumblrFactory.getPhotos($scope.$storage.tumblr);
+			$scope[name].showLoading = false;
+			$scope[name].items = tumblrFactory.getPhotos($scope.$storage.tumblr);
 		} else {
 			tumblrFactory.getItems().then((res) => {
-				$scope.showLoading = false;
+				$scope[name].showLoading = false;
 				$scope.$storage.tumblr = res.data.response.posts;
-				$scope.items = tumblrFactory.getPhotos($scope.$storage.tumblr);
+				$scope[name].items = tumblrFactory.getPhotos($scope.$storage.tumblr);
 			},(status) => {
-				$scope.showLoading = false;
-				$scope.showErrorMessage = true;
+				$scope[name].showLoading = false;
+				$scope[name].showErrorMessage = true;
 			});
 		}
 	}
@@ -185,6 +225,7 @@ module entry {
 		public item;
 		public latestUpdated;
 		public storageUpdated;
+
 		constructor(private $scope, mainService, private factory, private $localStorage, private name, private filterFilter, ga) {
 			$scope.$storage = $localStorage.$default({
 				qiita: '',
@@ -193,14 +234,15 @@ module entry {
 				tumblr: ''
 			});
 
+			this.$scope[this.name] = {};
 			ga('send', 'pageview');
 
 			angular.element(document).ready(() => {
 				mainService.ChangeTitle();
 				mainService.LoadSns();
 			});
-			$scope.showLoading = true;
-			$scope.showErrorMessage = false;
+			this.$scope[this.name].showLoading = true;
+			this.$scope[this.name].showErrorMessage = false;
 		}
 
 		public setClass(): void {
@@ -218,13 +260,12 @@ module entry {
 
 		static tumblr($scope, factory, filterFilter, name, items): void {
 			factory.getItems().then((res) => {
-				console.log(res.data);
 				$scope.$storage[name] = res.data.response.posts;
 
 				CreatePage.scopeSetting($scope, factory, filterFilter, name, res.data.response.posts);
 			},(status) => {
-				$scope.showLoading = false;
-				$scope.showErrorMessage = true;
+				$scope[name].showLoading = false;
+				$scope[name].showErrorMessage = true;
 			});
 		}
 		static qiita($scope, factory, filterFilter, name, items): void {
@@ -233,8 +274,8 @@ module entry {
 
 				CreatePage.scopeSetting($scope, factory, filterFilter, name, res.data);
 			},(status) => {
-				$scope.showLoading = false;
-				$scope.showErrorMessage = true;
+				$scope[name].showLoading = false;
+				$scope[name].showErrorMessage = true;
 			});
 		}
 		static flickr($scope, factory, filterFilter, name): void {
@@ -255,23 +296,23 @@ module entry {
 
 							$scope.$storage.flickr = items;
 							CreatePage.scopeSetting($scope, factory, filterFilter, name, items);
-							$scope.showLoading = false;
+							$scope[name].showLoading = false;
 						}
 					});
 				});
 			},(status) => {
-				$scope.showLoading = false;
-				$scope.showErrorMessage = true;
+				$scope[name].showLoading = false;
+				$scope[name].showErrorMessage = true;
 			});
 		}
 
 		static scopeSetting($scope, factory, filterFilter, name, items): void {
 			var currentPage = decodeURIComponent(location.pathname.split('/').pop());
 			$scope.currentPage = currentPage;
-			$scope.items = filterFilter ? filterFilter(items, {tags: currentPage}) : items;
-			if(filterFilter) $scope.item = !!items[0].uuid ? filterFilter(items, {uuid: currentPage})[0] : filterFilter(items, {id: currentPage})[0];
-			$scope.tags = factory.getTags($scope.$storage[name]);
-			$scope.showLoading = false;
+			$scope[name].items = filterFilter ? filterFilter(items, {tags: currentPage}) : items;
+			if(filterFilter) $scope[name].item = !!items[0].uuid ? filterFilter(items, {uuid: currentPage})[0] : filterFilter(items, {id: currentPage})[0];
+			$scope[name].tags = factory.getTags($scope.$storage[name]);
+			$scope[name].showLoading = false;
 		}
 	};
 }

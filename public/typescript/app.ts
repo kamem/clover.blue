@@ -28,9 +28,9 @@ module.factory('tumblrFactory', ['$http', ($http) => new mainFactory.tumblrFacto
 module.controller("Normal", ['$scope', 'mainService', 'ga', ($scope, mainService, ga) => new mainController.Normal($scope, mainService, ga)]);
 
 module.controller('Index',[
-	'$scope', 'mainService', 'qiitaFactory', '$localStorage', 'ga',
-	($scope, mainService, qiitaFactory, $localStorage, ga) =>
-	new mainController.Index($scope, mainService, qiitaFactory, $localStorage, ga)
+	'$scope', 'mainService', 'qiitaFactory', 'tumblrFactory', 'pixivFactory', 'flickrFactory', '$localStorage', 'ga',
+	($scope, mainService, qiitaFactory, tumblrFactory, pixivFactory, flickrFactory, $localStorage, ga) =>
+	new mainController.Index($scope, mainService, qiitaFactory, tumblrFactory, pixivFactory, flickrFactory, $localStorage, ga)
 ]);
 
 module.controller('Weblog',[

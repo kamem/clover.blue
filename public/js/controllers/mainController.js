@@ -16,15 +16,54 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     })();
     exports.Normal = Normal;
     var Index = (function () {
-        function Index($scope, mainService, qiitaFactory, $localStorage, ga) {
-            var page = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', '', ga);
-            page.removeClassElement = "#header";
-            page.addClassElement = "article h1";
-            page.latestUpdated = qiita[0].updated;
+        function Index($scope, mainService, qiitaFactory, tumblrFactory, pixivFactory, flickrFactory, $localStorage, ga) {
+            //weblog
+            var qiitaCategory = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', '', ga);
+            qiitaCategory.removeClassElement = "#header";
+            qiitaCategory.addClassElement = "article h1";
+            qiitaCategory.latestUpdated = qiita[0].updated;
             if ($scope.$storage.qiita)
-                page.storageUpdated = Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'));
-            page.setClass();
-            page.load();
+                qiitaCategory.storageUpdated = Date.parse($scope.$storage.qiita[0].updated_at.replace(/-/g, '/'));
+            qiitaCategory.setClass();
+            qiitaCategory.load();
+            //diary
+            var tumblrCategory = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', '', ga);
+            tumblrCategory.latestUpdated = tumblr[0].updated;
+            if ($scope.$storage.tumblr)
+                tumblrCategory.storageUpdated = parseInt($scope.$storage.tumblr[0].timestamp);
+            tumblrCategory.load();
+            //illust
+            var pixivCategory = new entry.CreatePage($scope, mainService, pixivFactory, $localStorage, 'pixiv', '', ga);
+            $scope.$storage.pixiv = pixiv;
+            pixivCategory.latestUpdated = pixiv[0].updated;
+            if ($scope.$storage.pixiv)
+                pixivCategory.storageUpdated = $scope.$storage.pixiv[0].updated;
+            pixivCategory.load();
+            //photos
+            var flickrCategory = new entry.CreatePage($scope, mainService, flickrFactory, $localStorage, 'flickr', '', ga);
+            flickrCategory.latestUpdated = flickr[0].updated;
+            if ($scope.$storage.flickr)
+                flickrCategory.storageUpdated = $scope.$storage.flickr[0].dateuploaded;
+            flickrCategory.load();
+            //Design
+            var name = 'tumblrDesign';
+            if ($scope.$storage.tumblr)
+                tumblrCategory.storageUpdated = $scope.$storage.tumblr[0].timestamp;
+            $scope[name] = {};
+            if ($scope.$storage.tumblr !== '' ? tumblrCategory.latestUpdated <= tumblrCategory.storageUpdated : false) {
+                $scope[name].showLoading = false;
+                $scope[name].items = tumblrFactory.getPhotos($scope.$storage.tumblr);
+            }
+            else {
+                tumblrFactory.getItems().then(function (res) {
+                    $scope[name].showLoading = false;
+                    $scope.$storage.tumblr = res.data.response.posts;
+                    $scope[name].items = tumblrFactory.getPhotos($scope.$storage.tumblr);
+                }, function (status) {
+                    $scope[name].showLoading = false;
+                    $scope[name].showErrorMessage = true;
+                });
+            }
         }
         return Index;
     })();
@@ -157,7 +196,8 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     exports.TumblrTag = TumblrTag;
     var Design = (function () {
         function Design($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) {
-            var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', '', ga);
+            var name = 'tumblr';
+            var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, name, '', ga);
             page.removeClassElement = "#header";
             page.addClassElement = "article h1";
             page.latestUpdated = tumblr[0].updated;
@@ -165,17 +205,17 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                 page.storageUpdated = $scope.$storage.tumblr[0].timestamp;
             page.setClass();
             if ($scope.$storage.tumblr !== '' ? page.latestUpdated <= page.storageUpdated : false) {
-                $scope.showLoading = false;
-                $scope.items = tumblrFactory.getPhotos($scope.$storage.tumblr);
+                $scope[name].showLoading = false;
+                $scope[name].items = tumblrFactory.getPhotos($scope.$storage.tumblr);
             }
             else {
                 tumblrFactory.getItems().then(function (res) {
-                    $scope.showLoading = false;
+                    $scope[name].showLoading = false;
                     $scope.$storage.tumblr = res.data.response.posts;
-                    $scope.items = tumblrFactory.getPhotos($scope.$storage.tumblr);
+                    $scope[name].items = tumblrFactory.getPhotos($scope.$storage.tumblr);
                 }, function (status) {
-                    $scope.showLoading = false;
-                    $scope.showErrorMessage = true;
+                    $scope[name].showLoading = false;
+                    $scope[name].showErrorMessage = true;
                 });
             }
         }
@@ -197,13 +237,14 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                     pixiv: pixiv,
                     tumblr: ''
                 });
+                this.$scope[this.name] = {};
                 ga('send', 'pageview');
                 angular.element(document).ready(function () {
                     mainService.ChangeTitle();
                     mainService.LoadSns();
                 });
-                $scope.showLoading = true;
-                $scope.showErrorMessage = false;
+                this.$scope[this.name].showLoading = true;
+                this.$scope[this.name].showErrorMessage = false;
             }
             CreatePage.prototype.setClass = function () {
                 if (this.removeClassElement)
@@ -221,12 +262,11 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
             };
             CreatePage.tumblr = function ($scope, factory, filterFilter, name, items) {
                 factory.getItems().then(function (res) {
-                    console.log(res.data);
                     $scope.$storage[name] = res.data.response.posts;
                     CreatePage.scopeSetting($scope, factory, filterFilter, name, res.data.response.posts);
                 }, function (status) {
-                    $scope.showLoading = false;
-                    $scope.showErrorMessage = true;
+                    $scope[name].showLoading = false;
+                    $scope[name].showErrorMessage = true;
                 });
             };
             CreatePage.qiita = function ($scope, factory, filterFilter, name, items) {
@@ -234,8 +274,8 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                     $scope.$storage[name] = res.data;
                     CreatePage.scopeSetting($scope, factory, filterFilter, name, res.data);
                 }, function (status) {
-                    $scope.showLoading = false;
-                    $scope.showErrorMessage = true;
+                    $scope[name].showLoading = false;
+                    $scope[name].showErrorMessage = true;
                 });
             };
             CreatePage.flickr = function ($scope, factory, filterFilter, name) {
@@ -257,23 +297,23 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                                 });
                                 $scope.$storage.flickr = items;
                                 CreatePage.scopeSetting($scope, factory, filterFilter, name, items);
-                                $scope.showLoading = false;
+                                $scope[name].showLoading = false;
                             }
                         });
                     });
                 }, function (status) {
-                    $scope.showLoading = false;
-                    $scope.showErrorMessage = true;
+                    $scope[name].showLoading = false;
+                    $scope[name].showErrorMessage = true;
                 });
             };
             CreatePage.scopeSetting = function ($scope, factory, filterFilter, name, items) {
                 var currentPage = decodeURIComponent(location.pathname.split('/').pop());
                 $scope.currentPage = currentPage;
-                $scope.items = filterFilter ? filterFilter(items, { tags: currentPage }) : items;
+                $scope[name].items = filterFilter ? filterFilter(items, { tags: currentPage }) : items;
                 if (filterFilter)
-                    $scope.item = !!items[0].uuid ? filterFilter(items, { uuid: currentPage })[0] : filterFilter(items, { id: currentPage })[0];
-                $scope.tags = factory.getTags($scope.$storage[name]);
-                $scope.showLoading = false;
+                    $scope[name].item = !!items[0].uuid ? filterFilter(items, { uuid: currentPage })[0] : filterFilter(items, { id: currentPage })[0];
+                $scope[name].tags = factory.getTags($scope.$storage[name]);
+                $scope[name].showLoading = false;
             };
             return CreatePage;
         })();

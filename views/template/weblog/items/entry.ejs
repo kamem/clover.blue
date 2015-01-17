@@ -1,13 +1,13 @@
-<article ng-class="{loading: showLoading}">
+<article ng-class="{loading: qiita.showLoading}">
 	<header>
-		<h1>{{item.title}}</h1>
+		<h1>{{qiita.item.title}}</h1>
 		<ul class="data">
-			<li class="date"><time datetime="{{item.created_at | dateParse | date:'yyyy-MM-ddThh:mm:ssZ'}}" pubdate>{{item.created_at | dateParse | date:'yyyy-MM-dd HH:mm:ss'}}</time></li>
-			<li class="tag" ng-repeat="tag in item.tags">
+			<li class="date"><time datetime="{{qiita.item.created_at | dateParse | date:'yyyy-MM-ddThh:mm:ssZ'}}" pubdate>{{qiita.item.created_at | dateParse | date:'yyyy-MM-dd HH:mm:ss'}}</time></li>
+			<li class="tag" ng-repeat="tag in qiita.item.tags">
 				<a href="/weblog/tags/{{tag.name}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{tag.name}}'">{{tag.name}}</a>
 			</li>
 
-			<li class="revisions"><a href="{{item.url}}/revisions">編集履歴</a></li>
+			<li class="revisions"><a href="{{qiita.item.url}}/revisions">編集履歴</a></li>
 		</ul>
 	</header>
 
@@ -21,9 +21,9 @@
 			</ol>
 		</nav>
 
-		<div ng-bind-html="item.body">
+		<div ng-bind-html="qiita.item.body">
 		</div>
-		<p ng-cloak ng-show="showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
+		<p ng-cloak ng-show="qiita.showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
 
 		<sns></sns>
 	</div>

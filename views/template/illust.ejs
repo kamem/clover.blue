@@ -3,7 +3,7 @@
 		<h1>イラスト</h1>
 	</header>
 
-	<div class="content" ng-class="{loading: showLoading}">
+	<div class="content" ng-class="{loading: pixiv.showLoading}">
 		<!-- <ul class="tags">
 			<li ng-repeat="tag in tags" ng-cloak>
 				<a ng-href="/tags/{{tag}}">{{tag}}</a>
@@ -11,11 +11,11 @@
 		</ul> -->
 
 		<ul class="thumbnails center">
-			<li ng-repeat="item in items" ng-cloak>
+			<li ng-repeat="item in pixiv.items" ng-cloak>
 				<a href="{{item.img}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{item.title}}'" colorbox="{transition:'none', maxWidth: '90%'}" title="{{item.title}}"><img ng-src="{{item.thumbnail}}"></a>
 			</li>
 		</ul>
-		<p ng-cloak ng-show="showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
+		<p ng-cloak ng-show="pixiv.showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
 
 		<sns></sns>
 	</div>

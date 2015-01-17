@@ -20,9 +20,12 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
         '$scope',
         'mainService',
         'qiitaFactory',
+        'tumblrFactory',
+        'pixivFactory',
+        'flickrFactory',
         '$localStorage',
         'ga',
-        function ($scope, mainService, qiitaFactory, $localStorage, ga) { return new mainController.Index($scope, mainService, qiitaFactory, $localStorage, ga); }
+        function ($scope, mainService, qiitaFactory, tumblrFactory, pixivFactory, flickrFactory, $localStorage, ga) { return new mainController.Index($scope, mainService, qiitaFactory, tumblrFactory, pixivFactory, flickrFactory, $localStorage, ga); }
     ]);
     module.controller('Weblog', [
         '$scope',

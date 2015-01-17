@@ -3,19 +3,19 @@
 		<h1>{{currentPage}}</h1>
 	</header>
 
-	<div class="content" ng-class="{loading: showLoading}">
+	<div class="content" ng-class="{loading: tumblr.showLoading}">
 		<ul class="tags">
-			<li ng-repeat="tag in tags" ng-class="{active:currentPage==tag}" ng-cloak>
+			<li ng-repeat="tag in tumblr.tags" ng-class="{active:currentPage==tag}" ng-cloak>
 				<a ng-href="/diary/tags/{{tag}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{tag}}'">{{tag}}</a>
 			</li>
 		</ul>
 
 		<ul>
-			<li ng-repeat="item in items" ng-cloak ng-if="item.type !== 'photo'">
+			<li ng-repeat="item in tumblr.items" ng-cloak ng-if="item.type !== 'photo'">
 				<a ng-href="/post/{{item.id}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{item.title}}'">{{item.title}}</a>
 			</li>
 		</ul>
-		<p ng-cloak ng-show="showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
+		<p ng-cloak ng-show="tumblr.showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
 
 		<sns></sns>
 	</div>

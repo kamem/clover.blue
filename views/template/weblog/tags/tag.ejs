@@ -3,19 +3,19 @@
 		<h1>{{currentPage}}</h1>
 	</header>
 
-	<div class="content" ng-class="{loading: showLoading}">
+	<div class="content" ng-class="{loading: qiita.showLoading}">
 		<ul class="tags">
-			<li ng-repeat="tag in tags" ng-class="{active:currentPage==tag}" ng-cloak>
+			<li ng-repeat="tag in qiita.tags" ng-class="{active:currentPage==tag}" ng-cloak>
 				<a ng-href="/weblog/tags/{{tag}}">{{tag}}</a>
 			</li>
 		</ul>
 
 		<ul>
-			<li ng-repeat="item in items" ng-cloak>
+			<li ng-repeat="item in qiita.items" ng-cloak>
 				<a ng-href="/items/{{item.uuid}}">{{item.title}}</a>
 			</li>
 		</ul>
-		<p ng-cloak ng-show="showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
+		<p ng-cloak ng-show="qiita.showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
 
 		<sns></sns>
 	</div>

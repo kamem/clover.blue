@@ -1,9 +1,9 @@
-<article ng-class="{loading: showLoading}">
+<article ng-class="{loading: tumblr.showLoading}">
 	<header>
-		<h1>{{item.title}}</h1>
+		<h1>{{tumblr.item.title}}</h1>
 		<ul class="data">
-			<li class="date"><time datetime="{{item.timestamp | dateParse | date:'yyyy-MM-ddThh:mm:ssZ'}}" pubdate>{{item.timestamp | dateParse | date:'yyyy-MM-dd HH:mm:ss'}}</time></li>
-			<li class="tag" ng-repeat="tag in item.tags">
+			<li class="date"><time datetime="{{tumblr.item.timestamp | dateParse | date:'yyyy-MM-ddThh:mm:ssZ'}}" pubdate>{{tumblr.item.timestamp | dateParse | date:'yyyy-MM-dd HH:mm:ss'}}</time></li>
+			<li class="tag" ng-repeat="tag in tumblr.item.tags">
 				<a href="/diary/tags/{{tag}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{tag}}'">{{tag}}</a>
 			</li>
 		</ul>
@@ -19,9 +19,9 @@
 			</ol>
 		</nav>
 
-		<div ng-bind-html="item.body">
+		<div ng-bind-html="tumblr.item.body">
 		</div>
-		<p ng-cloak ng-show="showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
+		<p ng-cloak ng-show="tumblr.showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
 
 		<sns></sns>
 	</div>

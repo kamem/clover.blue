@@ -3,19 +3,66 @@
 		<h1>clover.blue</h1>
 	</header>
 
-	<div class="content" ng-class="{loading: showLoading}">
-		<ul class="tags">
-			<li ng-repeat="tag in tags" ng-cloak>
-				<a ng-href="/weblog/tags/{{tag}}" ga="'send', 'event', '/', 'click', '{{tag}}'">{{tag}}</a>
-			</li>
-		</ul>
+	<div class="content">
+		<section>
+			<h2>最新記事</h2>
+			<ul class="tags">
+				<li ng-repeat="tag in qiita.tags" ng-cloak>
+					<a ng-href="/weblog/tags/{{tag}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{tag}}'">{{tag}}</a>
+				</li>
+			</ul>
+			<ul ng-class="{loading: qiita.showLoading}">
+				<li ng-repeat="item in qiita.items | limitTo:5" ng-cloak>
+					<a ng-href="/items/{{item.uuid}}" ga="'send', 'event', '/', 'click', '{{item.title}}'">{{item.title}}</a>
+				</li>
+			</ul>
+			<p ng-cloak ng-show="qiita.showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
+		</section>
 
-		<ul>
-			<li ng-repeat="item in items" ng-cloak>
-				<a ng-href="/items/{{item.uuid}}" ga="'send', 'event', '/', 'click', '{{item.title}}'">{{item.title}}</a>
-			</li>
-		</ul>
-		<p ng-cloak ng-show="showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
+		<section>
+			<h2>最新日記</h2>
+			<ul class="tags">
+				<li ng-repeat="tag in tumblr.tags" ng-cloak>
+					<a ng-href="/diary/tags/{{tag}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{tag}}'">{{tag}}</a>
+				</li>
+			</ul>
+			<ul ng-class="{loading: tumblr.showLoading}">
+				<li ng-repeat="item in tumblr.items" ng-cloak ng-if="item.type !== 'photo'">
+					<a ng-href="/post/{{item.id}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{item.title}}'">{{item.title}}</a>
+				</li>
+			</ul>
+			<p ng-cloak ng-show="tumblr.showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
+		</section>
+
+		<section>
+			<h2>最新イラスト</h2>
+			<ul class="thumbnails center" ng-class="{loading: pixiv.showLoading}">
+				<li ng-repeat="item in pixiv.items | limitTo:8" ng-cloak>
+					<a href="{{item.img}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{item.title}}'" colorbox="{transition:'none', maxWidth: '90%'}" title="{{item.title}}"><img ng-src="{{item.thumbnail}}"></a>
+				</li>
+			</ul>
+			<p ng-cloak ng-show="pixiv.showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
+		</section>
+
+		<section>
+			<h2>最新写真</h2>
+			<ul class="thumbnails center" ng-class="{loading: flickr.showLoading}">
+				<li ng-repeat="item in flickr.items | limitTo:8" ng-cloak>
+					<a href="http://farm{{item.farm}}.staticflickr.com/{{item.server}}/{{item.id}}_{{item.secret}}_b.jpg" ga="'send', 'event', '{{currentPage}}', 'click', '{{item.id}}'" colorbox="{transition:'none', maxWidth: '90%'}"><img ng-src="http://farm{{item.farm}}.staticflickr.com/{{item.server}}/{{item.id}}_{{item.secret}}_q.jpg"></a>
+				</li>
+			</ul>
+			<p ng-cloak ng-show="flickr.showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
+		</section>
+
+		<section>
+			<h2>最新デザイン</h2>
+			<ul class="thumbnails center" ng-class="{loading: tumblrDesign.showLoading}">
+				<li ng-repeat="item in tumblrDesign.items">
+					<a ng-href="{{item.original_size.url}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{item.id}}_{{$index}}'" title="{{item.caption | tumblrDomainReplace}}" colorbox="{transition:'none', maxWidth: '90%'}" rel="items"><img ng-src="{{item.alt_sizes[item.alt_sizes.length - 1].url}}"></a>
+				</li>
+			</ul>
+			<p ng-cloak ng-show="tumblrDesign.showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
+		</section>
 
 		<sns></sns>
 	</div>
