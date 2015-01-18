@@ -34,14 +34,24 @@
 			<p ng-cloak ng-show="tumblr.showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
 		</section>
 
+		<!--<section>-->
+			<!--<h2>最新イラスト</h2>-->
+			<!--<ul class="thumbnails center" ng-class="{loading: pixiv.showLoading}">-->
+				<!--<li ng-repeat="item in pixiv.items | limitTo:8" ng-cloak>-->
+					<!--<a href="{{item.img}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{item.title}}'" colorbox="{transition:'none', maxWidth: '90%'}" title="{{item.title}}"><img ng-src="{{item.thumbnail}}"></a>-->
+				<!--</li>-->
+			<!--</ul>-->
+			<!--<p ng-cloak ng-show="pixiv.showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>-->
+		<!--</section>-->
+
 		<section>
-			<h2>最新イラスト</h2>
-			<ul class="thumbnails center" ng-class="{loading: pixiv.showLoading}">
-				<li ng-repeat="item in pixiv.items | limitTo:8" ng-cloak>
-					<a href="{{item.img}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{item.title}}'" colorbox="{transition:'none', maxWidth: '90%'}" title="{{item.title}}"><img ng-src="{{item.thumbnail}}"></a>
+			<h2>最新デザイン</h2>
+			<ul class="thumbnails center" ng-class="{loading: tumblrDesign.showLoading}">
+				<li ng-repeat="item in tumblrDesign.items">
+					<a ng-href="{{item.original_size.url}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{item.id}}_{{$index}}'" title="{{item.caption | tumblrDomainReplace}}" colorbox="{transition:'none', maxWidth: '90%'}" rel="items"><img ng-src="{{item.alt_sizes[item.alt_sizes.length - 1].url}}"></a>
 				</li>
 			</ul>
-			<p ng-cloak ng-show="pixiv.showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
+			<p ng-cloak ng-show="tumblrDesign.showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
 		</section>
 
 		<section>
@@ -52,16 +62,6 @@
 				</li>
 			</ul>
 			<p ng-cloak ng-show="flickr.showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
-		</section>
-
-		<section>
-			<h2>最新デザイン</h2>
-			<ul class="thumbnails center" ng-class="{loading: tumblrDesign.showLoading}">
-				<li ng-repeat="item in tumblrDesign.items">
-					<a ng-href="{{item.original_size.url}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{item.id}}_{{$index}}'" title="{{item.caption | tumblrDomainReplace}}" colorbox="{transition:'none', maxWidth: '90%'}" rel="items"><img ng-src="{{item.alt_sizes[item.alt_sizes.length - 1].url}}"></a>
-				</li>
-			</ul>
-			<p ng-cloak ng-show="tumblrDesign.showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
 		</section>
 
 		<sns></sns>
