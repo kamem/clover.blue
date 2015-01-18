@@ -68,11 +68,17 @@ tumblrTags.find({}, function (err, posts) {
         app.get('/diary/tags/' + encodeURI(posts[tag].name), post.tag);
     }
 });
+//template
+app.get('/template/*', post.template);
 //feed
 app.get('/feed', post.feed);
 app.get('/feed/*', post.feed);
-//template
-app.get('/template/*', post.template);
+//app.get('/feed', post.feed);
+qiitaItems.find({}, function (err, posts) {
+    for (var entry in posts) {
+        app.get('/items/' + posts[entry].uuid, post.entry);
+    }
+});
 //error
 app.use(function (err, req, res, next) {
     res.send(err.message);
