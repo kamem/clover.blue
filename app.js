@@ -68,6 +68,9 @@ tumblrTags.find({}, function (err, posts) {
         app.get('/diary/tags/' + encodeURI(posts[tag].name), post.tag);
     }
 });
+//feed
+app.get('/feed', post.feed);
+app.get('/feed/*', post.feed);
 //template
 app.get('/template/*', post.template);
 //error

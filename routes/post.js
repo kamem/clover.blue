@@ -7,6 +7,9 @@ var qiitaItems = cloverBlueDb.qiitaItems;
 var flickrItems = cloverBlueDb.flickrItems;
 var pixivItems = cloverBlueDb.pixivItems;
 var tumblrItems = cloverBlueDb.tumblrItems;
+exports.feed = function (req, res) {
+    new Post(res, 'posts/feed/feed', settings.title);
+};
 exports.template = function (req, res) {
     res.render(req.path.slice(1));
 };

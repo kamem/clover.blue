@@ -82,6 +82,10 @@ tumblrTags.find({},function(err,posts) {
 	}
 });
 
+//feed
+app.get('/feed', post.feed);
+app.get('/feed/*', post.feed);
+
 //template
 app.get('/template/*', post.template);
 
