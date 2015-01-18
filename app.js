@@ -72,7 +72,10 @@ tumblrTags.find({}, function (err, posts) {
 app.get('/template/*', post.template);
 //feed
 app.get('/feed', post.feed);
-app.get('/feed/*', post.feed);
+app.get('/feed/illust', post.feedChild);
+app.get('/feed/photo', post.feedChild);
+app.get('/feed/weblog', post.feedChild);
+app.get('/feed/design', post.feedDesign);
 qiitaItems.find({}, function (err, posts) {
     for (var entry in posts) {
         app.get('/items/' + posts[entry].uuid, post.entry);

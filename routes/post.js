@@ -9,7 +9,30 @@ var pixivItems = cloverBlueDb.pixivItems;
 var tumblrItems = cloverBlueDb.tumblrItems;
 exports.feed = function (req, res) {
     res.set('Content-Type', 'text/xml');
-    new Post(res, 'posts/feed/feed', settings.title);
+    new Post(res, 'posts/feed', settings.title);
+};
+exports.feedChild = function (req, res) {
+    res.set('Content-Type', 'text/xml');
+    new Post(res, 'posts/' + req.path.slice(1), settings.title);
+};
+exports.feedDesign = function (req, res) {
+    res.set('Content-Type', 'text/xml');
+    tumblrItems.find({}).sort('-updated').exec(function (err, tumblrPosts) {
+        var photos = [];
+        for (var i = 0; i < tumblrPosts.length; i++) {
+            if (tumblrPosts[i].photos.length) {
+                for (var j = 0; j < tumblrPosts[i].photos.length; j++) {
+                    photos.push(tumblrPosts[i].photos[j]);
+                    photos[j].updated = tumblrPosts[i].updated;
+                }
+            }
+        }
+        console.log(photos);
+        res.render('posts/' + req.path.slice(1), {
+            title: settings.title,
+            tumblr: photos
+        });
+    });
 };
 exports.template = function (req, res) {
     res.render(req.path.slice(1));
@@ -59,7 +82,7 @@ var Post = (function () {
                         res.render(template, {
                             title: title,
                             qiita: qiitaPosts,
-                            flickr: [flickPosts[0]],
+                            flickr: flickPosts,
                             pixiv: pixivPosts,
                             tumblr: tumblrPosts
                         });

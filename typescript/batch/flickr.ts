@@ -51,7 +51,10 @@ export class SaveApi {
 						{
 							uuid: item.id,
 							updated: item.dateuploaded,
-							title: item.title._content
+							title: item.title._content,
+							farm: item.farm,
+							server: item.server,
+							secret: item.secret
 						}
 					);
 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0">
+	<channel>
+		<title><%= title %></title>
+		<link>http://clover.blue/</link>
+		<description>撮った写真を載せています。</description>
+		<language>ja</language>
+		<copyright>Copyright © <%= title %> All Rights Reserved.</copyright>
+		<lastBuildDate></lastBuildDate>
+		<% for(var i = 0;i < tumblr.length;i++) { %>
+		<item>
+			<title><%= tumblr[i].caption %></title>
+			<description><![CDATA[
+				<img src="<%= tumblr[i].original_size.url %>">
+				]]></description>
+			<link>http://clover.blue/design</link>
+			<guid>http://clover.blue/design</guid>
+			<pubDate><%= new Date(parseInt(tumblr[i].updated + '000')) %></pubDate>
+		</item>
+		<% } %>
+	</channel>
+</rss>

@@ -16,6 +16,15 @@ var Items = (function () {
                 if (info === 'updated') {
                     itemInfo[info] = typeof itemInfoVal === 'string' ? Date.parse(itemInfoVal) : itemInfoVal;
                 }
+                else if (info === 'tags') {
+                    var itemTags = [];
+                    for (var i = item.tags.length - 1; i >= 0; i--) {
+                        var tagName = item.tags[i].name ? item.tags[i].name : item.tags[i];
+                        itemTags.push(tagName);
+                    }
+                    ;
+                    itemInfo[info] = itemTags;
+                }
                 else {
                     itemInfo[info] = itemInfoVal;
                 }

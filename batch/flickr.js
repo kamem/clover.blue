@@ -50,7 +50,10 @@ var SaveApi = (function () {
                     dbItems.saveItem('flickrItems', {
                         uuid: item.id,
                         updated: item.dateuploaded,
-                        title: item.title._content
+                        title: item.title._content,
+                        farm: item.farm,
+                        server: item.server,
+                        secret: item.secret
                     });
                     if (photosCount === MAX) {
                         dbItems.removeUnnecessaryDbItem('flickrItems', items, 'id');

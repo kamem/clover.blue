@@ -19,7 +19,11 @@ export class SaveApi {
 					{
 						uuid: 'id',
 						updated: 'timestamp',
-						title: 'title'
+						title: 'title',
+						body: 'body',
+						tags: 'tags',
+						photos: 'photos',
+						type: 'type'
 					}
 				);
 

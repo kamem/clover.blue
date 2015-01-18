@@ -12,7 +12,11 @@ var SaveApi = (function () {
                 dbItems.saveDatabase(JSON.parse(body).response.posts, {
                     uuid: 'id',
                     updated: 'timestamp',
-                    title: 'title'
+                    title: 'title',
+                    body: 'body',
+                    tags: 'tags',
+                    photos: 'photos',
+                    type: 'type'
                 });
                 console.log('complate!');
             }

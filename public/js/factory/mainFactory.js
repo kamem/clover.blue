@@ -27,8 +27,6 @@ define(["require", "exports"], function (require, exports) {
                     var photos = [];
                     angular.forEach(items, function (item) {
                         angular.forEach(item.photos, function (photo) {
-                            photo.id = item.id;
-                            photo.caption = item.caption;
                             photos.push(photo);
                         });
                     });

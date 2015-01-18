@@ -1,6 +1,30 @@
 /// <reference path="typings/tsd.d.ts" />
 var mongo = require('mongoose');
 
+var qiitaItems = mongo.Schema({
+	'updated': String,
+	'uuid': String,
+	'title': String,
+	'body': String,
+	'tags': Array
+});
+var tumblrItems = mongo.Schema({
+	'updated': String,
+	'uuid': String,
+	'title': String,
+	'body': String,
+	'tags': Array,
+	'photos': Array,
+	'type': String
+});
+var flickrItems = mongo.Schema({
+	'updated': String,
+	'uuid': String,
+	'title': String,
+	'farm': String,
+	'server': String,
+	'secret': String
+});
 var items = mongo.Schema({
 	'updated': String,
 	'uuid': String,
@@ -19,12 +43,12 @@ var pixiv = mongo.Schema({
 	'thumbnail': String
 });
 
-var qiitaItems = mongo.model('qiita_items',items);
+var qiitaItems = mongo.model('qiita_items',qiitaItems);
 var qiitaTags = mongo.model('qiita_tags',tags);
-var flickrItems = mongo.model('flickr_items',items);
+var flickrItems = mongo.model('flickr_items',flickrItems);
 var pixivTags = mongo.model('pixiv_tags',tags);
 var pixivItems = mongo.model('pixiv_items',pixiv);
-var tumblrItems = mongo.model('tumblr_items',items);
+var tumblrItems = mongo.model('tumblr_items',tumblrItems);
 var tumblrTags = mongo.model('tumblr_tags',tags);
 
 exports.qiitaItems = qiitaItems;

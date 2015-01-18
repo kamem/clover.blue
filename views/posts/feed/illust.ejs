@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0">
+	<channel>
+		<title><%= title %></title>
+		<link>http://clover.blue/</link>
+		<description>自作イラストを載せています。</description>
+		<language>ja</language>
+		<copyright>Copyright © <%= title %> All Rights Reserved.</copyright>
+		<lastBuildDate></lastBuildDate>
+
+		<% for(var i = 0;i < pixiv.length;i++) { %>
+		<item>
+			<title><%= pixiv[i].title %></title>
+			<description><![CDATA[
+				<img src="<%= pixiv[i].img %>">
+				]]></description>
+			<link>http://clover.blue/illust</link>
+			<guid>http://clover.blue/illust</guid>
+			<pubDate><%= new Date(parseInt(pixiv[i].updated)) %></pubDate>
+		</item>
+		<% } %>
+	</channel>
+</rss>

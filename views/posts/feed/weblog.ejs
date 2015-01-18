@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0">
+	<channel>
+		<title><%= title %></title>
+		<link>http://clover.blue/</link>
+		<description>HTML, CSS, Javascript, デザインの記事や日記を書いたり。写真やイラストを載せています。</description>
+		<language>ja</language>
+		<copyright>Copyright © <%= title %> All Rights Reserved.</copyright>
+		<lastBuildDate></lastBuildDate>
+
+		<% for(var i = 0;i < qiita.length;i++) { %>
+		<item>
+			<title><%= qiita[i].title %></title>
+			<% for(var j = 0;j < qiita[i].tags.length;j++) { %>
+			<category><%= qiita[i].tags[j] %></category>
+			<% } %>
+			<description><![CDATA[<%= qiita[i].body %>]]></description>
+			<link>http://clover.blue/items/<%= qiita[i].uuid %></link>
+			<guid>http://clover.blue/items/<%= qiita[i].uuid %></guid>
+			<pubDate><%= new Date(parseInt(qiita[i].updated)) %></pubDate>
+		</item>
+		<% } %>
+	</channel>
+</rss>

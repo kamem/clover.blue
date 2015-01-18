@@ -11,7 +11,9 @@ var SaveApi = (function () {
                 dbItems.saveDatabase(JSON.parse(body), {
                     uuid: 'uuid',
                     updated: 'updated_at',
-                    title: 'title'
+                    title: 'title',
+                    body: 'body',
+                    tags: 'tags'
                 });
                 console.log('complate!');
             }

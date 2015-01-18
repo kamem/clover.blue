@@ -18,7 +18,9 @@ export class SaveApi {
 					{
 						uuid: 'uuid',
 						updated: 'updated_at',
-						title: 'title'
+						title: 'title',
+						body: 'body',
+						tags: 'tags'
 					}
 				);
 
