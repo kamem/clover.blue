@@ -89,8 +89,6 @@ app.get('/template/*', post.template);
 app.get('/feed', post.feed);
 app.get('/feed/*', post.feed);
 
-//app.get('/feed', post.feed);
-
 
 qiitaItems.find({},function(err,posts) {
 	for(var entry in posts) {

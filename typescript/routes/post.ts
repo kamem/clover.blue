@@ -4,7 +4,6 @@ var settings = require('../settings');
 var mongo = require('mongoose');
 var db = require('../models/db');
 var cloverBlueDb = require('../db');
-var Feed = require('feed');
 
 var qiitaItems = cloverBlueDb.qiitaItems;
 var flickrItems = cloverBlueDb.flickrItems;
@@ -15,37 +14,6 @@ exports.feed = function(req,res) {
 	res.set('Content-Type', 'text/xml');
 	new Post(res, 'posts/feed/feed', settings.title);
 };
-
-
-//exports.feed = function(req,res) {
-//	var feed = new Feed({
-//		title: settings.title,
-//		link: 'http://clover.blue/',
-//		description: 'HTML, CSS, Javascript, デザインの記事や日記を書いたり。写真やイラストを載せています。',
-//		image: 'http://clover.blue/og.gif',
-//		copyright: 'Copyright © settings.title All Rights Reserved.',
-//
-//		author: {
-//			name: 'Kamem',
-//			email: '',
-//			link: ''
-//		}
-//	});
-//
-//	qiitaItems.find({}).sort('-updated').exec(function (err, posts) {
-//		for(var key in posts) {
-//			feed.addItem({
-//				title: posts[key].title,
-//				link: 'http://clover.blue/items/' + posts[key].uuid,
-//				date: new Date(parseInt(posts[key].updated)),
-//				description: posts[key].title
-//			});
-//		}
-//
-//		res.set('Content-Type', 'text/xml');
-//		res.send(feed.render('rss-2.0'));
-//	});
-//};
 
 exports.template = function(req,res) {
 	res.render(req.path.slice(1));
