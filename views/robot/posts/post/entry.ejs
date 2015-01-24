@@ -1,0 +1,25 @@
+<% include ../../header %>
+
+<main role="main">
+	<article>
+		<header>
+			<h1><%= item.title %></h1>
+			<ul class="data">
+				<li class="date"><time datetime="<%= new Date(parseInt(item.updated)) %>" pubdate><%= new Date(parseInt(item.updated)) %></time></li>
+				<!--<li class="tag">-->
+					<!--<% for(var j = 0;j < item.tags.length;j++) { %>-->
+					<!--<a href="/weblog/tags/<%= item.tags[j] %>"><%= item.tags[j] %></a>-->
+					<!--<% } %>-->
+				<!--</li>-->
+			</ul>
+		</header>
+
+		<div class="content">
+			<div>
+				<%- item.body %>
+			</div>
+		</div>
+	</article>
+</main>
+
+<% include ../../footer %>

@@ -1,0 +1,21 @@
+<% include ../header %>
+
+<main role="main">
+	<article>
+		<header>
+			<h1>イラスト</h1>
+		</header>
+
+		<div class="content">
+			<ul class="thumbnails center">
+				<% for(var i = 0;i < pixiv.length;i++) { %>
+				<li>
+					<a href="<%= pixiv[i].img %>" title="<%= pixiv[i].title %>"><img src="<%= pixiv[i].img %>"></a>
+				</li>
+				<% } %>
+			</ul>
+		</div>
+	</article>
+</main>
+
+<% include ../footer %>

@@ -1,0 +1,21 @@
+<% include ../header %>
+
+<main role="main">
+	<article>
+		<header>
+			<h1>記事</h1>
+		</header>
+
+		<div class="content">
+			<ul>
+				<% for(var i = 0;i < qiita.length;i++) { %>
+				<li>
+					<a href="/items/<%= qiita[i].uuid %>"><%= qiita[i].title %></a>
+				</li>
+				<% } %>
+			</ul>
+		</div>
+	</article>
+</main>
+
+<% include ../footer %>

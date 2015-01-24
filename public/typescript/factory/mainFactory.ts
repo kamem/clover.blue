@@ -33,6 +33,7 @@ export class tumblrFactory {
 				var photos = [];
 				angular.forEach(items, function(item) {
 					angular.forEach(item.photos, function(photo){
+						photo.caption = item.caption;
 						photos.push(photo);
 					})
 				});

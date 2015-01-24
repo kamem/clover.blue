@@ -31,7 +31,7 @@ exports.feed = function (req, res) {
 };
 exports.feedChild = function (req, res) {
     res.set('Content-Type', 'text/xml');
-    new Post(res, 'posts/' + req.path.slice(1), settings.title);
+    new Post(res, req, 'posts/' + req.path.slice(1), settings.title, '');
 };
 exports.feedDesign = function (req, res) {
     res.set('Content-Type', 'text/xml');
@@ -46,53 +46,59 @@ exports.template = function (req, res) {
     res.render(req.path.slice(1));
 };
 exports.index = function (req, res) {
-    new Post(res, 'posts/index', settings.title);
+    new Post(res, req, 'posts/index', settings.title, '');
 };
 exports.about = function (req, res) {
-    new Post(res, 'posts/about', 'サイトについて' + ' - ' + settings.title);
+    new Post(res, req, 'posts/about', 'サイトについて' + ' - ' + settings.title, '');
 };
 exports.design = function (req, res) {
-    new Post(res, 'posts/design', 'デザイン' + ' - ' + settings.title);
+    tumblrDesigns.find({}).exec(function (err, post) {
+        new Post(res, req, 'posts/design', 'デザイン' + ' - ' + settings.title, post);
+    });
 };
 exports.photo = function (req, res) {
-    new Post(res, 'posts/photo', '写真' + ' - ' + settings.title);
+    new Post(res, req, 'posts/photo', '写真' + ' - ' + settings.title, '');
 };
 exports.weblog = function (req, res) {
-    new Post(res, 'posts/weblog', '記事' + ' - ' + settings.title);
+    new Post(res, req, 'posts/weblog', '記事' + ' - ' + settings.title, '');
 };
 exports.illust = function (req, res) {
-    new Post(res, 'posts/illust', 'イラスト' + ' - ' + settings.title);
+    new Post(res, req, 'posts/illust', 'イラスト' + ' - ' + settings.title, '');
 };
 exports.diary = function (req, res) {
-    new Post(res, 'posts/diary', '日記' + ' - ' + settings.title);
+    new Post(res, req, 'posts/diary', '日記' + ' - ' + settings.title, '');
 };
 exports.tag = function (req, res) {
-    new Post(res, 'posts/tags/tag', settings.title);
+    new Post(res, req, 'posts/tags/tag', settings.title, '');
 };
 exports.entry = function (req, res) {
     var uuid = req.route.path.replace('/items/', '');
     qiitaItems.findOne({ uuid: uuid }).exec(function (err, post) {
-        new Post(res, 'posts/items/entry', post.title + ' - ' + settings.title);
+        new Post(res, req, 'posts/items/entry', post.title + ' - ' + settings.title, post);
     });
 };
 exports.diaryEntry = function (req, res) {
     var uuid = req.route.path.replace('/post/', '');
     tumblrItems.findOne({ uuid: uuid }).exec(function (err, post) {
-        new Post(res, 'posts/items/entry', post.title + ' - ' + settings.title);
+        console.log(post);
+        new Post(res, req, 'posts/post/entry', post.title + ' - ' + settings.title, post);
     });
 };
 var Post = (function () {
-    function Post(res, template, title) {
+    function Post(res, req, template, title, item) {
+        var isSearch = isSearchRobotUa("ua is " + JSON.stringify(req.headers['user-agent']));
+        var robotDirectory = isSearch ? 'robot/' : '';
         qiitaItems.find({}).sort('-updated').exec(function (err, qiitaPosts) {
             flickrItems.find({}).sort('-updated').exec(function (err, flickPosts) {
                 pixivItems.find({}).sort('-updated').exec(function (err, pixivPosts) {
                     tumblrItems.find({}).sort('-updated').exec(function (err, tumblrPosts) {
-                        res.render(template, {
+                        res.render(robotDirectory + template, {
                             title: title,
                             qiita: qiitaPosts,
                             flickr: flickPosts,
                             pixiv: pixivPosts,
-                            tumblr: tumblrPosts
+                            tumblr: tumblrPosts,
+                            item: item
                         });
                     });
                 });
@@ -101,3 +107,18 @@ var Post = (function () {
     }
     return Post;
 })();
+var isSearchRobotUa = function (ua) {
+    var robotUas = [
+        'Googlebot',
+        'msnbot',
+        'Yahoo!',
+        'Y!'
+    ];
+    var isSearch;
+    robotUas.forEach(function (robotUa) {
+        if (!isSearch) {
+            isSearch = ua.indexOf(robotUa) >= 0;
+        }
+    });
+    return isSearch;
+};

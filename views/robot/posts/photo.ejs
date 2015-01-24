@@ -1,0 +1,23 @@
+<% include ../header %>
+
+<main role="main" ng-view>
+	<article>
+		<header>
+			<h1 class="off">写真</h1>
+		</header>
+
+		<div class="content">
+			<ul class="thumbnails center">
+				<% for(var i = 0;i < flickr.length;i++) { %>
+				<li>
+					<a href="http://farm<%= flickr[i].farm %>.staticflickr.com/<%= flickr[i].server %>/<%= flickr[i].uuid %>_<%= flickr[i].secret %>_b.jpg">
+						<img src="http://farm<%= flickr[i].farm %>.staticflickr.com/<%= flickr[i].server %>/<%= flickr[i].uuid %>_<%= flickr[i].secret %>_q.jpg">
+					</a>
+				</li>
+				<% } %>
+			</ul>
+		</div>
+	</article>
+</main>
+
+<% include ../footer %>
