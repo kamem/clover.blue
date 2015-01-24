@@ -14,8 +14,14 @@ var tumblrItems = mongo.Schema({
 	'title': String,
 	'body': String,
 	'tags': Array,
-	'photos': Array,
 	'type': String
+});
+var tumblrDesigns = mongo.Schema({
+	'updated': String,
+	'uuid': String,
+	'url': String,
+	'title': String,
+	'tags': Array
 });
 var flickrItems = mongo.Schema({
 	'updated': String,
@@ -50,6 +56,7 @@ var pixivTags = mongo.model('pixiv_tags',tags);
 var pixivItems = mongo.model('pixiv_items',pixiv);
 var tumblrItems = mongo.model('tumblr_items',tumblrItems);
 var tumblrTags = mongo.model('tumblr_tags',tags);
+var tumblrDesigns = mongo.model('tumblr_designs',tumblrDesigns);
 
 exports.qiitaItems = qiitaItems;
 exports.qiitaTags = qiitaTags;
@@ -58,3 +65,4 @@ exports.pixivItems = pixivItems;
 exports.pixivTags = pixivTags;
 exports.tumblrItems = tumblrItems;
 exports.tumblrTags = tumblrTags;
+exports.tumblrDesigns = tumblrDesigns;

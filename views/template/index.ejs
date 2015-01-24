@@ -57,7 +57,7 @@
 		<section>
 			<h2>最新写真</h2>
 			<ul class="thumbnails center" ng-class="{loading: flickr.showLoading}">
-				<li ng-repeat="item in flickr.items | limitTo:8" ng-cloak>
+				<li ng-repeat="item in flickr.items | limitTo:10" ng-cloak>
 					<a href="http://farm{{item.farm}}.staticflickr.com/{{item.server}}/{{item.id}}_{{item.secret}}_b.jpg" ga="'send', 'event', '{{currentPage}}', 'click', '{{item.id}}'" colorbox="{transition:'none', maxWidth: '90%'}"><img ng-src="http://farm{{item.farm}}.staticflickr.com/{{item.server}}/{{item.id}}_{{item.secret}}_q.jpg"></a>
 				</li>
 			</ul>

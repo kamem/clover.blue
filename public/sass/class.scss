@@ -83,8 +83,8 @@ $ico:(
 	$num: 10;
 	$margin: 0.3;
 	li {
-		width: 100% / $num - ($num - 1) * $margin / ($num - 1);
-		margin: 0 $margin * 1% $margin * 1% 0 !important;
+		width: 100% / $num - $margin + ($margin / ($num - 1));
+		margin: 0 ($margin - ($margin / ($num - 1))) * 1% ($margin - ($margin / ($num - 1))) * 1% 0 !important;
 		display: inline-block;
 		list-style-type: none;
 		vertical-align: top;

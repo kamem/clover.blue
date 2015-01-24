@@ -7,15 +7,15 @@
 		<language>ja</language>
 		<copyright>Copyright © <%= title %> All Rights Reserved.</copyright>
 		<lastBuildDate></lastBuildDate>
-		<% for(var i = 0;i < tumblr.length;i++) { %>
+		<% for(var i = 0;i < tumblrDesigns.length;i++) { %>
 		<item>
-			<title><%= tumblr[i].caption %></title>
+			<title><%= tumblrDesigns[i].title %></title>
 			<description><![CDATA[
-				<img src="<%= tumblr[i].original_size.url %>">
+				<img src="<%= tumblrDesigns[i].url %>">
 				]]></description>
 			<link>http://clover.blue/design</link>
 			<guid>http://clover.blue/design</guid>
-			<pubDate><%= new Date(parseInt(tumblr[i].updated + '000')) %></pubDate>
+			<pubDate><%= new Date(parseInt(tumblrDesigns[i].updated + '000')) %></pubDate>
 		</item>
 		<% } %>
 	</channel>

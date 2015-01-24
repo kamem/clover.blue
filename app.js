@@ -75,6 +75,7 @@ app.get('/feed', post.feed);
 app.get('/feed/illust', post.feedChild);
 app.get('/feed/photo', post.feedChild);
 app.get('/feed/weblog', post.feedChild);
+app.get('/feed/diary', post.feedChild);
 app.get('/feed/design', post.feedDesign);
 qiitaItems.find({}, function (err, posts) {
     for (var entry in posts) {

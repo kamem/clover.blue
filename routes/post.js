@@ -7,9 +7,27 @@ var qiitaItems = cloverBlueDb.qiitaItems;
 var flickrItems = cloverBlueDb.flickrItems;
 var pixivItems = cloverBlueDb.pixivItems;
 var tumblrItems = cloverBlueDb.tumblrItems;
+var tumblrDesigns = cloverBlueDb.tumblrDesigns;
 exports.feed = function (req, res) {
     res.set('Content-Type', 'text/xml');
-    new Post(res, 'posts/feed', settings.title);
+    qiitaItems.find({}).sort('-updated').exec(function (err, qiitaPosts) {
+        flickrItems.find({}).sort('-updated').exec(function (err, flickPosts) {
+            pixivItems.find({}).sort('-updated').exec(function (err, pixivPosts) {
+                tumblrItems.find({}).sort('-updated').exec(function (err, tumblrPosts) {
+                    tumblrDesigns.find({}).sort('-updated').exec(function (err, tumblrDesignPosts) {
+                        res.render('posts/feed', {
+                            title: settings.title,
+                            qiita: qiitaPosts,
+                            flickr: flickPosts,
+                            pixiv: pixivPosts,
+                            tumblr: tumblrPosts,
+                            tumblrDesigns: tumblrDesignPosts
+                        });
+                    });
+                });
+            });
+        });
+    });
 };
 exports.feedChild = function (req, res) {
     res.set('Content-Type', 'text/xml');
@@ -17,20 +35,10 @@ exports.feedChild = function (req, res) {
 };
 exports.feedDesign = function (req, res) {
     res.set('Content-Type', 'text/xml');
-    tumblrItems.find({}).sort('-updated').exec(function (err, tumblrPosts) {
-        var photos = [];
-        for (var i = 0; i < tumblrPosts.length; i++) {
-            if (tumblrPosts[i].photos.length) {
-                for (var j = 0; j < tumblrPosts[i].photos.length; j++) {
-                    photos.push(tumblrPosts[i].photos[j]);
-                    photos[j].updated = tumblrPosts[i].updated;
-                }
-            }
-        }
-        console.log(photos);
+    tumblrDesigns.find({}).sort('-updated').exec(function (err, tumblrDesignPosts) {
         res.render('posts/' + req.path.slice(1), {
             title: settings.title,
-            tumblr: photos
+            tumblrDesigns: tumblrDesignPosts
         });
     });
 };

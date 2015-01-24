@@ -127,8 +127,8 @@ dl.commentList dd:last-child {
   left: -30%;
 }
 .thumbnails li {
-  width: 9.7%;
-  margin: 0 0.3% 0.3% 0 !important;
+  width: 9.73333%;
+  margin: 0 0.26667% 0.26667% 0 !important;
   display: inline-block;
   list-style-type: none;
   vertical-align: top;
