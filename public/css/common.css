@@ -153,17 +153,6 @@ main,
 #header nav a:hover:after {
   display: block;
 }
-#header nav .home a,
-#header nav .diary a,
-#header nav .illust a,
-#header nav .weblog a,
-#header nav .design a,
-#header nav .photo a {
-  font-family: 'icomoon';
-}
-#header nav .about a:before {
-  content: '?';
-}
 #header nav .home a:after {
   content: 'Home';
 }

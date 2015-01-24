@@ -134,17 +134,6 @@ $header-top: 10;
 				}
 			}
 		}
-		.home a,
-		.diary a,
-		.illust a,
-		.weblog a,
-		.design a,
-		.photo a {
-				font-family: 'icomoon';
-		}
-		.about a:before {
-			content: '?';
-		}
 
 		.home a:after {
 			content: 'Home';

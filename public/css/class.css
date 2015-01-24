@@ -46,7 +46,43 @@ dl.commentList dd:last-child {
   display: none;
 }
 
-.icos > *:not(.about) {
+.op {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwLjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZWZmZTIiIHN0b3Atb3BhY2l0eT0iMC4zIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g') no-repeat, url('../img/common/cloverblue.png?1417842781') no-repeat center center;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, rgba(254, 255, 226, 0.3))) no-repeat, url('../img/common/cloverblue.png?1417842781') no-repeat center center;
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 0), rgba(254, 255, 226, 0.3)) no-repeat, url('../img/common/cloverblue.png?1417842781') no-repeat center center;
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(254, 255, 226, 0.3)) no-repeat, url('../img/common/cloverblue.png?1417842781') no-repeat center center;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(254, 255, 226, 0.3)) no-repeat, url('../img/common/cloverblue.png?1417842781') no-repeat center center;
+  -moz-background-size: auto auto, 148px 24px;
+  -o-background-size: auto auto, 148px 24px;
+  -webkit-background-size: auto auto, 148px 24px;
+  background-size: auto auto, 148px 24px;
+  background-color: #94dcef;
+  -moz-transition-property: all;
+  -o-transition-property: all;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -moz-transition-duration: 1s;
+  -o-transition-duration: 1s;
+  -webkit-transition-duration: 1s;
+  transition-duration: 1s;
+  -moz-transition-timing-function: ease-out;
+  -o-transition-timing-function: ease-out;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.op.end {
+  opacity: 0;
+  pointer-events: none;
+  background-size: 165px 30px;
+}
+
+.icos > *:not(.about) a {
   font-family: 'icomoon';
 }
 .icos a {

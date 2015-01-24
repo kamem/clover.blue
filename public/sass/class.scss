@@ -12,10 +12,32 @@
 	display: none;
 }
 
+.op {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+
+	@include background-fit((linear-gradient(top, rgba(255,255,255,0), rgba(254,255,226,.3)), 'common/cloverblue.png'), false, ('no-repeat', 'no-repeat center center'));
+	background-color: #94dcef;
+
+	@include transition-property(all);
+	@include transition-duration(1s);
+	@include transition-timing-function(ease-out);
+
+	&.end {
+		opacity: 0;
+		pointer-events: none;
+		background-size: 165px 30px;
+	}
+}
+
 
 $size: 29;
 .icos {
-	& > *:not(.about) {
+	> *:not(.about) a {
 		font-family: 'icomoon';
 	}
 	a {

@@ -45,6 +45,7 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
             if ($scope.$storage.flickr)
                 flickrCategory.storageUpdated = $scope.$storage.flickr[0].dateuploaded;
             flickrCategory.load();
+            angular.element(document.querySelectorAll('.op')).addClass('end');
             //Design
             var name = 'tumblrDesign';
             if ($scope.$storage.tumblr)

@@ -53,6 +53,7 @@ export class Index {
 		if($scope.$storage.flickr) flickrCategory.storageUpdated = $scope.$storage.flickr[0].dateuploaded;
 		flickrCategory.load();
 
+		angular.element(document.querySelectorAll('.op')).addClass('end');
 
 		//Design
 		var name = 'tumblrDesign';
