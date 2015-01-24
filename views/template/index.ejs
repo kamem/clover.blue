@@ -4,8 +4,23 @@
 	</header>
 
 	<div class="content">
+		<figure class="main" style="background-image: url(http://farm{{flickr.items[0].farm}}.staticflickr.com/{{flickr.items[0].server}}/{{flickr.items[0].id}}_{{flickr.items[0].secret}}_b.jpg);"><img ng-src="http://farm{{flickr.items[0].farm}}.staticflickr.com/{{flickr.items[0].server}}/{{flickr.items[0].id}}_{{flickr.items[0].secret}}_b.jpg"></figure>
+
+		<!--<section>-->
+			<!--<h2 class="off"><a href="design">Design</a> &amp; <a href="photo">Photo</a></h2>-->
+			<!--<ul class="thumbnails center max" ng-class="{loading: flickr.showLoading}">-->
+				<!--<li ng-repeat="item in tumblrDesign.items | limitTo:5">-->
+					<!--<a ng-href="{{item.original_size.url}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{item.id}}_{{$index}}'" title="{{item.caption | tumblrDomainReplace}}" colorbox="{transition:'none', maxWidth: '90%'}" rel="items"><img ng-src="{{item.alt_sizes[item.alt_sizes.length - 1].url}}"></a>-->
+				<!--</li>-->
+				<!--<li ng-repeat="item in flickr.items | limitTo:5" ng-cloak>-->
+					<!--<a href="http://farm{{item.farm}}.staticflickr.com/{{item.server}}/{{item.id}}_{{item.secret}}_b.jpg" ga="'send', 'event', '{{currentPage}}', 'click', '{{item.id}}'" colorbox="{transition:'none', maxWidth: '90%'}"><img ng-src="http://farm{{item.farm}}.staticflickr.com/{{item.server}}/{{item.id}}_{{item.secret}}_q.jpg"></a>-->
+				<!--</li>-->
+			<!--</ul>-->
+			<!--<p ng-cloak ng-show="flickr.showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>-->
+		<!--</section>-->
+
 		<section>
-			<h2>最新記事</h2>
+			<h2><a href="weblog">Weblog</a></h2>
 			<ul class="tags">
 				<li ng-repeat="tag in qiita.tags" ng-cloak>
 					<a ng-href="/weblog/tags/{{tag}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{tag}}'">{{tag}}</a>
@@ -20,7 +35,7 @@
 		</section>
 
 		<section>
-			<h2>最新日記</h2>
+			<h2><a href="diary">Diary</a></h2>
 			<ul class="tags">
 				<li ng-repeat="tag in tumblr.tags" ng-cloak>
 					<a ng-href="/diary/tags/{{tag}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{tag}}'">{{tag}}</a>
@@ -43,26 +58,6 @@
 			<!--</ul>-->
 			<!--<p ng-cloak ng-show="pixiv.showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>-->
 		<!--</section>-->
-
-		<section>
-			<h2>最新デザイン</h2>
-			<ul class="thumbnails center" ng-class="{loading: tumblrDesign.showLoading}">
-				<li ng-repeat="item in tumblrDesign.items | limitTo:8">
-					<a ng-href="{{item.original_size.url}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{item.id}}_{{$index}}'" title="{{item.caption | tumblrDomainReplace}}" colorbox="{transition:'none', maxWidth: '90%'}" rel="items"><img ng-src="{{item.alt_sizes[item.alt_sizes.length - 1].url}}"></a>
-				</li>
-			</ul>
-			<p ng-cloak ng-show="tumblrDesign.showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
-		</section>
-
-		<section>
-			<h2>最新写真</h2>
-			<ul class="thumbnails center" ng-class="{loading: flickr.showLoading}">
-				<li ng-repeat="item in flickr.items | limitTo:8" ng-cloak>
-					<a href="http://farm{{item.farm}}.staticflickr.com/{{item.server}}/{{item.id}}_{{item.secret}}_b.jpg" ga="'send', 'event', '{{currentPage}}', 'click', '{{item.id}}'" colorbox="{transition:'none', maxWidth: '90%'}"><img ng-src="http://farm{{item.farm}}.staticflickr.com/{{item.server}}/{{item.id}}_{{item.secret}}_q.jpg"></a>
-				</li>
-			</ul>
-			<p ng-cloak ng-show="flickr.showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
-		</section>
 
 		<sns></sns>
 	</div>
