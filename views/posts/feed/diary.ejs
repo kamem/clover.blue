@@ -6,7 +6,7 @@
 		<description>デザインや日常のことについて書いています。</description>
 		<language>ja</language>
 		<copyright>Copyright © <%= title %> All Rights Reserved.</copyright>
-		<lastBuildDate></lastBuildDate>
+		<lastBuildDate><%= new Date(parseInt(tumblr[0].updated + '000')) %></lastBuildDate>
 
 		<% for(var i = 0;i < tumblr.length;i++) { %>
 		<% if(tumblr[i].type !== 'photo') { %>

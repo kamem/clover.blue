@@ -344,10 +344,11 @@ main {
 		dt,
 		dd {
 			margin: 0 auto;
+			padding: es(5) 0;
 			letter-spacing: es($letter-spacing);
 			color: $text-color;
 			@include fz($font-size);
-			line-height: es($font-size * 2.1);
+			line-height: es($font-size * 1.5);
 
 			max-width: es($base-width);
 

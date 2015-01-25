@@ -6,7 +6,7 @@
 		<description>撮った写真を載せています。</description>
 		<language>ja</language>
 		<copyright>Copyright © <%= title %> All Rights Reserved.</copyright>
-		<lastBuildDate></lastBuildDate>
+		<lastBuildDate><%= new Date(parseInt(flickr[0].updated + '000')) %></lastBuildDate>
 
 		<% for(var i = 0;i < flickr.length;i++) { %>
 		<item>

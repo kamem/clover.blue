@@ -43,8 +43,19 @@
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 
+	+ * {
+		:first-child {
+			margin-top: 0;
+		}
+	}
+
 	img {
 		visibility: hidden;
+	}
+
+
+	@media screen and (max-width:  es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
+		display: none;
 	}
 }
 

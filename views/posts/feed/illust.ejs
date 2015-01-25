@@ -6,7 +6,7 @@
 		<description>自作イラストを載せています。</description>
 		<language>ja</language>
 		<copyright>Copyright © <%= title %> All Rights Reserved.</copyright>
-		<lastBuildDate></lastBuildDate>
+		<lastBuildDate><%= new Date(parseInt(pixiv[0].updated)) %></lastBuildDate>
 
 		<% for(var i = 0;i < pixiv.length;i++) { %>
 		<item>

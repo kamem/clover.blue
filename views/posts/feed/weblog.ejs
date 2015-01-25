@@ -6,7 +6,7 @@
 		<description>HTML, CSS, Javascript, デザインの記事や日記を書いたり。写真やイラストを載せています。</description>
 		<language>ja</language>
 		<copyright>Copyright © <%= title %> All Rights Reserved.</copyright>
-		<lastBuildDate></lastBuildDate>
+		<lastBuildDate><%= new Date(parseInt(qiita[0].updated)) %></lastBuildDate>
 
 		<% for(var i = 0;i < qiita.length;i++) { %>
 		<item>
