@@ -198,6 +198,7 @@ dl.commentList dd:last-child {
 .thumbnails li {
   width: 9.73333%;
   margin: 0 0.26667% 0.26667% 0 !important;
+  padding: 0 !important;
   display: inline-block;
   list-style-type: none;
   vertical-align: top;
@@ -481,6 +482,7 @@ nav.pageNav h2:before {
 nav.pageNav li {
   font-size: 14px !important;
   font-size: 1.4rem !important;
+  padding: 0 !important;
   line-height: 2 !important;
 }
 

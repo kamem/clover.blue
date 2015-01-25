@@ -147,6 +147,7 @@ $ico:(
 	li {
 		width: 100% / $num - $margin + ($margin / ($num - 1));
 		margin: 0 ($margin - ($margin / ($num - 1))) * 1% ($margin - ($margin / ($num - 1))) * 1% 0 !important;
+		padding: 0 !important;
 		display: inline-block;
 		list-style-type: none;
 		vertical-align: top;
@@ -365,6 +366,7 @@ nav.pageNav {
 
 	li {
 		@include fz(14,!important);
+		padding: 0 !important;
 		line-height: 2 !important;
 	}
 }
