@@ -107,15 +107,18 @@ dl.commentList dd:last-child {
 
 .main {
   max-width: inherit !important;
+  max-height: 29rem;
   background-position: top;
-  max-height: 300px;
   overflow: hidden;
   background-size: 100% auto;
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
-.main + * :first-child {
-  margin-top: 0;
+.main.bottom {
+  background-position: bottom;
+}
+.main.center {
+  background-position: center 70%;
 }
 .main img {
   visibility: hidden;
@@ -123,6 +126,25 @@ dl.commentList dd:last-child {
 @media screen and (max-width: 40.625rem) {
   .main {
     display: none;
+  }
+}
+@media screen and (min-width: 40.625rem) {
+  .main {
+    margin-bottom: -7.5rem !important;
+  }
+  .main + * > :first-child {
+    margin-top: 0;
+    font-size: 55px;
+    font-size: 5.5rem;
+    opacity: 0.85;
+    color: #fff;
+  }
+  .main + * > :first-child:before {
+    color: #fff;
+    font-size: 55px;
+    font-size: 5.5rem;
+    top: 1.5rem;
+    left: -5.5rem;
   }
 }
 
@@ -513,7 +535,7 @@ nav.pageNav li {
   margin: 6rem 0 4rem;
 }
 .data li {
-  margin: 0 0.4rem;
+  margin: 0.4rem;
   display: inline-block;
   font-size: 12px;
   font-size: 1.2rem;

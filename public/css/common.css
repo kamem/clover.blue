@@ -223,6 +223,7 @@ main.off {
 main header {
   margin: 0 auto;
   max-width: 73.6rem;
+  padding: 0 1.6rem;
   text-align: center;
 }
 main header h1 {
@@ -230,6 +231,7 @@ main header h1 {
   padding-bottom: 0.8rem;
   word-wrap: break-word;
   letter-spacing: 0.24rem;
+  line-height: 1.8;
   position: relative;
   display: inline;
   font-size: 26px;
@@ -258,19 +260,36 @@ main .content h2 {
   position: relative;
 }
 main .content h2:before {
-  content: '';
+  content: '\e600';
   display: block;
-  background: url('../img/common/clover.png?1417842781') 0 0 no-repeat;
-  text-indent: -9999px;
-  overflow: hidden;
-  width: 51px;
-  height: 44px;
-  -moz-background-size: 51px 44px;
-  -o-background-size: 51px 44px;
-  -webkit-background-size: 51px 44px;
-  background-size: 51px 44px;
+  font-family: 'icomoon';
   position: absolute;
-  left: -51px;
+  left: -5rem;
+  font-size: 50px;
+  font-size: 5rem;
+  color: #c9edf6;
+  font-weight: normal;
+}
+main .content h2.home:before {
+  content: "";
+}
+main .content h2.illust:before {
+  content: "";
+}
+main .content h2.diary:before {
+  content: "";
+}
+main .content h2.weblog:before {
+  content: "";
+}
+main .content h2.design:before {
+  content: "";
+}
+main .content h2.photo:before {
+  content: "";
+}
+main .content h2.about:before {
+  content: "?";
 }
 main .content h3 {
   border-top: 1px solid #f2efeb;

@@ -216,8 +216,10 @@ main {
 
 	header {
 		$font-size: 26;
+		$padding: 16;
 		margin: 0 auto;
 		max-width: es($base-width);
+		padding: 0 es($padding);
 
 		text-align: center;
 
@@ -226,6 +228,7 @@ main {
 			padding-bottom: es(8);
 			word-wrap: break-word;
 			letter-spacing: es($letter-spacing);
+			line-height: 1.8;
 
 			position: relative;
 			display: inline;
@@ -261,12 +264,31 @@ main {
 
 			position: relative;
 
+
+			$size: 50;
 			&:before {
-				content: '';
+				content: '\e600';
 				display: block;
-				@include background-fit('common/clover.png');
+				font-family: 'icomoon';
 				position: absolute;
-				left: -$imgWidth;
+				left: es(-$size);
+				@include fz($size);
+				color: #c9edf6;
+				font-weight: normal;
+			}
+			$ico:(
+				home:"\e901",
+				illust: "\e906",
+				diary: "\e907",
+				weblog: "\e922",
+				design:	"\e90d",
+				photo: "\e90f",
+				about: "?");
+
+			@each $team, $font in $ico {
+				&.#{$team}:before {
+					content: $font;
+				}
 			}
 
 			@media screen and (max-width: es($mediaQuery-small,rem,$mediaQuery-baseSize)) {

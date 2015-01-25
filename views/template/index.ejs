@@ -7,7 +7,7 @@
 		<figure class="main" style="background-image: url(http://farm{{flickr.items[0].farm}}.staticflickr.com/{{flickr.items[0].server}}/{{flickr.items[0].id}}_{{flickr.items[0].secret}}_b.jpg);"><img ng-src="http://farm{{flickr.items[0].farm}}.staticflickr.com/{{flickr.items[0].server}}/{{flickr.items[0].id}}_{{flickr.items[0].secret}}_b.jpg"></figure>
 
 		<section>
-			<h2><a href="weblog" ga="'send', 'event', '{{currentPage}}', 'click', 'weblog'">Weblog</a></h2>
+			<h2 class="weblog">Weblog</h2>
 			<ul class="tags">
 				<li ng-repeat="tag in qiita.tags" ng-cloak>
 					<a ng-href="/weblog/tags/{{tag}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{tag}}'">{{tag}}</a>
@@ -21,8 +21,10 @@
 			<p ng-cloak ng-show="qiita.showErrorMessage" class="center"><small>apiのメンテナンス、もしくは読み込み環境の影響で読み込みに失敗しました。<br>時間をおいてお試しください。</small></p>
 		</section>
 
+		<figure class="main center" style="background-image: url(http://farm{{flickr.items[50].farm}}.staticflickr.com/{{flickr.items[50].server}}/{{flickr.items[50].id}}_{{flickr.items[50].secret}}_b.jpg);"><img ng-src="http://farm{{flickr.items[50].farm}}.staticflickr.com/{{flickr.items[50].server}}/{{flickr.items[50].id}}_{{flickr.items[50].secret}}_b.jpg"></figure>
+
 		<section>
-			<h2><a href="diary" ga="'send', 'event', '{{currentPage}}', 'click', 'diary'">Diary</a></h2>
+			<h2 class="diary">Diary</h2>
 			<ul class="tags">
 				<li ng-repeat="tag in tumblr.tags" ng-cloak>
 					<a ng-href="/diary/tags/{{tag}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{tag}}'">{{tag}}</a>

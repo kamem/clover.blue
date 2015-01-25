@@ -60,17 +60,18 @@
 
 .main {
 	max-width: inherit !important;
+	max-height: es(290);
 	background-position: top;
-	max-height: 300px;
 	overflow: hidden;
 	background-size: 100% auto;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 
-	+ * {
-		:first-child {
-			margin-top: 0;
-		}
+	&.bottom {
+		background-position: bottom;
+	}
+	&.center {
+		background-position: center 70%;
 	}
 
 	img {
@@ -80,6 +81,25 @@
 
 	@media screen and (max-width:  es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
 		display: none;
+	}
+	@media screen and (min-width:  es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
+		$size: 55;
+		+ * {
+			> :first-child {
+				margin-top: 0;
+				@include fz($size);
+				opacity: 0.85;
+
+				color: #fff;
+				&:before {
+					color: #fff;
+					@include fz($size);
+					top: es(15);
+					left: es(-$size);
+				}
+			}
+		}
+		margin-bottom: es(-($size + 20)) !important;
 	}
 }
 
@@ -403,7 +423,7 @@ nav.pageNav {
 	margin: es($margin * 1.5) 0 es($margin);
 
 	li {
-		margin: 0 es(4);
+		margin: es(4);
 		@include inline-block();
 		@include fz($font-size);
 		color: $color;
