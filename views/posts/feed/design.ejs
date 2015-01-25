@@ -9,9 +9,10 @@
 		<lastBuildDate><%= new Date(parseInt(tumblrDesigns[0].updated + '000')) %></lastBuildDate>
 		<% for(var i = 0;i < tumblrDesigns.length;i++) { %>
 		<item>
-			<title><%= tumblrDesigns[i].title %></title>
+			<title></title>
 			<description><![CDATA[
 				<img src="<%= tumblrDesigns[i].url %>">
+				<%- tumblrDesigns[i].title %>
 				]]></description>
 			<link>http://clover.blue/design</link>
 			<guid>http://clover.blue/design</guid>

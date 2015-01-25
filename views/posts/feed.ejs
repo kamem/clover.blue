@@ -11,7 +11,10 @@
 		<% for(var i = 0;i < qiita.length;i++) { %>
 		<item>
 			<title><%= qiita[i].title %></title>
-			<description></description>
+			<% for(var j = 0;j < qiita[i].tags.length;j++) { %>
+			<category><%= qiita[i].tags[j] %></category>
+			<% } %>
+			<description><![CDATA[<%- qiita[i].body %>]]></description>
 			<link>http://clover.blue/items/<%= qiita[i].uuid %></link>
 			<guid>http://clover.blue/items/<%= qiita[i].uuid %></guid>
 			<pubDate><%= new Date(parseInt(qiita[i].updated)) %></pubDate>
@@ -26,7 +29,7 @@
 			<% for(var j = 0;j < tumblr[i].tags.length;j++) { %>
 			<category><%= tumblr[i].tags[j] %></category>
 			<% } %>
-			<description><%= tumblr[i].body %></description>
+			<description><%- tumblr[i].body %></description>
 			<link>http://clover.blue/post/<%= tumblr[i].uuid %></link>
 			<guid>http://clover.blue/post/<%= tumblr[i].uuid %></guid>
 			<pubDate><%= new Date(parseInt(tumblr[i].updated + '000')) %></pubDate>
@@ -38,9 +41,10 @@
 
 		<% for(var i = 0;i < tumblrDesigns.length;i++) { %>
 		<item>
-			<title><%= tumblrDesigns[i].title %></title>
+			<title></title>
 			<description><![CDATA[
 				<img src="<%= tumblrDesigns[i].url %>">
+				<%- tumblrDesigns[i].title %>
 				]]></description>
 			<link>http://clover.blue/design</link>
 			<guid>http://clover.blue/design</guid>

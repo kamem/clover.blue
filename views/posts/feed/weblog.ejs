@@ -14,7 +14,7 @@
 			<% for(var j = 0;j < qiita[i].tags.length;j++) { %>
 			<category><%= qiita[i].tags[j] %></category>
 			<% } %>
-			<description><![CDATA[<%= qiita[i].body %>]]></description>
+			<description><![CDATA[<%- qiita[i].body %>]]></description>
 			<link>http://clover.blue/items/<%= qiita[i].uuid %></link>
 			<guid>http://clover.blue/items/<%= qiita[i].uuid %></guid>
 			<pubDate><%= new Date(parseInt(qiita[i].updated)) %></pubDate>
