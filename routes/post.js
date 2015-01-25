@@ -8,6 +8,10 @@ var flickrItems = cloverBlueDb.flickrItems;
 var pixivItems = cloverBlueDb.pixivItems;
 var tumblrItems = cloverBlueDb.tumblrItems;
 var tumblrDesigns = cloverBlueDb.tumblrDesigns;
+exports.sitemap = function (req, res) {
+    res.set('Content-Type', 'text/xml');
+    new Post(res, req, 'posts/sitemap', settings.title, '');
+};
 exports.feed = function (req, res) {
     res.set('Content-Type', 'text/xml');
     qiitaItems.find({}).sort('-updated').exec(function (err, qiitaPosts) {

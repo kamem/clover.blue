@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>http://clover.blue/</loc>
+		<changefreq>weekly</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>http://clover.blue/about</loc>
+		<changefreq>yearly</changefreq>
+		<priority>1.0</priority>
+	</url>
+	<url>
+		<loc>http://clover.blue/weblog</loc>
+		<changefreq>weekly</changefreq>
+		<priority>1.0</priority>
+		<lastmod><%= new Date(parseInt(qiita[0].updated)) %></lastmod>
+	</url>
+	<url>
+		<loc>http://clover.blue/diary</loc>
+		<changefreq>weekly</changefreq>
+		<priority>1.0</priority>
+		<lastmod><%= new Date(parseInt(tumblr[0].updated + '000')) %></lastmod>
+	</url>
+	<url>
+		<loc>http://clover.blue/illust</loc>
+		<changefreq>weekly</changefreq>
+		<priority>1.0</priority>
+		<lastmod><%= new Date(parseInt(pixiv[0].updated)) %></lastmod>
+	</url>
+	<url>
+		<loc>http://clover.blue/photo</loc>
+		<changefreq>weekly</changefreq>
+		<priority>1.0</priority>
+		<lastmod><%= new Date(parseInt(flickr[0].updated + '000')) %></lastmod>
+	</url>
+
+	<% for(var i = 0;i < qiita.length;i++) { %>
+	<url>
+		<loc>http://clover.blue/items/<%= qiita[i].uuid %></loc>
+		<changefreq>yearly</changefreq>
+		<priority>1.0</priority>
+		<lastmod><%= new Date(parseInt(qiita[i].updated)) %></lastmod>
+	</url>
+	<% } %>
+
+	<% for(var i = 0;i < tumblr.length;i++) { %>
+	<% if(tumblr[i].type !== 'photo') { %>
+	<url>
+		<loc>http://clover.blue/post/<%= tumblr[i].uuid %></loc>
+		<changefreq>yearly</changefreq>
+		<priority>1.0</priority>
+		<lastmod><%= new Date(parseInt(tumblr[i].updated + '000')) %></lastmod>
+	</url>
+	<% } %>
+	<% } %>
+</urlset>

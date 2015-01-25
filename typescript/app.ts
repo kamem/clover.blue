@@ -93,6 +93,10 @@ app.get('/feed/weblog', post.feedChild);
 app.get('/feed/diary', post.feedChild);
 app.get('/feed/design', post.feedDesign);
 
+//sitemap
+app.get('/sitemap.xml', post.sitemap);
+
+
 
 qiitaItems.find({},function(err,posts) {
 	for(var entry in posts) {

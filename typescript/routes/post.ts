@@ -11,7 +11,12 @@ var pixivItems = cloverBlueDb.pixivItems;
 var tumblrItems = cloverBlueDb.tumblrItems;
 var tumblrDesigns = cloverBlueDb.tumblrDesigns;
 
-exports.feed = function(req,res) {
+exports.sitemap = function(req, res) {
+	res.set('Content-Type', 'text/xml');
+	new Post(res, req, 'posts/sitemap', settings.title, '');
+};
+
+exports.feed = function(req, res) {
 	res.set('Content-Type', 'text/xml');
 	qiitaItems.find({}).sort('-updated').exec(function (err, qiitaPosts) {
 		flickrItems.find({}).sort('-updated').exec(function (err, flickPosts) {
@@ -32,11 +37,11 @@ exports.feed = function(req,res) {
 		});
 	});
 };
-exports.feedChild = function(req,res) {
+exports.feedChild = function(req, res) {
 	res.set('Content-Type', 'text/xml');
 	new Post(res, req, 'posts/' + req.path.slice(1), settings.title, '');
 };
-exports.feedDesign = function(req,res) {
+exports.feedDesign = function(req, res) {
 	res.set('Content-Type', 'text/xml');
 	tumblrDesigns.find({}).sort('-updated').exec(function (err, tumblrDesignPosts) {
 		res.render('posts/' + req.path.slice(1), {
@@ -46,7 +51,7 @@ exports.feedDesign = function(req,res) {
 	});
 };
 
-exports.template = function(req,res) {
+exports.template = function(req, res) {
 	res.render(req.path.slice(1));
 };
 

@@ -7,7 +7,7 @@
 		<figure class="main" style="background-image: url(http://farm{{flickr.items[0].farm}}.staticflickr.com/{{flickr.items[0].server}}/{{flickr.items[0].id}}_{{flickr.items[0].secret}}_b.jpg);"><img ng-src="http://farm{{flickr.items[0].farm}}.staticflickr.com/{{flickr.items[0].server}}/{{flickr.items[0].id}}_{{flickr.items[0].secret}}_b.jpg"></figure>
 
 		<section>
-			<h2><a href="weblog">Weblog</a></h2>
+			<h2><a href="weblog" ga="'send', 'event', '{{currentPage}}', 'click', 'weblog'">Weblog</a></h2>
 			<ul class="tags">
 				<li ng-repeat="tag in qiita.tags" ng-cloak>
 					<a ng-href="/weblog/tags/{{tag}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{tag}}'">{{tag}}</a>
@@ -22,7 +22,7 @@
 		</section>
 
 		<section>
-			<h2><a href="diary">Diary</a></h2>
+			<h2><a href="diary" ga="'send', 'event', '{{currentPage}}', 'click', 'diary'">Diary</a></h2>
 			<ul class="tags">
 				<li ng-repeat="tag in tumblr.tags" ng-cloak>
 					<a ng-href="/diary/tags/{{tag}}" ga="'send', 'event', '{{currentPage}}', 'click', '{{tag}}'">{{tag}}</a>
