@@ -5,6 +5,7 @@ declare var qiita;
 declare var flickr;
 declare var pixiv;
 declare var tumblr;
+var loadContentCount: number = 0;
 
 import prettify = require('prettify');
 
@@ -52,8 +53,6 @@ export class Index {
 		flickrCategory.latestUpdated = flickr[0].updated;
 		if($scope.$storage.flickr) flickrCategory.storageUpdated = $scope.$storage.flickr[0].dateuploaded;
 		flickrCategory.load();
-
-		angular.element(document.querySelectorAll('.op')).addClass('end');
 
 		//Design
 		var name = 'tumblrDesign';
@@ -314,6 +313,15 @@ module entry {
 			if(filterFilter) $scope[name].item = !!items[0].uuid ? filterFilter(items, {uuid: currentPage})[0] : filterFilter(items, {id: currentPage})[0];
 			$scope[name].tags = factory.getTags($scope.$storage[name]);
 			$scope[name].showLoading = false;
+
+
+			loadContentCount++;
+			var $op = angular.element(document.querySelectorAll('.op'));
+
+			$op.addClass('parcent' + loadContentCount);
+			if(loadContentCount === 4) {
+				$op.addClass('end');
+			}
 		}
 	};
 }

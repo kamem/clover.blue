@@ -1,6 +1,7 @@
 /// <reference path="../typings/tsd.d.ts" />
 'use strict';
 define(["require", "exports", 'prettify'], function (require, exports, prettify) {
+    var loadContentCount = 0;
     var Normal = (function () {
         function Normal($scope, mainService, ga) {
             angular.element(document.querySelectorAll("#header")).addClass("off");
@@ -45,7 +46,6 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
             if ($scope.$storage.flickr)
                 flickrCategory.storageUpdated = $scope.$storage.flickr[0].dateuploaded;
             flickrCategory.load();
-            angular.element(document.querySelectorAll('.op')).addClass('end');
             //Design
             var name = 'tumblrDesign';
             if ($scope.$storage.tumblr)
@@ -315,6 +315,12 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                     $scope[name].item = !!items[0].uuid ? filterFilter(items, { uuid: currentPage })[0] : filterFilter(items, { id: currentPage })[0];
                 $scope[name].tags = factory.getTags($scope.$storage[name]);
                 $scope[name].showLoading = false;
+                loadContentCount++;
+                var $op = angular.element(document.querySelectorAll('.op'));
+                $op.addClass('parcent' + loadContentCount);
+                if (loadContentCount === 4) {
+                    $op.addClass('end');
+                }
             };
             return CreatePage;
         })();

@@ -32,6 +32,30 @@
 		pointer-events: none;
 		background-size: 165px 30px;
 	}
+
+	&:after {
+		width: 100%;
+		display: block;
+		left: -100%;
+		height: es(30);
+		content: '';
+		border-bottom: 2px solid #fff;
+		position: fixed;
+		top: 50%;
+		opacity: 0.5;
+	}
+	&.parcent1:after {
+		left: -75%;
+	}
+	&.parcent2:after {
+		left: -50%;
+	}
+	&.parcent3:after {
+		left: -25%;
+	}
+	&.parcent4:after {
+		left: 0;
+	}
 }
 
 .main {
