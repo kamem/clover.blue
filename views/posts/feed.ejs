@@ -29,7 +29,7 @@
 			<% for(var j = 0;j < tumblr[i].tags.length;j++) { %>
 			<category><%= tumblr[i].tags[j] %></category>
 			<% } %>
-			<description><%- tumblr[i].body %></description>
+			<description><![CDATA[<%- tumblr[i].body %>]]></description>
 			<link>http://clover.blue/post/<%= tumblr[i].uuid %></link>
 			<guid>http://clover.blue/post/<%= tumblr[i].uuid %></guid>
 			<pubDate><%= new Date(parseInt(tumblr[i].updated + '000')) %></pubDate>
