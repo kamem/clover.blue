@@ -250,6 +250,11 @@ main {
 			margin-top: 0;
 		}
 
+		.narrowly h2 {
+			$margin: 25;
+			margin: es($margin * 2) auto es($margin);
+		}
+
 		h2 {
 			$font-size: 26;
 			$margin: 25;
@@ -264,8 +269,7 @@ main {
 
 			position: relative;
 
-
-			$size: 50;
+			$size: 46;
 			&:before {
 				content: '\e600';
 				display: block;

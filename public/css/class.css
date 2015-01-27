@@ -107,7 +107,7 @@ dl.commentList dd:last-child {
 
 .main {
   max-width: inherit !important;
-  max-height: 29rem;
+  max-height: 20rem;
   background-position: top;
   overflow: hidden;
   background-size: 100% auto;
@@ -129,22 +129,8 @@ dl.commentList dd:last-child {
   }
 }
 @media screen and (min-width: 40.625rem) {
-  .main {
-    margin-bottom: -7.5rem !important;
-  }
   .main + * > :first-child {
-    margin-top: 0;
-    font-size: 55px;
-    font-size: 5.5rem;
-    opacity: 0.85;
-    color: #fff;
-  }
-  .main + * > :first-child:before {
-    color: #fff;
-    font-size: 55px;
-    font-size: 5.5rem;
-    top: 1.5rem;
-    left: -5.5rem;
+    margin-top: 0 !important;
   }
 }
 

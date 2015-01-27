@@ -60,7 +60,7 @@
 
 .main {
 	max-width: inherit !important;
-	max-height: es(290);
+	max-height: es(200);
 	background-position: top;
 	overflow: hidden;
 	background-size: 100% auto;
@@ -86,20 +86,20 @@
 		$size: 55;
 		+ * {
 			> :first-child {
-				margin-top: 0;
-				@include fz($size);
-				opacity: 0.85;
+				margin-top: 0 !important;
+//				@include fz($size);
+//				opacity: 0.85;
 
-				color: #fff;
-				&:before {
-					color: #fff;
-					@include fz($size);
-					top: es(15);
-					left: es(-$size);
-				}
+//				color: #fff;
+//				&:before {
+//					color: #fff;
+//					@include fz($size);
+//					top: es(15);
+//					left: es(-$size);
+//				}
 			}
 		}
-		margin-bottom: es(-($size + 20)) !important;
+//		margin-bottom: es(-($size + 20)) !important;
 	}
 }
 
