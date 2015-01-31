@@ -226,13 +226,20 @@ $ico:(
 	}
 }
 
-.inlineList {
+.links {
 	max-width: es($base-width);
 	letter-spacing: -0.4em;
 	li {
-		width:25%;
+		width: 25%;
 		@include inline-block();
 		letter-spacing: normal;
+	}
+
+	@media screen and (max-width:  es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
+		li {
+			width: auto;
+			display: block;
+		}
 	}
 }
 
@@ -259,6 +266,13 @@ $ico:(
 				@include background-fit('sns/' + nth($sns,$i) + '.png', false, 'no-repeat left center');
 				padding-left: $imgWidth + 10;
 			}
+		}
+	}
+
+	@media screen and (max-width:  es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
+		li {
+			width: auto !important;
+			display: block;
 		}
 	}
 }

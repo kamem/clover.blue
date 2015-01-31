@@ -265,14 +265,20 @@ dl.commentList dd:last-child {
   }
 }
 
-.inlineList {
+.links {
   max-width: 73.6rem;
   letter-spacing: -0.4em;
 }
-.inlineList li {
+.links li {
   width: 25%;
   display: inline-block;
   letter-spacing: normal;
+}
+@media screen and (max-width: 40.625rem) {
+  .links li {
+    width: auto;
+    display: block;
+  }
 }
 
 .serviceLink {
@@ -370,6 +376,12 @@ dl.commentList dd:last-child {
   -webkit-background-size: 23px 23px;
   background-size: 23px 23px;
   padding-left: 33px;
+}
+@media screen and (max-width: 40.625rem) {
+  .serviceLink li {
+    width: auto !important;
+    display: block;
+  }
 }
 
 .tags {
