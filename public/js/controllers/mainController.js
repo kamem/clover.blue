@@ -317,7 +317,9 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                 $scope[name].showLoading = false;
                 loadContentCount++;
                 var $op = angular.element(document.querySelectorAll('.op'));
-                $op.addClass('parcent' + loadContentCount);
+                if (!$op.hasClass('end')) {
+                    $op.addClass('parcent' + loadContentCount);
+                }
                 if (loadContentCount === 4) {
                     $op.addClass('end');
                 }
