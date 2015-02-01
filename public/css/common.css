@@ -63,15 +63,15 @@ main,
 }
 #header h1 {
   margin: auto;
-  background: url('../img/common/cloverblue.png?1417842781') 0 0 no-repeat;
+  background: url('../img/common/cloverblue_x2.png?1422757000') 0 0 no-repeat;
   text-indent: -9999px;
   overflow: hidden;
-  width: 148px;
-  height: 24px;
-  -moz-background-size: 148px 24px;
-  -o-background-size: 148px 24px;
-  -webkit-background-size: 148px 24px;
-  background-size: 148px 24px;
+  width: 147px;
+  height: 23px;
+  -moz-background-size: 147px 23px;
+  -o-background-size: 147px 23px;
+  -webkit-background-size: 147px 23px;
+  background-size: 147px 23px;
   position: absolute;
   top: 0;
   left: 0;
@@ -81,8 +81,8 @@ main,
 }
 #header h1 a {
   display: block;
-  width: 148px;
-  height: 24px;
+  width: 147px;
+  height: 23px;
 }
 #header nav {
   margin: 0 auto;

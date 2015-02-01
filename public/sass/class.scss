@@ -20,7 +20,8 @@
 	left: 0;
 	z-index: 9999;
 
-	@include background-fit((linear-gradient(top, rgba(255,255,255,0), rgba(254,255,226,.3)), 'common/cloverblue.png'), false, ('no-repeat', 'no-repeat center center'));
+	$isRetina: true !global;
+	@include background-fit((linear-gradient(top, rgba(255,255,255,0), rgba(254,255,226,.3)), 'common/cloverblue_x2.png'), false, ('no-repeat', 'no-repeat center center'));
 	background-color: #94dcef;
 
 	@include transition-property(all);
