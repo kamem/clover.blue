@@ -142,17 +142,6 @@ textarea:focus {
 /*----------------------------------------
 	ins
 ----------------------------------------*/
-ins {
-  margin: 4.5rem auto;
-  max-width: 79.8rem;
-  border: 7px solid #39c;
-  display: block;
-  text-decoration: none;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
 hr {
   display: block;
   border: none;

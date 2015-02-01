@@ -146,12 +146,6 @@ textarea:focus {
 ----------------------------------------*/
 ins {
 	$font-size: 16;
-	margin: es(silver-ratio($font-size + $font-size)) auto;
-	max-width: es($base-width-big);
-	border: 7px solid $linkColor;
-	display: block;
-	text-decoration: none;
-	@include box-sizing(border-box);
 }
 
 hr {
