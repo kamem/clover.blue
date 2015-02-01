@@ -183,13 +183,13 @@ dl.commentList dd:last-child {
 .loading {
   margin: 3rem 0;
   background: url('../img/common/loading.gif?1417940831') no-repeat center center;
-  -moz-background-size: 16px 16px;
-  -o-background-size: 16px 16px;
-  -webkit-background-size: 16px 16px;
-  background-size: 16px 16px;
+  -moz-background-size: 32px 32px;
+  -o-background-size: 32px 32px;
+  -webkit-background-size: 32px 32px;
+  background-size: 32px 32px;
   text-indent: -9999px;
   overflow: hidden;
-  height: 16px;
+  height: 32px;
 }
 
 .center {
@@ -299,83 +299,83 @@ dl.commentList dd:last-child {
 }
 .serviceLink li.twitter a {
   background: url('../img/sns/twitter.png?1419464532') no-repeat left center;
-  -moz-background-size: 14px 11px;
-  -o-background-size: 14px 11px;
-  -webkit-background-size: 14px 11px;
-  background-size: 14px 11px;
-  padding-left: 24px;
+  -moz-background-size: 27px 22px;
+  -o-background-size: 27px 22px;
+  -webkit-background-size: 27px 22px;
+  background-size: 27px 22px;
+  padding-left: 37px;
 }
 .serviceLink li.facebook a {
   background: url('../img/sns/facebook.png?1419464537') no-repeat left center;
-  -moz-background-size: 12px 12px;
-  -o-background-size: 12px 12px;
-  -webkit-background-size: 12px 12px;
-  background-size: 12px 12px;
-  padding-left: 22px;
+  -moz-background-size: 23px 23px;
+  -o-background-size: 23px 23px;
+  -webkit-background-size: 23px 23px;
+  background-size: 23px 23px;
+  padding-left: 33px;
 }
 .serviceLink li.mixi a {
   background: url('../img/sns/mixi.png?1419464532') no-repeat left center;
-  -moz-background-size: 13px 12px;
-  -o-background-size: 13px 12px;
-  -webkit-background-size: 13px 12px;
-  background-size: 13px 12px;
-  padding-left: 23px;
+  -moz-background-size: 26px 24px;
+  -o-background-size: 26px 24px;
+  -webkit-background-size: 26px 24px;
+  background-size: 26px 24px;
+  padding-left: 36px;
 }
 .serviceLink li.flickr a {
   background: url('../img/sns/flickr.png?1419464532') no-repeat left center;
-  -moz-background-size: 11px 5px;
-  -o-background-size: 11px 5px;
-  -webkit-background-size: 11px 5px;
-  background-size: 11px 5px;
-  padding-left: 21px;
+  -moz-background-size: 21px 9px;
+  -o-background-size: 21px 9px;
+  -webkit-background-size: 21px 9px;
+  background-size: 21px 9px;
+  padding-left: 31px;
 }
 .serviceLink li.github a {
   background: url('../img/sns/github.png?1419464532') no-repeat left center;
-  -moz-background-size: 12px 12px;
-  -o-background-size: 12px 12px;
-  -webkit-background-size: 12px 12px;
-  background-size: 12px 12px;
-  padding-left: 22px;
+  -moz-background-size: 24px 23px;
+  -o-background-size: 24px 23px;
+  -webkit-background-size: 24px 23px;
+  background-size: 24px 23px;
+  padding-left: 34px;
 }
 .serviceLink li.delicious a {
   background: url('../img/sns/delicious.png?1419464537') no-repeat left center;
-  -moz-background-size: 12px 12px;
-  -o-background-size: 12px 12px;
-  -webkit-background-size: 12px 12px;
-  background-size: 12px 12px;
-  padding-left: 22px;
+  -moz-background-size: 24px 24px;
+  -o-background-size: 24px 24px;
+  -webkit-background-size: 24px 24px;
+  background-size: 24px 24px;
+  padding-left: 34px;
 }
 .serviceLink li.booklog a {
   background: url('../img/sns/booklog.png?1419464532') no-repeat left center;
-  -moz-background-size: 12px 9px;
-  -o-background-size: 12px 9px;
-  -webkit-background-size: 12px 9px;
-  background-size: 12px 9px;
-  padding-left: 22px;
+  -moz-background-size: 24px 18px;
+  -o-background-size: 24px 18px;
+  -webkit-background-size: 24px 18px;
+  background-size: 24px 18px;
+  padding-left: 34px;
 }
 .serviceLink li.qiita a {
   background: url('../img/sns/qiita.png?1419647516') no-repeat left center;
-  -moz-background-size: 12px 12px;
-  -o-background-size: 12px 12px;
-  -webkit-background-size: 12px 12px;
-  background-size: 12px 12px;
-  padding-left: 22px;
+  -moz-background-size: 23px 23px;
+  -o-background-size: 23px 23px;
+  -webkit-background-size: 23px 23px;
+  background-size: 23px 23px;
+  padding-left: 33px;
 }
 .serviceLink li.pixiv a {
   background: url('../img/sns/pixiv.png?1419736558') no-repeat left center;
-  -moz-background-size: 12px 12px;
-  -o-background-size: 12px 12px;
-  -webkit-background-size: 12px 12px;
-  background-size: 12px 12px;
-  padding-left: 22px;
+  -moz-background-size: 23px 23px;
+  -o-background-size: 23px 23px;
+  -webkit-background-size: 23px 23px;
+  background-size: 23px 23px;
+  padding-left: 33px;
 }
 .serviceLink li.tumblr a {
   background: url('../img/sns/tumblr.png?1419736558') no-repeat left center;
-  -moz-background-size: 12px 12px;
-  -o-background-size: 12px 12px;
-  -webkit-background-size: 12px 12px;
-  background-size: 12px 12px;
-  padding-left: 22px;
+  -moz-background-size: 23px 23px;
+  -o-background-size: 23px 23px;
+  -webkit-background-size: 23px 23px;
+  background-size: 23px 23px;
+  padding-left: 33px;
 }
 @media screen and (max-width: 40.625rem) {
   .serviceLink li {

@@ -59,6 +59,7 @@ $header-top: 10;
 		margin: auto;
 		$isRetina: true !global;
 		@include background-fit('common/cloverblue_x2.png');
+		$isRetina: false !global;
 		a {
 			display: block;
 			width: $imgWidth;
