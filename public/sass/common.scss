@@ -378,6 +378,7 @@ main {
 			@include fz($font-size);
 			line-height: es($font-size * 1.5);
 
+			word-break: break-all;
 			max-width: es($base-width);
 
 			dl,
