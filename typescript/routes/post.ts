@@ -1,9 +1,9 @@
 /// <reference path="../typings/tsd.d.ts" />
 
-var settings = require('../settings');
+import settings = require('../settings');
 var mongo = require('mongoose');
 var db = require('../models/db');
-var cloverBlueDb = require('../db');
+import cloverBlueDb = require('../db');
 
 var qiitaItems = cloverBlueDb.qiitaItems;
 var flickrItems = cloverBlueDb.flickrItems;
@@ -11,12 +11,12 @@ var pixivItems = cloverBlueDb.pixivItems;
 var tumblrItems = cloverBlueDb.tumblrItems;
 var tumblrDesigns = cloverBlueDb.tumblrDesigns;
 
-exports.sitemap = function(req, res) {
+export function sitemap(req, res) {
 	res.set('Content-Type', 'text/xml');
 	new Post(res, req, 'posts/sitemap', settings.title, '');
-};
+}
 
-exports.feed = function(req, res) {
+export function feed(req, res) {
 	res.set('Content-Type', 'text/xml');
 	qiitaItems.find({}).sort('-updated').exec(function (err, qiitaPosts) {
 		flickrItems.find({}).sort('-updated').exec(function (err, flickPosts) {
@@ -36,12 +36,12 @@ exports.feed = function(req, res) {
 			});
 		});
 	});
-};
-exports.feedChild = function(req, res) {
+}
+export function feedChild(req, res) {
 	res.set('Content-Type', 'text/xml');
 	new Post(res, req, 'posts/' + req.path.slice(1), settings.title, '');
-};
-exports.feedDesign = function(req, res) {
+}
+export function feedDesign(req, res) {
 	res.set('Content-Type', 'text/xml');
 	tumblrDesigns.find({}).sort('-updated').exec(function (err, tumblrDesignPosts) {
 		res.render('posts/' + req.path.slice(1), {
@@ -49,51 +49,51 @@ exports.feedDesign = function(req, res) {
 			tumblrDesigns: tumblrDesignPosts
 		});
 	});
-};
+}
 
-exports.template = function(req, res) {
+export function template(req, res) {
 	res.render(req.path.slice(1));
-};
+}
 
-exports.index = function(req, res) {
+export function index(req, res) {
 	new Post(res, req, 'posts/index', settings.title, '');
-};
-exports.about = function(req, res) {
+}
+export function about(req, res) {
 	new Post(res, req, 'posts/about', 'サイトについて' + ' - ' + settings.title, '');
-};
-exports.design = function(req, res) {
+}
+export function design(req, res) {
 	tumblrDesigns.find({}).exec(function (err, post) {
 		new Post(res, req, 'posts/design', 'デザイン' + ' - ' + settings.title, post);
 	});
-};
-exports.photo = function(req, res) {
+}
+export function photo(req, res) {
 	new Post(res, req, 'posts/photo', '写真' + ' - ' + settings.title, '');
-};
-exports.weblog = function(req, res) {
+}
+export function weblog(req, res) {
 	new Post(res, req, 'posts/weblog', '記事' + ' - ' + settings.title, '');
-};
-exports.illust = function(req, res) {
+}
+export function illust(req, res) {
 	new Post(res, req, 'posts/illust', 'イラスト' + ' - ' + settings.title, '');
-};
-exports.diary = function(req, res) {
+}
+export function diary(req, res) {
 	new Post(res, req, 'posts/diary', '日記' + ' - ' + settings.title, '');
-};
-exports.tag = function(req, res) {
+}
+export function tag(req, res) {
 	new Post(res, req, 'posts/tags/tag', settings.title, '');
-};
-exports.entry = function(req, res) {
+}
+export function entry(req, res) {
 	var uuid = req.route.path.replace('/items/','');
 	qiitaItems.findOne({uuid: uuid}).exec(function (err, post) {
 		new Post(res, req, 'posts/items/entry', post.title + ' - ' + settings.title, post);
 	});
-};
-exports.diaryEntry = function(req, res) {
+}
+export function diaryEntry(req, res) {
 	var uuid = req.route.path.replace('/post/','');
 	tumblrItems.findOne({uuid: uuid}).exec(function (err, post) {
 		console.log(post);
 		new Post(res, req, 'posts/post/entry', post.title + ' - ' + settings.title, post);
 	});
-};
+}
 
 
 class Post {

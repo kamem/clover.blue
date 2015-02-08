@@ -1,8 +1,10 @@
 /// <reference path="typings/tsd.d.ts" />
 
-module.exports = {
+var settings = {
 	title: 'clover.blue',
 	port: 3141,
 	dbName: 'cloverblue',
 	dbCollectionName: 'entries'
 };
+
+export = settings;

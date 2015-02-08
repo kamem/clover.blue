@@ -2,8 +2,8 @@
 
 var express = require('express');
 var app = express();
-var settings = require('./settings');
-var post = require('./routes/post');
+import settings = require('./settings');
+import post = require('./routes/post');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
@@ -16,7 +16,7 @@ var csrf = require('csurf');
 
 var db = require('./models/db');
 var mongo = require('mongoose');
-var cloverBlueDb = require('./db');
+import cloverBlueDb = require('./db');
 
 var qiitaItems = cloverBlueDb.qiitaItems;
 var qiitaTags = cloverBlueDb.qiitaTags;
