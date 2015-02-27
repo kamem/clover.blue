@@ -4,3 +4,25 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 ga('create', 'UA-58136923-1', 'auto');
+
+var isSearchRobotUa = function(ua) {
+	var robotUas = [
+		'Googlebot',
+		'msnbot',
+		'Yahoo!',
+		'Y!'
+	];
+
+	var isSearch;
+	robotUas.forEach(function(robotUa) {
+		if(!isSearch) {
+			isSearch = ua.indexOf(robotUa) >= 0;
+		}
+	});
+
+	return isSearch;
+}
+
+if(isSearchRobotUa(navigator.userAgent)) {
+	ga('send', 'pageview');
+}

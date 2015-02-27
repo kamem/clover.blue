@@ -105,7 +105,7 @@ function diaryEntry(req, res) {
 exports.diaryEntry = diaryEntry;
 var Post = (function () {
     function Post(res, req, template, title, item) {
-        var isSearch = isSearchRobotUa("ua is " + JSON.stringify(req.headers['user-agent']));
+        var isSearch = isSearchRobotUa(JSON.stringify(req.headers['user-agent']));
         var robotDirectory = isSearch ? 'robot/' : '';
         qiitaItems.find({}).sort('-updated').exec(function (err, qiitaPosts) {
             flickrItems.find({}).sort('-updated').exec(function (err, flickPosts) {

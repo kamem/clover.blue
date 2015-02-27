@@ -98,7 +98,7 @@ export function diaryEntry(req, res) {
 
 class Post {
 	constructor(res, req, template, title, item) {
-		var isSearch = isSearchRobotUa("ua is "+JSON.stringify(req.headers['user-agent']));
+		var isSearch = isSearchRobotUa(JSON.stringify(req.headers['user-agent']));
 		var robotDirectory = isSearch ? 'robot/' : '';
 
 		qiitaItems.find({}).sort('-updated').exec(function (err, qiitaPosts) {
