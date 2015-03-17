@@ -4,6 +4,23 @@
 	<meta charaset="utf-8">
 	<title><%= title %></title>
 	<link rel="stylesheet" href="/css/import.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0,target-densitydpi=device-dpi">
+
+	<meta property="og:title" content="<%= title %>">
+	<% if (title === 'clover.blue') { %>
+	<meta property="og:type" content="website">
+	<% } else { %>
+	<meta property="og:type" content="article">
+	<% } %>
+	<meta property="og:description" content="<%= title %>">
+	<meta property="og:image" content="http://clover.blue/og.gif">
+	<meta property="og:site_name" content="<%= title %>">
+
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="http://clover.blue/feed" />
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="http://clover.blue/feed/weblog" />
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="http://clover.blue/feed/design" />
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="http://clover.blue/feed/illust" />
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="http://clover.blue/feed/photo" />
 </head>
 <body>
 
