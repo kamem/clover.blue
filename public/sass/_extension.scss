@@ -16,7 +16,7 @@
 //	$retina: true or false
 $imgWidth: ();
 $imgHeight: ();
-@mixin background-fit($img,$widthFixed: true,$value: '0 0 no-repeat',$important: '',$base64: $isBase64,$retina: $isRetina) {
+@mixin background-fit($img, $widthFixed: true, $value: '0 0 no-repeat', $important: '', $base64: $isBase64, $retina: $isRetina) {
 	$retinaSuport: if($retina, 2, 1);
 	$imgList : ();
 	$widthHeightList : ();
@@ -77,7 +77,7 @@ $imgHeight: ();
 //	$img: config.rb images_dirで指定したパスからの画像（複数画像を指定できます。）
 //	$name: width or height
 //	$retina: true or false
-@function image-info($img,$name,$retina: $isRetina) {
+@function image-info($img, $name, $retina: $isRetina) {
 	$retinaSuport: if($retina, 2, 1);
 	$width : ();
 	$height : ();
@@ -153,7 +153,7 @@ $imgHeight: ();
 //	$name: スプライト画像内のスプライト化する前の画像名
 //	$retina: true or false
 //	@return {Array} [スプライト画像の横,スプライト画像の高さ,個別画像の横,個別画像の高さ]
-@function spriteSize($map, $name,$retina: $isRetina) {
+@function spriteSize($map, $name, $retina: $isRetina) {
 	$retinaSuport: if($retina, 2, 1);
 	$map : nth($map,1);
 	$spriteWidth: round(image-width(sprite-path($map)) / $retinaSuport);
@@ -174,7 +174,7 @@ $imgHeight: ();
 //	$name: スプライト画像内のスプライト化する前の画像名
 //	$retina: true or false
 //	@return {Array} [スプライト画像のy,スプライト画像のx]
-@function spritePosition($map, $name,$retina: $isRetina) {
+@function spritePosition($map, $name, $retina: $isRetina) {
 	$retinaSuport: if($retina, 2, 1);
 	$map : nth($map,1);
 
@@ -420,7 +420,7 @@ $size: '';
 //	golden-ratio
 //	黄金比の計算
 //	$num: 基準にしたい値
-// $big: $numに対しての大きい方の黄金比を計算したい場合はtrue
+//	$big: $numに対しての大きい方の黄金比を計算したい場合はtrue
 //	@return {Number}
 @function golden-ratio($num: 0,$big: false) {
 	@return if($big,round($num / 1.618),round($num * 1.618));
@@ -429,7 +429,7 @@ $size: '';
 //	silver-ratio
 //	白銀比の計算
 //	$num: 基準にしたい値
-// $big: $numに対しての大きい方の白銀比を計算したい場合はtrue
+//	$big: $numに対しての大きい方の白銀比を計算したい場合はtrue
 //	@return {Number}
 @function silver-ratio($num: 0,$big: false) {
 	@return if($big,round($num / 1.414),round($num * 1.414));
