@@ -130,7 +130,7 @@
 			display: list-item;
 			list-style-type: decimal;
 			list-style-position: inside;
-			@include fz($font-size);
+			font-size: es($font-size);
 		
 			@include transition(0.13s ease-in-out);
 			

@@ -312,7 +312,7 @@ $size: '';
 // $color: 色
 // $dir: 向き（top,right,bottom,left）
 @mixin arrow($num: 10px,$bold: 1px,$color: white,$dir: right) {
-	$size: $num;
+	$size: $num !global;
 	$ary: if($dir == top, (top right),if($dir == right, (right bottom),if($dir == bottom, (bottom left),if($dir == left, (top left),''))));
 	content: '';
 	display: block;
@@ -400,20 +400,6 @@ $size: '';
 	}
 }
 
-// fz
-// 指定した単位にフォントサイズを変換する
-//
-// $size: 変換したいサイズ
-// $context: 変換の基準となる値
-@mixin fz($size,$important : '', $unit: $font-unit, $context: $font-sizeDefault) {
-    $value: if($unit == rem or $unit == em,$size / $context,if($unit == '%',$size / $context * 100,$size));
-    $num: round-decimal($value, 2);
-    @if($unit == rem) {
- 	   font-size: if($important != '',append($size * 1px,$important),$size * 1px);
-    }
-    font-size: if($important != '',append(#{$num}$unit,$important),#{$num}#{$unit});
-}
-
 // em-width
 //em指定のwidthを計算する。
 //
@@ -426,12 +412,6 @@ $size: '';
 		#{"/"}width: $em#{'em'};
 	}
 };
-
-
-@function fz($size) {
-	$fontSizefz: $size / $font-sizeDefault;
-	@return $fontSizefz * 100%;
-}
 
 //----------------------------------------------------------------------
 // ratio 黄金比 白銀比の計算
