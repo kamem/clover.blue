@@ -9,7 +9,7 @@
 	padding-top: es(silver-ratio($font-size));
 	margin: 0 auto;
 	max-width: es($base-width-big);
-	@include fz($font-size);
+	font-size: es($font-size);
 	clear: both;
 	
 	h1 {
@@ -23,7 +23,7 @@
 		margin: 0 auto;
 		padding: es($padding) 0;
 		line-height: es($line-height);
-		@include fz($font-size);
+		font-size: es($font-size);
 		font-weight: bold;
 		color: #500;
 		display: none;
@@ -42,11 +42,11 @@
 		margin-left: es($triangle-size);
 		margin-bottom: es(3);
 		@include inline-block;
-		@include fz($font-size);
+		font-size: es($font-size);
 		line-height: es($font-size);
 			
 		&:hover {
-			@include rotate(3deg);
+			traonsform: rotate(3deg);
 		}
 		
 		a {
@@ -57,10 +57,10 @@
 			position: relative;
 			text-decoration: none;
 
-			@include border-radius(0 2px 2px 0);
+			border-radius: 0 2px 2px 0;
 			@include triangle-set(es($fix-height) es($triangle-size),#fff,left);
 		
-			@include box-shadow(1px1px 1px rgba(0,0,0,0.2));
+			box-shadow: 1px1px 1px rgba(0,0,0,0.2);
 		}
 	}
 @media screen and (max-width: es($mediaQuery-large,rem,$mediaQuery-baseSize)) {

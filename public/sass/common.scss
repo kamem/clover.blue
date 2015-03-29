@@ -26,11 +26,11 @@ $header-top: 10;
 	height: es($header-height);
 	background: $baseColor;
 	z-index: 10;
-	@include transition-property(top);
-	@include transition-duration(0.3s);
-	@include transition-timing-function(ease-in-out);
+	transition-property: top;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-in-out;
 
-	@include box-shadow(7px 7px 0 rgba(0,0,0,.05));
+	box-shadow: 7px 7px 0 rgba(0,0,0,.05);
 
 	&.off {
 		top: es(-$header-height + $header-top);
@@ -110,7 +110,7 @@ $header-top: 10;
 			text-decoration: none;
 			background: #fff;
 			font-size: 1px;
-			@include box-shadow(1px 1px 1px rgba(0,0,0,0.04));
+			box-shadow: 1px 1px 1px rgba(0,0,0,0.04);
 			&:after {
 				display: block;
 				width: es(14 * 5) !important;
@@ -123,13 +123,13 @@ $header-top: 10;
 				text-indent: 0;
 				font-family: $font-family;
 				@include	fz(12);
-				@include border-radius(es(3));
-				@include box-shadow(1px 1px 1px rgba(0,0,0,0.04));
+				border-radius: es(3);
+				box-shadow: 1px 1px 1px rgba(0,0,0,0.04);
 				display: none;
-				@include opacity(0.9);
+				opacity: 0.9;
 			}
 			&:hover {
-				@include opacity(0.9);
+				opacity: 0.9;
 
 				&:after {
 					display: block;
@@ -235,8 +235,8 @@ main {
 			position: relative;
 			display: inline;
 
-			@include fz($font-size);
-			@include background-stripe($font-size / 1.1,transparent,5,$baseColor2,180deg);
+			font-size: es($font-size);
+			@include background-stripe($font-size / 1.1, transparent, 5, $baseColor2, 180deg);
 		}
 	}
 
@@ -267,7 +267,7 @@ main {
 			max-width: es($base-width);
 			letter-spacing: es($letter-spacing);
 
-			@include fz($font-size);
+			font-size: es($font-size);
 
 			position: relative;
 
@@ -278,7 +278,7 @@ main {
 				font-family: 'icomoon';
 				position: absolute;
 				left: es(-$size);
-				@include fz($size);
+				font-size: es($size);
 				color: #c9edf6;
 				font-weight: normal;
 			}
@@ -310,7 +310,7 @@ main {
 			color: $text-color;
 			max-width: es($base-width);
 			letter-spacing: es($letter-spacing);
-			@include fz($font-size);
+			font-size: es($font-size);
 			@media screen and (max-width: es($mediaQuery-small,rem,$mediaQuery-baseSize)) {
 			}
 		}
@@ -326,7 +326,7 @@ main {
 
 			margin: 0 auto es(5);
 			padding: 0 es($padding);
-			@include fz($font-size);
+			font-size: es($font-size);
 
 			color: $text-color;
 			max-width: es($base-width);
@@ -344,7 +344,7 @@ main {
 			color: $text-color;
 			max-width: es($base-width);
 			letter-spacing: es($letter-spacing);
-			@include fz($font-size);
+			font-size: es($font-size);
 		}
 
 		h6 {
@@ -352,7 +352,7 @@ main {
 
 			margin: 0 auto;
 			padding: 0 es($padding);
-			@include fz($font-size);
+			font-size: es($font-size);
 
 			color: $text-color;
 			max-width: es($base-width);
@@ -375,7 +375,7 @@ main {
 			padding: es(5) 0;
 			letter-spacing: es($letter-spacing);
 			color: $text-color;
-			@include fz($font-size);
+			font-size: es($font-size);
 			line-height: es($font-size * 1.5);
 
 			word-break: break-all;

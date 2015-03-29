@@ -50,31 +50,31 @@ p,
 pre,
 address {
 	color: $text-color;
-	@include fz(16);
+	font-size: 1.6rem;
 }
 
 h1 {
-	@include fz(18);
+	font-size: 1.8rem;
 }
 
 h2 {
-	@include fz(18);
+	font-size: 1.8rem;
 }
 
 h3 {
-	@include fz(16);
+	font-size: 1.6rem;
 }
 
 h4 {
-	@include fz(14);
+	font-size: 1.4rem;
 }
 
 h5 {
-	@include fz(12);
+	font-size: 1.2rem;
 }
 
 h6 {
-	@include fz(12);
+	font-size: 1.2rem;
 }
 
 pre {
@@ -139,7 +139,7 @@ dt,
 dd {
 	list-style-type: none;
 	list-style-position: outside;
-	@include fz(16);
+	font-size: 1.6rem;
 }
 
 li {

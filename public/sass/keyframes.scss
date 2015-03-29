@@ -5,7 +5,7 @@
 /*----------------------------------------
 	comments Blink
 ----------------------------------------*/
-@include keyframes(blink) {
+@keyframes blink {
 	0% {
 		background: #f4fdff;
 	}
@@ -23,7 +23,7 @@
 	}
 }
 
-@include keyframes(blink2) {
+@keyframes blink2 {
 	0% {
 		background: #f4fdff;
 	}

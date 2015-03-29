@@ -10,7 +10,7 @@ p.pagetop {
 
 	line-height: es($line-height);
 	padding: 0 1.5em;
-	@include fz($font-size);
+	font-size: es($font-size);
 	text-align: right;
 	letter-spacing: 0;
 
@@ -58,7 +58,7 @@ p.pagetop {
 				border-bottom-color: #fff !important;
 			}
 			&:hover {
-				@include opacity(0.7);
+				opacity: 0.7;
 			}*/
 		}
 	}

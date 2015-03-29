@@ -18,14 +18,14 @@
 	#{"/"}background: #fff;
 	background/*\**/: #fff \9;
 
-	@include border-radius(0 0 4px 4px);
-	@include box-shadow(1px 1px 2px rgba(0,0,0,0.05));
+	border-radius: 0 0 4px 4px;
+	box-shadow: 1px 1px 2px rgba(0,0,0,0.05);
 	
 	li {
 		padding: es($padding) 0;
 		margin-right: es($font-size);
 		line-height: es($line-height) !important;
-		@include fz($font-size);
+		font-size: es($font-size);
 
 		float: left;
 		color: #666;
@@ -52,7 +52,7 @@
 			$triangle-size: 6;
 	
 			margin-left: es($triangle-size);
-			@include fz($font-size);
+			font-size: es($font-size);
 			line-height: es($font-size);
 					
 			padding: es($padding) es(5);
@@ -62,13 +62,13 @@
 			background: #fff;
 			position: relative;
 
-			@include border-radius(0 2px 2px 0);
+			border-radius: 0 2px 2px 0;
 			@include triangle-set(es($fix-height) es($triangle-size),#fff,left);
 			
-			@include box-shadow(1px1px 1px rgba(0,0,0,0.2));
+			box-shadow: 1px1px 1px rgba(0,0,0,0.2);
 
 			&:hover {
-				@include rotate(3deg);
+				transform: rotate(3deg);
 			}
 		}
 	}
@@ -98,19 +98,19 @@ a {
 		padding: es(2) es(5);
 		color: #fff;
 		text-decoration: none;
-		@include border-radius(2px);
-		@include box-shadow(1px 1px 0 rgba(0,0,0,0.2));
+		border-radius: 2px;
+		box-shadow: 1px 1px 0 rgba(0,0,0,0.2);
 
 		&:hover {
 			position: relative;
-			@include opacity(0.6);
+			opacity: 0.6;
 		}
 		
 		&:active {
 			top: 1px;
 			left: 1px;
-			@include box-shadow(none);
-			@include transition(none !important);
+			box-shadow: none;
+			transition: none !important;
 		}
 	}
 	

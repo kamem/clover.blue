@@ -2,9 +2,12 @@
 	pre
 ----------------------------------------*/
 pre {
+  margin: 0 auto 40px;
   margin: 0 auto 4rem;
+  padding: 16px;
   padding: 1.6rem;
   border: 1px solid #f2efeb;
+  max-width: 736px;
   max-width: 73.6rem;
   letter-spacing: 0;
   position: relative;
@@ -13,12 +16,12 @@ pre {
   background: #fff;
   font-size: 16px;
   font-size: 1.6rem;
-  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
   -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
-  -moz-box-sizing: border-box;
+     -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
+          box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 pre[class*="lang"]:after {
   padding: 0.5em;
@@ -30,20 +33,23 @@ pre[class*="lang"]:after {
   right: 0;
   top: 0;
   line-height: 1;
-  -moz-border-radius: 2px 2px 0 0;
-  -webkit-border-radius: 2px;
-  border-radius: 2px 2px 0 0;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+  -webkit-border-radius: 2px 2px 0 0;
+     -moz-border-radius: 2px 2px 0 0;
+          border-radius: 2px 2px 0 0;
   opacity: 0.7;
+  filter: alpha(opacity=70);
 }
 
 /*----------------------------------------
 	code
 ----------------------------------------*/
 *:not(pre) > code {
+  margin: 0 8px;
   margin: 0 0.8rem;
+  padding: 8px;
   padding: 0.8rem;
   border: 1px solid #f2efeb;
+  max-width: 736px;
   max-width: 73.6rem;
   letter-spacing: 0;
   position: relative;
@@ -52,12 +58,12 @@ pre[class*="lang"]:after {
   background: #fff;
   font-size: 14px;
   font-size: 1.4rem;
-  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
   -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
-  -moz-box-sizing: border-box;
+     -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
+          box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 /*----------------------------------------
@@ -87,24 +93,26 @@ legend {
 
 input,
 textarea {
+  padding: 8px 10px;
   padding: 0.8rem 1rem;
   font-family: Arial, Helvetica, sans-serif;
   outline: none;
   -webkit-appearance: none;
   border: 1px solid #f2efeb;
   background: #fff;
+  max-width: 736px;
   max-width: 73.6rem;
-  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
   -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
+     -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
+          box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
   font-size: 16px;
   font-size: 1.6rem;
-  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 input.button {
@@ -112,18 +120,18 @@ input.button {
   background: #94dcef !important;
   cursor: pointer;
   border: none !important;
-  -moz-box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.05);
   -webkit-box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.05);
-  box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.05);
+          box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.05);
 }
 input.button:hover {
   position: relative;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
   opacity: 0.6;
-  -moz-transition: ease-in-out 0.13s;
-  -o-transition: ease-in-out 0.13s;
-  -webkit-transition: ease-in-out 0.13s;
-  transition: ease-in-out 0.13s;
+  filter: alpha(opacity=60);
+  -webkit-transition: 0.13s ease-in-out;
+     -moz-transition: 0.13s ease-in-out;
+       -o-transition: 0.13s ease-in-out;
+          transition: 0.13s ease-in-out;
 }
 input[type="checkbox"] {
   padding: 0;
@@ -135,6 +143,7 @@ input[type="checkbox"] {
 
 input:focus,
 textarea:focus {
+  border: 1px solid #39c;
   border: 0.1rem solid #39c;
   background-color: #fff;
 }
@@ -151,30 +160,34 @@ hr {
 	blockquote
 ----------------------------------------*/
 blockquote {
+  margin: 39px auto;
   margin: 3.9rem auto;
   color: #500;
   background: rgba(255, 255, 255, 0.5);
+  max-width: 798px;
   max-width: 79.8rem;
   position: relative;
 }
 
-blockquote[title]::before {
+blockquote[title]:before {
+  padding: 3px 31px;
   padding: 0.35rem 3.1rem;
   content: attr(title);
   display: block;
   font-size: 16px;
   font-size: 1.6rem;
+  line-height: 23px;
   line-height: 2.3rem;
   background: #fff;
 }
 @media screen and (max-width: 40.625rem) {
-  blockquote[title]::before {
+  blockquote[title]:before {
     padding-right: 1rem;
     padding-left: 1rem;
   }
 }
 
-blockquote[cite]::after {
+blockquote[cite]:after {
   content: attr(cite);
   display: block;
   text-align: right;

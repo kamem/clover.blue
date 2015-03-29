@@ -17,20 +17,20 @@
 		text-decoration: none;
 	
 		@include background(linear-gradient(top, #ff3399 0%, #ff5bad 100%));
-		@include border-radius(4px);
-		@include box-shadow(1px 1px 3px rgba(0,0,0,0.2));
+		border-radius: 4px;
+		box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 	
 		&:hover {
 			position: relative;
-			@include opacity(0.6);
+			opacity: 0.6;
 			@include transition(0.13s ease-in-out);
 		}
 		
 		&:active {
 			top: 1px;
 			left: 1px;
-			@include box-shadow(none);
-			@include transition(none !important);
+			box-shadow: none;
+			transition: none !important;
 		}
 	}
 }
@@ -59,7 +59,7 @@ ul.download {
 				float: right;
 				position: relative;
 				@include background(linear-gradient(top, #8199a8 0%, #425c6c 100%));
-				@include border-radius(0 4px 4px 0);
+				border-radius: 0 4px 4px 0;
 			}
 		}
 	}
@@ -70,7 +70,7 @@ ul.download {
 			margin-bottom: 0 !important;
 			
 			a {
-				@include border-radius(4px 4px 0 0);
+				border-radius: 4px 4px 0 0;
 			}
 		}
 		&.github {
@@ -79,7 +79,7 @@ ul.download {
 				border-top: 2px solid #fff;
 				border-left: none;
 				float: none;
-				@include border-radius(0 0 4px 4px);
+				border-radius: 0 0 4px 4px;
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-	@charset "utf-8";
+@charset "utf-8";
 
 //----------------------------------------------------------------------
 // img
@@ -61,14 +61,14 @@ $imgHeight: ();
 		$imgHeight:  $imgHeight !global;
 	}
 
-	@include background($imgList);
+	background: $imgList;
 	@if $widthFixed and length($img) < 2 {
 		text-indent: -9999px;
 		overflow: hidden;
 		width: if($important == '', $width,  unquote($width + ' ' + $important));
 		height: if($important == '', $height, unquote($height + ' ' + $important));
 	}
-	@include background-size($widthHeightList);
+	background-size: $widthHeightList;
 }
 
 //	image-info
@@ -137,7 +137,7 @@ $imgHeight: ();
 //	$retina: true or false
 @mixin sprite-info($map, $name, $size: true, $retina: $isRetina) {
 	background-image: sprite-url($map);
-	@include background-size(nth(spriteSize($map,$name,$retina),1) nth(spriteSize($map,$name,$retina),2));
+	background-size: nth(spriteSize($map,$name,$retina),1) nth(spriteSize($map,$name,$retina),2);
 	background-position: spritePosition($map,$name,$retina);
 
 	@if($size) {
@@ -321,8 +321,8 @@ $size: '';
 	@each $name in $ary {
 		border-#{$name}: $bold solid $color;
 	}
-	@include box-sizing(border-box);
-	@include rotate(-45deg);
+	box-sizing: border-box;
+	transform: rotate(-45deg);
 }
 
 //	background-4corners
@@ -352,9 +352,9 @@ $size: '';
 	}
 
 	&:after {
-    	right: 0;
-    	bottom: 0;
-		@include rotate(-180deg);
+    right: 0;
+    bottom: 0;
+		transform: rotate(-180deg);
 	}
 }
 
@@ -368,13 +368,13 @@ $size: '';
 	$color1Percent: $size1 / $imageWidth * 100%;
 	$color2Percent: $size2 / $imageWidth * 100%;
 
-	@include background-image(linear-gradient(
+	background-image: linear-gradient(
 		unquote(if($deg != '',$deg,left)),
 		$color1 $color1Percent,
 		$color2 $color1Percent, $color2 $color1Percent + $color2Percent,
 		$color1 $color1Percent + $color2Percent, $color1 $color1Percent * 2 + $color2Percent,
 		$color2 $color1Percent * 2 + $color2Percent, $color2
-	) unquote($important));
+	) unquote($important);
 
 	background-size: $imageWidth * 1px $imageWidth * 1px unquote($important);
 }

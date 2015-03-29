@@ -13,18 +13,18 @@ dl.table {
 
 	margin: es(silver-ratio($font-size) + $font-size) auto !important;
 
-	@include background(linear-gradient(left, #fff 0%, #fff 29.3478%, rgba(#fff,0.3) 29.3478%,  rgba(#fff ,0) 100%));
-	@include background-origin(padding-box);
+	background: linear-gradient;
+	background-origin: padding-box;
 	max-width: es($base-width);
 
 	#{"/"}background: #fff;
 	background/*\**/: #fff \9;
 
 	border: $border + px solid #dcc;
-	@include border-radius(4px);
-	@include box-shadow(0 0 10px rgba(0,0,0,0.1));
-	@include box-sizing(border-box);
-	@include fz($font-size);
+	border-radius: 4px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.1);
+	box-sizing: border-box;
+	font-size: es($font-size);
 	color: #500;
 
 	img {
@@ -59,7 +59,7 @@ dl.table {
 		display: inline;
 		position: relative;
 		font-weight: normal;
-		@include box-sizing(border-box);
+		box-sizing: border-box;
 
 	}
 
@@ -71,10 +71,10 @@ dl.table {
 		border-top: 2px solid #dcc;
 
 		&:nth-of-type(even) {
-			@include background(rgba(#fff,0.2));
+			background: rgba(#fff,0.2);
 		}
 		&:nth-of-type(odd) {
-			@include background(rgba(#fff,0.7));
+			background: rgba(#fff,0.7);
 		}
 	}
 

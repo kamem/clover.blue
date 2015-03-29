@@ -55,7 +55,13 @@ gulp.task('compass', function(){
 		comments : false,
 		css : cssDirectory,
 		sass: sassDirectory
-	}));
+	}))
+	.pipe(pleeease({
+		rem: ["10px"],
+		minifier: false,
+		browsers: ['IE > 6', 'Firefox >= 0', 'iOS >= 0', 'Android >= 0', 'Opera >= 0']
+	}))
+	.pipe(gulp.dest(cssDirectory));
 });
 
 //CSS min

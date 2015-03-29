@@ -24,7 +24,7 @@
 		max-width: es($base-width-big) !important;
 		line-height: es($fix-height) !important;
 		margin: 0 auto;
-		@include fz($font-size);
+		font-size: es($font-size);
 		
 		border-bottom: none !important;
 		position: relative;
@@ -46,9 +46,9 @@
 			background/*\**/: #39c \9;
 
 			color: #fff;
-			@include text-shadow(0 0 2px rgba(#39c,0.6));
-			@include border-radius(2px);
-			@include fz($font-size);
+			text-shadow: 0 0 2px rgba(#39c,0.6);
+			border-radius: 2px;
+			font-size: es($font-size);
 			
 			&:hover {
 				background: rgba(#39c,1);
@@ -76,7 +76,7 @@
 				left top
 				#faf8f3;
 			color: $linkColor;
-			@include text-shadow(none);
+			text-shadow: none;
 
 			&:hover {
 				color: $linkColor_hover;
@@ -84,7 +84,7 @@
 		
 			&:before {
 				content: "▼" !important;
-				@include fz(11);
+				font-size: es(11);
 			}
 		}
 	}
@@ -117,7 +117,8 @@
 		letter-spacing: es($letter-spacing);
 		max-width: es($base-width-big - $border * 2 - $margin * 2) !important;
 		display: block;
-		list-style-type: none;		list-style-position: outside;
+		list-style-type: none;
+		list-style-position: outside;
 		background: none !important;
 		
 		a {

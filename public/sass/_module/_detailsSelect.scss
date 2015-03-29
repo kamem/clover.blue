@@ -11,7 +11,7 @@ p.detailsSelect {
 	margin: 0 auto;
 	text-align: right;
 	color: #744 !important;
-	@include fz($font-size);
+	font-size: es($font-size);
 
 	a:before {
 		padding-right: 0.5em;

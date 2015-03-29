@@ -22,21 +22,21 @@ pre {
 
 	background: #fff;
 
-	@include fz($font-size);
-	@include box-shadow(1px 1px 1px rgba(0,0,0,0.04));
-	@include box-sizing(border-box);
+	font-size: es($font-size);
+	box-shadow: 1px 1px 1px rgba(0,0,0,0.04);
+	box-sizing: border-box;
 
 	&[class*="lang"]:after {
 		padding: 0.5em;
 		display: block;
 		background: #fff;
-		@include fz(14);
+		font-size: es(14);
 		position: absolute;
 		right: 0;
 		top: 0;
 		line-height: 1;
-		@include border-radius(2px 2px 0 0);
-		@include opacity(0.7);
+		border-radius: 2px 2px 0 0;
+		opacity: 0.7;
 	}
 }
 /*----------------------------------------
@@ -59,9 +59,9 @@ pre {
 
 	background: #fff;
 
-	@include fz($font-size);
-	@include box-shadow(1px 1px 1px rgba(0,0,0,0.04));
-	@include box-sizing(border-box);
+	font-size: es($font-size);
+	box-shadow: 1px 1px 1px rgba(0,0,0,0.04);
+	box-sizing: border-box;
 }
 
 /*----------------------------------------
@@ -100,11 +100,11 @@ textarea {
 	border: 1px solid #f2efeb;
 	background: #fff;
 	max-width: es($base-width);
-	@include box-sizing(border-box);
-	@include box-shadow(1px 1px 1px rgba(0,0,0,0.04));
+	box-sizing: border-box;
+	box-shadow: 1px 1px 1px rgba(0,0,0,0.04);
 
-	@include fz($font-size);
-	@include box-sizing(border-box);
+	font-size: es($font-size);
+	box-sizing: border-box;
 }
 
 input {
@@ -113,12 +113,12 @@ input {
 		background: $baseColor !important;
 		cursor: pointer;
 		border: none !important;
-		@include box-shadow(7px 7px 0 rgba(0,0,0,.05));
+		box-shadow: 7px 7px 0 rgba(0,0,0,.05);
 
 		&:hover {
 			position: relative;
-			@include opacity(0.6);
-			@include transition(0.13s ease-in-out);
+			opacity: 0.6;
+			transition: 0.13s ease-in-out;
 		}
 	}
 
@@ -172,7 +172,7 @@ blockquote[title]::before {
 	padding: es($padding) es(($base-width-big - $base-width) / 2);
 	content: attr(title);
 	display: block;
-	@include fz($font-size);
+	font-size: es($font-size);
 	line-height: es($line-height);
 	background: #fff;
 
@@ -187,5 +187,5 @@ blockquote[cite]::after {
 	content: attr(cite);
 	display: block;
 	text-align: right;
-	@include fz($font-size);
+	font-size: es($font-size);
 }

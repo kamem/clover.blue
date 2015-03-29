@@ -21,8 +21,8 @@
 	background: rgba(255,255,255,0.4);
 	clear: both;
 	
-	@include border-radius($size + px);
-	@include box-shadow(1px 1px 3px rgba(0,0,0,0.2));
+	border-radius: $size + px;
+	box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 
 	li {
 		margin-bottom: es(3);
@@ -50,8 +50,8 @@
 		position: absolute;
 		top: es(nth($position,1) + 10);
 		right: $size -10px;
-		@include border-radius($size + px);
-		@include box-shadow(1px 1px 3px rgba(0,0,0,0.2));
+		border-radius: $size + px;
+		box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 	}
 
 	@media screen and (max-width: es($mediaQuery-middle,rem,$mediaQuery-baseSize)) {
@@ -68,9 +68,9 @@
 		width: inherit;
 		height: es(silver-ratio($fix-height));
 		background: transparent;
-		@include box-shadow(none);
+		box-shadow: none;
 		//overflow: hidden;
-		@include border-radius(0);
+		border-radius: 0;
 
 		li {
 			margin: es(5) es(10) 0 0;

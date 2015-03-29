@@ -3,16 +3,22 @@
 	commentList
 ----------------------------------------*/
 dl.commentList {
+  margin: 39px 0 0 0;
   margin: 3.9rem 0 0 0;
+  padding-bottom: 23px;
   padding-bottom: 2.3rem;
 }
 dl.commentList dt {
   margin: 0 auto;
+  padding-top: 23px;
   padding-top: 2.3rem;
+  margin-top: 23px;
   margin-top: 2.3rem;
   border-top: 1px solid #dcc;
+  max-width: 736px;
   max-width: 73.6rem;
   color: #500;
+  line-height: 23px;
   line-height: 2.3rem;
   list-style-type: none;
   /width: 36.5em;
@@ -20,13 +26,16 @@ dl.commentList dt {
 dl.commentList dd {
   margin: 0 auto;
   display: list-item;
+  max-width: 736px;
   max-width: 73.6rem;
   color: #500;
+  line-height: 23px;
   line-height: 2.3rem;
   list-style-type: disc;
   /width: 36.5em;
 }
 dl.commentList dd:last-child {
+  padding-bottom: 23px;
   padding-bottom: 2.3rem;
   border-bottom: 1px solid #dcc;
 }
@@ -53,44 +62,50 @@ dl.commentList dd:last-child {
   top: 0;
   left: 0;
   z-index: 9999;
-  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuNSIgeTE9IjAuMCIgeDI9IjAuNSIgeTI9IjEuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwLjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZWZmZTIiIHN0b3Atb3BhY2l0eT0iMC4zIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g') no-repeat, url('../img/common/cloverblue_x2.png?1422757000') no-repeat center center;
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(100%, rgba(254, 255, 226, 0.3))) no-repeat, url('../img/common/cloverblue_x2.png?1422757000') no-repeat center center;
-  background: -moz-linear-gradient(top, rgba(255, 255, 255, 0), rgba(254, 255, 226, 0.3)) no-repeat, url('../img/common/cloverblue_x2.png?1422757000') no-repeat center center;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), to(rgba(254, 255, 226, 0.3))) no-repeat, url('../img/common/cloverblue_x2.png?1422757000') no-repeat center center;
   background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0), rgba(254, 255, 226, 0.3)) no-repeat, url('../img/common/cloverblue_x2.png?1422757000') no-repeat center center;
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 0), rgba(254, 255, 226, 0.3)) no-repeat, url('../img/common/cloverblue_x2.png?1422757000') no-repeat center center;
+  background: -o-linear-gradient(top, rgba(255, 255, 255, 0), rgba(254, 255, 226, 0.3)) no-repeat, url('../img/common/cloverblue_x2.png?1422757000') no-repeat center center;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(254, 255, 226, 0.3)) no-repeat, url('../img/common/cloverblue_x2.png?1422757000') no-repeat center center;
-  -moz-background-size: auto auto, 147px 23px;
-  -o-background-size: auto auto, 147px 23px;
   -webkit-background-size: auto auto, 147px 23px;
-  background-size: auto auto, 147px 23px;
+     -moz-background-size: auto auto, 147px 23px;
+       -o-background-size: auto auto, 147px 23px;
+          background-size: auto auto, 147px 23px;
   background-color: #94dcef;
-  -moz-transition-property: all;
-  -o-transition-property: all;
   -webkit-transition-property: all;
-  transition-property: all;
-  -moz-transition-duration: 1s;
-  -o-transition-duration: 1s;
+     -moz-transition-property: all;
+       -o-transition-property: all;
+          transition-property: all;
   -webkit-transition-duration: 1s;
-  transition-duration: 1s;
-  -moz-transition-timing-function: ease-out;
-  -o-transition-timing-function: ease-out;
+     -moz-transition-duration: 1s;
+       -o-transition-duration: 1s;
+          transition-duration: 1s;
   -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
+     -moz-transition-timing-function: ease-out;
+       -o-transition-timing-function: ease-out;
+          transition-timing-function: ease-out;
 }
 .op.end {
   opacity: 0;
+  filter: alpha(opacity=0);
   pointer-events: none;
-  background-size: 165px 30px;
+  -webkit-background-size: 165px 30px;
+     -moz-background-size: 165px 30px;
+       -o-background-size: 165px 30px;
+          background-size: 165px 30px;
 }
 .op:after {
   width: 100%;
   display: block;
   left: -100%;
+  height: 30px;
   height: 3rem;
   content: '';
   border-bottom: 2px solid #fff;
   position: fixed;
   top: 50%;
   opacity: 0.5;
+  filter: alpha(opacity=50);
 }
 .op.parcent1:after {
   left: -75%;
@@ -107,10 +122,14 @@ dl.commentList dd:last-child {
 
 .main {
   max-width: inherit !important;
+  max-height: 200px;
   max-height: 20rem;
   background-position: top;
   overflow: hidden;
-  background-size: 100% auto;
+  -webkit-background-size: 100% auto;
+     -moz-background-size: 100% auto;
+       -o-background-size: 100% auto;
+          background-size: 100% auto;
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
@@ -138,14 +157,17 @@ dl.commentList dd:last-child {
   font-family: 'icomoon';
 }
 .icos a {
+  width: 29px;
   width: 2.9rem;
+  height: 29px;
   height: 2.9rem;
-  -moz-border-radius: 2.9rem;
   -webkit-border-radius: 2.9rem;
-  border-radius: 2.9rem;
+     -moz-border-radius: 2.9rem;
+          border-radius: 2.9rem;
 }
 .icos a:before {
   display: block;
+  line-height: 29px;
   line-height: 2.9rem;
   text-indent: 0;
   font-size: 18px;
@@ -181,12 +203,13 @@ dl.commentList dd:last-child {
 }
 
 .loading {
+  margin: 30px 0;
   margin: 3rem 0;
   background: url('../img/common/loading.gif?1417940831') no-repeat center center;
-  -moz-background-size: 32px 32px;
-  -o-background-size: 32px 32px;
   -webkit-background-size: 32px 32px;
-  background-size: 32px 32px;
+     -moz-background-size: 32px 32px;
+       -o-background-size: 32px 32px;
+          background-size: 32px 32px;
   text-indent: -9999px;
   overflow: hidden;
   height: 32px;
@@ -198,6 +221,7 @@ dl.commentList dd:last-child {
 
 .thumbnails {
   padding: 0 !important;
+  margin: 0 0 10px !important;
   margin: 0 0 1rem !important;
   overflow: hidden;
   letter-spacing: -0.4em;
@@ -216,11 +240,12 @@ dl.commentList dd:last-child {
 }
 .thumbnails.max {
   margin: 0 auto !important;
+  max-width: 736px;
   max-width: 73.6rem;
   border: 4px solid #fff;
-  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+     -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .thumbnails.max li {
   width: 20%;
@@ -242,21 +267,21 @@ dl.commentList dd:last-child {
 }
 .thumbnails li a {
   display: block;
-  -moz-transition-property: opacity;
-  -o-transition-property: opacity;
   -webkit-transition-property: opacity;
-  transition-property: opacity;
-  -moz-transition-duration: 0.2s;
-  -o-transition-duration: 0.2s;
+     -moz-transition-property: opacity;
+       -o-transition-property: opacity;
+          transition-property: opacity;
   -webkit-transition-duration: 0.2s;
-  transition-duration: 0.2s;
+     -moz-transition-duration: 0.2s;
+       -o-transition-duration: 0.2s;
+          transition-duration: 0.2s;
 }
 .thumbnails li a img {
   width: 100%;
 }
 .thumbnails li a:hover {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
   opacity: 0.7;
+  filter: alpha(opacity=70);
 }
 @media screen and (max-width: 40.625rem) {
   .thumbnails li {
@@ -266,6 +291,7 @@ dl.commentList dd:last-child {
 }
 
 .links {
+  max-width: 736px;
   max-width: 73.6rem;
   letter-spacing: -0.4em;
 }
@@ -282,11 +308,13 @@ dl.commentList dd:last-child {
 }
 
 .serviceLink {
+  max-width: 736px;
   max-width: 73.6rem;
   letter-spacing: -0.4em;
 }
 .serviceLink li {
   width: 25%;
+  margin-bottom: 16px !important;
   margin-bottom: 1.6rem !important;
   display: inline-block;
   letter-spacing: normal;
@@ -299,82 +327,82 @@ dl.commentList dd:last-child {
 }
 .serviceLink li.twitter a {
   background: url('../img/sns/twitter.png?1419464532') no-repeat left center;
-  -moz-background-size: 27px 22px;
-  -o-background-size: 27px 22px;
   -webkit-background-size: 27px 22px;
-  background-size: 27px 22px;
+     -moz-background-size: 27px 22px;
+       -o-background-size: 27px 22px;
+          background-size: 27px 22px;
   padding-left: 37px;
 }
 .serviceLink li.facebook a {
   background: url('../img/sns/facebook.png?1419464537') no-repeat left center;
-  -moz-background-size: 23px 23px;
-  -o-background-size: 23px 23px;
   -webkit-background-size: 23px 23px;
-  background-size: 23px 23px;
+     -moz-background-size: 23px 23px;
+       -o-background-size: 23px 23px;
+          background-size: 23px 23px;
   padding-left: 33px;
 }
 .serviceLink li.mixi a {
   background: url('../img/sns/mixi.png?1419464532') no-repeat left center;
-  -moz-background-size: 26px 24px;
-  -o-background-size: 26px 24px;
   -webkit-background-size: 26px 24px;
-  background-size: 26px 24px;
+     -moz-background-size: 26px 24px;
+       -o-background-size: 26px 24px;
+          background-size: 26px 24px;
   padding-left: 36px;
 }
 .serviceLink li.flickr a {
   background: url('../img/sns/flickr.png?1419464532') no-repeat left center;
-  -moz-background-size: 21px 9px;
-  -o-background-size: 21px 9px;
   -webkit-background-size: 21px 9px;
-  background-size: 21px 9px;
+     -moz-background-size: 21px 9px;
+       -o-background-size: 21px 9px;
+          background-size: 21px 9px;
   padding-left: 31px;
 }
 .serviceLink li.github a {
   background: url('../img/sns/github.png?1419464532') no-repeat left center;
-  -moz-background-size: 24px 23px;
-  -o-background-size: 24px 23px;
   -webkit-background-size: 24px 23px;
-  background-size: 24px 23px;
+     -moz-background-size: 24px 23px;
+       -o-background-size: 24px 23px;
+          background-size: 24px 23px;
   padding-left: 34px;
 }
 .serviceLink li.delicious a {
   background: url('../img/sns/delicious.png?1419464537') no-repeat left center;
-  -moz-background-size: 24px 24px;
-  -o-background-size: 24px 24px;
   -webkit-background-size: 24px 24px;
-  background-size: 24px 24px;
+     -moz-background-size: 24px 24px;
+       -o-background-size: 24px 24px;
+          background-size: 24px 24px;
   padding-left: 34px;
 }
 .serviceLink li.booklog a {
   background: url('../img/sns/booklog.png?1419464532') no-repeat left center;
-  -moz-background-size: 24px 18px;
-  -o-background-size: 24px 18px;
   -webkit-background-size: 24px 18px;
-  background-size: 24px 18px;
+     -moz-background-size: 24px 18px;
+       -o-background-size: 24px 18px;
+          background-size: 24px 18px;
   padding-left: 34px;
 }
 .serviceLink li.qiita a {
   background: url('../img/sns/qiita.png?1419647516') no-repeat left center;
-  -moz-background-size: 23px 23px;
-  -o-background-size: 23px 23px;
   -webkit-background-size: 23px 23px;
-  background-size: 23px 23px;
+     -moz-background-size: 23px 23px;
+       -o-background-size: 23px 23px;
+          background-size: 23px 23px;
   padding-left: 33px;
 }
 .serviceLink li.pixiv a {
   background: url('../img/sns/pixiv.png?1419736558') no-repeat left center;
-  -moz-background-size: 23px 23px;
-  -o-background-size: 23px 23px;
   -webkit-background-size: 23px 23px;
-  background-size: 23px 23px;
+     -moz-background-size: 23px 23px;
+       -o-background-size: 23px 23px;
+          background-size: 23px 23px;
   padding-left: 33px;
 }
 .serviceLink li.tumblr a {
   background: url('../img/sns/tumblr.png?1419736558') no-repeat left center;
-  -moz-background-size: 23px 23px;
-  -o-background-size: 23px 23px;
   -webkit-background-size: 23px 23px;
-  background-size: 23px 23px;
+     -moz-background-size: 23px 23px;
+       -o-background-size: 23px 23px;
+          background-size: 23px 23px;
   padding-left: 33px;
 }
 @media screen and (max-width: 40.625rem) {
@@ -385,9 +413,11 @@ dl.commentList dd:last-child {
 }
 
 .tags {
+  max-width: 736px;
   max-width: 73.6rem;
 }
 .tags li {
+  margin: 0 4px !important;
   margin: 0 0.4rem !important;
   display: inline-block;
   font-size: 12px;
@@ -400,35 +430,40 @@ dl.commentList dd:last-child {
   color: #fff;
 }
 .tags a {
+  padding: 5px;
   padding: 0.5rem;
   color: #b8b2a6;
   text-decoration: none;
   background: #fff;
   font-size: 12px;
   font-size: 1.2rem;
-  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
   -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
-  -moz-box-sizing: border-box;
+     -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
+          box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .tags a:hover {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
   opacity: 0.6;
+  filter: alpha(opacity=60);
 }
 
 dl.log {
+  max-width: 736px;
   max-width: 73.6rem;
   border-top: 1px solid #dcc;
   border-bottom: 1px solid #fff;
+  margin: 20px auto;
   margin: 2rem auto;
   color: #500;
   text-align: left;
+  letter-spacing: 1px;
   letter-spacing: 0.13rem;
   line-height: 1.6;
 }
 dl.log dt {
+  padding: 20px 0 10px 0;
   padding: 2rem 0 1rem 0;
   border-top: 1px solid #fff;
   font-size: 14px;
@@ -439,37 +474,44 @@ dl.log dt span {
 }
 dl.log dt:target, dl.log dt:target + dd {
   color: #39c !important;
-  -moz-animation-name: blink;
   -webkit-animation-name: blink;
-  animation-name: blink;
-  -moz-animation-duration: 5s;
+     -moz-animation-name: blink;
+       -o-animation-name: blink;
+          animation-name: blink;
   -webkit-animation-duration: 5s;
-  animation-duration: 5s;
-  -moz-animation-timing-function: ease;
+     -moz-animation-duration: 5s;
+       -o-animation-duration: 5s;
+          animation-duration: 5s;
   -webkit-animation-timing-function: ease;
-  animation-timing-function: ease;
-  -moz-animation-iteration-count: infinite;
+     -moz-animation-timing-function: ease;
+       -o-animation-timing-function: ease;
+          animation-timing-function: ease;
   -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
+     -moz-animation-iteration-count: infinite;
+       -o-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
 }
 dl.log dt:target + dd p, dl.log dt:target + dd + dd p {
   color: #39c !important;
 }
 dl.log dt:target:nth-of-type(even), dl.log dt:target + dd:nth-of-type(even) {
-  -moz-animation-name: blink2;
   -webkit-animation-name: blink2;
-  animation-name: blink2;
+     -moz-animation-name: blink2;
+       -o-animation-name: blink2;
+          animation-name: blink2;
 }
 dl.log dt:nth-of-type(even) {
   background: rgba(255, 255, 255, 0.5);
 }
 dl.log dd {
+  padding-bottom: 20px;
   padding-bottom: 2rem;
   border-bottom: 1px solid #dcc;
   font-size: 14px;
   font-size: 1.4rem;
 }
 dl.log dd p {
+  margin-bottom: 16px;
   margin-bottom: 1.6rem;
   color: #744 !important;
 }
@@ -484,6 +526,7 @@ dl.log dd:nth-of-type(even) {
 }
 
 li.download {
+  margin-bottom: 10px !important;
   margin-bottom: 1rem !important;
   list-style-type: none !important;
 }
@@ -493,24 +536,27 @@ li.download a {
   text-decoration: none;
   color: #fff;
   text-align: center;
-  -moz-box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.05);
   -webkit-box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.05);
-  box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.05);
+          box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.05);
 }
 li.download a:hover {
   position: relative;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
   opacity: 0.6;
-  -moz-transition: ease-in-out 0.13s;
-  -o-transition: ease-in-out 0.13s;
-  -webkit-transition: ease-in-out 0.13s;
-  transition: ease-in-out 0.13s;
+  filter: alpha(opacity=60);
+  -webkit-transition: 0.13s ease-in-out;
+     -moz-transition: 0.13s ease-in-out;
+       -o-transition: 0.13s ease-in-out;
+          transition: 0.13s ease-in-out;
 }
 
 nav.pageNav {
   border-bottom: 1px solid #f2efeb;
+  margin: 0 auto 40px;
   margin: 0 auto 4rem;
+  max-width: 736px;
   max-width: 73.6rem;
+  padding: 0 16px;
   padding: 0 1.6rem;
 }
 nav.pageNav > * {
@@ -523,16 +569,18 @@ nav.pageNav h2:before {
   display: none !important;
 }
 nav.pageNav li {
-  font-size: 14px !important;
-  font-size: 1.4rem !important;
+  font-size: 14px;
+  font-size: 1.4rem;
   padding: 0 !important;
   line-height: 2 !important;
 }
 
 .data {
+  margin: 60px 0 40px;
   margin: 6rem 0 4rem;
 }
 .data li {
+  margin: 4px;
   margin: 0.4rem;
   display: inline-block;
   font-size: 12px;
@@ -541,34 +589,38 @@ nav.pageNav li {
 }
 .data .revisions:before {
   content: '|';
+  padding-right: 5px;
   padding-right: 0.5rem;
 }
 .data a {
+  padding: 5px;
   padding: 0.5rem;
   color: #b8b2a6;
   text-decoration: none;
   background: #fff;
   font-size: 12px;
   font-size: 1.2rem;
-  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
   -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
-  -moz-box-sizing: border-box;
+     -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
+          box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .data a:hover {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
   opacity: 0.6;
+  filter: alpha(opacity=60);
 }
 
 .commentTitle {
   text-align: center;
 }
 .commentTitle h2 {
+  margin: 40px auto;
   margin: 4rem auto;
   border: 1px solid #f2efeb;
   display: inline-block;
+  padding: 16px;
   padding: 1.6rem;
   min-width: 10%;
   color: #a29c8e;
@@ -576,11 +628,13 @@ nav.pageNav li {
   position: relative;
   font-weight: normal;
   text-align: center;
+  font-size: 16px;
   font-size: 1.6rem;
+  letter-spacing: 2px;
   letter-spacing: 0.24rem;
-  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
   -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
+     -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
+          box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
 }
 .commentTitle h2:after {
   content: "";
@@ -606,29 +660,33 @@ nav.pageNav li {
 }
 
 .trackbacks p.url {
+  margin: 0 auto 40px;
   margin: 0 auto 4rem;
+  padding: 16px;
   padding: 1.6rem;
   border: 1px solid #f2efeb;
   background: #fff;
+  max-width: 736px;
   max-width: 73.6rem;
   color: #500;
   text-align: left;
-  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
   -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
+     -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
+          box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.04);
 }
 
 .commentsForm dl.form {
   margin: 0 auto;
+  max-width: 736px;
   max-width: 73.6rem;
   color: #500;
   text-align: left;
-  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .commentsForm dl.form dt {
   color: #39c;
@@ -641,6 +699,7 @@ nav.pageNav li {
   display: none;
 }
 .commentsForm dl.form dd {
+  margin-bottom: 10px;
   margin-bottom: 1rem;
 }
 .commentsForm dl.form dd input,
@@ -658,6 +717,7 @@ nav.pageNav li {
 }
 .commentsForm p#comments-open-footer {
   margin: 0 auto;
+  max-width: 736px;
   max-width: 73.6rem;
   text-align: center;
 }
@@ -680,6 +740,7 @@ nav.pageNav li {
 }
 
 .sns {
+  margin: 30px 0;
   margin: 3rem 0;
   text-align: center;
   line-height: 1;
