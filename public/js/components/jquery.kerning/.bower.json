@@ -1,0 +1,36 @@
+{
+  "name": "jquery.kerning",
+  "version": "0.3.1",
+  "main": "dist/jquery.kerning.min.js",
+  "ignore": [
+    "data/**",
+    "fonts/**",
+    "libs/**",
+    "node_modules/**",
+    "script/**",
+    "src/**",
+    "style/**",
+    "test/**",
+    ".travis.yml",
+    ".gitignore",
+    "CONTRIBUTING.md",
+    "example.html",
+    "Gruntfile.coffee",
+    "kerning.jquery.json",
+    "package.json",
+    "README.md"
+  ],
+  "dependencies": {
+    "jquery": ">=1.7.2"
+  },
+  "homepage": "https://github.com/KarappoInc/jquery.kerning.js",
+  "_release": "0.3.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.3.1",
+    "commit": "8efb96bdf1d427117c4fd89861d8344cff20a25e"
+  },
+  "_source": "git://github.com/KarappoInc/jquery.kerning.js.git",
+  "_target": "0.3.1",
+  "_originalSource": "jquery.kerning"
+}

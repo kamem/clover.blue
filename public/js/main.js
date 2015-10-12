@@ -6,6 +6,7 @@ require.config({
         prettify: 'components/google-code-prettify/src/prettify',
         ga: 'components/angular-ga/ga',
         colorbox: 'components/colorbox/jquery.colorbox',
+        kerning: 'components/jquery.kerning/dist/jquery.kerning',
         angular: 'components/angular/angular.min',
         ngStorage: 'components/ngstorage/ngStorage',
         ngRoute: 'components/angular-route/angular-route',
@@ -17,6 +18,9 @@ require.config({
         },
         colorbox: {
             exports: 'colorbox'
+        },
+        kerning: {
+            exports: 'kerning'
         },
         prettify: {
             exports: 'prettify'
@@ -42,6 +46,7 @@ require([
     'angular',
     'jquery',
     'colorbox',
+    'kerning',
     'ngStorage',
     'ngRoute',
     'ngSanitize',

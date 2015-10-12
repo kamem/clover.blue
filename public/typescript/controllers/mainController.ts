@@ -143,8 +143,9 @@ export class Entry {
 			$scope.$apply();
 
 			angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
+			angular.element(document.querySelectorAll("h1,h2,h3,li,p")).kerning();
 			prettify.prettyPrint();
-    });
+		});
   }
 }
 export class TumblrEntry {
