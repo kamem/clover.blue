@@ -8,6 +8,7 @@ declare var tumblr;
 var loadContentCount: number = 0;
 
 import prettify = require('prettify');
+import kerning = require('kerning');
 
 export class Normal {
   constructor($scope, mainService, ga) {
@@ -143,8 +144,9 @@ export class Entry {
 			$scope.$apply();
 
 			angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
-			angular.element(document.querySelectorAll("h1,h2,h3,li,p")).kerning();
 			prettify.prettyPrint();
+
+			$('h1,#content > div h2,#content > div h3,#content > div h4,#content > div li,#content > div p').kerning();
 		});
   }
 }

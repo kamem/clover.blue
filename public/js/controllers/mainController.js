@@ -140,8 +140,8 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                 mainService.CreatePageNav($scope);
                 $scope.$apply();
                 angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
-                angular.element(document.querySelectorAll("h1,h2,h3,li,p")).kerning();
                 prettify.prettyPrint();
+                $('h1,#content > div h2,#content > div h3,#content > div h4,#content > div li,#content > div p').kerning();
             });
         }
         return Entry;
