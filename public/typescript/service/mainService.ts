@@ -20,6 +20,10 @@ export class mainService {
 		angular.element(document.querySelectorAll("title")).text(title);
 	}
 
+	public PageKerning() {
+		$('h1,.content h2,.content h3,.content h4,.content li,.content p').kerning();
+	}
+
 	public LoadSns() {
 		angular.element(document).ready(() => {
 			//twitter

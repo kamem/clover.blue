@@ -15,6 +15,9 @@ define(["require", "exports"], function (require, exports) {
             var title = decodeURI(angular.element(document.querySelectorAll("main h1")).text()) + ' - clover.blue';
             angular.element(document.querySelectorAll("title")).text(title);
         };
+        mainService.prototype.PageKerning = function () {
+            $('h1,.content h2,.content h3,.content h4,.content li,.content p').kerning();
+        };
         mainService.prototype.LoadSns = function () {
             angular.element(document).ready(function () {
                 //twitter

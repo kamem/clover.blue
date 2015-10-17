@@ -3,14 +3,15 @@
 define(["require", "exports", 'prettify'], function (require, exports, prettify) {
     var loadContentCount = 0;
     var Normal = (function () {
-        function Normal($scope, mainService, ga) {
+        function Normal($scope, mainService, ga, $timeout) {
             angular.element(document.querySelectorAll("#header")).addClass("off");
             ga('send', 'pageview');
-            angular.element(document).ready(function () {
+            $timeout(function () {
                 mainService.CreatePageNav($scope);
                 $scope.$apply();
                 mainService.ChangeTitle();
                 mainService.LoadSns();
+                mainService.PageKerning();
             });
         }
         return Normal;
@@ -127,7 +128,7 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     })();
     exports.Weblog = Weblog;
     var Entry = (function () {
-        function Entry($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) {
+        function Entry($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga, $timeout) {
             var currentPage = location.pathname.split('/').pop();
             var page = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', filterFilter, ga);
             page.addClassElement = "#header";
@@ -136,19 +137,20 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                 page.storageUpdated = Date.parse(filterFilter($scope.$storage.qiita, { uuid: currentPage })[0].updated_at.replace(/-/g, '/'));
             page.setClass();
             page.load();
-            angular.element(document).ready(function () {
-                mainService.CreatePageNav($scope);
-                $scope.$apply();
-                angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
-                prettify.prettyPrint();
-                $('h1,#content > div h2,#content > div h3,#content > div h4,#content > div li,#content > div p').kerning();
+            $scope.$watch('qiita.item', function () {
+                $timeout(function () {
+                    mainService.CreatePageNav($scope);
+                    mainService.PageKerning();
+                    angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
+                    prettify.prettyPrint();
+                });
             });
         }
         return Entry;
     })();
     exports.Entry = Entry;
     var TumblrEntry = (function () {
-        function TumblrEntry($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) {
+        function TumblrEntry($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga, $timeout) {
             var currentPage = location.pathname.split('/').pop();
             var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', filterFilter, ga);
             page.addClassElement = "#header";
@@ -158,11 +160,13 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
             page.setClass();
             page.load();
             $.colorbox.close();
-            angular.element(document).ready(function () {
-                mainService.CreatePageNav($scope);
-                $scope.$apply();
-                angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
-                prettify.prettyPrint();
+            $scope.$watch('tumblr.item', function () {
+                $timeout(function () {
+                    mainService.CreatePageNav($scope);
+                    mainService.PageKerning();
+                    angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
+                    prettify.prettyPrint();
+                });
             });
         }
         return TumblrEntry;

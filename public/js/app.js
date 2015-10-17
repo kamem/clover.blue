@@ -15,7 +15,7 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
     module.factory('pixivFactory', ['$http', function ($http) { return new mainFactory.pixivFactory($http); }]);
     module.factory('tumblrFactory', ['$http', function ($http) { return new mainFactory.tumblrFactory($http); }]);
     //controller
-    module.controller("Normal", ['$scope', 'mainService', 'ga', function ($scope, mainService, ga) { return new mainController.Normal($scope, mainService, ga); }]);
+    module.controller("Normal", ['$scope', 'mainService', 'ga', '$timeout', function ($scope, mainService, ga, $timeout) { return new mainController.Normal($scope, mainService, ga, $timeout); }]);
     module.controller('Index', [
         '$scope',
         'mainService',
@@ -51,7 +51,8 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
         '$localStorage',
         'filterFilter',
         'ga',
-        function ($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) { return new mainController.Entry($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga); }
+        '$timeout',
+        function ($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga, $timeout) { return new mainController.Entry($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga, $timeout); }
     ]);
     module.controller('Photo', [
         '$scope',
@@ -87,7 +88,8 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
         '$localStorage',
         'filterFilter',
         'ga',
-        function ($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) { return new mainController.TumblrEntry($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga); }
+        '$timeout',
+        function ($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga, $timeout) { return new mainController.TumblrEntry($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga, $timeout); }
     ]);
     module.controller('TumblrTag', [
         '$scope',

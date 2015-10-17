@@ -11,16 +11,18 @@ import prettify = require('prettify');
 import kerning = require('kerning');
 
 export class Normal {
-  constructor($scope, mainService, ga) {
+  constructor($scope, mainService, ga, $timeout) {
     angular.element(document.querySelectorAll("#header")).addClass("off");
 		ga('send', 'pageview');
 
-    angular.element(document).ready(() => {
-    	mainService.CreatePageNav($scope);
+
+		$timeout(function() {
+			mainService.CreatePageNav($scope);
 			$scope.$apply();
 			mainService.ChangeTitle();
 			mainService.LoadSns();
-    });
+			mainService.PageKerning();
+		});
   }
 }
 
@@ -129,7 +131,7 @@ export class Weblog {
 }
 
 export class Entry {
-  constructor($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) {
+  constructor($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga, $timeout) {
 		var currentPage: string = location.pathname.split('/').pop();
 		var page = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', filterFilter, ga);
 		page.addClassElement = "#header";
@@ -138,20 +140,18 @@ export class Entry {
 		if($scope.$storage.qiita) page.storageUpdated = Date.parse(filterFilter($scope.$storage.qiita, {uuid: currentPage})[0].updated_at.replace(/-/g, '/'));
 		page.setClass();
 		page.load();
-
-    angular.element(document).ready(() => {
-    	mainService.CreatePageNav($scope);
-			$scope.$apply();
-
-			angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
-			prettify.prettyPrint();
-
-			$('h1,#content > div h2,#content > div h3,#content > div h4,#content > div li,#content > div p').kerning();
+		$scope.$watch('qiita.item', function() {
+			$timeout(function() {
+				mainService.CreatePageNav($scope);
+				mainService.PageKerning();
+				angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
+				prettify.prettyPrint();
+			});
 		});
   }
 }
 export class TumblrEntry {
-	constructor($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) {
+	constructor($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga, $timeout) {
 		var currentPage: string = location.pathname.split('/').pop();
 		var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', filterFilter, ga);
 		page.addClassElement = "#header";
@@ -161,13 +161,13 @@ export class TumblrEntry {
 		page.setClass();
 		page.load();
 		$.colorbox.close();
-
-		angular.element(document).ready(() => {
-			mainService.CreatePageNav($scope);
-			$scope.$apply();
-
-			angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
-			prettify.prettyPrint();
+		$scope.$watch('tumblr.item', function() {
+			$timeout(function() {
+				mainService.CreatePageNav($scope);
+				mainService.PageKerning();
+				angular.element(document.querySelectorAll("pre")).addClass('prettyprint');
+				prettify.prettyPrint();
+			});
 		});
 	}
 }
