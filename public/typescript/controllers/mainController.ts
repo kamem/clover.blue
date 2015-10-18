@@ -27,9 +27,9 @@ export class Normal {
 }
 
 export class Index {
-  constructor($scope, mainService, qiitaFactory, tumblrFactory, pixivFactory, flickrFactory, $localStorage, ga) {
+  constructor($scope, mainService, qiitaFactory, tumblrFactory, pixivFactory, flickrFactory, $localStorage, ga, $timeout) {
 		//weblog
-		var qiitaCategory = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', '', ga);
+		var qiitaCategory = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', '', ga, $timeout);
 		qiitaCategory.removeClassElement = "#header";
 		qiitaCategory.addClassElement = "article h1";
 
@@ -39,20 +39,20 @@ export class Index {
 		qiitaCategory.load();
 
 		//diary
-		var tumblrCategory = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', '', ga);
+		var tumblrCategory = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', '', ga, $timeout);
 		tumblrCategory.latestUpdated = tumblr[0].updated;
 		if($scope.$storage.tumblr) tumblrCategory.storageUpdated = parseInt($scope.$storage.tumblr[0].timestamp);
 		tumblrCategory.load();
 
 		//illust
-		var pixivCategory = new entry.CreatePage($scope, mainService, pixivFactory, $localStorage, 'pixiv', '', ga);
+		var pixivCategory = new entry.CreatePage($scope, mainService, pixivFactory, $localStorage, 'pixiv', '', ga, $timeout);
 		$scope.$storage.pixiv = pixiv;
 		pixivCategory.latestUpdated = pixiv[0].updated;
 		if($scope.$storage.pixiv) pixivCategory.storageUpdated = $scope.$storage.pixiv[0].updated;
 		pixivCategory.load();
 
 		//photos
-		var flickrCategory = new entry.CreatePage($scope, mainService, flickrFactory, $localStorage, 'flickr', '', ga);
+		var flickrCategory = new entry.CreatePage($scope, mainService, flickrFactory, $localStorage, 'flickr', '', ga, $timeout);
 		flickrCategory.latestUpdated = flickr[0].updated;
 		if($scope.$storage.flickr) flickrCategory.storageUpdated = $scope.$storage.flickr[0].dateuploaded;
 		flickrCategory.load();
@@ -78,8 +78,8 @@ export class Index {
 }
 
 export class Photo {
-  constructor($scope, mainService, flickrFactory, $localStorage, filterFilter, ga) {
-		var page = new entry.CreatePage($scope, mainService, flickrFactory, $localStorage, 'flickr', '', ga);
+  constructor($scope, mainService, flickrFactory, $localStorage, filterFilter, ga, $timeout) {
+		var page = new entry.CreatePage($scope, mainService, flickrFactory, $localStorage, 'flickr', '', ga, $timeout);
 		page.removeClassElement = "#header";
 		page.addClassElement = "article h1";
 
@@ -91,8 +91,8 @@ export class Photo {
 }
 
 export class Illust {
-  constructor($scope, mainService, pixivFactory, $localStorage, filterFilter, ga) {
-		var page = new entry.CreatePage($scope, mainService, pixivFactory, $localStorage, 'pixiv', '', ga);
+  constructor($scope, mainService, pixivFactory, $localStorage, filterFilter, ga, $timeout) {
+		var page = new entry.CreatePage($scope, mainService, pixivFactory, $localStorage, 'pixiv', '', ga, $timeout);
 		page.removeClassElement = "#header";
 		page.addClassElement = "article h1";
 
@@ -105,8 +105,8 @@ export class Illust {
 }
 
 export class Diary {
-	constructor($scope, mainService, tumblrFactory, $localStorage, ga) {
-		var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', '', ga);
+	constructor($scope, mainService, tumblrFactory, $localStorage, ga, $timeout) {
+		var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', '', ga, $timeout);
 		page.removeClassElement = "#header";
 		page.addClassElement = "article h1";
 
@@ -118,8 +118,8 @@ export class Diary {
 }
 
 export class Weblog {
-  constructor($scope, mainService, qiitaFactory, $localStorage, ga) {
-		var page = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', '', ga);
+  constructor($scope, mainService, qiitaFactory, $localStorage, ga, $timeout) {
+		var page = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', '', ga, $timeout);
 		page.removeClassElement = "#header";
 		page.addClassElement = "article h1";
 
@@ -133,7 +133,7 @@ export class Weblog {
 export class Entry {
   constructor($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga, $timeout) {
 		var currentPage: string = location.pathname.split('/').pop();
-		var page = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', filterFilter, ga);
+		var page = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', filterFilter, ga, $timeout);
 		page.addClassElement = "#header";
 
 		page.latestUpdated = filterFilter(qiita, {uuid: currentPage})[0].updated;
@@ -153,7 +153,7 @@ export class Entry {
 export class TumblrEntry {
 	constructor($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga, $timeout) {
 		var currentPage: string = location.pathname.split('/').pop();
-		var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', filterFilter, ga);
+		var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', filterFilter, ga, $timeout);
 		page.addClassElement = "#header";
 
 		page.latestUpdated = filterFilter(tumblr, {uuid: currentPage})[0].updated;
@@ -173,8 +173,8 @@ export class TumblrEntry {
 }
 
 export class Tag {
-  constructor($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) {
-		var page = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', filterFilter, ga);
+  constructor($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga, $timeout) {
+		var page = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', filterFilter, ga, $timeout);
 		page.removeClassElement = "#header";
 		page.addClassElement = "article h1";
 		page.latestUpdated = qiita[0].updated;
@@ -184,8 +184,8 @@ export class Tag {
   }
 }
 export class TumblrTag {
-	constructor($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) {
-		var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', filterFilter, ga);
+	constructor($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga, $timeout) {
+		var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', filterFilter, ga, $timeout);
 		page.removeClassElement = "#header";
 		page.addClassElement = "article h1";
 		page.latestUpdated = tumblr[0].updated;
@@ -195,9 +195,11 @@ export class TumblrTag {
 	}
 }
 export class Design {
-	constructor($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) {
+	constructor($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga, $timeout) {
 		var name = 'tumblr';
-		var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, name, '', ga);
+
+		var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, name, '', ga, $timeout);
+
 		page.removeClassElement = "#header";
 		page.addClassElement = "article h1";
 		page.latestUpdated = tumblr[0].updated;
@@ -229,7 +231,7 @@ module entry {
 		public latestUpdated;
 		public storageUpdated;
 
-		constructor(private $scope, mainService, private factory, private $localStorage, private name, private filterFilter, ga) {
+		constructor(private $scope, mainService, private factory, private $localStorage, private name, private filterFilter, ga, $timeout) {
 			$scope.$storage = $localStorage.$default({
 				qiita: '',
 				flickr: '',
@@ -240,10 +242,13 @@ module entry {
 			this.$scope[this.name] = {};
 			ga('send', 'pageview');
 
-			angular.element(document).ready(() => {
-				mainService.ChangeTitle();
-				mainService.LoadSns();
+			$scope.$watch(this.$scope[this.name], function() {
+				$timeout(function() {
+					mainService.ChangeTitle();
+					mainService.LoadSns();
+				});
 			});
+
 			this.$scope[this.name].showLoading = true;
 			this.$scope[this.name].showErrorMessage = false;
 		}

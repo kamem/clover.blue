@@ -18,9 +18,9 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     })();
     exports.Normal = Normal;
     var Index = (function () {
-        function Index($scope, mainService, qiitaFactory, tumblrFactory, pixivFactory, flickrFactory, $localStorage, ga) {
+        function Index($scope, mainService, qiitaFactory, tumblrFactory, pixivFactory, flickrFactory, $localStorage, ga, $timeout) {
             //weblog
-            var qiitaCategory = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', '', ga);
+            var qiitaCategory = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', '', ga, $timeout);
             qiitaCategory.removeClassElement = "#header";
             qiitaCategory.addClassElement = "article h1";
             qiitaCategory.latestUpdated = qiita[0].updated;
@@ -29,20 +29,20 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
             qiitaCategory.setClass();
             qiitaCategory.load();
             //diary
-            var tumblrCategory = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', '', ga);
+            var tumblrCategory = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', '', ga, $timeout);
             tumblrCategory.latestUpdated = tumblr[0].updated;
             if ($scope.$storage.tumblr)
                 tumblrCategory.storageUpdated = parseInt($scope.$storage.tumblr[0].timestamp);
             tumblrCategory.load();
             //illust
-            var pixivCategory = new entry.CreatePage($scope, mainService, pixivFactory, $localStorage, 'pixiv', '', ga);
+            var pixivCategory = new entry.CreatePage($scope, mainService, pixivFactory, $localStorage, 'pixiv', '', ga, $timeout);
             $scope.$storage.pixiv = pixiv;
             pixivCategory.latestUpdated = pixiv[0].updated;
             if ($scope.$storage.pixiv)
                 pixivCategory.storageUpdated = $scope.$storage.pixiv[0].updated;
             pixivCategory.load();
             //photos
-            var flickrCategory = new entry.CreatePage($scope, mainService, flickrFactory, $localStorage, 'flickr', '', ga);
+            var flickrCategory = new entry.CreatePage($scope, mainService, flickrFactory, $localStorage, 'flickr', '', ga, $timeout);
             flickrCategory.latestUpdated = flickr[0].updated;
             if ($scope.$storage.flickr)
                 flickrCategory.storageUpdated = $scope.$storage.flickr[0].dateuploaded;
@@ -71,8 +71,8 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     })();
     exports.Index = Index;
     var Photo = (function () {
-        function Photo($scope, mainService, flickrFactory, $localStorage, filterFilter, ga) {
-            var page = new entry.CreatePage($scope, mainService, flickrFactory, $localStorage, 'flickr', '', ga);
+        function Photo($scope, mainService, flickrFactory, $localStorage, filterFilter, ga, $timeout) {
+            var page = new entry.CreatePage($scope, mainService, flickrFactory, $localStorage, 'flickr', '', ga, $timeout);
             page.removeClassElement = "#header";
             page.addClassElement = "article h1";
             page.latestUpdated = flickr[0].updated;
@@ -85,8 +85,8 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     })();
     exports.Photo = Photo;
     var Illust = (function () {
-        function Illust($scope, mainService, pixivFactory, $localStorage, filterFilter, ga) {
-            var page = new entry.CreatePage($scope, mainService, pixivFactory, $localStorage, 'pixiv', '', ga);
+        function Illust($scope, mainService, pixivFactory, $localStorage, filterFilter, ga, $timeout) {
+            var page = new entry.CreatePage($scope, mainService, pixivFactory, $localStorage, 'pixiv', '', ga, $timeout);
             page.removeClassElement = "#header";
             page.addClassElement = "article h1";
             $scope.$storage.pixiv = pixiv;
@@ -100,8 +100,8 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     })();
     exports.Illust = Illust;
     var Diary = (function () {
-        function Diary($scope, mainService, tumblrFactory, $localStorage, ga) {
-            var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', '', ga);
+        function Diary($scope, mainService, tumblrFactory, $localStorage, ga, $timeout) {
+            var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', '', ga, $timeout);
             page.removeClassElement = "#header";
             page.addClassElement = "article h1";
             page.latestUpdated = tumblr[0].updated;
@@ -114,8 +114,8 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     })();
     exports.Diary = Diary;
     var Weblog = (function () {
-        function Weblog($scope, mainService, qiitaFactory, $localStorage, ga) {
-            var page = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', '', ga);
+        function Weblog($scope, mainService, qiitaFactory, $localStorage, ga, $timeout) {
+            var page = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', '', ga, $timeout);
             page.removeClassElement = "#header";
             page.addClassElement = "article h1";
             page.latestUpdated = qiita[0].updated;
@@ -130,7 +130,7 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     var Entry = (function () {
         function Entry($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga, $timeout) {
             var currentPage = location.pathname.split('/').pop();
-            var page = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', filterFilter, ga);
+            var page = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', filterFilter, ga, $timeout);
             page.addClassElement = "#header";
             page.latestUpdated = filterFilter(qiita, { uuid: currentPage })[0].updated;
             if ($scope.$storage.qiita)
@@ -152,7 +152,7 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     var TumblrEntry = (function () {
         function TumblrEntry($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga, $timeout) {
             var currentPage = location.pathname.split('/').pop();
-            var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', filterFilter, ga);
+            var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', filterFilter, ga, $timeout);
             page.addClassElement = "#header";
             page.latestUpdated = filterFilter(tumblr, { uuid: currentPage })[0].updated;
             if ($scope.$storage.tumblr)
@@ -173,8 +173,8 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     })();
     exports.TumblrEntry = TumblrEntry;
     var Tag = (function () {
-        function Tag($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) {
-            var page = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', filterFilter, ga);
+        function Tag($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga, $timeout) {
+            var page = new entry.CreatePage($scope, mainService, qiitaFactory, $localStorage, 'qiita', filterFilter, ga, $timeout);
             page.removeClassElement = "#header";
             page.addClassElement = "article h1";
             page.latestUpdated = qiita[0].updated;
@@ -187,8 +187,8 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     })();
     exports.Tag = Tag;
     var TumblrTag = (function () {
-        function TumblrTag($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) {
-            var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', filterFilter, ga);
+        function TumblrTag($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga, $timeout) {
+            var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, 'tumblr', filterFilter, ga, $timeout);
             page.removeClassElement = "#header";
             page.addClassElement = "article h1";
             page.latestUpdated = tumblr[0].updated;
@@ -201,9 +201,9 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     })();
     exports.TumblrTag = TumblrTag;
     var Design = (function () {
-        function Design($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) {
+        function Design($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga, $timeout) {
             var name = 'tumblr';
-            var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, name, '', ga);
+            var page = new entry.CreatePage($scope, mainService, tumblrFactory, $localStorage, name, '', ga, $timeout);
             page.removeClassElement = "#header";
             page.addClassElement = "article h1";
             page.latestUpdated = tumblr[0].updated;
@@ -231,7 +231,7 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
     var entry;
     (function (entry) {
         var CreatePage = (function () {
-            function CreatePage($scope, mainService, factory, $localStorage, name, filterFilter, ga) {
+            function CreatePage($scope, mainService, factory, $localStorage, name, filterFilter, ga, $timeout) {
                 this.$scope = $scope;
                 this.factory = factory;
                 this.$localStorage = $localStorage;
@@ -245,9 +245,11 @@ define(["require", "exports", 'prettify'], function (require, exports, prettify)
                 });
                 this.$scope[this.name] = {};
                 ga('send', 'pageview');
-                angular.element(document).ready(function () {
-                    mainService.ChangeTitle();
-                    mainService.LoadSns();
+                $scope.$watch(this.$scope[this.name], function () {
+                    $timeout(function () {
+                        mainService.ChangeTitle();
+                        mainService.LoadSns();
+                    });
                 });
                 this.$scope[this.name].showLoading = true;
                 this.$scope[this.name].showErrorMessage = false;

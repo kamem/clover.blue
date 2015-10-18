@@ -28,21 +28,21 @@ module.factory('tumblrFactory', ['$http', ($http) => new mainFactory.tumblrFacto
 module.controller("Normal", ['$scope', 'mainService', 'ga', '$timeout', ($scope, mainService, ga, $timeout) => new mainController.Normal($scope, mainService, ga, $timeout)]);
 
 module.controller('Index',[
-	'$scope', 'mainService', 'qiitaFactory', 'tumblrFactory', 'pixivFactory', 'flickrFactory', '$localStorage', 'ga',
-	($scope, mainService, qiitaFactory, tumblrFactory, pixivFactory, flickrFactory, $localStorage, ga) =>
-	new mainController.Index($scope, mainService, qiitaFactory, tumblrFactory, pixivFactory, flickrFactory, $localStorage, ga)
+	'$scope', 'mainService', 'qiitaFactory', 'tumblrFactory', 'pixivFactory', 'flickrFactory', '$localStorage', 'ga', '$timeout',
+	($scope, mainService, qiitaFactory, tumblrFactory, pixivFactory, flickrFactory, $localStorage, ga, $timeout) =>
+	new mainController.Index($scope, mainService, qiitaFactory, tumblrFactory, pixivFactory, flickrFactory, $localStorage, ga, $timeout)
 ]);
 
 module.controller('Weblog',[
-	'$scope', 'mainService', 'qiitaFactory', '$localStorage', 'ga',
-	($scope, mainService, qiitaFactory, $localStorage, ga) =>
-	new mainController.Weblog($scope, mainService, qiitaFactory, $localStorage, ga)
+	'$scope', 'mainService', 'qiitaFactory', '$localStorage', 'ga', '$timeout',
+	($scope, mainService, qiitaFactory, $localStorage, ga, $timeout) =>
+	new mainController.Weblog($scope, mainService, qiitaFactory, $localStorage, ga, $timeout)
 ]);
 
 module.controller('Tag',[
-	'$scope', 'mainService', 'qiitaFactory', '$localStorage', 'filterFilter', 'ga',
-	($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) =>
-		new mainController.Tag($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga)
+	'$scope', 'mainService', 'qiitaFactory', '$localStorage', 'filterFilter', 'ga', '$timeout',
+	($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga, $timeout) =>
+		new mainController.Tag($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga, $timeout)
 ]);
 
 module.controller('Entry',[
@@ -53,22 +53,22 @@ module.controller('Entry',[
 
 
 module.controller('Photo',[
-	'$scope', 'mainService', 'flickrFactory', '$localStorage', 'filterFilter', 'ga',
-	($scope, mainService, flickrFactory, $localStorage, filterFilter, ga) =>
-		new mainController.Photo($scope, mainService, flickrFactory, $localStorage, filterFilter, ga)
+	'$scope', 'mainService', 'flickrFactory', '$localStorage', 'filterFilter', 'ga', '$timeout',
+	($scope, mainService, flickrFactory, $localStorage, filterFilter, ga, $timeout) =>
+		new mainController.Photo($scope, mainService, flickrFactory, $localStorage, filterFilter, ga, $timeout)
 ]);
 
 
 module.controller('Illust',[
-	'$scope', 'mainService', 'pixivFactory', '$localStorage', 'filterFilter', 'ga',
-	($scope, mainService, pixivFactory, $localStorage, filterFilter, ga) =>
-	new mainController.Illust($scope, mainService, pixivFactory, $localStorage, filterFilter, ga)
+	'$scope', 'mainService', 'pixivFactory', '$localStorage', 'filterFilter', 'ga', '$timeout',
+	($scope, mainService, pixivFactory, $localStorage, filterFilter, ga, $timeout) =>
+	new mainController.Illust($scope, mainService, pixivFactory, $localStorage, filterFilter, ga, $timeout)
 ]);
 
 module.controller('Diary',[
-	'$scope', 'mainService', 'tumblrFactory', '$localStorage', 'filterFilter', 'ga',
-	($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) =>
-		new mainController.Diary($scope, mainService, tumblrFactory, $localStorage, ga)
+	'$scope', 'mainService', 'tumblrFactory', '$localStorage', 'filterFilter', 'ga', '$timeout',
+	($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga, $timeout) =>
+		new mainController.Diary($scope, mainService, tumblrFactory, $localStorage, ga, $timeout)
 ]);
 
 module.controller('TumblrEntry',[
@@ -78,15 +78,15 @@ module.controller('TumblrEntry',[
 ]);
 
 module.controller('TumblrTag',[
-	'$scope', 'mainService', 'tumblrFactory', '$localStorage', 'filterFilter', 'ga',
-	($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) =>
-		new mainController.TumblrTag($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga)
+	'$scope', 'mainService', 'tumblrFactory', '$localStorage', 'filterFilter', 'ga', '$timeout',
+	($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga, $timeout) =>
+		new mainController.TumblrTag($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga, $timeout)
 ]);
 
 module.controller('Design',[
-	'$scope', 'mainService', 'tumblrFactory', '$localStorage', 'filterFilter', 'ga',
-	($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) =>
-		new mainController.Design($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga)
+	'$scope', 'mainService', 'tumblrFactory', '$localStorage', 'filterFilter', 'ga', '$timeout',
+	($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga, $timeout) =>
+		new mainController.Design($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga, $timeout)
 ]);
 
 

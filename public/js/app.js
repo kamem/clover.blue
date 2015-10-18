@@ -25,7 +25,8 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
         'flickrFactory',
         '$localStorage',
         'ga',
-        function ($scope, mainService, qiitaFactory, tumblrFactory, pixivFactory, flickrFactory, $localStorage, ga) { return new mainController.Index($scope, mainService, qiitaFactory, tumblrFactory, pixivFactory, flickrFactory, $localStorage, ga); }
+        '$timeout',
+        function ($scope, mainService, qiitaFactory, tumblrFactory, pixivFactory, flickrFactory, $localStorage, ga, $timeout) { return new mainController.Index($scope, mainService, qiitaFactory, tumblrFactory, pixivFactory, flickrFactory, $localStorage, ga, $timeout); }
     ]);
     module.controller('Weblog', [
         '$scope',
@@ -33,7 +34,8 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
         'qiitaFactory',
         '$localStorage',
         'ga',
-        function ($scope, mainService, qiitaFactory, $localStorage, ga) { return new mainController.Weblog($scope, mainService, qiitaFactory, $localStorage, ga); }
+        '$timeout',
+        function ($scope, mainService, qiitaFactory, $localStorage, ga, $timeout) { return new mainController.Weblog($scope, mainService, qiitaFactory, $localStorage, ga, $timeout); }
     ]);
     module.controller('Tag', [
         '$scope',
@@ -42,7 +44,8 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
         '$localStorage',
         'filterFilter',
         'ga',
-        function ($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga) { return new mainController.Tag($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga); }
+        '$timeout',
+        function ($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga, $timeout) { return new mainController.Tag($scope, mainService, qiitaFactory, $localStorage, filterFilter, ga, $timeout); }
     ]);
     module.controller('Entry', [
         '$scope',
@@ -61,7 +64,8 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
         '$localStorage',
         'filterFilter',
         'ga',
-        function ($scope, mainService, flickrFactory, $localStorage, filterFilter, ga) { return new mainController.Photo($scope, mainService, flickrFactory, $localStorage, filterFilter, ga); }
+        '$timeout',
+        function ($scope, mainService, flickrFactory, $localStorage, filterFilter, ga, $timeout) { return new mainController.Photo($scope, mainService, flickrFactory, $localStorage, filterFilter, ga, $timeout); }
     ]);
     module.controller('Illust', [
         '$scope',
@@ -70,7 +74,8 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
         '$localStorage',
         'filterFilter',
         'ga',
-        function ($scope, mainService, pixivFactory, $localStorage, filterFilter, ga) { return new mainController.Illust($scope, mainService, pixivFactory, $localStorage, filterFilter, ga); }
+        '$timeout',
+        function ($scope, mainService, pixivFactory, $localStorage, filterFilter, ga, $timeout) { return new mainController.Illust($scope, mainService, pixivFactory, $localStorage, filterFilter, ga, $timeout); }
     ]);
     module.controller('Diary', [
         '$scope',
@@ -79,7 +84,8 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
         '$localStorage',
         'filterFilter',
         'ga',
-        function ($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) { return new mainController.Diary($scope, mainService, tumblrFactory, $localStorage, ga); }
+        '$timeout',
+        function ($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga, $timeout) { return new mainController.Diary($scope, mainService, tumblrFactory, $localStorage, ga, $timeout); }
     ]);
     module.controller('TumblrEntry', [
         '$scope',
@@ -98,7 +104,8 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
         '$localStorage',
         'filterFilter',
         'ga',
-        function ($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) { return new mainController.TumblrTag($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga); }
+        '$timeout',
+        function ($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga, $timeout) { return new mainController.TumblrTag($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga, $timeout); }
     ]);
     module.controller('Design', [
         '$scope',
@@ -107,7 +114,8 @@ define(["require", "exports", 'angular', 'controllers/mainController', 'factory/
         '$localStorage',
         'filterFilter',
         'ga',
-        function ($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga) { return new mainController.Design($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga); }
+        '$timeout',
+        function ($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga, $timeout) { return new mainController.Design($scope, mainService, tumblrFactory, $localStorage, filterFilter, ga, $timeout); }
     ]);
     //route
     module.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
