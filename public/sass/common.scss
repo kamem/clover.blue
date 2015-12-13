@@ -432,6 +432,19 @@ main {
 		figcaption {
 			margin-top: es(10);
 		}
+
+		table {
+			font-size: es($font-size);
+			margin: es($margin) auto;
+			width: es($base-width);
+			th,
+			td {
+				padding: es($padding);
+			}
+			th {
+				background-color: $baseColor;
+			}
+		}
 	}
 }
 

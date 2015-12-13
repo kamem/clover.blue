@@ -480,6 +480,22 @@ main .content figcaption {
   margin-top: 10px;
   margin-top: 1rem;
 }
+main .content table {
+  font-size: 16px;
+  font-size: 1.6rem;
+  margin: 25px auto;
+  margin: 2.5rem auto;
+  width: 736px;
+  width: 73.6rem;
+}
+main .content table th,
+main .content table td {
+  padding: 16px;
+  padding: 1.6rem;
+}
+main .content table th {
+  background-color: #94dcef;
+}
 
 /*----------------------------------------
 	footer
